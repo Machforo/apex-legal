@@ -1,0 +1,70 @@
+import Layout from "@/components/Layout";
+import PageHeader from "@/components/PageHeader";
+import EnquiryCTA from "@/components/EnquiryCTA";
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { Award, ExternalLink } from "lucide-react";
+import { useIIMTData } from "@/hooks/useIIMTData";
+
+const defaultScholarships = [
+  { category: "Merit Scholarship", concession: "Up to 25% fee waiver", description: "Automatically applied for students in the top 10% of university exam results." },
+  { category: "SC/ST/OBC Scholarship", concession: "As per UP Scholarship Portal norms", description: "Apply through scholarship.up.gov.in. IIMT assists in documentation." },
+  { category: "Economically Weaker Section", concession: "Partial fee concession", description: "Family income below ₹2.5 LPA. Submit income certificate with admission application." },
+  { category: "Sibling Discount", concession: "10% fee waiver", description: "Two or more siblings enrolled simultaneously at Ishan Group. Inform admissions office during enrolment." },
+  { category: "Sports Scholarship", concession: "Up to 15% fee waiver", description: "State or National level sports achievement required. Submit certificates during admission." },
+  { category: "Single Girl Child", concession: "5% fee concession", description: "Sole girl child in family. Submit affidavit with admission documents." },
+];
+
+export default function ScholarshipsPage() {
+  const ref = useScrollReveal();
+  const { data } = useIIMTData("admissions");
+  // Schema: scholarships = [{category, concession, description}]
+  const scholarships = data?.scholarships?.length > 0 ? data.scholarships : defaultScholarships;
+
+  return (
+    <Layout>
+      <PageHeader
+        title="Scholarships"
+        subtitle="Financial support options for deserving students across all programs"
+        breadcrumbs={[{ label: "Admissions", href: "/admissions" }, { label: "Scholarships" }]}
+      />
+
+      <section className="py-20 md:py-28" ref={ref}>
+        <div className="container-wide">
+          <div className="max-w-4xl mx-auto">
+            <p className="reveal text-foreground/70 leading-relaxed mb-12">
+              IIMT believes that financial constraints should never hinder a student's access to quality education. We offer multiple scholarship schemes — merit-based, category-based, and need-based — to ensure that every deserving student can pursue their academic goals.
+            </p>
+
+            <div className="space-y-6">
+              {scholarships.map((s: any, i: number) => (
+                <div key={s.category || i} className={`reveal delay-${Math.min(i, 5)}00 rounded-xl border bg-card p-6`}>
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-gold-light flex items-center justify-center shrink-0">
+                      <Award className="w-5 h-5 text-navy" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-foreground mb-3">{s.category}</h3>
+                      <div className="grid sm:grid-cols-3 gap-3 text-sm">
+                        <div><span className="text-muted-foreground block text-xs mb-1">Concession / Benefit</span><span className="text-foreground/80 font-medium">{s.concession}</span></div>
+                        <div className="sm:col-span-2"><span className="text-muted-foreground block text-xs mb-1">Details</span><span className="text-foreground/80">{s.description}</span></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-12 p-6 rounded-xl bg-section-alt border text-center">
+              <p className="text-sm text-foreground/70 mb-3">Government Scholarships (SC/ST/OBC) are processed through:</p>
+              <a href="https://scholarship.up.gov.in" target="_blank" rel="noopener" className="inline-flex items-center gap-2 text-sm font-semibold text-navy hover:underline">
+                UP Scholarship Portal <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <EnquiryCTA />
+    </Layout>
+  );
+}
