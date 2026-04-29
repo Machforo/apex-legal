@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -64,6 +64,7 @@
 
   html {
     @apply scroll-smooth;
+    font-size: var(--base-font-size, 16px);
   }
 
   body {
@@ -166,13 +167,13 @@
 
   /* Stat counter */
   .stat-value {
-    @apply text-4xl md:text-5xl font-display font-bold tabular-nums;
+    @apply text-5xl md:text-6xl font-display font-bold tabular-nums tracking-tight;
     color: hsl(var(--gold));
   }
 
   .stat-label {
-    @apply text-sm uppercase tracking-wider mt-1 font-medium;
-    color: hsl(var(--primary-foreground) / 0.7);
+    @apply text-[11px] md:text-xs uppercase tracking-[0.2em] mt-3 font-bold;
+    color: hsl(var(--primary-foreground) / 0.85);
   }
 }
 

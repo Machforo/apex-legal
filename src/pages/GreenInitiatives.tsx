@@ -6,11 +6,11 @@ import { Leaf, Sun, Recycle, Droplets, TreePine } from "lucide-react";
 import { useIIMTData } from "@/hooks/useIIMTData";
 
 const initiatives = [
-  { icon: Sun, title: "Solar Energy", desc: "Rooftop solar panels generate renewable energy, reducing our dependence on conventional power by over 20%. The solar installation serves as a live case study for students studying sustainable business practices.", stat: "20%+ energy offset" },
-  { icon: TreePine, title: "Campus Plantation", desc: "Over 1,500 trees and plants across the campus create green corridors, reduce heat islands, and improve air quality. Annual plantation drives engage students, faculty, and local communities in environmental stewardship.", stat: "1,500+ trees planted" },
-  { icon: Recycle, title: "Waste Management", desc: "A comprehensive waste segregation and recycling program diverts over 60% of campus waste from landfills. Composting units convert organic waste into fertilizer for campus gardens.", stat: "60% waste diverted" },
-  { icon: Droplets, title: "Water Conservation", desc: "Rainwater harvesting systems and efficient fixtures reduce water consumption across the campus. Treated wastewater is used for landscaping, conserving potable water resources.", stat: "Rainwater harvesting active" },
-  { icon: Leaf, title: "Awareness Programs", desc: "Regular workshops, seminars, and competitions on environmental themes instill ecological consciousness in students. Green audits are conducted periodically to monitor and improve our environmental performance.", stat: "Annual green audits" },
+  { icon: Sun, title: "Energy Conservation", desc: "We prioritize energy efficiency through LED lighting across campus, sensor-based systems in common areas, and a commitment to reducing overall carbon footprint. Solar installations contribute significantly to our renewable energy goals.", stat: "20% Renewable energy" },
+  { icon: TreePine, title: "Tree Plantation Drives", desc: "Annual plantation drives are a hallmark of IIMT, resulting in over 1,500 trees across the Knowledge Park campus. These drives involve students and faculty, fostering a deep connection with nature and improving local air quality.", stat: "1,500+ trees planted" },
+  { icon: Recycle, title: "Waste Segregation & Plastic Ban", desc: "IIMT maintains a single-use plastic ban across campus. A robust waste segregation system ensures proper disposal of organic and inorganic waste, with organic waste being composted for campus gardens.", stat: "100% Plastic-free campus" },
+  { icon: Leaf, title: "Paperless Administration", desc: "We are progressively moving towards a paperless administration through digital portals for students and faculty, reducing paper consumption and improving administrative efficiency.", stat: "Digital-first workflow" },
+  { icon: Droplets, title: "Water Harvesting", desc: "Active rainwater harvesting systems recharge groundwater levels, while efficient plumbing fixtures ensure minimal water wastage across hostels and academic blocks.", stat: "Water harvesting active" },
 ];
 
 export default function GreenInitiativesPage() {

@@ -14,10 +14,11 @@ export default function AboutSection() {
   const ref = useScrollReveal();
   const { data } = useIIMTData("homepage");
   const defaultImage = libraryImg;
-  const about = data?.aboutIimt || {
-    title: "A Legacy of Academic Excellence in Greater Noida",
-    description: "Ishan Institute of Management & Technology, established in 1994, is the flagship institution of Ishan Educational Group. Affiliated to CCS University, Meerut and recognized by UGC, the institute focuses on nurturing future-ready professionals through a unique blend of academic rigor and practical exposure.",
-    image: defaultImage
+  const apiAbout = data?.aboutIimt;
+  const about = {
+    title: apiAbout?.title || "A Legacy of Academic Excellence in Greater Noida",
+    description: apiAbout?.description || "Ishan Institute of Management & Technology, established in 1994, is the flagship institution of Ishan Educational Group. Affiliated to CCS University, Meerut and recognized by UGC, the institute focuses on nurturing future-ready professionals through a unique blend of academic rigor and practical exposure.",
+    image: (apiAbout?.image && apiAbout.image.length > 5) ? apiAbout.image : "https://www.iecaonline.com/wp-content/uploads/2018/03/College-Campus-cropped-scaled.jpg"
   };
 
   return (
@@ -26,11 +27,14 @@ export default function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Image */}
           <div className="reveal-left relative">
-            <div className="rounded-2xl overflow-hidden shadow-[0_8px_40px_hsl(var(--navy)/0.1)]">
+            <div className="rounded-2xl overflow-hidden shadow-[0_8px_40px_hsl(var(--navy)/0.1)] bg-muted">
               <img
-                src={about.image || defaultImage}
+                src={about.image}
                 alt="IIMT Campus"
                 className="w-full h-[400px] object-cover"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80";
+                }}
               />
             </div>
             {/* Floating card */}

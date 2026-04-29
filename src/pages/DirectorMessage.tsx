@@ -9,9 +9,13 @@ export default function DirectorMessagePage() {
   const { data } = useIIMTData("aboutus");
   const defaultImage = "/assets/director.jpg"; // Placeholder path for now
   const msg = data?.directorMessage || {
-      name: "Dr. Priya Sharma",
-      designation: "Director, IIMT",
-      message: "At IIMT, we believe that education is not just about degrees — it is about developing individuals who are ready to lead, innovate, and contribute meaningfully to society. Our institution stands on three pillars: academic rigour, industry relevance, and character formation.",
+      name: "Dr. D.K. Garg",
+      designation: "Founder Chairman, Ishan Group",
+      message: `Welcome to Ishan Institute of Management & Technology. As we navigate an era of rapid global change, I believe that true education goes beyond textbooks—it is a powerful catalyst that transforms human potential into professional performance. At IIMT, our philosophy is rooted in the belief that every student possesses a unique spark that, when nurtured with the right guidance and environment, can lead to extraordinary outcomes.
+
+Our vision for IIMT is to create a learning ecosystem that prioritizes practical learning and meaningful industry exposure. We aim for the holistic development of our students, focusing not just on technical skills, but on fostering critical thinking, ethical leadership, and a resilient mindset. We want our graduates to be individuals who can lead with integrity and innovate with purpose in an increasingly complex world.
+
+I warmly invite you to join the IIMT community and experience an education that is designed to prepare you for both professional success and personal fulfillment. Explore our programmes and see how we can help you achieve your aspirations. We look forward to welcoming you to our campus in Knowledge Park.`,
       image: defaultImage
   };
 

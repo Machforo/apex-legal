@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { BookOpen, ArrowUpRight } from "lucide-react";
+import { BookOpen, ArrowUpRight, Search, X, GraduationCap, Briefcase } from "lucide-react";
 import { useIIMTData } from "@/hooks/useIIMTData";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
@@ -13,6 +13,8 @@ export default function ProgramsSection() {
   const fallbackPrograms = [
     { 
       name: "BBA", 
+      type: "UG",
+      category: "Management",
       description: "Bachelor of Business Administration. 3 Years.", 
       link: "/courses/bba",
       overview: "Develop essential management skills and business perspective. Focuses on marketing, HR, and finance fundamentals.",
@@ -20,6 +22,8 @@ export default function ProgramsSection() {
     },
     { 
       name: "B.Com", 
+      type: "UG",
+      category: "Commerce",
       description: "Bachelor of Commerce. 3 Years.", 
       link: "/courses/bcom",
       overview: "Comprehensive study of accounting, finance, and taxation. Prepares students for professional roles in the financial sector.",
@@ -27,6 +31,8 @@ export default function ProgramsSection() {
     },
     { 
       name: "BCA", 
+      type: "UG",
+      category: "IT",
       description: "Bachelor of Computer Applications. 3 Years.", 
       link: "/courses/bca",
       overview: "Technical course covering software development, database management, and emerging technologies like AI/ML.",
@@ -34,6 +40,8 @@ export default function ProgramsSection() {
     },
     { 
       name: "M.Com", 
+      type: "PG",
+      category: "Commerce",
       description: "Master of Commerce. 2 Years.", 
       link: "/courses/mcom",
       overview: "Advanced study in commerce, ideal for those seeking leadership roles in business or academic research.",
@@ -41,6 +49,8 @@ export default function ProgramsSection() {
     },
     { 
       name: "B.Ed", 
+      type: "UG",
+      category: "Education",
       description: "Bachelor of Education. 2 Years.", 
       link: "/courses/bed",
       overview: "Professional training for aspiring teachers. Focuses on pedagogy, child psychology, and classroom management.",
@@ -48,6 +58,8 @@ export default function ProgramsSection() {
     },
     { 
       name: "M.Ed", 
+      type: "PG",
+      category: "Education",
       description: "Master of Education. 2 Years.", 
       link: "/courses/med",
       overview: "Advanced pedagogical research and leadership development for senior educational roles.",
@@ -56,6 +68,20 @@ export default function ProgramsSection() {
   ];
   
   const programs = data?.academicPrograms?.length > 0 ? data.academicPrograms : fallbackPrograms;
+  
+  // Dynamically generate available filters
+  const availableTypes = Array.from(new Set(programs.map((p: any) => p.type))).filter(Boolean) as string[];
+  const availableCats = Array.from(new Set(programs.map((p: any) => p.category))).filter(Boolean) as string[];
+  const filterOptions = ["All", ...availableTypes, ...availableCats];
+
+  const [activeFilter, setActiveFilter] = useState("All");
+  const [programSearch, setProgramSearch] = useState("");
+
+  const filteredPrograms = programs.filter((p: any) => {
+    const matchesFilter = activeFilter === "All" || p.type === activeFilter || p.category === activeFilter;
+    const matchesSearch = programSearch.trim() === "" || p.name.toLowerCase().includes(programSearch.toLowerCase());
+    return matchesFilter && matchesSearch;
+  });
 
   return (
     <section id="programs" className="py-12 md:py-20 bg-section-alt overflow-hidden" ref={ref}>
@@ -70,22 +96,70 @@ export default function ProgramsSection() {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {programs.map((program: any, i: number) => {
-            return (
-              <motion.div
-                key={program.name || i}
-                onMouseEnter={() => setHoveredIndex(i)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                className={`reveal delay-${Math.min(i, 5)}00 group relative bg-card rounded-2xl border p-8 shadow-[0_4px_20px_hsl(var(--navy)/0.04)] hover:shadow-[0_20px_40px_hsl(var(--navy)/0.08)] transition-all duration-500 overflow-hidden`}
+        {/* Filters & Search */}
+        <div className="reveal delay-300 max-w-5xl mx-auto mb-16 flex flex-col md:flex-row gap-6 items-center justify-between">
+          <div className="flex flex-wrap gap-2 justify-center">
+            {filterOptions.map((f) => (
+              <button
+                key={f}
+                onClick={() => setActiveFilter(f)}
+                className={`px-6 py-2.5 text-xs font-bold rounded-xl transition-all active:scale-[0.97] ${
+                  activeFilter === f ? "bg-navy text-white shadow-xl" : "bg-white text-navy hover:bg-gold hover:text-navy border"
+                }`}
               >
+                {f}
+              </button>
+            ))}
+          </div>
+
+          <div className="relative w-full md:w-72 group">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4 group-focus-within:text-gold transition-colors" />
+            <input 
+              type="text" 
+              placeholder="Find a program..."
+              value={programSearch}
+              onChange={(e) => setProgramSearch(e.target.value)}
+              className="w-full pl-10 pr-10 py-3 bg-white border rounded-xl outline-none focus:border-gold focus:ring-4 focus:ring-gold/5 transition-all text-xs font-medium"
+            />
+            {programSearch && (
+              <button 
+                onClick={() => setProgramSearch("")}
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-1 hover:bg-muted rounded-full"
+              >
+                <X size={14} />
+              </button>
+            )}
+          </div>
+        </div>
+
+        <motion.div 
+          layout
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredPrograms.map((program: any, i: number) => {
+              return (
+                <motion.div
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  key={program.name || i}
+                  onMouseEnter={() => setHoveredIndex(i)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  className="group relative bg-card rounded-2xl border p-8 shadow-[0_4px_20px_hsl(var(--navy)/0.04)] hover:shadow-[0_20px_40px_hsl(var(--navy)/0.08)] transition-all duration-500 overflow-hidden"
+                >
                 <div className="flex items-start gap-4 mb-6">
                   <div className="w-14 h-14 rounded-xl bg-gold/5 flex items-center justify-center shrink-0 group-hover:bg-gold/15 transition-colors duration-300">
                     <BookOpen className="w-7 h-7 text-gold" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-display font-bold text-navy">{program.name}</h3>
-                    <p className="text-xs uppercase tracking-wider text-gold mt-1 font-semibold">{program.description.split('.')[1]?.trim() || "Full Time"}</p>
+                    <h3 className="text-2xl font-display font-bold text-navy">{program.name || "Program Name"}</h3>
+                    <p className="text-xs uppercase tracking-wider text-gold mt-1 font-semibold">
+                      {program.description?.includes('.') 
+                        ? program.description.split('.')[1]?.trim() 
+                        : (program.description || "Full Time")}
+                    </p>
                   </div>
                 </div>
 
@@ -131,7 +205,8 @@ export default function ProgramsSection() {
               </motion.div>
             );
           })}
-        </div>
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

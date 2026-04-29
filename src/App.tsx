@@ -3,10 +3,11 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Lazy load all inner pages
 const About = lazy(() => import("./pages/About"));
@@ -21,6 +22,8 @@ const MandatoryDisclosure = lazy(() => import("./pages/MandatoryDisclosure"));
 const DynamicCourse = lazy(() => import("./pages/DynamicCourse"));
 
 const Admissions = lazy(() => import("./pages/Admissions"));
+const AdmissionsEnquiry = lazy(() => import("./pages/AdmissionsEnquiry"));
+const Consultation = lazy(() => import("./pages/Consultation"));
 const Scholarships = lazy(() => import("./pages/Scholarships"));
 const FAQs = lazy(() => import("./pages/FAQs"));
 const EducationOverview = lazy(() => import("./pages/EducationOverview"));
@@ -45,6 +48,7 @@ const VideoGallery = lazy(() => import("./pages/VideoGallery"));
 const PressCoverage = lazy(() => import("./pages/PressCoverage"));
 
 const Downloads = lazy(() => import("./pages/Downloads"));
+const PastPapers = lazy(() => import("./pages/PastPapers"));
 const CodeOfConduct = lazy(() => import("./pages/CodeOfConduct"));
 const FeePayment = lazy(() => import("./pages/FeePayment"));
 const StudentPortal = lazy(() => import("./pages/StudentPortal"));
@@ -60,6 +64,13 @@ const AntiRagging = lazy(() => import("./pages/AntiRagging"));
 const GrievanceRedressal = lazy(() => import("./pages/GrievanceRedressal"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 
+const PedagogyLabs = lazy(() => import("./pages/PedagogyLabs"));
+const ECell = lazy(() => import("./pages/ECell"));
+const EventsCalendar = lazy(() => import("./pages/EventsCalendar"));
+const DebatesGD = lazy(() => import("./pages/DebatesGD"));
+const IndustrialVisits = lazy(() => import("./pages/IndustrialVisits"));
+const GuestLectures = lazy(() => import("./pages/GuestLectures"));
+
 const queryClient = new QueryClient();
 
 function PageLoader() {
@@ -70,12 +81,49 @@ function PageLoader() {
   );
 }
 
+// Intercepts clicks to course/admissions pages for the pop-under consultation flow
+import { useNavigate } from "react-router-dom";
+function GlobalClickInterceptor() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      // Find closest anchor tag
+      const target = (e.target as HTMLElement).closest('a');
+      if (!target) return;
+
+      const href = target.getAttribute('href');
+      if (!href) return;
+
+      // Check if it's a course or admissions link
+      if (href.startsWith('/courses/') || href === '/admissions' || href === '/admissions-education') {
+        // Prevent default navigation
+        e.preventDefault();
+        
+        // Open the target (Course/Admissions) in a NEW tab
+        window.open(href, '_blank');
+        
+        // Redirect the CURRENT tab to the consultation page
+        navigate('/consultation');
+      }
+    };
+
+    // Use capture phase to intercept before normal link behavior
+    document.addEventListener('click', handleClick, true);
+    return () => document.removeEventListener('click', handleClick, true);
+  }, [navigate]);
+
+  return null;
+}
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <ScrollToTop />
+        <GlobalClickInterceptor />
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<Index />} />
@@ -93,9 +141,13 @@ const App = () => (
             {/* Courses */}
             <Route path="/courses/:courseId" element={<DynamicCourse />} />
             <Route path="/education-overview" element={<EducationOverview />} />
+            <Route path="/admissions-education" element={<Admissions />} />
+            <Route path="/pedagogy-labs" element={<PedagogyLabs />} />
 
-            {/* Admissions */}
+            {/* Admissions & Consultation */}
             <Route path="/admissions" element={<Admissions />} />
+            <Route path="/admissions-enquiry" element={<AdmissionsEnquiry />} />
+            <Route path="/consultation" element={<Consultation />} />
             <Route path="/scholarships" element={<Scholarships />} />
             <Route path="/faqs" element={<FAQs />} />
 
@@ -109,6 +161,11 @@ const App = () => (
             <Route path="/skill-development" element={<SkillDevelopment />} />
             <Route path="/cultural-activities" element={<CulturalActivities />} />
             <Route path="/sports" element={<Sports />} />
+            <Route path="/e-cell" element={<ECell />} />
+            <Route path="/events-calendar" element={<EventsCalendar />} />
+            <Route path="/debates-gd" element={<DebatesGD />} />
+            <Route path="/industrial-visits" element={<IndustrialVisits />} />
+            <Route path="/guest-lectures" element={<GuestLectures />} />
 
             {/* Campus */}
             <Route path="/infrastructure" element={<Infrastructure />} />
@@ -124,12 +181,15 @@ const App = () => (
 
             {/* Students */}
             <Route path="/downloads" element={<Downloads />} />
+            <Route path="/past-papers" element={<PastPapers />} />
             <Route path="/code-of-conduct" element={<CodeOfConduct />} />
             <Route path="/fee-payment" element={<FeePayment />} />
             <Route path="/student-portal" element={<StudentPortal />} />
 
             {/* Research & Placements */}
             <Route path="/placements" element={<Placements />} />
+            <Route path="/placement-testimonials" element={<Placements />} />
+            <Route path="/alumni-network" element={<Placements />} />
             <Route path="/research-journal" element={<ResearchJournal />} />
 
             {/* Contact */}

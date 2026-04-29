@@ -66,43 +66,40 @@ export default function TestimonialsSection() {
           </div>
         </div>
 
-        <div className="relative max-w-7xl mx-auto min-h-[450px]">
+        <div className="relative overflow-hidden py-10">
+          <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-section-alt to-transparent z-10" />
+          <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-section-alt to-transparent z-10" />
+          
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
-              className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="flex gap-8 animate-marquee"
             >
-              {(activeTab === 'students' ? studentTestimonials : parentTestimonials).map((t, i) => (
-                <div key={t.name} className="bg-card border-2 border-transparent hover:border-gold/20 rounded-[2.5rem] p-10 relative shadow-lg hover:shadow-2xl transition-all group flex flex-col items-center text-center">
-                  <div className="absolute top-10 right-10 text-gold/5 group-hover:text-gold/10 transition-colors">
-                    <Quote size={80} />
-                  </div>
-                  
-                  <div className="relative mb-8">
-                    <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-xl">
-                      <img src={t.image} alt={t.name} className="w-full h-full object-cover transition-transform group-hover:scale-110" />
+              {[...(activeTab === 'students' ? studentTestimonials : parentTestimonials), ...(activeTab === 'students' ? studentTestimonials : parentTestimonials)].map((t, i) => (
+                <div key={`${t.name}-${i}`} className="shrink-0 w-[380px] bg-card border border-muted hover:border-gold/30 rounded-[2.5rem] p-8 relative shadow-lg hover:shadow-2xl transition-all group">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white shadow-lg">
+                      <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
                     </div>
-                    <div className="absolute -bottom-2 -right-2 bg-gold text-white p-2 rounded-full shadow-lg">
-                      <Star size={12} fill="currentColor" />
+                    <div>
+                      <h4 className="font-display font-bold text-lg text-navy">{t.name}</h4>
+                      <p className="text-xs font-bold text-gold uppercase tracking-wider">{t.role}</p>
+                    </div>
+                    <div className="ml-auto text-gold/10">
+                      <Quote size={40} />
                     </div>
                   </div>
 
-                  <div className="flex gap-1 mb-6 justify-center">
-                    {[1,2,3,4,5].map(s => <Star key={s} size={14} className="fill-gold text-gold" />)}
+                  <div className="flex gap-1 mb-4">
+                    {[1,2,3,4,5].map(s => <Star key={s} size={12} className="fill-gold text-gold" />)}
                   </div>
 
-                  <p className="text-foreground/80 leading-relaxed italic mb-8 relative z-10 text-lg">
+                  <p className="text-foreground/70 leading-relaxed italic text-sm line-clamp-4">
                     "{t.text}"
                   </p>
-
-                  <div className="mt-auto border-t border-muted pt-6 w-full">
-                    <h4 className="font-display font-bold text-xl text-navy">{t.name}</h4>
-                    <p className="text-sm font-semibold text-gold mt-1 uppercase tracking-wider">{t.role}</p>
-                  </div>
                 </div>
               ))}
             </motion.div>

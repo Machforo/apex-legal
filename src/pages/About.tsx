@@ -18,7 +18,12 @@ const defaultMilestones = [
 export default function AboutPage() {
   const ref = useScrollReveal();
   const { data, isLoading } = useIIMTData("aboutus");
-  const fallback = "Ishan Institute of Management & Technology (IIMT), established in 1994, is the flagship institution of Ishan Educational Group. Located in the educational hub of Greater Noida, Delhi NCR, IIMT is affiliated to Chaudhary Charan Singh University, Meerut and is approved by UGC, AICTE, and NCTE.";
+  const fallback = `Established in 1994, Ishan Institute of Management & Technology (IIMT) stands as a pioneer of professional education in Knowledge Park, Greater Noida. Affiliated with Chaudhary Charan Singh (CCS) University, Meerut, and approved by the AICTE and NCTE, IIMT is a NAAC accredited institution committed to academic excellence and holistic development. Our journey began with a vision to provide quality higher education that transforms potential into professional performance.
+
+Over the decades, we have evolved into a multi-disciplinary hub offering six distinct programmes: B.Com, BBA, BCA, M.Com, B.Ed, and M.Ed. Our industry-aligned curriculum ensures that students are not just degree holders but industry-ready professionals equipped with critical thinking and leadership skills. The campus life at IIMT is vibrant, featuring the flagship 'Kshitiz' annual fest, NSS activities, and structured skill development workshops that complement classroom learning.
+
+The campus itself is designed to provide a world-class learning environment, featuring state-of-the-art IT labs, a well-stocked library, a modern auditorium, sports facilities, and secure hostel accommodation. We invite aspiring students to join our community and embark on a journey of growth and discovery. Admissions are now open for the current academic session; reach out to our counsellors to explore your future at IIMT.`;
+
   // Schema: aboutus.ourStory = { title, content } | aboutus.keyDifferentiators = [{title, description}]
   const ourStory = data?.ourStory;
   const milestones = data?.milestones?.length > 0 ? data.milestones : defaultMilestones;
@@ -26,21 +31,21 @@ export default function AboutPage() {
   const keyDifferentiators: string[] = keyDiffRaw?.length > 0
     ? keyDiffRaw.map((k: any) => typeof k === 'string' ? k : k.title)
     : [
-      "NAAC Accredited institution",
+      "NAAC Accredited Institution",
       "Affiliated to CCS University, Meerut",
-      "UGC, AICTE & NCTE approved",
-      "90%+ consistent placement record",
-      "Industry-integrated curriculum",
-      "Modern campus with smart classrooms",
-      "Active placement cell with 150+ recruiters",
-      "Certificate programs in Tally, GST, Digital Marketing",
+      "UGC, AICTE & NCTE Approved",
+      "Industry-aligned Curriculum",
+      "Modern Campus with Smart Classrooms",
+      "Active Skill Development Cell",
+      "20-week Practice Teaching (Education)",
+      "Vibrant Campus Life with Kshitiz Fest",
     ];
 
   return (
     <Layout>
         <PageHeader
-        title={ourStory?.title || "About IIMT"}
-        subtitle="Ishan's founding college, shaping professionals in management, commerce, IT and education since 1994."
+        title={ourStory?.title || "About IIMT Greater Noida"}
+        subtitle="Transforming potential into performance through academic excellence since 1994."
         breadcrumbs={[{ label: "About IIMT" }]}
       />
 
@@ -56,7 +61,7 @@ export default function AboutPage() {
             <div className="reveal-right space-y-5">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Our Story</p>
               <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
-                {ourStory?.title || "Greater Noida's First Multi-Disciplinary Institution"}
+                {ourStory?.title || "Legacy of Shaping Professional Excellence"}
               </h2>
               <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
                 {ourStory?.content || fallback}

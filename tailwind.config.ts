@@ -14,8 +14,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
-        display: ['"Playfair Display"', 'Georgia', 'serif'],
+        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+        display: ['"Outfit"', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -92,6 +92,14 @@ export default {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },
         },
+        "fade-in-up": {
+          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "marquee-vertical": {
+          "0%": { transform: "translateY(0)" },
+          "100%": { transform: "translateY(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -100,6 +108,8 @@ export default {
         "count-up": "count-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "slide-in-nav": "slide-in-nav 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards",
         "marquee": "marquee 30s linear infinite",
+        "fade-in-up": "fade-in-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) both",
+        "marquee-vertical": "marquee-vertical 20s linear infinite",
       },
     },
   },

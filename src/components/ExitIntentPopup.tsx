@@ -59,9 +59,9 @@ export default function ExitIntentPopup() {
 
           {/* Left Side - Visual */}
           <div className="md:w-5/12 bg-navy p-12 flex flex-col items-center justify-center text-center">
-            <motion.div 
-              initial={{ scale: 0 }} 
-              animate={{ scale: 1 }} 
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring" }}
               className="w-24 h-24 bg-gold rounded-full flex items-center justify-center mb-8 shadow-xl"
             >
@@ -72,7 +72,7 @@ export default function ExitIntentPopup() {
               Don't leave without finding the right path for your career.
             </p>
           </div>
-          
+
           {/* Right Side - Content */}
           <div className="md:w-7/12 p-10 md:p-14 bg-card flex flex-col justify-center">
             <h2 className="text-4xl md:text-5xl font-display font-bold text-navy mb-6 leading-tight">
@@ -81,7 +81,7 @@ export default function ExitIntentPopup() {
             <p className="text-foreground/75 text-lg mb-10 leading-relaxed">
               Our expert admissions counselors are here to help you choose the perfect program based on your goals.
             </p>
-            
+
             <div className="flex flex-col gap-4">
               <a
                 href="tel:+918448797700"

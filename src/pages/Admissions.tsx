@@ -6,11 +6,11 @@ import { FileText, Calendar, Phone, CheckCircle2, ArrowRight } from "lucide-reac
 import { useIIMTData } from "@/hooks/useIIMTData";
 
 const steps = [
-  { num: "01", title: "Check Eligibility", desc: "Confirm you meet the minimum qualification: 10+2 for UG programs, Graduation for PG/B.Ed, B.Ed for M.Ed. Minimum marks vary by program." },
-  { num: "02", title: "Appear for Entrance Exam", desc: "Apply for CUET (UG/PG) or JEECUP as applicable. For B.Ed, apply through UP Joint B.Ed counselling portal." },
-  { num: "03", title: "UP State Counselling", desc: "Register on the UP state counselling portal, choose IIMT as your preferred institution, and lock your seat when allotted." },
-  { num: "04", title: "Document Verification", desc: "Visit IIMT campus with original documents: marksheets, transfer certificate, migration certificate, category certificate (if applicable), passport-size photographs." },
-  { num: "05", title: "Fee Payment & Confirmation", desc: "Pay the first-year fee through the online portal (fee.ishan.ac) or at the campus counter. Collect your admission confirmation and ID card." },
+  { num: "01", title: "CCS University Registration", desc: "Begin by registering on the official CCS University web-portal. This is mandatory for all students seeking admission to B.Com, BBA, BCA, M.Com, B.Ed, and M.Ed programmes at IIMT." },
+  { num: "02", title: "Entrance Exam Participation", desc: "Appear for the relevant entrance examinations. CUET is mandatory for UG programs; UP Joint B.Ed Entrance for B.Ed; and the CCS University Entrance for M.Ed admissions." },
+  { num: "03", title: "Merit-Based Selection", desc: "Admissions are processed through centralized university counselling. Seat allotment is based on your entrance merit and preference for IIMT as your choice institution." },
+  { num: "04", title: "Document Verification", desc: "Once allotted a seat, visit our Knowledge Park campus with original documents (marksheets, transfer certificates, and scorecards) for physical verification and registration." },
+  { num: "05", title: "Fee Submission & Finalization", desc: "Finalize your admission by submitting the requisite semester fees. Our administrative team will guide you through the final registration on the university and college portals." },
 ];
 
 const documents = [

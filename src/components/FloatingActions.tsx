@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
-import { MessageCircle, X, Send, Phone, ArrowUpRight } from "lucide-react";
+import { MessageCircle, X, Send, Phone, ArrowUpRight, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { toast } from "sonner";
 
 export function WhatsAppButton() {
   const phoneNumber = "919569394675";
@@ -9,21 +10,21 @@ export function WhatsAppButton() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div className="fixed bottom-6 left-6 z-[60] flex items-center">
+    <div className="fixed bottom-6 right-6 z-[60] flex items-center">
       <AnimatePresence>
         {isHovered && (
           <motion.div
-            initial={{ opacity: 0, x: -10 }}
+            initial={{ opacity: 0, x: 10 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -10 }}
-            className="absolute left-16 bg-navy text-white px-4 py-2 rounded-lg text-sm font-bold whitespace-nowrap shadow-xl border border-white/10"
+            exit={{ opacity: 0, x: 10 }}
+            className="absolute right-16 bg-navy text-white px-4 py-2 rounded-lg text-sm font-bold whitespace-nowrap shadow-xl border border-white/10"
           >
             WhatsApp Click to Chat
-            <div className="absolute left-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-navy rotate-45 border-l border-b border-white/10" />
+            <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 bg-navy rotate-45 border-r border-t border-white/10" />
           </motion.div>
         )}
       </AnimatePresence>
-      
+
       <motion.a
         href={whatsappUrl}
         target="_blank"
@@ -44,101 +45,39 @@ export function WhatsAppButton() {
 }
 
 export function ChatBot() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { text: "Namaste! Welcome to IIMT. How can I assist you today?", isBot: true }
-  ]);
-  const [input, setInput] = useState("");
-
-  const handleSend = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-
-    setMessages([...messages, { text: input, isBot: false }]);
-    setInput("");
-
-    // Simple bot response
-    setTimeout(() => {
-      setMessages(prev => [...prev, { 
-        text: "Thank you for your message. An admissions counselor will get back to you shortly. For immediate assistance, please call 8448797700.", 
-        isBot: true 
-      }]);
-    }, 1000);
-  };
-
-  return (
-    <div className="fixed bottom-6 right-6 z-[60]">
-      <motion.button
-        onClick={() => setIsOpen(!isOpen)}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="w-14 h-14 bg-navy text-white rounded-full shadow-lg flex items-center justify-center border border-white/10"
-      >
-        {isOpen ? <X size={24} /> : <motion.div animate={{ rotate: [0, 10, -10, 0] }} transition={{ repeat: Infinity, duration: 2 }}><MessageCircle size={28} /></motion.div>}
-      </motion.button>
-
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 50, scale: 0.9, originY: 1 }}
-            animate={{ opacity: 1, y: -20, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="absolute bottom-16 right-0 w-80 sm:w-96 bg-card border rounded-2xl shadow-2xl overflow-hidden flex flex-col"
-            style={{ maxHeight: '500px' }}
-          >
-            <div className="bg-navy p-4 text-white flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-gold rounded-full flex items-center justify-center">
-                  <MessageCircle size={18} className="text-navy" />
-                </div>
-                <div>
-                  <h3 className="font-display font-bold text-sm">IIMT Assistant</h3>
-                  <p className="text-[10px] opacity-70">Online | Click to chat</p>
-                </div>
-              </div>
-              <button 
-                onClick={() => setIsOpen(false)}
-                className="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
-                title="Close Chat"
-              >
-                <X size={18} />
-              </button>
-            </div>
-            
-            <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-[300px] bg-muted/30">
-              {messages.map((msg, i) => (
-                <div key={i} className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}>
-                  <div className={`max-w-[80%] p-3 rounded-2xl text-sm ${msg.isBot ? 'bg-white text-navy shadow-sm rounded-tl-none border' : 'bg-gold text-navy font-medium rounded-tr-none'}`}>
-                    {msg.text}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <form onSubmit={handleSend} className="p-4 border-t flex gap-2 bg-card">
-              <input 
-                type="text" 
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder="Type your question..."
-                className="flex-1 bg-muted rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-gold transition-all"
-              />
-              <button type="submit" className="w-11 h-11 bg-gold text-navy rounded-xl flex items-center justify-center shrink-0 shadow-lg hover:shadow-gold/20 transition-all active:scale-[0.98]">
-                <Send size={20} />
-              </button>
-            </form>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
+  return null;
 }
 
 export function QuickEnquiry() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({ name: "", phone: "", question: "" });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Basic phone validation
+    const phoneRegex = /^\d{10}$/;
+    if (!phoneRegex.test(formData.phone)) {
+      toast.error("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
+    // Simulate API call
+    console.log("Enquiry submitted:", formData);
+    setIsSubmitted(true);
+    toast.success("Enquiry sent successfully! Our counsellor will contact you.");
+
+    // Reset after some time
+    setTimeout(() => {
+      setIsSubmitted(false);
+      setIsOpen(false);
+      setFormData({ name: "", phone: "", question: "" });
+    }, 3000);
+  };
 
   return (
-    <div className="fixed right-0 top-[65%] -translate-y-1/2 z-[55]">
+    <div className="fixed right-0 top-[40%] -translate-y-1/2 z-[55]">
       {!isOpen ? (
         <motion.button
           initial={{ x: 100 }}
@@ -159,12 +98,49 @@ export function QuickEnquiry() {
             <h3 className="font-display font-bold text-navy">Quick Enquiry</h3>
             <button onClick={() => setIsOpen(false)}><X size={20} /></button>
           </div>
-          <form className="space-y-4">
-            <input type="text" placeholder="Full Name" className="w-full px-4 py-2.5 text-sm rounded-lg border bg-muted outline-none" />
-            <input type="tel" placeholder="Phone Number" className="w-full px-4 py-2.5 text-sm rounded-lg border bg-muted outline-none" />
-            <textarea placeholder="Your Question" rows={3} className="w-full px-4 py-2.5 text-sm rounded-lg border bg-muted outline-none resize-none" />
-            <button className="w-full py-2.5 bg-navy text-white text-sm font-semibold rounded-lg">Send Enquiry</button>
-          </form>
+          {isSubmitted ? (
+            <div className="py-12 flex flex-col items-center justify-center text-center space-y-4">
+              <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center">
+                <CheckCircle className="text-success" size={32} />
+              </div>
+              <h4 className="font-display font-bold text-navy text-xl">Thank You!</h4>
+              <p className="text-sm text-muted-foreground leading-relaxed">Your enquiry has been received. We will get back to you shortly.</p>
+            </div>
+          ) : (
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              <input
+                type="text"
+                placeholder="Full Name"
+                required
+                value={formData.name}
+                onChange={(e) => setFormData(p => ({ ...p, name: e.target.value }))}
+                className="w-full px-4 py-2.5 text-sm rounded-lg border bg-muted outline-none focus:ring-2 focus:ring-gold/50 transition-all"
+              />
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                required
+                value={formData.phone}
+                onChange={(e) => setFormData(p => ({ ...p, phone: e.target.value }))}
+                className="w-full px-4 py-2.5 text-sm rounded-lg border bg-muted outline-none focus:ring-2 focus:ring-gold/50 transition-all"
+              />
+              <textarea
+                placeholder="Your Question"
+                rows={3}
+                required
+                value={formData.question}
+                onChange={(e) => setFormData(p => ({ ...p, question: e.target.value }))}
+                className="w-full px-4 py-2.5 text-sm rounded-lg border bg-muted outline-none resize-none focus:ring-2 focus:ring-gold/50 transition-all"
+              />
+              <div className="flex items-start gap-2 pt-1">
+                <input type="checkbox" id="contact-counsellor" className="mt-1 accent-gold" defaultChecked />
+                <label htmlFor="contact-counsellor" className="text-xs text-muted-foreground">I want the counsellor to contact us</label>
+              </div>
+              <button type="submit" className="w-full py-3 bg-navy text-white text-sm font-bold rounded-lg shadow-lg hover:bg-navy-dark transition-all active:scale-[0.98]">
+                Send Enquiry
+              </button>
+            </form>
+          )}
         </motion.div>
       )}
     </div>

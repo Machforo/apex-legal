@@ -32,11 +32,33 @@ export default function BestPracticesPage() {
                 ))
               ) : (
                 <>
-                  <p className="text-foreground/70 leading-relaxed">Ishan Institute of Management &amp; Technology has established a culture of continuous improvement guided by NAAC best practices.</p>
-                  <div className="p-6 rounded-xl border bg-card"><h2 className="text-xl font-display font-bold text-foreground mb-3">1. Industry Interface Program</h2><p className="text-foreground/70 leading-relaxed">IIMT maintains active partnerships with over 150 companies through regular MoUs and industry engagement programmes...</p></div>
-                  <div className="p-6 rounded-xl border bg-card"><h2 className="text-xl font-display font-bold text-foreground mb-3">2. Skill Enhancement Labs</h2><p className="text-foreground/70 leading-relaxed">Beyond the regular degree curriculum, IIMT offers structured certificate programs in Tally, GST, Digital Marketing, Python and Stock Markets...</p></div>
-                  <div className="p-6 rounded-xl border bg-card"><h2 className="text-xl font-display font-bold text-foreground mb-3">3. Entrepreneurship Development Cell</h2><p className="text-foreground/70 leading-relaxed">The Entrepreneurship Cell encourages students to think beyond employment and develop business ventures with mentoring support...</p></div>
-                  <div className="p-6 rounded-xl border bg-card"><h2 className="text-xl font-display font-bold text-foreground mb-3">4. Mentoring &amp; Student Support</h2><p className="text-foreground/70 leading-relaxed">Each student at IIMT is assigned a faculty mentor who tracks academic progress and provides career guidance...</p></div>
+                  <p className="text-foreground/70 leading-relaxed">
+                    Ishan Institute of Management & Technology is deeply committed to the continuous improvement of teaching methodologies and institutional processes. Our best practices are systematically documented for NAAC peer review, ensuring that every initiative contributes to the holistic development of our students and the overall excellence of the institution.
+                  </p>
+                  <div className="p-6 rounded-xl border bg-card">
+                    <h2 className="text-xl font-display font-bold text-foreground mb-3">1. Industry Integration & Experiential Learning</h2>
+                    <p className="text-foreground/70 leading-relaxed">
+                      We bridge the gap between classroom theory and corporate reality through frequent industrial visits to manufacturing plants and financial hubs, expert guest lectures by industry veterans, and live project assignments. This practice ensures that our students gain real-world insights and are prepared for professional challenges from day one.
+                    </p>
+                  </div>
+                  <div className="p-6 rounded-xl border bg-card">
+                    <h2 className="text-xl font-display font-bold text-foreground mb-3">2. Structured Skill Development Programme</h2>
+                    <p className="text-foreground/70 leading-relaxed">
+                      Beyond academics, we implement a structured soft skills programme that includes communication workshops, digital literacy across all programmes, and professional etiquette training. This practice is designed to enhance the employability and confidence of our students, making them stand out in competitive job markets.
+                    </p>
+                  </div>
+                  <div className="p-6 rounded-xl border bg-card">
+                    <h2 className="text-xl font-display font-bold text-foreground mb-3">3. Green Campus & Sustainability Initiatives</h2>
+                    <p className="text-foreground/70 leading-relaxed">
+                      IIMT prioritizes environmental consciousness through effective waste management, energy conservation measures, and student-led sustainability initiatives. Our commitment to a green campus fosters a sense of responsibility among students towards the environment and promotes a healthy, eco-friendly learning atmosphere.
+                    </p>
+                  </div>
+                  <div className="p-6 rounded-xl border bg-card">
+                    <h2 className="text-xl font-display font-bold text-foreground mb-3">Institutional Outcomes</h2>
+                    <p className="text-foreground/70 leading-relaxed italic">
+                      These practices have resulted in measurable improvements in student confidence, higher industry acceptance of our graduates, and a sustained reputation for academic and ethical excellence in the North India region.
+                    </p>
+                  </div>
                 </>
               )}
             </div>

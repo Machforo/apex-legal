@@ -3,10 +3,10 @@ import { useEffect, useState, useRef } from "react";
 import { useIIMTData } from "@/hooks/useIIMTData";
 
 const defaultStats = [
-  { value: "31+", label: "Years of Excellence" },
-  { value: "90%", label: "Placement Record" },
-  { value: "5000+", label: "Alumni Network" },
-  { value: "6", label: "Programs Offered" },
+  { value: "30+", label: "Years of Excellence" },
+  { value: "94%", label: "Placement Success" },
+  { value: "15,000+", label: "Alumni Network" },
+  { value: "6", label: "Specializations" },
 ];
 
 function AnimatedCounter({ rawValue }: { rawValue: string }) {
@@ -38,7 +38,7 @@ function AnimatedCounter({ rawValue }: { rawValue: string }) {
           }, duration / steps);
         }
       },
-      { threshold: 0.5 }
+      { threshold: 0.1 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -53,8 +53,16 @@ function AnimatedCounter({ rawValue }: { rawValue: string }) {
 
 export default function StatsBar() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("homepage");
-  const statsList = data?.numbers?.length > 0 ? data.numbers : defaultStats;
+  const { data, isLoading } = useIIMTData("homepage");
+  
+  // Use a ref to keep the stats stable once they are loaded or if using defaults
+  const [statsList, setStatsList] = useState(defaultStats);
+
+  useEffect(() => {
+    if (data?.numbers?.length > 0) {
+      setStatsList(data.numbers);
+    }
+  }, [data]);
 
   const brands = [
     { name: "Barclays", logo: "https://www.openbanking.org.uk/wp-content/uploads/barclays.png" },
@@ -75,7 +83,7 @@ export default function StatsBar() {
           {statsList.map((stat: any, i: number) => (
             <div
               key={stat.label || i}
-              className={`reveal text-center ${i > 0 ? `delay-${i}00` : ""}`}
+              className="text-center"
             >
               <AnimatedCounter rawValue={stat.value?.toString() || "0"} />
               <p className="stat-label text-white/70">{stat.label}</p>

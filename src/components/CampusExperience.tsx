@@ -1,26 +1,15 @@
 import { useState, useEffect } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { motion, AnimatePresence } from "framer-motion";
-import auditoriumImg from "@/assets/auditorium.jpg";
-import heroImg from "@/assets/hero-campus.jpg";
-import libraryImg from "@/assets/students-library.jpg";
-
 const galleryImages = [
-  { title: "Smart Classrooms", img: heroImg, category: "Academic" },
-  { title: "Advanced IT Labs", img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800", category: "Technical" },
-  { title: "Central Library", img: libraryImg, category: "Research" },
-  { title: "Hostel Life", img: "https://images.unsplash.com/photo-1555854816-808226a3f5a7?auto=format&fit=crop&w=800", category: "Residential" },
-  { title: "Grand Auditorium", img: auditoriumImg, category: "Events" },
-  { title: "Sports Complex", img: "https://images.unsplash.com/photo-1505236858219-8359eb29e329?auto=format&fit=crop&w=800", category: "Sports" },
-  { title: "Student Lounge", img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800", category: "Social" },
-  { title: "Science Labs", img: "https://images.unsplash.com/photo-1581093588401-fbb62a02f120?auto=format&fit=crop&w=800", category: "Science" },
-  { title: "Cafeteria", img: "https://images.unsplash.com/photo-1565706482630-1439442b66cb?auto=format&fit=crop&w=800", category: "Lifestyle" },
-  { title: "Green Spaces", img: "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=800", category: "Environment" },
-  { title: "Computer Center", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800", category: "Technical" },
-  { title: "Medical Room", img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=800", category: "Facilities" },
-  { title: "Gymnasium", img: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800", category: "Fitness" },
-  { title: "Convocation", img: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&fit=crop&w=800", category: "Life" },
-  { title: "Digital Library", img: "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=800", category: "Research" },
+  { title: "Academic Excellence", img: "https://www.burohappold.com/wp-content/uploads/2022/05/BS-CMU_02_Albert-Vecerka-Esto-1024x683.jpg", category: "Campus" },
+  { title: "Smart Resources", img: "https://studyus.dapodik.co.id/wp-content/uploads/2023/08/Exploring-US-University-Facilities-and-Resources-8QR-MPR.jpg", category: "Facilities" },
+  { title: "Student Life", img: "https://www.kclas.ac.in/wp-content/uploads/2021/01/gallery-05.jpg", category: "Community" },
+  { title: "Sports Academy", img: "https://www.sanskriti.edu.in/images/sports1.jpg", category: "Sports" },
+  { title: "Indoor Training", img: "https://www.accurate.in/engg/img/sports/sports.webp", category: "Fitness" },
+  { title: "Campus Architecture", img: "https://woxsen.edu.in/uploads/A20230824084254.webp", category: "Architecture" },
+  { title: "Event Plenary", img: "https://lavasa.christuniversity.in/uploads/userfiles/IMG_1100_JPG.jpg", category: "Events" },
+  { title: "Lush Greenery", img: "https://www.iecaonline.com/wp-content/uploads/2018/03/College-Campus-cropped-scaled.jpg", category: "Environment" },
 ];
 
 export default function CampusExperience() {
@@ -52,59 +41,61 @@ export default function CampusExperience() {
         </div>
 
         {/* High-Density Masonry Collage Layout */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 md:gap-4 auto-rows-[100px] md:auto-rows-[140px] lg:auto-rows-[160px]">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4 auto-rows-[120px] md:auto-rows-[180px]">
           {/* Main Hero Tile */}
           <div className="col-span-2 row-span-2 relative rounded-3xl overflow-hidden shadow-2xl group border border-white/10">
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeIndices[0]}
-                src={galleryImages[activeIndices[0]].img}
+                src={galleryImages[activeIndices[0] % galleryImages.length].img}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                 initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=1200&q=80";
+                }}
               />
             </AnimatePresence>
-            <div className="absolute inset-0 bg-gradient-to-t from-navy-dark via-transparent opacity-80" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent opacity-80" />
             <div className="absolute bottom-6 left-6 right-6">
-              <span className="text-[10px] font-bold text-gold uppercase tracking-widest">{galleryImages[activeIndices[0]].category}</span>
-              <h3 className="text-lg md:text-xl font-display font-bold mt-1">{galleryImages[activeIndices[0]].title}</h3>
+              <span className="text-[10px] font-bold text-gold uppercase tracking-widest">{galleryImages[activeIndices[0] % galleryImages.length].category}</span>
+              <h3 className="text-lg md:text-xl font-display font-bold mt-1">{galleryImages[activeIndices[0] % galleryImages.length].title}</h3>
             </div>
           </div>
 
-          {/* Medium/Small Tiles */}
           <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[1]} src={galleryImages[activeIndices[1]].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+            <motion.img key={activeIndices[1]} src={galleryImages[activeIndices[1] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800"; }} />
           </div>
 
           <div className="col-span-2 relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[2]} src={galleryImages[activeIndices[2]].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+            <motion.img key={activeIndices[2]} src={galleryImages[activeIndices[2] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800"; }} />
           </div>
 
           <div className="row-span-2 relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[3]} src={galleryImages[activeIndices[3]].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+            <motion.img key={activeIndices[3]} src={galleryImages[activeIndices[3] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
           </div>
 
           <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[4]} src={galleryImages[activeIndices[4]].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+            <motion.img key={activeIndices[4]} src={galleryImages[activeIndices[4] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
           </div>
 
           <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[5]} src={galleryImages[activeIndices[5]].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+            <motion.img key={activeIndices[5]} src={galleryImages[activeIndices[5] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
           </div>
 
           <div className="col-span-2 relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[6]} src={galleryImages[activeIndices[6]].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
-          </div>
-
-          <div className="hidden lg:block relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[7]} src={galleryImages[activeIndices[7]].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+            <motion.img key={activeIndices[6]} src={galleryImages[activeIndices[6] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
           </div>
 
           <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[8]} src={galleryImages[activeIndices[8]].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+            <motion.img key={activeIndices[7]} src={galleryImages[activeIndices[7] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
           </div>
 
-          <div className="hidden md:block relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[9]} src={galleryImages[activeIndices[9]].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} />
+          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
+            <motion.img key={activeIndices[8]} src={galleryImages[activeIndices[8] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
+          </div>
+
+          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
+            <motion.img key={activeIndices[9]} src={galleryImages[activeIndices[9] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
           </div>
         </div>
       </div>

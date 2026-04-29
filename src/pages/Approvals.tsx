@@ -28,6 +28,28 @@ export default function ApprovalsPage() {
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
+          <div className="max-w-4xl mx-auto mb-16 space-y-6 text-center">
+            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Regulatory Compliance</p>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">A Fully Accredited Institution</h2>
+            <p className="text-foreground/70 leading-relaxed">
+              Academic approvals and affiliations are the foundation of institutional credibility. They ensure degree validity, placement acceptance by corporate partners, and strict adherence to national regulatory standards. IIMT holds all relevant approvals from India's premier education regulators, providing our students with a globally recognized qualification.
+            </p>
+            <div className="grid md:grid-cols-3 gap-8 pt-4">
+              <div className="space-y-2">
+                <h4 className="font-bold text-navy">AICTE</h4>
+                <p className="text-xs text-foreground/60">Ensures technical and management education meets global benchmarks of quality and curriculum relevance.</p>
+              </div>
+              <div className="space-y-2">
+                <h4 className="font-bold text-navy">CCS University</h4>
+                <p className="text-xs text-foreground/60">Provides academic affiliation, standardized examination processes, and the final degree certification.</p>
+              </div>
+              <div className="space-y-2">
+                <h4 className="font-bold text-navy">NAAC</h4>
+                <p className="text-xs text-foreground/60">A quality benchmark that audits institutional infrastructure, faculty expertise, and student outcomes.</p>
+              </div>
+            </div>
+          </div>
+
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {accreditations.map((acc: any, i: number) => (
               <div key={acc.title || acc.name || i} className={`reveal delay-${Math.min(i, 5)}00 bg-card rounded-xl border p-6 text-center shadow-sm hover:shadow-[0_8px_30px_hsl(var(--navy)/0.08)] transition-shadow`}>

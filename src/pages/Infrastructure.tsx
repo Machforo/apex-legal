@@ -18,7 +18,11 @@ const facilities = [
 export default function InfrastructurePage() {
   const ref = useScrollReveal();
   const { data } = useIIMTData("campuslife");
-  const intro = data?.infrastructure?.content || "IIMT's campus in Greater Noida features modern infrastructure built to support academic excellence and student welfare. From smart classrooms and well-equipped labs to a comprehensive library and sports facilities, every element of the campus is designed with student success in mind.";
+  const intro = `IIMT's campus is strategically located in Knowledge Park III, Greater Noida, offering a secure, green, and aesthetically designed environment conducive to academic focus. The campus is built on a foundation of sustainability and modern design, providing a premium learning experience for our students.
+
+Our facilities include smart classrooms with modern AV systems, state-of-the-art IT labs, a comprehensive library, and a professional 500-seat auditorium for institutional events. We also offer dedicated sports areas and secure hostel accommodations, ensuring a well-rounded campus life. 
+
+The campus is highly accessible, situated in close proximity to the Pari Chowk Metro Station and well-connected by major transport links across Delhi NCR, making it a convenient choice for day scholars and residents alike.`;
 
   return (
     <Layout>

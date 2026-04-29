@@ -8,7 +8,8 @@ import PlacementsSection from "@/components/PlacementsSection";
 import CampusExperience from "@/components/CampusExperience";
 import NewsSection from "@/components/NewsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import AccreditationsSection from "@/components/AccreditationsSection";
+import FAQSection from "@/components/FAQSection";
+import FacultySection from "@/components/FacultySection";
 import CTASection from "@/components/CTASection";
 
 const Index = () => {
@@ -16,14 +17,15 @@ const Index = () => {
     <Layout>
       <HeroSection />
       <StatsBar />
-      <AboutSection />
-      <ProgramsSection />
-      <WhyIIMTSection />
-      <PlacementsSection />
-      <CampusExperience />
-      <NewsSection />
+      <div id="about"><AboutSection /></div>
+      <div id="programs"><ProgramsSection /></div>
+      <div id="why-iimt"><WhyIIMTSection /></div>
+      <div id="placements"><PlacementsSection /></div>
+      <FacultySection />
+      <div id="campus"><CampusExperience /></div>
+      <div id="news"><NewsSection /></div>
       <TestimonialsSection />
-      <AccreditationsSection />
+      <FAQSection />
       <CTASection />
     </Layout>
   );

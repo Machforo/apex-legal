@@ -4,7 +4,7 @@ export function useIIMTData(endpoint: string) {
   return useQuery({
     queryKey: ['iimt', endpoint],
     queryFn: async () => {
-      const response = await fetch(`http://localhost:5000/api/iimt/${endpoint}`);
+      const response = await fetch(`https://ishan-backend-g096.onrender.com/api/iimt/${endpoint}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${endpoint} data`);
       }

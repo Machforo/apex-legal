@@ -28,9 +28,12 @@ export default function MandatoryDisclosurePage() {
             <div className="reveal bg-gold-light rounded-xl p-6 mb-12 flex items-start gap-4">
               <FileText className="w-6 h-6 text-navy shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-foreground mb-1">Regulatory Compliance</p>
+                <p className="font-semibold text-foreground mb-1">Compliance Statement</p>
                 <p className="text-sm text-foreground/70 leading-relaxed">
-                  As mandated by AICTE and UGC, IIMT publishes its mandatory disclosure document annually. This document provides transparent information about the institution's academic, financial, and infrastructural details for the benefit of students, parents, and regulatory bodies.
+                  The information provided below is submitted as required by the All India Council for Technical Education (AICTE) and is updated annually to ensure full transparency. Any discrepancies found in the reported data should be immediately brought to the notice of the Admissions Office at Knowledge Park, Greater Noida.
+                </p>
+                <p className="text-sm text-foreground/70 leading-relaxed mt-4">
+                  AICTE mandates public disclosure for the benefit of current and prospective students, parents, and regulatory authorities. It serves as a comprehensive record of the institution's facilities, faculty, and academic standards, ensuring accountability in the delivery of professional education.
                 </p>
               </div>
             </div>

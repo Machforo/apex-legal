@@ -10,6 +10,7 @@ const defaultRecruiters = [
   { name: "TCS", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b1/Tata_Consultancy_Services_Logo.svg" },
   { name: "Wipro", logo: "https://upload.wikimedia.org/wikipedia/commons/a/af/Wipro_logo.svg" },
   { name: "Deloitte", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2b/Deloitte.svg" },
+  { name: "Amazon", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" },
 ];
 
 export default function PlacementsSection() {

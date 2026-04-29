@@ -11,24 +11,25 @@ export default function MissionVisionPage() {
   
   const mv = data?.missionVision;
   
-  const vision = mv?.vision || "To be a premier institution of higher learning in the Delhi NCR region, recognized for producing competent, ethical, and socially responsible professionals who contribute to national development and global progress.";
+  const vision = mv?.vision || `To be a premier institution in North India, recognized for producing ethical leaders and socially responsible professionals who contribute meaningfully to the regional and global economy.`;
   
   const missionStr = mv?.mission;
   const missionList = missionStr ? missionStr.split('\n').filter((x: string) => x.trim() !== '') : [
-    "To provide quality education in Management, Commerce, Computer Applications, and Education that is accessible, affordable, and aligned with industry needs.",
-    "To foster a learning environment that encourages critical thinking, creativity, and ethical values through a blend of theoretical knowledge and practical training.",
-    "To maintain strong industry-academia partnerships that enhance curriculum relevance and create meaningful placement opportunities.",
-    "To promote holistic development through co-curricular activities, skill development programs, sports, and community service initiatives.",
-    "To invest in faculty development, modern infrastructure, and technology integration to continuously improve the quality of educational delivery.",
+    "IIMT delivers industry-aligned education in management, commerce, technology, and teacher training to empower students for professional success.",
+    "We integrate rigorous curriculum with practical industry links and expert faculty mentorship to ensure superior career outcomes for every student.",
+    "Our mission is to foster an inclusive learning environment that emphasizes ethical values, critical thinking, and real-world application of knowledge.",
+    "We serve as a catalyst for regional impact by nurturing skilled professionals who are ready to lead in their respective fields across North India.",
   ];
 
   const defaultCoreValues = [
-    { title: "Academic Excellence", description: "Maintaining rigorous standards in teaching and assessment" },
-    { title: "Integrity & Ethics", description: "Upholding honesty and ethical conduct in all academic pursuits" },
-    { title: "Innovation", description: "Embracing new pedagogies and technologies for better learning outcomes" },
-    { title: "Inclusivity", description: "Creating equal opportunities for students from diverse backgrounds" },
-    { title: "Industry Readiness", description: "Preparing students with skills that employers actually seek" },
-    { title: "Social Responsibility", description: "Nurturing citizens who contribute positively to society" },
+    { title: "Excellence", description: "Maintaining the highest standards in every academic and professional pursuit." },
+    { title: "Integrity", description: "Upholding honesty, ethics, and transparency in all our interactions." },
+    { title: "Innovation", description: "Embracing new ideas and technologies to enhance the learning experience." },
+    { title: "Inclusion", description: "Ensuring equal opportunities and a sense of belonging for all students." },
+    { title: "Practical Learning", description: "Bridging the gap between theory and industry through hands-on experience." },
+    { title: "Community", description: "Fostering a supportive network of students, faculty, alumni, and partners." },
+    { title: "Research", description: "Encouraging a spirit of inquiry and academic contribution among all scholars." },
+    { title: "Accessibility", description: "Providing high-quality professional education that is accessible to deserving candidates." },
   ];
 
   // coreValues stored as newline-separated string in DB
