@@ -30,19 +30,19 @@ export default function CertificateProgramsPage() {
           <div className="reveal rounded-2xl overflow-hidden border mb-12 shadow-sm max-w-4xl mx-auto">
             <img src="https://law.ishan.ac/all-law/gallery-photos/academics/academics-11.jpg" alt="Certificate Programs" className="w-full h-80 object-cover" />
           </div>
-          <p className="reveal text-foreground/70 leading-relaxed max-w-3xl mb-12">
+          <p className="reveal leading-relaxed max-w-3xl mb-12">
             Ishan Law offers structured certificate programs alongside regular degree courses. These specialized short courses help students develop practical skills that legal employers actively seek — from cyber law expertise to mediation skills and advanced legal drafting. All certificate programs include hands-on sessions, assessments, and a certificate of completion.
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {programs.map((p, i) => (
               <div key={p.name} className={`reveal delay-${Math.min(i, 5)}00 bg-card rounded-xl border p-6 hover:shadow-[0_4px_20px_hsl(var(--navy)/0.06)] transition-shadow`}>
-                <h3 className="font-display font-bold text-foreground mb-2">{p.name}</h3>
+                <h3 className="font-bold text-foreground mb-2">{p.name}</h3>
                 <div className="flex items-center gap-3 text-xs text-muted-foreground mb-3">
                   <span className="px-2.5 py-1 rounded-md bg-muted font-medium">{p.duration}</span>
                   <span className="px-2.5 py-1 rounded-md bg-muted font-medium">{p.fee}</span>
                 </div>
-                <p className="text-sm text-foreground/70 leading-relaxed mb-4">{p.desc}</p>
+                <p className="text-sm leading-relaxed mb-4">{p.desc}</p>
                 <p className="text-xs text-muted-foreground"><strong>Eligibility:</strong> {p.eligibility}</p>
               </div>
             ))}

@@ -64,8 +64,8 @@ export default function MissionVisionPage() {
                 <Eye className="w-8 h-8 text-navy" />
               </div>
               <div>
-                <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-4">Our Vision</h2>
-                <p className="text-lg text-foreground/70 leading-relaxed whitespace-pre-wrap">
+                <h2 className="font-bold text-foreground mb-4">Our Vision</h2>
+                <p className="text-lg leading-relaxed whitespace-pre-wrap">
                   {vision}
                 </p>
               </div>
@@ -77,7 +77,7 @@ export default function MissionVisionPage() {
                 <Target className="w-8 h-8 text-navy" />
               </div>
               <div>
-                <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-4">Our Mission</h2>
+                <h2 className="font-bold text-foreground mb-4">Our Mission</h2>
                 <ul className="space-y-3">
                   {missionList.map((item: string, i: number) => (
                     <li key={i} className="flex items-start gap-3">
@@ -95,7 +95,7 @@ export default function MissionVisionPage() {
                 <Compass className="w-8 h-8 text-navy" />
               </div>
               <div>
-                <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-4">Core Values</h2>
+                <h2 className="font-bold text-foreground mb-4">Core Values</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {coreValues.map((v: any, i: number) => (
                     <div key={v.title || i} className="p-4 rounded-xl border bg-card">

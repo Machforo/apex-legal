@@ -29,10 +29,10 @@ export default function MandatoryDisclosurePage() {
               <FileText className="w-6 h-6 text-navy shrink-0 mt-0.5" />
               <div>
                 <p className="font-semibold text-foreground mb-1">BCI Compliance Statement</p>
-                <p className="text-sm text-foreground/70 leading-relaxed">
+                <p className="text-sm leading-relaxed">
                   The information provided below is submitted as required by the Bar Council of India (BCI) and is updated annually to ensure full transparency. Any discrepancies found in the reported data should be immediately brought to the notice of the Registrar at Ishan Law Institute, Knowledge Park, Greater Noida.
                 </p>
-                <p className="text-sm text-foreground/70 leading-relaxed mt-4">
+                <p className="text-sm leading-relaxed mt-4">
                   BCI mandates public disclosure for the benefit of current and prospective students, legal practitioners, and regulatory authorities. It serves as a comprehensive record of the institution's legal aid services, moot court facilities, and faculty expertise, ensuring accountability in legal education.
                 </p>
               </div>
@@ -41,10 +41,10 @@ export default function MandatoryDisclosurePage() {
             <div className="space-y-6">
               {disclosureItems.map((section, i) => (
                 <div key={section.category} className={`reveal delay-${Math.min(i, 4)}00 rounded-xl border bg-card p-6`}>
-                  <h3 className="font-display font-bold text-foreground mb-4">{section.category}</h3>
+                  <h3 className="font-bold text-foreground mb-4">{section.category}</h3>
                   <ul className="space-y-2">
                     {section.items.map((item) => (
-                      <li key={item} className="flex items-start gap-3 text-sm text-foreground/70">
+                      <li key={item} className="flex items-start gap-3 text-sm">
                         <div className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
                         {item}
                       </li>

@@ -38,7 +38,7 @@ export default function AboutSection() {
             </div>
             {/* Floating card */}
             <div className="absolute -bottom-6 -right-4 md:right-8 bg-card rounded-xl shadow-[0_4px_24px_hsl(var(--navy)/0.12)] p-5 border">
-              <p className="text-3xl font-display font-bold text-navy">BCI</p>
+              <p className="text-3xl font-bold text-navy">BCI</p>
               <p className="text-sm text-muted-foreground uppercase tracking-wider font-bold">Approved</p>
             </div>
           </div>
@@ -46,7 +46,7 @@ export default function AboutSection() {
           {/* Text */}
           <div className="reveal-right space-y-6">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">About Ishan Law</p>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
+            <h2 className="font-bold text-foreground leading-tight">
               A Legacy of Legal Excellence in Greater Noida
             </h2>
             <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">

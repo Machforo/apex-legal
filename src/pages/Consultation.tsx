@@ -32,7 +32,7 @@ export default function Consultation() {
           {/* Left Column: Info */}
           <div className="lg:col-span-2 space-y-8">
             <div>
-              <h2 className="text-3xl font-display font-bold text-navy mb-4">Why Book a Consultation?</h2>
+              <h2 className="text-3xl font-bold text-navy mb-4">Why Book a Consultation?</h2>
               <p className="text-muted-foreground leading-relaxed">
                 Choosing the right professional degree is the most important decision of your career. Our academic counsellors are here to help you navigate your options, understand the legal career landscape, and find your perfect fit at Ishan Law.
               </p>
@@ -66,7 +66,7 @@ export default function Consultation() {
                   <div className="w-24 h-24 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-6">
                     <CheckCircle className="w-12 h-12 text-success" />
                   </div>
-                  <h3 className="text-3xl font-display font-bold text-navy">Booking Confirmed!</h3>
+                  <h3 className="text-3xl font-bold text-navy">Booking Confirmed!</h3>
                   <p className="text-lg text-muted-foreground max-w-md mx-auto leading-relaxed">
                     Thank you, {formData.name}. Your consultation has been scheduled. Our academic counsellor will contact you shortly to confirm the details.
                   </p>
@@ -80,7 +80,7 @@ export default function Consultation() {
               ) : (
                 <>
                   <div className="mb-8 text-center sm:text-left">
-                    <h3 className="text-2xl font-display font-bold text-navy mb-2">Schedule Your Session</h3>
+                    <h3 className="text-2xl font-bold text-navy mb-2">Schedule Your Session</h3>
                     <p className="text-muted-foreground">Fill in the details below and we'll arrange a call.</p>
                   </div>
                   

@@ -28,22 +28,22 @@ export default function ApprovalsPage() {
         <div className="container-wide">
           <div className="max-w-4xl mx-auto mb-16 space-y-6 text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Regulatory Compliance</p>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">A Fully Accredited Institution</h2>
+            <h2 className="font-bold text-foreground">A Fully Accredited Institution</h2>
             <p className="text-foreground/70 leading-relaxed">
               Legal education in India is strictly regulated to ensure that practicing advocates meet the highest standards of professional ethics and competence. Ishan Law Institute holds all mandatory approvals from the Bar Council of India (BCI) and is affiliated with Chaudhary Charan Singh University, Meerut. These certifications ensure that our degrees are fully recognized for enrollment as an Advocate with any State Bar Council and for appearing in judicial services examinations.
             </p>
             <div className="grid md:grid-cols-3 gap-8 pt-4">
               <div className="space-y-2">
                 <h4 className="font-bold text-navy">BCI</h4>
-                <p className="text-xs text-foreground/60">The primary regulator of legal education in India, ensuring curriculum relevance and professional standards.</p>
+                <p className="text-xs">The primary regulator of legal education in India, ensuring curriculum relevance and professional standards.</p>
               </div>
               <div className="space-y-2">
                 <h4 className="font-bold text-navy">CCS University</h4>
-                <p className="text-xs text-foreground/60">Provides academic affiliation, conducts standardized examinations, and awards the final professional degree.</p>
+                <p className="text-xs">Provides academic affiliation, conducts standardized examinations, and awards the final professional degree.</p>
               </div>
               <div className="space-y-2">
                 <h4 className="font-bold text-navy">NAAC</h4>
-                <p className="text-xs text-foreground/60">An autonomous body that assesses and accredits institutions on parameters of teaching, research, and infrastructure.</p>
+                <p className="text-xs">An autonomous body that assesses and accredits institutions on parameters of teaching, research, and infrastructure.</p>
               </div>
             </div>
           </div>
@@ -55,11 +55,11 @@ export default function ApprovalsPage() {
                   <img src={acc.logo} alt={acc.title || acc.name} className="h-28 md:h-32 mx-auto object-contain mb-6 transition-transform hover:scale-110 duration-500" loading="lazy" />
                 ) : (
                   <div className="h-28 md:h-32 flex items-center justify-center mb-6">
-                    <span className="text-3xl font-display font-bold text-navy">{acc.title || acc.name}</span>
+                    <span className="text-3xl font-bold text-navy">{acc.title || acc.name}</span>
                   </div>
                 )}
                 <h3 className="font-semibold text-foreground text-sm">{acc.title || acc.name}</h3>
-                <p className="text-xs text-foreground/60 mt-2">{acc.description || acc.desc}</p>
+                <p className="text-xs mt-2">{acc.description || acc.desc}</p>
               </div>
             ))}
           </div>

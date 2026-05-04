@@ -45,9 +45,9 @@ export default function EducationOverviewPage() {
                 <div className="w-14 h-14 rounded-xl bg-gold-light flex items-center justify-center mb-5 group-hover:bg-gold/20 transition-colors">
                   <GraduationCap className="w-7 h-7 text-navy" />
                 </div>
-                <h3 className="text-xl font-display font-bold text-foreground mb-2">BA LLB</h3>
+                <h3 className="text-xl font-bold text-foreground mb-2">BA LLB</h3>
                 <p className="text-sm text-muted-foreground mb-1">5-Year Integrated Program</p>
-                <p className="text-sm text-foreground/70 mb-4">A comprehensive 5-year program merging humanities with law for students after 10+2. BCI approved.</p>
+                <p className="text-sm mb-4">A comprehensive 5-year program merging humanities with law for students after 10+2. BCI approved.</p>
                 <span className="inline-flex items-center gap-1 text-sm font-semibold text-navy group-hover:text-gold transition-colors">
                   View Details <ArrowRight className="w-4 h-4" />
                 </span>
@@ -57,9 +57,9 @@ export default function EducationOverviewPage() {
                 <div className="w-14 h-14 rounded-xl bg-gold-light flex items-center justify-center mb-5 group-hover:bg-gold/20 transition-colors">
                   <Scale className="w-7 h-7 text-navy" />
                 </div>
-                <h3 className="text-xl font-display font-bold text-foreground mb-2">LLB</h3>
+                <h3 className="text-xl font-bold text-foreground mb-2">LLB</h3>
                 <p className="text-sm text-muted-foreground mb-1">3-Year Professional Program</p>
-                <p className="text-sm text-foreground/70 mb-4">A rigorous 3-year professional course for graduates from any discipline. BCI approved.</p>
+                <p className="text-sm mb-4">A rigorous 3-year professional course for graduates from any discipline. BCI approved.</p>
                 <span className="inline-flex items-center gap-1 text-sm font-semibold text-navy group-hover:text-gold transition-colors">
                   View Details <ArrowRight className="w-4 h-4" />
                 </span>

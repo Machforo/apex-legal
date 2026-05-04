@@ -36,7 +36,7 @@ export default function PastPapersPage() {
             <div className="reveal-up grid lg:grid-cols-2 gap-12 items-center">
               <div className="space-y-6 text-left">
                 <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Exam Resources</p>
-                <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">Prepare with Confidence</h2>
+                <h2 className="font-bold text-foreground leading-tight">Prepare with Confidence</h2>
                 <p className="text-foreground/70 leading-relaxed">
                   Access previous years' CCS University question papers for BA LLB and LLB. These are invaluable resources for understanding exam patterns and frequently asked questions. Papers are organised by programme, semester, and year.
                 </p>
@@ -63,10 +63,10 @@ export default function PastPapersPage() {
                   <table className="w-full text-left">
                     <thead>
                       <tr className="bg-muted border-b">
-                        <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-foreground/70">Programme</th>
-                        <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-foreground/70">Subject</th>
-                        <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-foreground/70">Year / Sem</th>
-                        <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-foreground/70 text-right">Action</th>
+                        <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider">Programme</th>
+                        <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider">Subject</th>
+                        <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider">Year / Sem</th>
+                        <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-right">Action</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y">
@@ -82,7 +82,7 @@ export default function PastPapersPage() {
                             </div>
                           </td>
                           <td className="px-6 py-4">
-                            <span className="text-xs text-foreground/60">{p.year} | {p.semester}</span>
+                            <span className="text-xs">{p.year} | {p.semester}</span>
                           </td>
                           <td className="px-6 py-4 text-right">
                             <button className="inline-flex items-center gap-2 text-gold hover:text-navy transition-colors font-bold text-xs uppercase tracking-wider">

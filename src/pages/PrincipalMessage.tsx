@@ -39,7 +39,7 @@ I invite you to join our community and embark on a journey that will build a for
                       <div className="aspect-[3/4] bg-muted flex items-center justify-center">
                         <div className="text-center p-6">
                           <div className="w-24 h-24 mx-auto rounded-full bg-gold-light flex items-center justify-center mb-3">
-                            <span className="text-3xl font-display font-bold text-navy">{msg.name ? msg.name.charAt(0) : "P"}</span>
+                            <span className="text-3xl font-bold text-navy">{msg.name ? msg.name.charAt(0) : "P"}</span>
                           </div>
                           <p className="text-sm font-semibold text-foreground">{msg.name}</p>
                           <p className="text-xs text-muted-foreground">{msg.designation}</p>

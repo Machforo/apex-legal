@@ -59,7 +59,7 @@ The Ishan Law campus provides a specialized environment for legal scholarship, f
 
             <div className="reveal-right space-y-5">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Our Story</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
+              <h2 className="font-bold text-foreground leading-tight">
                 {ourStory?.title || "Legacy of Shaping Professional Excellence"}
               </h2>
               <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
@@ -75,7 +75,7 @@ The Ishan Law campus provides a specialized environment for legal scholarship, f
         <div className="container-wide">
           <div className="text-center mb-14">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">Our Journey</p>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">Milestones of Growth</h2>
+            <h2 className="font-bold text-foreground">Milestones of Growth</h2>
           </div>
           <div className="max-w-3xl mx-auto space-y-0 relative">
             <div className="absolute left-[22px] md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-px" />
@@ -97,7 +97,7 @@ The Ishan Law campus provides a specialized environment for legal scholarship, f
       <section className="py-16 md:py-24">
         <div className="container-wide">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-8">Key Differentiators</h2>
+            <h2 className="font-bold text-foreground mb-8">Key Differentiators</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {keyDifferentiators.map((item: string, i: number) => (
                 <div key={item || i} className="flex items-start gap-3 p-4 rounded-lg border bg-card">

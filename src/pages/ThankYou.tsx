@@ -22,7 +22,7 @@ export default function ThankYouPage() {
               <div className="w-16 h-16 bg-gold rounded-full flex items-center justify-center mb-6 mx-auto md:mx-0 shadow-lg shadow-gold/20">
                 <CheckCircle2 className="w-8 h-8 text-navy" />
               </div>
-              <h2 className="text-3xl font-display font-bold mb-4">Thank You!</h2>
+              <h2 className="text-3xl font-bold mb-4">Thank You!</h2>
               <p className="text-white/80 text-sm leading-relaxed">
                 Your journey towards a distinguished legal career begins here. We look forward to connecting with you.
               </p>
@@ -33,10 +33,10 @@ export default function ThankYouPage() {
             <h3 className="text-xl font-bold text-foreground mb-4">Enquiry Received Successfully</h3>
             
             <div className="space-y-4 mb-8">
-              <p className="text-sm text-foreground/70 leading-relaxed">
+              <p className="text-sm leading-relaxed">
                 Thank you! Your enquiry about programs at Ishan Law has been successfully received. Our admissions counsellor will call you within 2 working hours — or by 10 AM on the next working day if you have reached out after hours.
               </p>
-              <p className="text-sm text-foreground/70 leading-relaxed">
+              <p className="text-sm leading-relaxed">
                 An email confirmation containing the programme brochure is on its way to your inbox. For immediate assistance, you can always WhatsApp us directly at <a href="https://wa.me/918448797700" className="text-navy font-bold hover:underline">8448797700</a>.
               </p>
             </div>

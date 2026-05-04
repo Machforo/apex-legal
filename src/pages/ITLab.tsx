@@ -61,7 +61,7 @@ export default function ITLabPage() {
 
             <div className="reveal delay-200 rounded-xl border bg-section-alt p-6">
               <h3 className="font-semibold text-foreground mb-3">Lab Rules</h3>
-              <ul className="space-y-2 text-sm text-foreground/70">
+              <ul className="space-y-2 text-sm">
                 <li>• Students must carry their ID card to access the lab</li>
                 <li>• No food or beverages inside the lab area</li>
                 <li>• Personal USB drives require prior scanning approval</li>

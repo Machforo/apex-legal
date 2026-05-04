@@ -35,7 +35,7 @@ export default function CampusExperience() {
       <div className="container-wide">
         <div className="mb-10 md:mb-12">
           <p className="reveal text-xs font-bold uppercase tracking-[0.25em] text-gold mb-3 opacity-80">Life at Ishan Law</p>
-          <h2 className="reveal delay-100 text-3xl md:text-5xl lg:text-6xl font-display font-bold leading-tight max-w-4xl">
+          <h2 className="reveal delay-100 text-3xl md:text-5xl lg:text-6xl font-bold leading-tight max-w-4xl">
             Where <span className="text-gold">Legal Professionals</span> Are Formed
           </h2>
         </div>
@@ -57,8 +57,8 @@ export default function CampusExperience() {
             </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-t from-navy via-transparent opacity-80" />
             <div className="absolute bottom-6 left-6 right-6">
-              <span className="text-[10px] font-bold text-gold uppercase tracking-widest">{galleryImages[activeIndices[0] % galleryImages.length].category}</span>
-              <h3 className="text-lg md:text-xl font-display font-bold mt-1">{galleryImages[activeIndices[0] % galleryImages.length].title}</h3>
+              <span className="text-xs font-bold text-gold uppercase tracking-widest">{galleryImages[activeIndices[0] % galleryImages.length].category}</span>
+              <h3 className="text-lg md:text-xl font-bold mt-1">{galleryImages[activeIndices[0] % galleryImages.length].title}</h3>
             </div>
           </div>
 

@@ -38,7 +38,7 @@ export default function StudentPortalPage() {
                     </div>
                   </a>
                   <a href="https://www.ccsuniversity.ac.in/result" target="_blank" rel="noopener" className="flex items-center gap-6 p-6 rounded-xl border bg-card hover:shadow-md transition-shadow">
-                    <div className="w-14 h-14 shrink-0 rounded-xl bg-gold-light flex items-center justify-center"><span className="text-xl font-display font-bold text-navy">R</span></div>
+                    <div className="w-14 h-14 shrink-0 rounded-xl bg-gold-light flex items-center justify-center"><span className="text-xl font-bold text-navy">R</span></div>
                     <div>
                       <h3 className="font-semibold text-foreground">CCS University Results</h3>
                       <p className="text-xs text-muted-foreground">Check examination results</p>

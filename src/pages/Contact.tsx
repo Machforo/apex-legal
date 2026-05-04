@@ -59,13 +59,13 @@ export default function ContactPage() {
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <p className="reveal text-foreground/70 leading-relaxed max-w-3xl mb-12 text-lg">
+          <p className="reveal leading-relaxed max-w-3xl mb-12 text-lg">
             Ishan Law's team is available to assist prospective students, parents, enrolled students, and visitors. Admissions queries are given priority, with responses guaranteed within 24 working hours.
           </p>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
             <div className="reveal-left space-y-8">
               <div>
-                <h2 className="text-2xl font-display font-bold text-foreground mb-6">Contact Directory</h2>
+                <h2 className="text-2xl font-bold text-foreground mb-6">Contact Directory</h2>
                 <div className="space-y-4">
                   {[
                     { icon: Phone, label: "Admissions Office", value: "8448797700 (Phone & WhatsApp)", href: `tel:${mainContact.phone}` },
@@ -97,7 +97,7 @@ export default function ContactPage() {
 
             <div className="reveal-right">
               <div className="bg-card rounded-2xl p-8 shadow-[0_8px_40px_hsl(var(--navy)/0.08)] border">
-                <h3 className="text-xl font-display font-bold text-foreground mb-6">Enquiry Form</h3>
+                <h3 className="text-xl font-bold text-foreground mb-6">Enquiry Form</h3>
                 {submitted ? (
                   <div className="text-center py-10">
                     <div className="w-16 h-16 rounded-full bg-gold-light flex items-center justify-center mx-auto mb-4">

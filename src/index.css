@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -48,7 +48,7 @@
     --hero-overlay: 215 100% 10%;
     --section-alt: 40 30% 96%;
 
-    --font-heading: 'Playfair Display', Georgia, serif;
+    --font-heading: 'Inter', system-ui, sans-serif;
     --font-body: 'Inter', system-ui, sans-serif;
 
     --gradient-hero: linear-gradient(135deg, #001F3D 0%, #003a7a 100%);
@@ -77,13 +77,24 @@
     font-family: var(--font-body);
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply tracking-tight leading-[1.1];
-    font-family: var(--font-heading);
-    text-wrap: balance;
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1];
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl font-bold tracking-tight leading-tight;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl font-bold tracking-tight leading-tight;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl font-bold tracking-tight leading-snug;
   }
 
   p {
+    @apply text-base text-foreground/70 leading-relaxed;
     text-wrap: pretty;
     overflow-wrap: break-word;
   }
@@ -209,12 +220,12 @@
 
   /* Stat counter */
   .stat-value {
-    @apply text-5xl md:text-6xl font-display font-bold tabular-nums tracking-tight;
+    @apply text-4xl md:text-5xl font-bold tabular-nums tracking-tight;
     color: hsl(var(--gold));
   }
 
   .stat-label {
-    @apply text-[11px] md:text-xs uppercase tracking-[0.2em] mt-3 font-bold;
+    @apply text-xs uppercase tracking-[0.2em] mt-3 font-bold;
     color: hsl(var(--primary-foreground) / 0.85);
   }
 

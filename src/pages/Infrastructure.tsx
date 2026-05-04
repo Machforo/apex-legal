@@ -60,8 +60,8 @@ The campus is highly accessible, situated in the heart of Greater Noida's educat
                   <div className="w-12 h-12 rounded-xl bg-gold-light flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
                     <Icon className="w-6 h-6 text-navy" />
                   </div>
-                  <h3 className="font-display font-bold text-foreground mb-2">{f.title}</h3>
-                  <p className="text-sm text-foreground/70 leading-relaxed">{f.desc}</p>
+                  <h3 className="font-bold text-foreground mb-2">{f.title}</h3>
+                  <p className="text-sm leading-relaxed">{f.desc}</p>
                   {f.link && (
                     <span className="inline-flex items-center gap-1 mt-4 text-sm font-semibold text-navy group-hover:text-gold transition-colors">
                       View Details <ArrowRight className="w-4 h-4" />

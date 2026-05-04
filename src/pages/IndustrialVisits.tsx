@@ -50,7 +50,7 @@ export default function IndustrialVisitsPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="reveal-left space-y-6">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Clinical Legal Education</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
+              <h2 className="font-bold text-foreground leading-tight">
                 Law in Motion: Beyond Textbooks
               </h2>
               <p className="text-foreground/70 leading-relaxed">
@@ -81,7 +81,7 @@ export default function IndustrialVisitsPage() {
                  <img src="https://law.ishan.ac/all-law/gallery-photos/outreach/outreach-12.jpeg" alt="Outreach and Court Visit" className="w-full h-80 object-cover" />
                </div>
                <div className="bg-section-alt rounded-3xl p-8 md:p-10 border shadow-sm">
-                 <h3 className="text-2xl font-display font-bold text-foreground mb-6">Why These Visits Matter</h3>
+                 <h3 className="text-2xl font-bold text-foreground mb-6">Why These Visits Matter</h3>
                  <ul className="space-y-6">
                    <li className="flex gap-4">
                      <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-1">
@@ -110,7 +110,7 @@ export default function IndustrialVisitsPage() {
 
       <section className="py-16 md:py-24 bg-card">
         <div className="container-wide">
-          <h2 className="text-3xl font-display font-bold text-foreground mb-12 text-center">Recent Institutional Visits</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-12 text-center">Recent Institutional Visits</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {visits.map((v, i) => (
               <div key={i} className="group p-6 rounded-2xl border bg-background hover:border-gold transition-all duration-300">
@@ -119,11 +119,11 @@ export default function IndustrialVisitsPage() {
                     <h4 className="text-xl font-bold text-foreground group-hover:text-navy transition-colors">{v.company}</h4>
                     <p className="text-xs font-semibold text-gold uppercase tracking-widest">{v.sector}</p>
                   </div>
-                  <span className="text-xs font-medium px-2 py-1 bg-muted rounded text-foreground/60">{v.year}</span>
+                  <span className="text-xs font-medium px-2 py-1 bg-muted rounded">{v.year}</span>
                 </div>
                 <div className="space-y-3">
                   <p className="text-sm text-foreground/80 leading-relaxed italic">"{v.outcome}"</p>
-                  <div className="flex items-center gap-2 pt-2 border-t border-border/50 text-[11px] font-bold text-foreground/50 uppercase">
+                  <div className="flex items-center gap-2 pt-2 border-t border-border/50 text-xs font-bold text-foreground/50 uppercase">
                     <span>Program: {v.program}</span>
                   </div>
                 </div>

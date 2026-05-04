@@ -47,7 +47,7 @@ export default function SubNav() {
           {SUB_LINKS.map((link) => {
             const isHashLink = link.href.startsWith("#");
             const isActive = !isHashLink && location.pathname === link.href;
-            const cls = `shrink-0 px-5 py-3 text-[12.5px] font-bold uppercase tracking-[0.12em] border-b-2 transition-all duration-200 whitespace-nowrap ${
+            const cls = `shrink-0 px-5 py-3 text-xs font-bold uppercase tracking-[0.12em] border-b-2 transition-all duration-200 whitespace-nowrap ${
               isActive
                 ? "border-[hsl(var(--gold))] text-navy"
                 : "border-transparent text-foreground/50 hover:text-navy hover:border-[hsl(var(--gold)/0.5)]"

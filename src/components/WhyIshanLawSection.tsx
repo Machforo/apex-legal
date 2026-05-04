@@ -25,10 +25,10 @@ export default function WhyIshanLawSection() {
           {/* Left */}
           <div className="reveal-left">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">Why Choose Us</p>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
+            <h2 className="font-bold text-foreground leading-tight">
               What Makes Ishan Law Stand Apart
             </h2>
-            <p className="mt-4 text-foreground/60 leading-relaxed">
+            <p className="mt-4 leading-relaxed">
               At Ishan Law Institute, we bridge the gap between classroom theory and courtroom reality. Our focus on clinical legal education ensures that every student graduates with the confidence of a seasoned professional.
             </p>
             <a

@@ -9,7 +9,7 @@ export default function DynamicCourse() {
   const { courseId } = useParams();
   const { data, isLoading } = useIshanLawData("courses");
 
-  if (isLoading) return <div className="min-h-screen flex flex-col"><Navbar /><div className="flex-1 flex items-center justify-center font-display text-xl text-navy animate-pulse">Loading Academic Program...</div></div>;
+  if (isLoading) return <div className="min-h-screen flex flex-col"><Navbar /><div className="flex-1 flex items-center justify-center text-xl text-navy animate-pulse">Loading Academic Program...</div></div>;
   
   // Clean string to match slugs
   const sanitizeSlug = (str: string) => str?.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -70,7 +70,7 @@ export default function DynamicCourse() {
 
         <div className="container-wide relative z-10">
           <div className="max-w-3xl">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-primary-foreground leading-tight mb-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground leading-tight mb-4">
               {course.programName}
             </h1>
             <p className="text-lg text-primary-foreground/70 leading-relaxed font-light">
@@ -86,26 +86,26 @@ export default function DynamicCourse() {
           
           <div className="lg:col-span-2 space-y-12">
             <div>
-              <h2 className="text-2xl font-display font-bold text-navy mb-5 text-gold-underline">Program Overview</h2>
+              <h2 className="text-2xl font-bold text-navy mb-5 text-gold-underline">Program Overview</h2>
               <p className="text-base text-foreground/80 leading-relaxed whitespace-pre-wrap">{course.overview || "Program overview details will be updated shortly."}</p>
             </div>
 
             <div>
-              <h2 className="text-2xl font-display font-bold text-navy mb-5 text-gold-underline">Curriculum Structure</h2>
+              <h2 className="text-2xl font-bold text-navy mb-5 text-gold-underline">Curriculum Structure</h2>
               <div className="bg-card border rounded-2xl p-6 shadow-sm">
                  <p className="text-base text-foreground/80 leading-relaxed whitespace-pre-wrap">{course.curriculumStructure || "Curriculum structure will be updated shortly."}</p>
               </div>
             </div>
 
             <div>
-              <h2 className="text-2xl font-display font-bold text-navy mb-5 text-gold-underline">Career Scope</h2>
+              <h2 className="text-2xl font-bold text-navy mb-5 text-gold-underline">Career Scope</h2>
               <p className="text-base text-foreground/80 leading-relaxed whitespace-pre-wrap">{course.careerScope || "Career scope will be updated shortly."}</p>
             </div>
           </div>
 
           <div className="lg:col-span-1">
             <div className="bg-navy text-primary-foreground rounded-2xl p-8 sticky top-32 shadow-[0_8px_30px_hsl(var(--navy)/0.2)]">
-              <h3 className="text-2xl font-display font-bold mb-8">Quick Facts</h3>
+              <h3 className="text-2xl font-bold mb-8">Quick Facts</h3>
               
               <div className="space-y-6">
                 <div className="flex gap-4">

@@ -17,7 +17,7 @@ export default function PageHeader({ title, subtitle, breadcrumbs }: PageHeaderP
         <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 20% 50%, hsl(var(--gold) / 0.3) 0%, transparent 50%)" }} />
       </div>
       <div className="relative container-wide pt-28 pb-16 md:pt-36 md:pb-24">
-        <h1 className="reveal delay-100 text-3xl md:text-4xl lg:text-5xl font-display font-bold text-primary-foreground leading-tight tracking-tight">
+        <h1 className="reveal delay-100 text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground leading-tight tracking-tight">
           {title}
         </h1>
         {subtitle && (

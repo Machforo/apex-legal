@@ -67,7 +67,7 @@ export default function ExitIntentPopup() {
             >
               <Users className="w-12 h-12 text-navy" />
             </motion.div>
-            <h3 className="text-white font-display font-bold text-3xl mb-4 italic">Wait!</h3>
+            <h3 className="text-white font-bold text-3xl mb-4 italic">Wait!</h3>
             <p className="text-white/70 text-base leading-relaxed">
               Don't leave without finding the right path for your career.
             </p>
@@ -75,7 +75,7 @@ export default function ExitIntentPopup() {
 
           {/* Right Side - Content */}
           <div className="md:w-7/12 p-10 md:p-14 bg-card flex flex-col justify-center">
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-navy mb-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6 leading-tight">
               Still <span className="text-gold">Confused?</span>
             </h2>
             <p className="text-foreground/75 text-lg mb-10 leading-relaxed">

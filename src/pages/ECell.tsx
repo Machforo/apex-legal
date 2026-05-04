@@ -43,7 +43,7 @@ export default function ECellPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="reveal-left space-y-6">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">About E-Cell</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
+              <h2 className="font-bold text-foreground leading-tight">
                 Fueling Innovation at Ishan Law Institute
               </h2>
               <p className="text-foreground/70 leading-relaxed">
@@ -55,7 +55,7 @@ export default function ECellPage() {
                     <div className="shrink-0">{o.icon}</div>
                     <div className="space-y-1">
                       <h4 className="font-bold text-foreground">{o.title}</h4>
-                      <p className="text-xs text-foreground/60 leading-relaxed">{o.description}</p>
+                      <p className="text-xs leading-relaxed">{o.description}</p>
                     </div>
                   </div>
                 ))}
@@ -66,7 +66,7 @@ export default function ECellPage() {
               <div className="absolute top-0 right-0 w-64 h-64 bg-gold/10 rounded-full blur-3xl -mr-32 -mt-32" />
               <div className="relative z-10 space-y-6">
                 <Briefcase className="w-12 h-12 text-gold" />
-                <h3 className="text-2xl md:text-3xl font-display font-bold leading-tight">Internship Programme</h3>
+                <h3 className="font-bold leading-tight">Internship Programme</h3>
                 <p className="text-white/70 leading-relaxed">
                   Our mandatory 4-8 week industry internship programme provides students with essential exposure to corporate environments. The Internship Coordinator facilitates placements across BFSI, IT, Retail, and Manufacturing sectors.
                 </p>
@@ -88,7 +88,7 @@ export default function ECellPage() {
         <div className="container-wide text-center">
           <div className="max-w-2xl mx-auto space-y-4">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Alumni Spotlight</p>
-            <h2 className="text-3xl font-display font-bold text-foreground">Entrepreneurial Success Stories</h2>
+            <h2 className="text-3xl font-bold text-foreground">Entrepreneurial Success Stories</h2>
             <p className="text-foreground/70">
               Many Ishan Law Institute graduates have successfully launched their own ventures, serving as role models for current students. From technology startups to consulting firms, our alumni network continues to inspire the next generation of creators.
             </p>

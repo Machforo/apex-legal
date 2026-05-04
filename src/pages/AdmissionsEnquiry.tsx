@@ -42,7 +42,7 @@ export default function AdmissionsEnquiryPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
             <div className="reveal-left space-y-8">
               <div className="space-y-6">
-                <h2 className="text-3xl font-display font-bold text-foreground">Begin Your Journey</h2>
+                <h2 className="text-3xl font-bold text-foreground">Begin Your Journey</h2>
                 <p className="text-foreground/70 leading-relaxed">
                   Choosing the right institution is a significant decision. At Ishan Law Institute, we offer personal guidance to help you navigate your academic and career path. Whether you are curious about our programmes, eligibility, or campus life, our admissions team is here to provide all the information you need.
                 </p>
@@ -53,10 +53,10 @@ export default function AdmissionsEnquiryPage() {
               </div>
 
               <div className="space-y-6">
-                <h3 className="text-xl font-display font-bold text-foreground flex items-center gap-2">
+                <h3 className="text-xl font-bold text-foreground flex items-center gap-2">
                   <MessageSquare className="w-5 h-5 text-gold" /> Personal Counselling Session
                 </h3>
-                <p className="text-sm text-foreground/70 leading-relaxed">During your counselling session at Ishan Law Institute, you can expect:</p>
+                <p className="text-sm leading-relaxed">During your counselling session at Ishan Law Institute, you can expect:</p>
                 <ul className="grid sm:grid-cols-2 gap-4">
                   <li className="flex items-center gap-3 text-sm text-foreground/80 font-medium">
                     <CheckCircle2 className="w-4 h-4 text-gold" /> Eligibility Assessment
@@ -74,10 +74,10 @@ export default function AdmissionsEnquiryPage() {
               </div>
 
               <div className="space-y-4">
-                <h3 className="text-xl font-display font-bold text-foreground flex items-center gap-2">
+                <h3 className="text-xl font-bold text-foreground flex items-center gap-2">
                   <Laptop className="w-5 h-5 text-gold" /> Online Admissions Portal
                 </h3>
-                <p className="text-sm text-foreground/70 leading-relaxed">
+                <p className="text-sm leading-relaxed">
                   For your convenience, our online admissions portal allows you to track your application, upload documents, and pay fees digitally, ensuring a low-friction admission experience from anywhere.
                 </p>
                 <div className="rounded-2xl overflow-hidden shadow-2xl border mt-8">
@@ -88,7 +88,7 @@ export default function AdmissionsEnquiryPage() {
 
             <div className="reveal-right">
               <div className="bg-card rounded-3xl p-8 md:p-10 shadow-2xl border sticky top-32">
-                <h3 className="text-2xl font-display font-bold text-foreground mb-6">Enquire Now</h3>
+                <h3 className="text-2xl font-bold text-foreground mb-6">Enquire Now</h3>
                 {submitted ? (
                   <div className="text-center py-10 space-y-4">
                     <div className="w-20 h-20 rounded-full bg-gold/10 flex items-center justify-center mx-auto text-gold">
@@ -116,7 +116,7 @@ export default function AdmissionsEnquiryPage() {
                     </div>
                     <div className="space-y-1.5">
                       <label className="text-xs font-bold text-foreground/50 uppercase tracking-wider ml-1">Programme of Interest</label>
-                      <select value={form.program} onChange={e => setForm(p => ({...p, program: e.target.value}))} className="w-full px-4 py-3 rounded-xl border bg-background text-foreground/60 focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all appearance-none" required>
+                      <select value={form.program} onChange={e => setForm(p => ({...p, program: e.target.value}))} className="w-full px-4 py-3 rounded-xl border bg-background focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all appearance-none" required>
                         <option value="">Select Programme</option>
                         <option value="BA LLB">BA LLB (Hons)</option>
                         <option value="LLB">LLB (3 Years)</option>

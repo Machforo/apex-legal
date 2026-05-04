@@ -43,7 +43,7 @@ export default function GuestLecturesPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="reveal-left space-y-6">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Beyond Textbooks</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
+              <h2 className="font-bold text-foreground leading-tight">
                 Engaging with Industry Pioneers
               </h2>
               <p className="text-foreground/70 leading-relaxed">
@@ -54,7 +54,7 @@ export default function GuestLecturesPage() {
                   <Info className="w-5 h-5 text-gold shrink-0 mt-0.5" />
                   <div className="space-y-1">
                     <p className="text-sm font-bold text-foreground">What to Expect</p>
-                    <p className="text-xs text-foreground/60 leading-relaxed">Sessions are open to all students across programmes. Topics and schedules are posted in advance on the Events Calendar. We also provide session recordings for student review where possible.</p>
+                    <p className="text-xs leading-relaxed">Sessions are open to all students across programmes. Topics and schedules are posted in advance on the Events Calendar. We also provide session recordings for student review where possible.</p>
                   </div>
                 </div>
               </div>
@@ -74,8 +74,8 @@ export default function GuestLecturesPage() {
                   </div>
                   <div className="space-y-3">
                     <h5 className="text-sm font-bold text-navy leading-tight">{e.topic}</h5>
-                    <p className="text-xs text-foreground/70 leading-relaxed italic">"{e.takeaways}"</p>
-                    <div className="flex items-center gap-2 pt-2 text-[10px] font-bold text-gold uppercase tracking-widest">
+                    <p className="text-xs leading-relaxed italic">"{e.takeaways}"</p>
+                    <div className="flex items-center gap-2 pt-2 text-xs font-bold text-gold uppercase tracking-widest">
                       <Calendar className="w-3 h-3" />
                       <span>{e.date}</span>
                     </div>
@@ -90,7 +90,7 @@ export default function GuestLecturesPage() {
       <section className="py-16 md:py-24 bg-section-alt">
         <div className="container-wide text-center">
           <div className="max-w-2xl mx-auto space-y-4">
-            <h2 className="text-3xl font-display font-bold text-foreground">National Seminars & Conferences</h2>
+            <h2 className="text-3xl font-bold text-foreground">National Seminars & Conferences</h2>
             <p className="text-foreground/70">
               Ishan Law Institute regularly organises national-level academic events that bring together researchers, practitioners, and students to discuss emerging trends in management, commerce, and education.
             </p>

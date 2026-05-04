@@ -95,7 +95,7 @@ export function QuickEnquiry() {
           className="bg-card border-l shadow-2xl w-80 p-6 rounded-l-3xl"
         >
           <div className="flex items-center justify-between mb-6">
-            <h3 className="font-display font-bold text-navy">Quick Enquiry</h3>
+            <h3 className="font-bold text-navy">Quick Enquiry</h3>
             <button onClick={() => setIsOpen(false)}><X size={20} /></button>
           </div>
           {isSubmitted ? (
@@ -103,7 +103,7 @@ export function QuickEnquiry() {
               <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center">
                 <CheckCircle className="text-success" size={32} />
               </div>
-              <h4 className="font-display font-bold text-navy text-xl">Thank You!</h4>
+              <h4 className="font-bold text-navy text-xl">Thank You!</h4>
               <p className="text-sm text-muted-foreground leading-relaxed">Your enquiry has been received. We will get back to you shortly.</p>
             </div>
           ) : (

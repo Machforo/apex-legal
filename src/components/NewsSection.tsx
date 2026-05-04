@@ -51,7 +51,7 @@ export default function NewsSection() {
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
           <div>
             <p className="reveal text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">Latest Updates</p>
-            <h2 className="reveal delay-100 text-3xl md:text-4xl font-display font-bold text-foreground">
+            <h2 className="reveal delay-100 font-bold text-foreground">
               News &amp; Events
             </h2>
           </div>
@@ -70,7 +70,7 @@ export default function NewsSection() {
             >
               <div className="aspect-[4/3] overflow-hidden bg-muted relative">
                 <div className="absolute top-3 left-3 z-10">
-                  <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[10px] font-bold text-navy rounded-full uppercase tracking-wider">
+                  <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-xs font-bold text-navy rounded-full uppercase tracking-wider">
                     {item.category || "General"}
                   </span>
                 </div>
@@ -136,7 +136,7 @@ export default function NewsSection() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/60 via-transparent to-transparent" />
                   <div className="absolute bottom-6 left-6">
-                    <span className="px-3 py-1 bg-gold text-white text-[10px] font-bold rounded-md uppercase tracking-widest">
+                    <span className="px-3 py-1 bg-gold text-white text-xs font-bold rounded-md uppercase tracking-widest">
                       {selectedNews.category || "General"}
                     </span>
                   </div>
@@ -155,7 +155,7 @@ export default function NewsSection() {
                         {selectedNews.location || "Ishan Law Institute Campus"}
                       </div>
                     </div>
-                    <h2 className="text-2xl md:text-3xl font-display font-bold text-navy leading-tight">
+                    <h2 className="font-bold text-navy leading-tight">
                       {selectedNews.title}
                     </h2>
                   </div>

@@ -31,7 +31,7 @@ export default function PlacementsSection() {
       <div className="container-wide">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <p className="reveal text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">{placementsCfg.description}</p>
-          <h2 className="reveal delay-100 text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
+          <h2 className="reveal delay-100 font-bold text-foreground leading-tight">
              {placementsCfg.title}
           </h2>
         </div>
@@ -48,7 +48,7 @@ export default function PlacementsSection() {
               {[...recruiters, ...recruiters].map((rec: any, i) => (
                 <div
                   key={`${rec.name}-${i}`}
-                  className="shrink-0 mx-6 px-10 py-6 rounded-xl border bg-card text-sm font-semibold text-foreground/60 flex items-center justify-center whitespace-nowrap min-w-[180px] shadow-sm"
+                  className="shrink-0 mx-6 px-10 py-6 rounded-xl border bg-card text-sm font-semibold flex items-center justify-center whitespace-nowrap min-w-[180px] shadow-sm"
                 >
                   {rec.logo ? <img src={rec.logo} alt={rec.name} className="h-14 md:h-16 w-auto object-contain" /> : rec.name}
                 </div>

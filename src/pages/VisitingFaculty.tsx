@@ -26,7 +26,7 @@ export default function VisitingFacultyPage() {
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <p className="reveal text-foreground/70 leading-relaxed max-w-4xl mx-auto text-center mb-16 text-lg">
+          <p className="reveal leading-relaxed max-w-4xl mx-auto text-center mb-16 text-lg">
             Ishan Law invites distinguished visiting faculty — practising Senior Advocates from Allahabad High Court and Delhi High Court, retired judicial officers, corporate counsel from leading companies, and legal academics from premier law schools; students gain direct access to legal minds shaping India's legal landscape.
           </p>
 
@@ -42,11 +42,11 @@ export default function VisitingFacultyPage() {
                 <p className="text-xs text-gold font-medium mt-1">{f.org}</p>
                 <div className="mt-3 pt-3 border-t">
                   <p className="text-xs font-semibold text-foreground/80 mb-2">{f.specialisation}</p>
-                  <p className="text-[11px] text-muted-foreground leading-relaxed text-left">{f.impact}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed text-left">{f.impact}</p>
                 </div>
                 {f.bar && (
                   <div className="mt-3 text-left">
-                    <span className="px-2 py-1 rounded bg-muted text-[10px] font-medium text-muted-foreground border">
+                    <span className="px-2 py-1 rounded bg-muted text-xs font-medium text-muted-foreground border">
                       Reg: {f.bar}
                     </span>
                   </div>

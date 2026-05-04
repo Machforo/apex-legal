@@ -92,7 +92,7 @@ export default function PhotoGalleryPage() {
       <PageHeader title="Photo Gallery" subtitle="A visual record of moot court competitions, seminars, and campus life" breadcrumbs={[{ label: "Gallery" }, { label: "Photos" }]} />
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <p className="reveal text-foreground/70 leading-relaxed max-w-4xl mx-auto text-center mb-16 text-lg">
+          <p className="reveal leading-relaxed max-w-4xl mx-auto text-center mb-16 text-lg">
             Ishan Law's gallery is a visual record — moot court competitions, court visits, seminars, cultural activities, campus life; browse through albums below.
           </p>
 
@@ -125,7 +125,7 @@ export default function PhotoGalleryPage() {
             (filtered as typeof defaultAlbums).map((album) => (
               <div key={album.category} className="mb-12">
                 <div className="flex items-baseline gap-4 mb-5">
-                  <h2 className="text-xl font-display font-bold text-foreground">{album.category}</h2>
+                  <h2 className="text-xl font-bold text-foreground">{album.category}</h2>
                   <span className="text-sm text-muted-foreground">{album.date}</span>
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">

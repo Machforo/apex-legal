@@ -32,7 +32,7 @@ export default function SportsPage() {
               </div>
             </div>
             <div className="reveal-right space-y-6">
-              <h2 className="text-3xl font-display font-bold text-foreground leading-tight">Fitness & Sportsmanship</h2>
+              <h2 className="text-3xl font-bold text-foreground leading-tight">Fitness & Sportsmanship</h2>
             <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
               {content || "Ishan Law promotes physical fitness and sportsmanship through a comprehensive sports program. The campus features facilities for cricket, basketball, badminton, volleyball, table tennis, and athletics. The annual sports meet is a highlight of the academic calendar, bringing together students from across the Ishan Group in a spirit of healthy competition."}
             </p>

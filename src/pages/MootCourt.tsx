@@ -50,14 +50,14 @@ export default function MootCourtPage() {
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-navy text-white p-6 rounded-xl shadow-xl hidden md:block">
-                <p className="text-3xl font-display font-bold text-gold">100%</p>
+                <p className="text-3xl font-bold text-gold">100%</p>
                 <p className="text-xs uppercase tracking-wider font-semibold">Clinical Training</p>
               </div>
             </div>
 
             <div className="reveal-right space-y-6">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Clinical Legal Education</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
+              <h2 className="font-bold text-foreground leading-tight">
                 Mastering the Art of Advocacy
               </h2>
               <p className="text-foreground/70 leading-relaxed">
@@ -75,8 +75,8 @@ export default function MootCourtPage() {
                 <div className="w-12 h-12 rounded-lg bg-gold-light flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
                   <f.icon className="w-6 h-6 text-navy" />
                 </div>
-                <h3 className="font-display font-bold text-foreground mb-2">{f.title}</h3>
-                <p className="text-sm text-foreground/60 leading-relaxed">{f.desc}</p>
+                <h3 className="font-bold text-foreground mb-2">{f.title}</h3>
+                <p className="text-sm leading-relaxed">{f.desc}</p>
               </div>
             ))}
           </div>

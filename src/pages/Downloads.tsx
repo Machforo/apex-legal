@@ -38,7 +38,7 @@ export default function DownloadsPage() {
                   <h3 className="text-sm font-medium text-foreground truncate">{d.name}</h3>
                   <p className="text-xs text-muted-foreground">{d.category} · {d.type} · {d.size}</p>
                 </div>
-                <button className="shrink-0 p-2 rounded-lg hover:bg-muted transition-colors"><Download className="w-4 h-4 text-foreground/60" /></button>
+                <button className="shrink-0 p-2 rounded-lg hover:bg-muted transition-colors"><Download className="w-4 h-4" /></button>
               </div>
             ))}
           </div>

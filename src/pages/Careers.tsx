@@ -26,7 +26,7 @@ export default function CareersPage() {
               </div>
             </div>
             <div className="space-y-4">
-              <h2 className="text-xl font-display font-bold text-foreground mb-4">Current Openings</h2>
+              <h2 className="text-xl font-bold text-foreground mb-4">Current Openings</h2>
             {jobs.map((j, i) => (
               <div key={j.title} className={`reveal delay-${Math.min(i, 3)}00 p-6 rounded-xl border bg-card hover:shadow-[0_4px_20px_hsl(var(--navy)/0.06)] transition-shadow`}>
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -49,7 +49,7 @@ export default function CareersPage() {
           </div>
           <div className="mt-12 p-8 bg-muted rounded-xl border reveal text-center">
              <h3 className="text-lg font-bold text-foreground mb-2">How to Apply</h3>
-             <p className="text-sm text-foreground/70 leading-relaxed max-w-xl mx-auto">
+             <p className="text-sm leading-relaxed max-w-xl mx-auto">
                Please send your updated CV, along with a cover letter detailing your relevant experience and academic interests, to <a href="mailto:careers@ishan.ac" className="text-navy font-bold hover:underline">careers@ishan.ac</a>. Shortlisted candidates will be contacted by the HR department within 14 working days for the interview process.
              </p>
           </div>

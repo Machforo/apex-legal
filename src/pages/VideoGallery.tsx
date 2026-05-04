@@ -33,7 +33,7 @@ export default function VideoGalleryPage() {
       <PageHeader title="Video Gallery" subtitle="Visual insights into academic and extracurricular life at Ishan Law" breadcrumbs={[{ label: "Gallery" }, { label: "Videos" }]} />
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <p className="reveal text-foreground/70 leading-relaxed max-w-4xl mx-auto text-center mb-16 text-lg">
+          <p className="reveal leading-relaxed max-w-4xl mx-auto text-center mb-16 text-lg">
             Watch Ishan Law in action — moot court performances, court visit documentaries, faculty talks, student testimonials; subscribe to the YouTube channel to stay updated.
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -57,7 +57,7 @@ export default function VideoGalleryPage() {
                         </div>
                       </div>
                       <div className="absolute bottom-4 left-4 right-4 z-20">
-                        <span className="text-[10px] font-bold text-gold uppercase tracking-wider mb-1 block">{v.category}</span>
+                        <span className="text-xs font-bold text-gold uppercase tracking-wider mb-1 block">{v.category}</span>
                         <h3 className="text-sm font-semibold text-white leading-tight line-clamp-2">{v.title}</h3>
                       </div>
                     </div>

@@ -49,7 +49,7 @@ export default function FacultyPage() {
           <div className="max-w-5xl mx-auto mb-16 grid lg:grid-cols-2 gap-12 items-center">
             <div className="reveal space-y-6">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Academic Excellence</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">Guided by Expert Mentors</h2>
+              <h2 className="font-bold text-foreground leading-tight">Guided by Expert Mentors</h2>
               <p className="text-foreground/70 leading-relaxed">
                 Ishan Law's faculty combines academic scholarship with courtroom experience — permanent faculty hold LLM and PhD qualifications in specialised areas of law; visiting advocates bring current practice insights; together they prepare students not just to understand law but to argue it.
               </p>
@@ -101,7 +101,7 @@ export default function FacultyPage() {
                   {f.image ? (
                     <img src={f.image} alt={f.name} className="w-full h-full object-cover" />
                   ) : (
-                    <span className="text-xl font-display font-bold text-navy">
+                    <span className="text-xl font-bold text-navy">
                       {f.name?.split(" ").map((n: string) => n[0]).join("").slice(0, 2)}
                     </span>
                   )}
@@ -111,11 +111,11 @@ export default function FacultyPage() {
                 <p className="text-xs text-muted-foreground mt-1">{f.qualification}</p>
                 <div className="mt-3 pt-3 border-t">
                   <p className="text-xs font-semibold text-foreground/80 mb-2">{f.specialisation || f.specialization}</p>
-                  <p className="text-[11px] text-muted-foreground leading-relaxed text-left line-clamp-3">{f.bio}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed text-left line-clamp-3">{f.bio}</p>
                 </div>
                 <div className="flex items-center justify-between mt-3">
-                  <span className="px-2.5 py-1 rounded-md bg-muted text-[10px] font-medium text-muted-foreground">{f.dept || f.department}</span>
-                  {f.publications && <span className="text-[10px] font-medium text-gold">{f.publications}</span>}
+                  <span className="px-2.5 py-1 rounded-md bg-muted text-xs font-medium text-muted-foreground">{f.dept || f.department}</span>
+                  {f.publications && <span className="text-xs font-medium text-gold">{f.publications}</span>}
                 </div>
               </div>
             ))}

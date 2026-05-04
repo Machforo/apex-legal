@@ -30,7 +30,7 @@ export default function CulturalActivitiesPage() {
               </div>
             </div>
             <div className="reveal-right space-y-6">
-              <h2 className="text-3xl font-display font-bold text-foreground leading-tight">Celebrating Creative Excellence</h2>
+              <h2 className="text-3xl font-bold text-foreground leading-tight">Celebrating Creative Excellence</h2>
             {content ? (
               <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">{content}</p>
             ) : (
@@ -40,7 +40,7 @@ export default function CulturalActivitiesPage() {
               </>
             )}
             
-            <h2 className="text-xl font-display font-bold text-foreground">Cultural Highlights</h2>
+            <h2 className="text-xl font-bold text-foreground">Cultural Highlights</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {specs.map((s: any, i: number) => (
                 <div key={s.label || i} className="px-4 py-3 rounded-lg border bg-card text-sm text-foreground/80 flex items-center justify-between">

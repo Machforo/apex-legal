@@ -50,8 +50,8 @@ export default function WhyIshanLawPage() {
                       <Icon className="w-6 h-6 text-navy" />
                     </div>
                     <div>
-                      <h3 className="font-display font-bold text-foreground text-lg mb-2">{i + 1}. {r.title}</h3>
-                      <p className="text-sm text-foreground/70 leading-relaxed">{r.description}</p>
+                      <h3 className="font-bold text-foreground text-lg mb-2">{i + 1}. {r.title}</h3>
+                      <p className="text-sm leading-relaxed">{r.description}</p>
                     </div>
                   </div>
                 );
@@ -67,8 +67,8 @@ export default function WhyIshanLawPage() {
                     <Icon className="w-6 h-6 text-navy" />
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-foreground text-lg mb-2">{i + 5}. {r.title}</h3>
-                    <p className="text-sm text-foreground/70 leading-relaxed">{r.description}</p>
+                    <h3 className="font-bold text-foreground text-lg mb-2">{i + 5}. {r.title}</h3>
+                    <p className="text-sm leading-relaxed">{r.description}</p>
                   </div>
                 </div>
               );

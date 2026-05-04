@@ -25,7 +25,7 @@ export default function PressCoveragePage() {
       <PageHeader title="Press Coverage" subtitle="Media archives detailing institutional milestones and academic achievements" breadcrumbs={[{ label: "Gallery" }, { label: "Press Coverage" }]} />
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <p className="reveal text-foreground/70 leading-relaxed max-w-4xl mx-auto text-center mb-16 text-lg">
+          <p className="reveal leading-relaxed max-w-4xl mx-auto text-center mb-16 text-lg">
             Ishan Law's moot court achievements, legal aid work, and academic activities have been featured in regional and national media; this page archives press coverage for students, parents, and the legal community.
           </p>
           <div className="max-w-4xl mx-auto space-y-4">
@@ -36,7 +36,7 @@ export default function PressCoveragePage() {
                       <span className="text-xl opacity-40">📰</span>
                    </div>
                    <div className="absolute inset-0 bg-navy/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
-                      <span className="text-[10px] font-bold text-white tracking-widest">VIEW</span>
+                      <span className="text-xs font-bold text-white tracking-widest">VIEW</span>
                    </div>
                 </div>
                 <div className="flex-1">
@@ -45,7 +45,7 @@ export default function PressCoveragePage() {
                     <span className="w-1 h-1 rounded-full bg-border" />
                     <span className="text-xs font-medium text-muted-foreground">{item.date}</span>
                     <span className="w-1 h-1 rounded-full bg-border" />
-                    <span className="px-2 py-0.5 rounded-md bg-gold/10 text-[10px] font-bold text-gold-dark">{item.tag}</span>
+                    <span className="px-2 py-0.5 rounded-md bg-gold/10 text-xs font-bold text-gold-dark">{item.tag}</span>
                   </div>
                   <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">{item.headline}</h3>
                 </div>

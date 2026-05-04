@@ -61,10 +61,10 @@ export default function ProgramsSection() {
       <div className="container-wide">
         <div className="text-center max-w-2xl mx-auto mb-16">
           <p className="reveal text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">Academic Excellence</p>
-          <h2 className="reveal delay-100 text-3xl md:text-4xl lg:text-5xl font-display font-bold text-foreground leading-tight">
+          <h2 className="reveal delay-100 text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
             Programs Designed for Real-World Success
           </h2>
-          <p className="reveal delay-200 mt-5 text-foreground/60 leading-relaxed">
+          <p className="reveal delay-200 mt-5 leading-relaxed">
             BCI approved professional law programs affiliated to CCS University, Meerut, designed to bridge the gap between academic theory and court-room practice.
           </p>
         </div>
@@ -127,7 +127,7 @@ export default function ProgramsSection() {
                     <BookOpen className="w-7 h-7 text-gold" />
                   </div>
                   <div>
-                    <h3 className="text-2xl font-display font-bold text-navy">{program.name || "Program Name"}</h3>
+                    <h3 className="text-2xl font-bold text-navy">{program.name || "Program Name"}</h3>
                     <p className="text-xs uppercase tracking-wider text-gold mt-1 font-semibold">
                       {program.description?.includes('.') 
                         ? program.description.split('.')[1]?.trim() 
@@ -139,7 +139,7 @@ export default function ProgramsSection() {
                 <div className="space-y-6">
                   <div>
                     <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Overview</p>
-                    <p className="text-sm text-foreground/70 leading-relaxed italic">
+                    <p className="text-sm leading-relaxed italic">
                       "{program.overview || program.description}"
                     </p>
                   </div>
@@ -156,7 +156,7 @@ export default function ProgramsSection() {
                         <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-3">Career Outcomes</p>
                         <div className="flex flex-wrap gap-2">
                           {(program.outcomes || ["Management Professional", "Industry Expert"]).map((outcome: string) => (
-                            <span key={outcome} className="px-2.5 py-1 bg-muted rounded-full text-[10px] font-medium text-foreground/70">
+                            <span key={outcome} className="px-2.5 py-1 bg-muted rounded-full text-xs font-medium">
                               {outcome}
                             </span>
                           ))}

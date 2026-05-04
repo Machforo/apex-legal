@@ -25,11 +25,11 @@ const NotFound = () => {
             </div>
           </div>
           
-          <h1 className="text-8xl md:text-[120px] font-display font-bold text-navy leading-none mb-4 drop-shadow-sm">
+          <h1 className="text-8xl md:text-[120px] font-bold text-navy leading-none mb-4 drop-shadow-sm">
             404
           </h1>
           
-          <h2 className="text-2xl md:text-3xl font-display font-bold text-foreground mb-6">
+          <h2 className="font-bold text-foreground mb-6">
             Oops! You've strayed from the campus path.
           </h2>
           

@@ -53,7 +53,7 @@ export default function AdmissionsPage() {
                   <Calendar className="w-6 h-6 text-navy shrink-0 mt-0.5" />
                   <div>
                     <p className="font-semibold text-foreground mb-1">{alert.title}</p>
-                    <p className="text-sm text-foreground/70">{alert.content}</p>
+                    <p className="text-sm">{alert.content}</p>
                   </div>
                 </div>
               </div>
@@ -69,7 +69,7 @@ export default function AdmissionsPage() {
             </div>
 
             {/* Steps */}
-            <h2 className="text-2xl font-display font-bold text-foreground mb-8">Admission Process</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-8">Admission Process</h2>
             
             <div className="space-y-6 mb-16">
               {howToApply.map((step: any, i: number) => (
@@ -79,14 +79,14 @@ export default function AdmissionsPage() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">{step.title}</h3>
-                    <p className="text-sm text-foreground/70 leading-relaxed">{step.desc}</p>
+                    <p className="text-sm leading-relaxed">{step.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Documents */}
-            <h2 className="text-2xl font-display font-bold text-foreground mb-6">Document Checklist</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-6">Document Checklist</h2>
             <div className="reveal grid sm:grid-cols-2 gap-3 mb-16">
               {docs.map((doc: string, i: number) => (
                 <div key={i} className="flex items-start gap-2.5 px-4 py-3 rounded-lg border bg-card text-sm text-foreground/80">
@@ -98,8 +98,8 @@ export default function AdmissionsPage() {
 
             {/* Contact */}
             <div className="reveal rounded-xl border bg-section-alt p-8 text-center shadow-sm">
-              <h3 className="text-xl font-display font-bold text-foreground mb-3">Ready to Join Ishan Law Institute?</h3>
-              <p className="text-sm text-foreground/70 mb-8">Begin your legal journey today by filling out our online application form.</p>
+              <h3 className="text-xl font-bold text-foreground mb-3">Ready to Join Ishan Law Institute?</h3>
+              <p className="text-sm mb-8">Begin your legal journey today by filling out our online application form.</p>
               
               <div className="flex flex-col sm:flex-row justify-center gap-4 mb-8">
                 <button className="inline-flex items-center justify-center gap-2 px-10 py-4 text-base font-bold bg-gold text-navy rounded-xl hover:bg-gold-light transition-all shadow-lg active:scale-[0.97] shimmer-btn">

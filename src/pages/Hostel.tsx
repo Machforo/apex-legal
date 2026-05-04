@@ -54,7 +54,7 @@ export default function HostelPage() {
 
             <div className="reveal delay-300 rounded-xl border bg-card p-6">
               <h3 className="font-semibold text-foreground mb-3">Warden Contact</h3>
-              <p className="text-sm text-foreground/70">For hostel enquiries and applications, contact the admissions office at <a href="tel:+918448797700" className="text-navy font-semibold">8448797700</a> or visit the campus.</p>
+              <p className="text-sm">For hostel enquiries and applications, contact the admissions office at <a href="tel:+918448797700" className="text-navy font-semibold">8448797700</a> or visit the campus.</p>
             </div>
           </div>
         </div>

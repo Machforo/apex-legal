@@ -26,7 +26,7 @@ export default function AccreditationsSection() {
                   <img src={acc.url || acc.image} alt={acc.name || acc.title} className="h-16 md:h-20 object-contain" loading="lazy" />
               ) : (
                   <div className="h-16 md:h-20 flex items-center">
-                    <span className="text-2xl font-display font-bold text-navy">{acc.name || acc.title}</span>
+                    <span className="text-2xl font-bold text-navy">{acc.name || acc.title}</span>
                   </div>
               )}
               <span className="text-xs font-medium text-muted-foreground">{acc.name || acc.title}</span>
@@ -34,7 +34,7 @@ export default function AccreditationsSection() {
           ))}
           <div className="flex flex-col items-center gap-2 grayscale hover:grayscale-0 opacity-60 hover:opacity-100 transition-all duration-300">
             <div className="h-16 md:h-20 flex items-center">
-              <span className="text-2xl font-display font-bold text-navy">CCS University</span>
+              <span className="text-2xl font-bold text-navy">CCS University</span>
             </div>
             <span className="text-xs font-medium text-muted-foreground">Affiliated</span>
           </div>

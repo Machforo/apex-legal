@@ -46,7 +46,7 @@ export default function TestimonialsSection() {
       <div className="container-wide">
         <div className="text-center mb-12 md:mb-16">
           <p className="text-xs font-bold uppercase tracking-[0.25em] text-gold mb-4 opacity-80">Success Stories</p>
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-navy leading-tight">Hear From Our <span className="text-gold">Community</span></h2>
+          <h2 className="text-3xl md:text-5xl font-bold text-navy leading-tight">Hear From Our <span className="text-gold">Community</span></h2>
         </div>
 
         <div className="flex justify-center mb-16">
@@ -85,7 +85,7 @@ export default function TestimonialsSection() {
                       <img src={t.image} alt={t.name} className="w-full h-full object-cover" />
                     </div>
                     <div>
-                      <h4 className="font-display font-bold text-lg text-navy">{t.name}</h4>
+                      <h4 className="font-bold text-lg text-navy">{t.name}</h4>
                       <p className="text-xs font-bold text-gold uppercase tracking-wider">{t.role}</p>
                     </div>
                     <div className="ml-auto text-gold/10">

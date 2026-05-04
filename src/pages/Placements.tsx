@@ -65,7 +65,7 @@ export default function PlacementsPage() {
               return (
                 <div key={s.label || i} className="text-center p-6 rounded-xl bg-section-alt border">
                   <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-gold-light flex items-center justify-center"><Icon className="w-6 h-6 text-navy" /></div>
-                  <p className="text-2xl md:text-3xl font-display font-bold text-navy">{s.value}</p>
+                  <p className="font-bold text-navy">{s.value}</p>
                   <p className="text-xs text-muted-foreground mt-1 font-medium">{s.label}</p>
                 </div>
               );
@@ -74,12 +74,12 @@ export default function PlacementsPage() {
 
           {/* Process */}
           <div className="reveal delay-100 max-w-3xl mx-auto mb-16">
-            <h2 className="text-2xl font-display font-bold text-foreground mb-6">Placement Process</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-6">Placement Process</h2>
             <div className="space-y-4">
               {placementProcess.map((step: any, i: number) => (
                 <div key={i} className="flex gap-4 items-start p-4 rounded-lg border bg-card">
                   <div className="w-8 h-8 rounded-full bg-navy flex items-center justify-center shrink-0"><span className="text-xs font-bold text-primary-foreground">{step.step || i+1}</span></div>
-                  <p className="text-sm text-foreground/70">{step.desc}</p>
+                  <p className="text-sm">{step.desc}</p>
                 </div>
               ))}
             </div>
@@ -87,7 +87,7 @@ export default function PlacementsPage() {
 
           {/* Recruiters */}
           <div className="reveal delay-200 mb-16">
-            <h2 className="text-2xl font-display font-bold text-foreground mb-10 text-center">Our Recruiting Partners</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-10 text-center">Our Recruiting Partners</h2>
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
               {recruiters.map((r: any, i: number) => (
                 <div key={r.name || i} className="flex items-center justify-center p-8 rounded-xl border bg-card hover:shadow-md transition-shadow h-32">
@@ -103,11 +103,11 @@ export default function PlacementsPage() {
 
           {/* Testimonials */}
           <div className="reveal delay-300">
-            <h2 className="text-2xl font-display font-bold text-foreground mb-6 text-center">Student Success Stories</h2>
+            <h2 className="text-2xl font-bold text-foreground mb-6 text-center">Student Success Stories</h2>
             <div className="grid sm:grid-cols-2 gap-6">
               {testimonials.map((t: any, i: number) => (
                 <div key={t.name || i} className="p-6 rounded-xl border bg-card">
-                  {(t.quote || t.message) && <p className="text-sm text-foreground/70 leading-relaxed italic mb-4">"{t.quote || t.message}"</p>}
+                  {(t.quote || t.message) && <p className="text-sm leading-relaxed italic mb-4">"{t.quote || t.message}"</p>}
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-gold-light flex items-center justify-center">
                       {t.image ? <img src={t.image} alt={t.name} className="w-full h-full rounded-full object-cover" /> : <span className="text-sm font-bold text-navy">{t.name?.[0]}</span>}

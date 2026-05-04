@@ -41,20 +41,20 @@ export default function CourseDetailPage(props: CoursePageProps) {
             <div className="space-y-12">
               {/* Overview */}
               <div className="reveal">
-                <h2 className="text-2xl font-display font-bold text-foreground mb-4">Program Overview</h2>
+                <h2 className="text-2xl font-bold text-foreground mb-4">Program Overview</h2>
                 <p className="text-foreground/70 leading-relaxed">{props.overview}</p>
               </div>
 
               {/* Subjects */}
               <div className="reveal delay-100">
-                <h2 className="text-2xl font-display font-bold text-foreground mb-6">Curriculum Structure</h2>
+                <h2 className="text-2xl font-bold text-foreground mb-6">Curriculum Structure</h2>
                 <div className="space-y-6">
                   {props.subjects.map((yr) => (
                     <div key={yr.year} className="rounded-xl border bg-card p-6">
                       <h3 className="font-semibold text-foreground mb-3">{yr.year}</h3>
                       <div className="grid sm:grid-cols-2 gap-2">
                         {yr.items.map((sub) => (
-                          <div key={sub} className="flex items-start gap-2 text-sm text-foreground/70">
+                          <div key={sub} className="flex items-start gap-2 text-sm">
                             <div className="w-1.5 h-1.5 rounded-full bg-gold shrink-0 mt-2" />
                             {sub}
                           </div>
@@ -67,7 +67,7 @@ export default function CourseDetailPage(props: CoursePageProps) {
 
               {/* Career Scope */}
               <div className="reveal delay-200">
-                <h2 className="text-2xl font-display font-bold text-foreground mb-4">Career Scope</h2>
+                <h2 className="text-2xl font-bold text-foreground mb-4">Career Scope</h2>
                 <p className="text-foreground/70 leading-relaxed mb-6">{props.careerScope}</p>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {props.careers.map((c) => (
@@ -83,7 +83,7 @@ export default function CourseDetailPage(props: CoursePageProps) {
             {/* Sidebar */}
             <div className="space-y-6">
               <div className="reveal-right rounded-xl border bg-card p-6 shadow-sm sticky top-24">
-                <h3 className="font-display font-bold text-foreground mb-5">Quick Facts</h3>
+                <h3 className="font-bold text-foreground mb-5">Quick Facts</h3>
                 <div className="space-y-4">
                   {[
                     { icon: Clock, label: "Duration", value: props.duration },

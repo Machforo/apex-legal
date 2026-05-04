@@ -17,16 +17,16 @@ export default function GrievanceRedressalPage() {
               </div>
             </div>
             <div className="reveal delay-100 space-y-6">
-              <h2 className="text-lg font-display font-bold text-foreground">Redressal Process</h2>
-              <ol className="space-y-3 text-sm text-foreground/70">
+              <h2 className="text-lg font-bold text-foreground">Redressal Process</h2>
+              <ol className="space-y-3 text-sm">
                 {["Submit a written complaint to the Grievance Redressal Cell or email registrar@ishan.ac", "Complaint acknowledged within 24 hours with a unique reference number", "Investigation conducted by the committee with strict confidentiality", "Resolution communicated to the complainant within 7 working days", "If unsatisfied, escalate to the Principal with the original reference number", "Final appeal to the Vice Chancellor of CCS University if resolution is inadequate"].map((s, i) => (
                   <li key={i} className="flex gap-3"><span className="w-6 h-6 rounded-full bg-navy flex items-center justify-center shrink-0 text-xs font-bold text-primary-foreground">{i + 1}</span>{s}</li>
                 ))}
               </ol>
               <div className="p-5 rounded-xl border bg-section-alt">
                 <h3 className="font-semibold text-foreground mb-2">Internal Complaints Committee</h3>
-                <p className="text-sm text-foreground/70">Email: <a href="mailto:registrar@ishan.ac" className="text-navy font-semibold">registrar@ishan.ac</a></p>
-                <p className="text-sm text-foreground/70">Phone: <a href="tel:+918448797700" className="text-navy font-semibold">8448797700</a></p>
+                <p className="text-sm">Email: <a href="mailto:registrar@ishan.ac" className="text-navy font-semibold">registrar@ishan.ac</a></p>
+                <p className="text-sm">Phone: <a href="tel:+918448797700" className="text-navy font-semibold">8448797700</a></p>
               </div>
             </div>
           </div>

@@ -49,10 +49,10 @@ export default function FacultySection() {
         <div className="flex flex-col md:flex-row items-end justify-between gap-6 mb-16">
           <div className="max-w-2xl">
             <p className="reveal text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">Academic Leaders</p>
-            <h2 className="reveal delay-100 text-3xl md:text-5xl font-display font-bold text-navy">
+            <h2 className="reveal delay-100 text-3xl md:text-5xl font-bold text-navy">
               Eminent Faculty & Mentors
             </h2>
-            <p className="reveal delay-200 mt-5 text-foreground/60 leading-relaxed">
+            <p className="reveal delay-200 mt-5 leading-relaxed">
               Our faculty members are distinguished legal scholars and practicing advocates from the High Courts and Supreme Court, dedicated to nurturing the next generation of judicial leaders through practice-oriented mentorship.
             </p>
           </div>
@@ -91,14 +91,14 @@ export default function FacultySection() {
               </div>
               
               <div className="p-8">
-                <h3 className="font-display font-bold text-xl text-navy group-hover:text-gold transition-colors">{f.name}</h3>
+                <h3 className="font-bold text-xl text-navy group-hover:text-gold transition-colors">{f.name}</h3>
                 <p className="text-xs font-bold text-gold uppercase tracking-widest mt-1">{f.designation}</p>
                 <div className="mt-4 pt-4 border-t border-muted space-y-3">
-                  <div className="flex items-center gap-2 text-xs text-foreground/60 font-medium">
+                  <div className="flex items-center gap-2 text-xs font-medium">
                     <BookOpen size={14} className="text-gold" />
                     {f.specialisation}
                   </div>
-                  <div className="inline-block px-3 py-1 rounded-md bg-muted text-[10px] font-bold text-muted-foreground uppercase tracking-wider">
+                  <div className="inline-block px-3 py-1 rounded-md bg-muted text-xs font-bold text-muted-foreground uppercase tracking-wider">
                     {f.qualification}
                   </div>
                 </div>
@@ -149,17 +149,17 @@ export default function FacultySection() {
                 <div className="w-full md:w-3/5 p-8 md:p-12 overflow-y-auto custom-scrollbar">
                   <div className="mb-8">
                     <p className="text-sm font-bold text-gold uppercase tracking-[0.2em] mb-2">Faculty Profile</p>
-                    <h2 className="text-3xl md:text-4xl font-display font-bold text-navy leading-tight">{selectedFaculty.name}</h2>
+                    <h2 className="font-bold text-navy leading-tight">{selectedFaculty.name}</h2>
                     <p className="text-lg font-semibold text-navy/60 mt-1">{selectedFaculty.designation}</p>
                   </div>
 
                   <div className="grid grid-cols-2 gap-4 mb-8">
                     <div className="p-4 rounded-2xl bg-muted/30">
-                      <p className="text-[10px] font-bold text-navy/40 uppercase tracking-widest mb-1">Qualification</p>
+                      <p className="text-xs font-bold text-navy/40 uppercase tracking-widest mb-1">Qualification</p>
                       <p className="text-sm font-bold text-navy">{selectedFaculty.qualification}</p>
                     </div>
                     <div className="p-4 rounded-2xl bg-muted/30">
-                      <p className="text-[10px] font-bold text-navy/40 uppercase tracking-widest mb-1">Specialisation</p>
+                      <p className="text-xs font-bold text-navy/40 uppercase tracking-widest mb-1">Specialisation</p>
                       <p className="text-sm font-bold text-navy">{selectedFaculty.specialisation}</p>
                     </div>
                   </div>

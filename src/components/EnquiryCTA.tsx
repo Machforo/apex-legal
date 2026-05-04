@@ -8,7 +8,7 @@ export default function EnquiryCTA({ title = "Ready to Begin Your Journey?", sub
   return (
     <section className="py-16 md:py-20 bg-navy" ref={ref}>
       <div className="container-wide text-center">
-        <h2 className="reveal text-2xl md:text-3xl font-display font-bold text-primary-foreground">{title}</h2>
+        <h2 className="reveal font-bold text-primary-foreground">{title}</h2>
         <p className="reveal delay-100 mt-3 text-primary-foreground/60 max-w-xl mx-auto">{subtitle}</p>
         <div className="reveal delay-200 flex flex-wrap justify-center gap-4 mt-8">
           <Link to="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 text-sm font-semibold bg-gold text-foreground rounded-lg shadow-[0_4px_16px_hsl(var(--gold)/0.35)] hover:shadow-[0_6px_24px_hsl(var(--gold)/0.45)] transition-shadow active:scale-[0.97]">

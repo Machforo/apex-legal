@@ -43,7 +43,7 @@ export default function LegalAidCellPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20">
             <div className="reveal-left order-2 lg:order-1">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">Community Outreach</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
+              <h2 className="font-bold text-foreground leading-tight">
                 Empowering the Underprivileged
               </h2>
               <p className="text-foreground/70 leading-relaxed mb-6">
@@ -63,7 +63,7 @@ export default function LegalAidCellPage() {
                 />
               </div>
               <div className="absolute -top-6 -left-6 bg-gold text-navy p-6 rounded-xl shadow-xl hidden md:block">
-                <p className="text-3xl font-display font-bold">50+</p>
+                <p className="text-3xl font-bold">50+</p>
                 <p className="text-xs uppercase tracking-wider font-semibold">Camps Conducted</p>
               </div>
             </div>
@@ -75,8 +75,8 @@ export default function LegalAidCellPage() {
                 <div className="w-12 h-12 rounded-lg bg-gold-light flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
                   <s.icon className="w-6 h-6 text-navy" />
                 </div>
-                <h3 className="font-display font-bold text-foreground mb-2">{s.title}</h3>
-                <p className="text-sm text-foreground/60 leading-relaxed">{s.desc}</p>
+                <h3 className="font-bold text-foreground mb-2">{s.title}</h3>
+                <p className="text-sm leading-relaxed">{s.desc}</p>
               </div>
             ))}
           </div>

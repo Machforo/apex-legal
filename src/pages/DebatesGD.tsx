@@ -42,7 +42,7 @@ export default function DebatesGDPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="reveal-left space-y-6">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Advocacy Culture</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
+              <h2 className="font-bold text-foreground leading-tight">
                 Preparing Students for India's Courtrooms
               </h2>
               <p className="text-foreground/70 leading-relaxed">
@@ -51,10 +51,10 @@ export default function DebatesGDPage() {
               <div className="space-y-4">
                 <p className="text-sm font-bold text-foreground">Participation includes:</p>
                 <ul className="grid sm:grid-cols-2 gap-3">
-                  <li className="flex items-center gap-2 text-sm text-foreground/70"><Users className="w-4 h-4 text-gold" /> Inter-college competitions</li>
-                  <li className="flex items-center gap-2 text-sm text-foreground/70"><Users className="w-4 h-4 text-gold" /> Campus debate society</li>
-                  <li className="flex items-center gap-2 text-sm text-foreground/70"><Users className="w-4 h-4 text-gold" /> Faculty-led workshops</li>
-                  <li className="flex items-center gap-2 text-sm text-foreground/70"><Users className="w-4 h-4 text-gold" /> Alumni mentoring sessions</li>
+                  <li className="flex items-center gap-2 text-sm"><Users className="w-4 h-4 text-gold" /> Inter-college competitions</li>
+                  <li className="flex items-center gap-2 text-sm"><Users className="w-4 h-4 text-gold" /> Campus debate society</li>
+                  <li className="flex items-center gap-2 text-sm"><Users className="w-4 h-4 text-gold" /> Faculty-led workshops</li>
+                  <li className="flex items-center gap-2 text-sm"><Users className="w-4 h-4 text-gold" /> Alumni mentoring sessions</li>
                 </ul>
               </div>
             </div>
@@ -67,7 +67,7 @@ export default function DebatesGDPage() {
                   </div>
                   <div className="space-y-1">
                     <h3 className="font-bold text-foreground">{a.title}</h3>
-                    <p className="text-sm text-foreground/60">{a.description}</p>
+                    <p className="text-sm">{a.description}</p>
                   </div>
                 </div>
               ))}
@@ -79,7 +79,7 @@ export default function DebatesGDPage() {
       <section className="py-16 md:py-24 bg-navy text-white">
         <div className="container-wide">
           <div className="max-w-3xl mx-auto text-center space-y-8">
-            <h2 className="text-3xl md:text-4xl font-display font-bold">Past Event Highlights</h2>
+            <h2 className="font-bold">Past Event Highlights</h2>
             <p className="text-white/70 leading-relaxed">
               Our students have consistently won accolades at regional and national debate competitions. Notable wins include the Greater Noida Inter-College Management Debate and the CCS University Zonal Cultural Meet.
             </p>

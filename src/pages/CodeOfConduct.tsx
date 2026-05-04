@@ -20,8 +20,8 @@ export default function CodeOfConductPage() {
                 { title: "6. Zero Tolerance for Ragging", content: "As per UGC regulations and Supreme Court directives, ragging in any form is a criminal offense. Ishan Law maintains zero tolerance towards ragging. Offenders will face immediate expulsion, FIR registration, and criminal prosecution." },
               ].map((s) => (
                 <div key={s.title}>
-                  <h2 className="text-lg font-display font-bold text-foreground mb-3">{s.title}</h2>
-                  <p className="text-sm text-foreground/70 leading-relaxed">{s.content}</p>
+                  <h2 className="text-lg font-bold text-foreground mb-3">{s.title}</h2>
+                  <p className="text-sm leading-relaxed">{s.content}</p>
                 </div>
               ))}
             </div>

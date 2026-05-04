@@ -68,7 +68,7 @@ export default function ScholarshipsPage() {
             ))}
           </div>
           <div className="max-w-6xl mx-auto mt-12 p-6 rounded-xl bg-section-alt border text-center">
-            <p className="text-sm text-foreground/70 mb-3">Government Scholarships (SC/ST/OBC) are processed through:</p>
+            <p className="text-sm mb-3">Government Scholarships (SC/ST/OBC) are processed through:</p>
             <a href="https://scholarship.up.gov.in" target="_blank" rel="noopener" className="inline-flex items-center gap-2 text-sm font-semibold text-navy hover:underline">
               UP Scholarship Portal <ExternalLink className="w-3.5 h-3.5" />
             </a>

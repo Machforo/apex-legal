@@ -43,8 +43,8 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <p className="font-display font-bold text-lg leading-tight text-white">ISHAN</p>
-                <p className="text-[10px] uppercase tracking-[0.15em] text-primary-foreground/40 leading-tight">Institute of Law</p>
+                <p className="font-bold text-lg leading-tight text-white">ISHAN</p>
+                <p className="text-xs uppercase tracking-[0.15em] text-primary-foreground/40 leading-tight">Institute of Law</p>
               </div>
             </Link>
             <p className="text-sm text-primary-foreground/50 leading-relaxed max-w-xs">
@@ -116,7 +116,7 @@ export default function Footer() {
 
       <div className="border-t border-white/5 py-6 bg-black/20">
         <div className="container-wide flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-[11px] text-primary-foreground/30">
+          <p className="text-xs text-primary-foreground/30">
             © {new Date().getFullYear()} Ishan Law Institute. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
@@ -126,7 +126,7 @@ export default function Footer() {
               { label: "Grievance", href: "/grievance-redressal" },
               { label: "Disclosures", href: "/mandatory-disclosure" },
             ].map((l) => (
-              <Link key={l.label} to={l.href} className="text-[11px] text-primary-foreground/30 hover:text-gold transition-colors uppercase tracking-widest font-medium">
+              <Link key={l.label} to={l.href} className="text-xs text-primary-foreground/30 hover:text-gold transition-colors uppercase tracking-widest font-medium">
                 {l.label}
               </Link>
             ))}

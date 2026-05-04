@@ -42,7 +42,7 @@ export default function MootCourtPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="reveal-left space-y-6">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Advocacy Training</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
+              <h2 className="font-bold text-foreground leading-tight">
                 Simulated Excellence for Future Advocates
               </h2>
               <p className="text-foreground/70 leading-relaxed">
@@ -69,7 +69,7 @@ export default function MootCourtPage() {
                 <div key={i} className="bg-card border rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow">
                   <div className="mb-4">{f.icon}</div>
                   <h3 className="text-lg font-bold text-foreground mb-2">{f.title}</h3>
-                  <p className="text-sm text-foreground/60">{f.description}</p>
+                  <p className="text-sm">{f.description}</p>
                 </div>
               ))}
             </div>
@@ -81,7 +81,7 @@ export default function MootCourtPage() {
         <div className="container-wide text-center">
           <div className="max-w-3xl mx-auto space-y-6">
             <Scale className="w-12 h-12 text-gold mx-auto" />
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">Clinical Legal Education</h2>
+            <h2 className="font-bold text-foreground">Clinical Legal Education</h2>
             <p className="text-foreground/70 leading-relaxed">
               Our clinical training goes beyond mooting to include legal aid camps, client counseling sessions, and court visits. We ensure that every Ishan Law student is not just a degree holder, but a practice-ready legal professional equipped with the ethics and skills required for modern advocacy.
             </p>

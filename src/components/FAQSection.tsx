@@ -40,7 +40,7 @@ export default function FAQSection() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <p className="reveal text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">Common Inquiries</p>
-            <h2 className="reveal delay-100 text-3xl md:text-5xl font-display font-bold text-navy">
+            <h2 className="reveal delay-100 text-3xl md:text-5xl font-bold text-navy">
               Frequently Asked Questions
             </h2>
           </div>
@@ -78,7 +78,7 @@ export default function FAQSection() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <div className="p-6 pt-0 text-foreground/70 leading-relaxed bg-card">
+                      <div className="p-6 pt-0 leading-relaxed bg-card">
                         <div className="pl-14 border-l-2 border-gold/20 ml-5 py-2">
                           {faq.answer}
                         </div>

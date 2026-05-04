@@ -201,7 +201,7 @@ export default function HeroSection() {
             </div>
 
             {/* Headline */}
-            <h1 key={`h1-${current}`} className="text-4xl md:text-5xl lg:text-[3.5rem] font-display font-bold text-white leading-[1.1] tracking-tight drop-shadow-xl" style={{ animation: "fadeUp 0.55s 0.06s ease both" }}>
+            <h1 key={`h1-${current}`} className="font-bold text-white leading-[1.1] tracking-tight drop-shadow-xl" style={{ animation: "fadeUp 0.55s 0.06s ease both" }}>
               {slide.title}
               <span className="text-gold block mt-1">{slide.highlight}</span>
             </h1>
@@ -241,7 +241,7 @@ export default function HeroSection() {
                 <ChevronRight className="w-4 h-4" />
               </button>
 
-              <span className="ml-2 text-[11px] font-bold text-white/40 tabular-nums">
+              <span className="ml-2 text-xs font-bold text-white/40 tabular-nums">
                 {String(current + 1).padStart(2, "0")} / {String(SLIDES.length).padStart(2, "0")}
               </span>
             </div>
@@ -273,8 +273,8 @@ export default function HeroSection() {
                 {heroActiveTab === 'enquiry' && (
                   <div className="p-8 lg:p-10 animate-in fade-in slide-in-from-left-4 duration-300 h-[470px] flex flex-col">
                     <div className="mb-7">
-                      <h3 className="text-2xl font-display font-bold text-navy mb-2">Quick Enquiry</h3>
-                      <p className="text-xs text-foreground/60 leading-relaxed font-medium uppercase tracking-wider">Start your professional journey</p>
+                      <h3 className="text-2xl font-bold text-navy mb-2">Quick Enquiry</h3>
+                      <p className="text-xs leading-relaxed font-medium uppercase tracking-wider">Start your professional journey</p>
                     </div>
                     
                     {isSubmitted ? (
@@ -283,8 +283,8 @@ export default function HeroSection() {
                           <CheckCircle className="w-8 h-8 text-success" />
                         </div>
                         <div className="space-y-2">
-                          <h4 className="text-xl font-display font-bold text-navy">Request Received!</h4>
-                          <p className="text-[13px] text-muted-foreground leading-relaxed px-4">
+                          <h4 className="text-xl font-bold text-navy">Request Received!</h4>
+                          <p className="text-sm text-muted-foreground leading-relaxed px-4">
                             Our counselor will call you within 24 hours to guide you.
                           </p>
                         </div>
@@ -311,7 +311,7 @@ export default function HeroSection() {
                         </div>
                         <div className="flex items-start gap-2 pt-1">
                           <input type="checkbox" id="hero-consent" className="mt-1 accent-gold w-4 h-4" defaultChecked />
-                          <label htmlFor="hero-consent" className="text-[11px] text-foreground/60 leading-relaxed">
+                          <label htmlFor="hero-consent" className="text-xs leading-relaxed">
                             I authorize Ishan Law to contact me regarding my admission inquiry.
                           </label>
                         </div>
@@ -329,13 +329,13 @@ export default function HeroSection() {
                   <div className="p-8 lg:p-10 animate-in fade-in slide-in-from-right-4 duration-300 h-[470px] flex flex-col">
                     <div className="flex items-center justify-between mb-8">
                       <div>
-                        <h3 className="text-2xl font-display font-bold text-navy flex items-center gap-2">
+                        <h3 className="text-2xl font-bold text-navy flex items-center gap-2">
                           Campus Life
                           <div className="w-1.5 h-1.5 bg-destructive rounded-full animate-pulse" />
                         </h3>
-                        <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold mt-1">What's going on at Ishan</p>
+                        <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mt-1">What's going on at Ishan</p>
                       </div>
-                      <Link to="/news" className="text-[10px] font-bold text-gold hover:text-navy transition-colors flex items-center gap-1">
+                      <Link to="/news" className="text-xs font-bold text-gold hover:text-navy transition-colors flex items-center gap-1">
                         View All <ArrowRight size={12} />
                       </Link>
                     </div>
@@ -349,12 +349,12 @@ export default function HeroSection() {
                             className="p-4 rounded-2xl bg-muted/20 border border-transparent hover:border-gold/20 hover:bg-white hover:shadow-xl transition-all cursor-pointer group/item"
                           >
                             <div className="flex items-center gap-2 mb-2">
-                              <span className={`text-[8px] font-black tracking-widest px-1.5 py-0.5 rounded ${item.type === 'EVENT' ? 'bg-gold text-navy' : 'bg-navy text-white'}`}>
+                              <span className={`text-xs font-black tracking-widest px-1.5 py-0.5 rounded ${item.type === 'EVENT' ? 'bg-gold text-navy' : 'bg-navy text-white'}`}>
                                 {item.type}
                               </span>
-                              <span className="text-[10px] text-muted-foreground font-bold italic">{item.date}</span>
+                              <span className="text-xs text-muted-foreground font-bold italic">{item.date}</span>
                             </div>
-                            <h4 className="text-[13px] font-bold leading-tight group-hover/item:text-gold transition-colors italic">"{item.title}"</h4>
+                            <h4 className="text-sm font-bold leading-tight group-hover/item:text-gold transition-colors italic">"{item.title}"</h4>
                           </div>
                         ))}
                       </div>
@@ -363,11 +363,11 @@ export default function HeroSection() {
                     </div>
 
                     <div className="mt-auto pt-6 border-t border-dashed border-navy/10 flex items-center justify-between">
-                      <div className="flex items-center gap-2 text-[11px] text-navy/60 font-bold italic">
+                      <div className="flex items-center gap-2 text-xs text-navy/60 font-bold italic">
                         <Sparkles size={14} className="text-gold" />
                         <span>30 Years of Academic Excellence</span>
                       </div>
-                      <Link to="/campus-experience" className="text-[10px] font-bold text-navy hover:text-gold transition-colors">Campus Tour</Link>
+                      <Link to="/campus-experience" className="text-xs font-bold text-navy hover:text-gold transition-colors">Campus Tour</Link>
                     </div>
                   </div>
                 )}
@@ -432,11 +432,11 @@ export default function HeroSection() {
               {/* Right Side: Content */}
               <div className="flex-1 p-8 md:p-12 flex flex-col justify-center">
                 <div className="flex items-center gap-3 mb-6">
-                  <span className={`text-[10px] font-black tracking-widest px-2.5 py-1 rounded-lg ${selectedNews.type === 'EVENT' ? 'bg-gold text-navy' : 'bg-navy text-white'}`}>
+                  <span className={`text-xs font-black tracking-widest px-2.5 py-1 rounded-lg ${selectedNews.type === 'EVENT' ? 'bg-gold text-navy' : 'bg-navy text-white'}`}>
                     {selectedNews.type}
                   </span>
                 </div>
-                <h2 className="text-3xl md:text-4xl font-display font-bold text-navy mb-6 leading-tight italic">"{selectedNews.title}"</h2>
+                <h2 className="font-bold text-navy mb-6 leading-tight italic">"{selectedNews.title}"</h2>
                 <p className="text-foreground/70 leading-relaxed text-base mb-8 whitespace-pre-wrap">
                   {selectedNews.details}
                 </p>

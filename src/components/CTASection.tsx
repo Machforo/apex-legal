@@ -52,7 +52,7 @@ export default function CTASection() {
           {/* Left */}
           <div className="reveal-left space-y-6">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Get In Touch</p>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-primary-foreground leading-tight">
+            <h2 className="font-bold text-primary-foreground leading-tight">
               Begin Your Legal Career at Ishan Law Institute
             </h2>
             <p className="text-primary-foreground/60 leading-relaxed whitespace-pre-wrap">
@@ -84,7 +84,7 @@ export default function CTASection() {
           {/* Form */}
           <div className="reveal-right">
             <div className="bg-card rounded-2xl p-8 shadow-[0_8px_40px_hsl(var(--navy)/0.2)]">
-              <h3 className="text-xl font-display font-bold text-foreground mb-6">Enquiry Form</h3>
+              <h3 className="text-xl font-bold text-foreground mb-6">Enquiry Form</h3>
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <input

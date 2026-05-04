@@ -51,7 +51,7 @@ export default function AnnouncementPopup() {
                 <Bell size={32} />
               </div>
               
-              <h2 className="text-3xl font-display font-bold text-navy mb-4">Admissions Open 2025-26</h2>
+              <h2 className="text-3xl font-bold text-navy mb-4">Admissions Open 2025-26</h2>
               <p className="text-foreground/70 leading-relaxed mb-8">
                 The gates to a brighter future are open. Apply now for BBA, BCA, B.Com, B.Ed, and M.Ed programs at Ishan Law Institute Greater Noida.
               </p>
@@ -74,7 +74,7 @@ export default function AnnouncementPopup() {
             </div>
 
             <div className="bg-muted/50 p-4 text-center border-t">
-              <p className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">
+              <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold">
                 Limited Seats Available | Scholarship Options Open
               </p>
             </div>

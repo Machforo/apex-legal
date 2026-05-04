@@ -39,7 +39,7 @@ I warmly invite you to join the Ishan Law community and experience an education 
                       <div className="aspect-[3/4] bg-muted flex items-center justify-center">
                         <div className="text-center">
                           <div className="w-24 h-24 mx-auto rounded-full bg-gold-light flex items-center justify-center mb-3">
-                            <span className="text-3xl font-display font-bold text-navy">{msg.name ? msg.name.charAt(0) : "D"}</span>
+                            <span className="text-3xl font-bold text-navy">{msg.name ? msg.name.charAt(0) : "D"}</span>
                           </div>
                           <p className="text-sm font-semibold text-foreground">{msg.name}</p>
                           <p className="text-xs text-muted-foreground">{msg.designation}</p>

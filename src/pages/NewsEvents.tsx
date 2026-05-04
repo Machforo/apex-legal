@@ -87,7 +87,7 @@ export default function NewsEventsPage() {
                     <img src={item.image} alt={item.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <span className="text-4xl font-display font-bold text-muted-foreground/20">{(item.category || item.title || "N")?.[0]}</span>
+                      <span className="text-4xl font-bold text-muted-foreground/20">{(item.category || item.title || "N")?.[0]}</span>
                     </div>
                   )}
                 </div>
@@ -99,7 +99,7 @@ export default function NewsEventsPage() {
                     </span>
                   </div>
                   <h3 className="font-semibold text-foreground leading-snug mb-2 group-hover:text-navy transition-colors">{item.title}</h3>
-                  {item.excerpt && <p className="text-xs text-foreground/60 leading-relaxed line-clamp-2">{item.excerpt}</p>}
+                  {item.excerpt && <p className="text-xs leading-relaxed line-clamp-2">{item.excerpt}</p>}
                 </div>
               </article>
             ))}
