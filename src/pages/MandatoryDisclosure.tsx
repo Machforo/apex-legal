@@ -4,11 +4,11 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { FileText, Download } from "lucide-react";
 
 const disclosureItems = [
-  { category: "Institution Details", items: ["Name of Institution", "Address", "Year of Establishment — 1994", "Status of Institution — Private", "Type of Institution — Co-education"] },
-  { category: "Academic Information", items: ["Programs offered: BBA, B.Com, BCA, M.Com, B.Ed, M.Ed", "Annual intake per program", "Faculty-student ratio", "Pass percentage (last 5 years)"] },
-  { category: "Financial Information", items: ["Fee structure per program", "Scholarship details", "Audited financial statements (annual)"] },
-  { category: "Infrastructure", items: ["Total campus area", "Built-up area", "Library resources", "Computer labs and IT infrastructure"] },
-  { category: "Faculty", items: ["Permanent faculty list with qualifications", "Visiting faculty details", "Faculty development programs"] },
+  { category: "Institution Details", items: ["Name: Ishan Institute of Law", "Address: Knowledge Park-III, Greater Noida", "Year of Establishment: 2008", "Status: Private Self-Financing", "Type: Co-educational Professional Institution"] },
+  { category: "Academic Information", items: ["Programs Offered: BA LLB (Hons), LLB", "BCI Approval Status — Current", "Annual Intake per Program", "Faculty-Student Ratio", "Student Success Rate (Last 5 Years)"] },
+  { category: "Regulatory Information", items: ["BCI Approval Letters", "CCS University Affiliation Documents", "Anti-Ragging Committee Constitution", "Grievance Redressal Mechanism"] },
+  { category: "Infrastructure", items: ["Moot Court Hall Specifications", "Legal Library — Titles, Journals & Digital Resources", "IT Lab — Manupatra & SCC Online Access", "Legal Aid Clinic — Community Reach"] },
+  { category: "Faculty & Staff", items: ["List of Core Faculty with BCI-mandated Qualifications", "Visiting Senior Advocates Profile", "Administrative Staff Details"] },
 ];
 
 export default function MandatoryDisclosurePage() {
@@ -18,7 +18,7 @@ export default function MandatoryDisclosurePage() {
     <Layout>
       <PageHeader
         title="Mandatory Disclosure"
-        subtitle="AICTE / UGC format mandatory disclosure document — updated annually"
+        subtitle="BCI / CCS University format mandatory disclosure document — updated annually"
         breadcrumbs={[{ label: "Mandatory Disclosure" }]}
       />
 
@@ -28,12 +28,12 @@ export default function MandatoryDisclosurePage() {
             <div className="reveal bg-gold-light rounded-xl p-6 mb-12 flex items-start gap-4">
               <FileText className="w-6 h-6 text-navy shrink-0 mt-0.5" />
               <div>
-                <p className="font-semibold text-foreground mb-1">Compliance Statement</p>
+                <p className="font-semibold text-foreground mb-1">BCI Compliance Statement</p>
                 <p className="text-sm text-foreground/70 leading-relaxed">
-                  The information provided below is submitted as required by the All India Council for Technical Education (AICTE) and is updated annually to ensure full transparency. Any discrepancies found in the reported data should be immediately brought to the notice of the Admissions Office at Knowledge Park, Greater Noida.
+                  The information provided below is submitted as required by the Bar Council of India (BCI) and is updated annually to ensure full transparency. Any discrepancies found in the reported data should be immediately brought to the notice of the Registrar at Ishan Institute of Law, Knowledge Park, Greater Noida.
                 </p>
                 <p className="text-sm text-foreground/70 leading-relaxed mt-4">
-                  AICTE mandates public disclosure for the benefit of current and prospective students, parents, and regulatory authorities. It serves as a comprehensive record of the institution's facilities, faculty, and academic standards, ensuring accountability in the delivery of professional education.
+                  BCI mandates public disclosure for the benefit of current and prospective students, legal practitioners, and regulatory authorities. It serves as a comprehensive record of the institution's legal aid services, moot court facilities, and faculty expertise, ensuring accountability in legal education.
                 </p>
               </div>
             </div>

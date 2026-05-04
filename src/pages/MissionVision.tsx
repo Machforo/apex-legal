@@ -11,25 +11,25 @@ export default function MissionVisionPage() {
   
   const mv = data?.missionVision;
   
-  const vision = mv?.vision || `To be a premier institution in North India, recognized for producing ethical leaders and socially responsible professionals who contribute meaningfully to the regional and global economy.`;
+  const vision = mv?.vision || `To be a global center of excellence in legal education, recognized for producing ethical advocates, judicial leaders, and legal scholars who uphold the rule of law and serve the cause of justice with integrity.`;
   
   const missionStr = mv?.mission;
   const missionList = missionStr ? missionStr.split('\n').filter((x: string) => x.trim() !== '') : [
-    "IIMT delivers industry-aligned education in management, commerce, technology, and teacher training to empower students for professional success.",
-    "We integrate rigorous curriculum with practical industry links and expert faculty mentorship to ensure superior career outcomes for every student.",
-    "Our mission is to foster an inclusive learning environment that emphasizes ethical values, critical thinking, and real-world application of knowledge.",
-    "We serve as a catalyst for regional impact by nurturing skilled professionals who are ready to lead in their respective fields across North India.",
+    "To provide practice-oriented legal education that integrates rigorous academic scholarship with structured clinical training and court exposure.",
+    "To foster critical thinking, ethical legal reasoning, and a profound understanding of social justice among our students.",
+    "To serve the community through active legal aid clinics and awareness programs, bridging the gap between law and society.",
+    "To prepare students for diverse legal careers in litigation, judiciary, corporate sectors, and public service through expert mentorship.",
   ];
 
   const defaultCoreValues = [
-    { title: "Excellence", description: "Maintaining the highest standards in every academic and professional pursuit." },
-    { title: "Integrity", description: "Upholding honesty, ethics, and transparency in all our interactions." },
-    { title: "Innovation", description: "Embracing new ideas and technologies to enhance the learning experience." },
-    { title: "Inclusion", description: "Ensuring equal opportunities and a sense of belonging for all students." },
-    { title: "Practical Learning", description: "Bridging the gap between theory and industry through hands-on experience." },
-    { title: "Community", description: "Fostering a supportive network of students, faculty, alumni, and partners." },
-    { title: "Research", description: "Encouraging a spirit of inquiry and academic contribution among all scholars." },
-    { title: "Accessibility", description: "Providing high-quality professional education that is accessible to deserving candidates." },
+    { title: "Justice", description: "Upholding the fundamental principles of fairness and the rule of law in all pursuits." },
+    { title: "Integrity", description: "Maintaining the highest standards of professional ethics and honesty in legal practice." },
+    { title: "Professionalism", description: "Cultivating practice-ready skills and a disciplined approach to legal service." },
+    { title: "Social Responsibility", description: "Committing to community service and legal awareness for the underprivileged." },
+    { title: "Clinical Excellence", description: "Prioritizing hands-on experience through moot courts, legal aid, and court visits." },
+    { title: "Research & Inquiry", description: "Encouraging a deep-seated spirit of investigation and academic contribution." },
+    { title: "Advocacy", description: "Empowering students with the skills to effectively represent and argue for justice." },
+    { title: "Ethical Reasoning", description: "Developing the ability to navigate complex legal challenges with moral clarity." },
   ];
 
   // coreValues stored as newline-separated string in DB
@@ -43,7 +43,7 @@ export default function MissionVisionPage() {
     <Layout>
       <PageHeader
         title="Mission & Vision"
-        subtitle="Guiding principles that drive academic excellence and holistic development at IIMT"
+        subtitle="Guiding principles that drive legal excellence and ethical practice at Ishan Law"
         breadcrumbs={[{ label: "About", href: "/about" }, { label: "Mission & Vision" }]}
       />
 

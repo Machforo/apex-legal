@@ -5,12 +5,11 @@ import { FileText, ExternalLink } from "lucide-react";
 import { useIIMTData } from "@/hooks/useIIMTData";
 
 const defaultAccreditations = [
-  { title: "UGC", description: "Recognition under Section 2(f) of UGC Act. University Grants Commission.", logo: "https://iimt.ishan.ac/images/accreditation/ugc-logo.gif" },
-  { title: "AICTE", description: "Approval for BBA and BCA programs. All India Council for Technical Education.", logo: "https://iimt.ishan.ac/images/accreditation/aicte-logo.png" },
-  { title: "NAAC", description: "Quality accreditation benchmark. National Assessment and Accreditation Council.", logo: "" },
-  { title: "NCTE", description: "Approval for B.Ed and M.Ed programs. National Council for Teacher Education.", logo: "https://iimt.ishan.ac/images/accreditation/ncte-logo.png" },
-  { title: "SCERT", description: "Recognition for education programs. State Council of Educational Research & Training.", logo: "https://iimt.ishan.ac/images/accreditation/scert-logo.jpg" },
-  { title: "CCS University", description: "Affiliation for all degree programs. Chaudhary Charan Singh University, Meerut.", logo: "" },
+  { title: "BCI", description: "Mandatory recognition for law programs. Bar Council of India.", logo: "https://www.barcouncilofindia.org/static/images/logo.png" },
+  { title: "CCS University", description: "Affiliation for BA LLB and LLB degree programs. Chaudhary Charan Singh University, Meerut.", logo: "https://www.ccsuniversity.ac.in/ccsum/images/logo-ccsu.png" },
+  { title: "NAAC", description: "Institutional quality accreditation benchmark. National Assessment and Accreditation Council.", logo: "https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/NAAC_Logo.png/220px-NAAC_Logo.png" },
+  { title: "ISO 9001:2015", description: "Quality Management System certification for educational services.", logo: "" },
+  { title: "ISO 14001:2015", description: "Environmental Management System certification.", logo: "" },
 ];
 
 export default function ApprovalsPage() {
@@ -22,7 +21,7 @@ export default function ApprovalsPage() {
     <Layout>
       <PageHeader
         title="Approvals & Affiliations"
-        subtitle="IIMT is fully recognized by national regulatory bodies, ensuring credibility and academic standards."
+        subtitle="Ishan Law is fully recognized by the Bar Council of India, ensuring the highest professional standards."
         breadcrumbs={[{ label: "About", href: "/about" }, { label: "Approvals & Affiliations" }]}
       />
 
@@ -32,20 +31,20 @@ export default function ApprovalsPage() {
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Regulatory Compliance</p>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">A Fully Accredited Institution</h2>
             <p className="text-foreground/70 leading-relaxed">
-              Academic approvals and affiliations are the foundation of institutional credibility. They ensure degree validity, placement acceptance by corporate partners, and strict adherence to national regulatory standards. IIMT holds all relevant approvals from India's premier education regulators, providing our students with a globally recognized qualification.
+              Legal education in India is strictly regulated to ensure that practicing advocates meet the highest standards of professional ethics and competence. Ishan Institute of Law holds all mandatory approvals from the Bar Council of India (BCI) and is affiliated with Chaudhary Charan Singh University, Meerut. These certifications ensure that our degrees are fully recognized for enrollment as an Advocate with any State Bar Council and for appearing in judicial services examinations.
             </p>
             <div className="grid md:grid-cols-3 gap-8 pt-4">
               <div className="space-y-2">
-                <h4 className="font-bold text-navy">AICTE</h4>
-                <p className="text-xs text-foreground/60">Ensures technical and management education meets global benchmarks of quality and curriculum relevance.</p>
+                <h4 className="font-bold text-navy">BCI</h4>
+                <p className="text-xs text-foreground/60">The primary regulator of legal education in India, ensuring curriculum relevance and professional standards.</p>
               </div>
               <div className="space-y-2">
                 <h4 className="font-bold text-navy">CCS University</h4>
-                <p className="text-xs text-foreground/60">Provides academic affiliation, standardized examination processes, and the final degree certification.</p>
+                <p className="text-xs text-foreground/60">Provides academic affiliation, conducts standardized examinations, and awards the final professional degree.</p>
               </div>
               <div className="space-y-2">
                 <h4 className="font-bold text-navy">NAAC</h4>
-                <p className="text-xs text-foreground/60">A quality benchmark that audits institutional infrastructure, faculty expertise, and student outcomes.</p>
+                <p className="text-xs text-foreground/60">An autonomous body that assesses and accredits institutions on parameters of teaching, research, and infrastructure.</p>
               </div>
             </div>
           </div>

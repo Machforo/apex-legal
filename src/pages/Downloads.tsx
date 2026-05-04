@@ -4,14 +4,14 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { FileText, Download } from "lucide-react";
 
 const downloads = [
-  { name: "BBA Syllabus 2024-25", type: "PDF", category: "Syllabus", size: "2.4 MB" },
-  { name: "B.Com Syllabus 2024-25", type: "PDF", category: "Syllabus", size: "1.8 MB" },
-  { name: "BCA Syllabus 2024-25", type: "PDF", category: "Syllabus", size: "2.1 MB" },
+  { name: "BA LLB (Hons) Syllabus 2024-25", type: "PDF", category: "Syllabus", size: "2.4 MB" },
+  { name: "LLB Syllabus 2024-25", type: "PDF", category: "Syllabus", size: "1.8 MB" },
   { name: "Academic Calendar 2024-25", type: "PDF", category: "Calendar", size: "850 KB" },
-  { name: "Examination Form", type: "PDF", category: "Forms", size: "320 KB" },
-  { name: "Hostel Application Form", type: "PDF", category: "Forms", size: "280 KB" },
+  { name: "Moot Court Competition Guidelines", type: "PDF", category: "Clinical", size: "1.2 MB" },
+  { name: "Court Visit Diary Proforma", type: "PDF", category: "Clinical", size: "450 KB" },
+  { name: "Internship Completion Certificate Format", type: "PDF", category: "Forms", size: "280 KB" },
   { name: "Scholarship Application Form", type: "PDF", category: "Forms", size: "350 KB" },
-  { name: "Anti-Ragging Undertaking", type: "PDF", category: "Forms", size: "210 KB" },
+  { name: "Anti-Ragging Undertaking (BCI Format)", type: "PDF", category: "Forms", size: "210 KB" },
 ];
 
 export default function DownloadsPage() {

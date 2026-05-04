@@ -8,7 +8,7 @@ import { Link, useLocation } from "react-router-dom";
 const SUB_LINKS = [
   { label: "About",       href: "#about" },
   { label: "Programmes",  href: "#programs" },
-  { label: "Why IIMT",    href: "#why-iimt" },
+  { label: "Why Ishan Law", href: "#why-ishan-law" },
   { label: "Placements",  href: "#placements" },
   { label: "Campus",      href: "#campus" },
   { label: "News",        href: "#news" },

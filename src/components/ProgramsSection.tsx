@@ -12,58 +12,31 @@ export default function ProgramsSection() {
 
   const fallbackPrograms = [
     { 
-      name: "BBA", 
-      type: "UG",
-      category: "Management",
-      description: "Bachelor of Business Administration. 3 Years.", 
-      link: "/courses/bba",
-      overview: "Develop essential management skills and business perspective. Focuses on marketing, HR, and finance fundamentals.",
-      outcomes: ["Sales Manager", "Business Development Executive", "HR Generalist", "Management Trainee"]
+      name: "BA LLB (Hons)", 
+      type: "Integrated",
+      category: "5 Years",
+      description: "Integrated Bachelor of Arts & Bachelor of Laws. 5 Years.", 
+      link: "/courses/ba-llb",
+      overview: "A comprehensive dual-degree program blending humanities with core legal studies. Ideal for students aiming for the judiciary or high-stakes advocacy.",
+      outcomes: ["Judicial Service", "Litigation Lawyer", "Legal Advisor", "Civil Services"]
     },
     { 
-      name: "B.Com", 
-      type: "UG",
-      category: "Commerce",
-      description: "Bachelor of Commerce. 3 Years.", 
-      link: "/courses/bcom",
-      overview: "Comprehensive study of accounting, finance, and taxation. Prepares students for professional roles in the financial sector.",
-      outcomes: ["Accountant", "Tax Consultant", "Financial Analyst", "Audit Assistant"]
+      name: "LLB", 
+      type: "Professional",
+      category: "3 Years",
+      description: "Bachelor of Laws. 3 Years.", 
+      link: "/courses/llb",
+      overview: "Traditional professional law degree for graduates across disciplines. Focuses on procedural laws, corporate legal framework, and clinical training.",
+      outcomes: ["Corporate Lawyer", "Legal Analyst", "Public Prosecutor", "Solicitor"]
     },
     { 
-      name: "BCA", 
-      type: "UG",
-      category: "IT",
-      description: "Bachelor of Computer Applications. 3 Years.", 
-      link: "/courses/bca",
-      overview: "Technical course covering software development, database management, and emerging technologies like AI/ML.",
-      outcomes: ["Software Developer", "Web Designer", "System Analyst", "Technical Support"]
-    },
-    { 
-      name: "M.Com", 
-      type: "PG",
-      category: "Commerce",
-      description: "Master of Commerce. 2 Years.", 
-      link: "/courses/mcom",
-      overview: "Advanced study in commerce, ideal for those seeking leadership roles in business or academic research.",
-      outcomes: ["Finance Manager", "Senior Auditor", "Business Consultant", "Bank Manager"]
-    },
-    { 
-      name: "B.Ed", 
-      type: "UG",
-      category: "Education",
-      description: "Bachelor of Education. 2 Years.", 
-      link: "/courses/bed",
-      overview: "Professional training for aspiring teachers. Focuses on pedagogy, child psychology, and classroom management.",
-      outcomes: ["School Teacher", "Education Counselor", "Curriculum Designer", "School Administrator"]
-    },
-    { 
-      name: "M.Ed", 
-      type: "PG",
-      category: "Education",
-      description: "Master of Education. 2 Years.", 
-      link: "/courses/med",
-      overview: "Advanced pedagogical research and leadership development for senior educational roles.",
-      outcomes: ["Principal/HOD", "Education Consultant", "Lecturer", "Policy Analyst"]
+      name: "Certificate Courses", 
+      type: "Value-Added",
+      category: "Short-Term",
+      description: "Specialized Legal Certifications. 6 Months.", 
+      link: "/certificate-programs",
+      overview: "Bridge the gap between theory and practice with specialized courses in Cyber Law, Intellectual Property, and Mediation.",
+      outcomes: ["IP Specialist", "Cyber Consultant", "Mediator", "Compliance Officer"]
     }
   ];
   
@@ -92,7 +65,7 @@ export default function ProgramsSection() {
             Programs Designed for Real-World Success
           </h2>
           <p className="reveal delay-200 mt-5 text-foreground/60 leading-relaxed">
-            CCS University affiliated programs approved by UGC &amp; AICTE, blending theoretical depth with intensive industry exposure.
+            BCI approved professional law programs affiliated to CCS University, Meerut, designed to bridge the gap between academic theory and court-room practice.
           </p>
         </div>
 

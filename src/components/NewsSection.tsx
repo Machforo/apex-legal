@@ -6,36 +6,36 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const defaultNews = [
   {
-    title: "National Seminar on NEP 2020: Challenges & Opportunities",
+    title: "National Moot Court Competition 2025: Grand Finale",
     date: "April 15, 2025",
-    category: "Academic",
-    image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
-    description: "The seminar explored the transformative potential of the National Education Policy 2020. Key speakers discussed implementation strategies, digital integration in classrooms, and the shift towards multidisciplinary learning. Faculty members and students actively participated in workshop sessions focusing on curriculum redesign and vocational training integration.",
-    location: "Main Auditorium, IIMT Campus"
+    category: "Clinical",
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
+    description: "Ishan Law hosted its flagship National Moot Court Competition, where teams from top law schools across India debated complex constitutional issues. The final round was presided over by a bench of sitting High Court judges, providing students with invaluable feedback and judicial insight.",
+    location: "Moot Court Hall, Ishan Law"
   },
   {
-    title: "Vyaparniti: Annual Business Plan Competition",
+    title: "Legal Aid Awareness Camp in Rural Gautam Budh Nagar",
     date: "April 3, 2025",
-    category: "Competition",
-    image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=800&q=80",
-    description: "Vyaparniti showcased the entrepreneurial spirit of our students. Over 50 teams presented innovative business models ranging from sustainable tech to social enterprises. The jury, consisting of seasoned venture capitalists and industry leaders, praised the depth of market research and the feasibility of the winning projects.",
-    location: "Management Block"
+    category: "Social Service",
+    image: "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80",
+    description: "Our Legal Aid Cell organized a community outreach program to provide free legal counseling to villagers. Students, under the supervision of faculty and practicing advocates, addressed issues related to land rights, family law, and government welfare schemes, fulfilling our commitment to social justice.",
+    location: "Gautam Budh Nagar District"
   },
   {
-    title: "Ishan Cultural Fest Kshitiz-2025 Highlights",
+    title: "Final Year Students Visit the Supreme Court of India",
     date: "March 26, 2025",
-    category: "Cultural",
-    image: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80",
-    description: "Kshitiz-2025 brought the campus to life with vibrant performances, art exhibitions, and competitive events. From classical dance to modern rock bands, the talent on display was exceptional. The fest also featured a food carnival and various club activities, fostering a sense of community and creative expression among students.",
-    location: "Campus Grounds"
+    category: "Institutional",
+    image: "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=800&q=80",
+    description: "Students of the 5th Year BA LLB and 3rd Year LLB programs visited the Supreme Court of India. They observed live proceedings in the Chief Justice's courtroom and interacted with registry officials to understand the judicial administration of the apex court.",
+    location: "Supreme Court, New Delhi"
   },
   {
-    title: "Expert Guest Lecture on Digital Transformation",
+    title: "Expert Lecture on Emerging Trends in Intellectual Property Rights",
     date: "March 6, 2025",
     category: "Guest Lecture",
-    image: "https://images.unsplash.com/photo-1540575861501-7cf05a4b125a?auto=format&fit=crop&w=800&q=80",
-    description: "Mr. Alok Nath, CTO of a leading tech firm, delivered an insightful session on how AI and Cloud computing are reshaping the global economy. He provided students with a roadmap for developing future-proof skills and discussed the importance of agility in the modern workforce.",
-    location: "Seminar Hall A"
+    image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=800&q=80",
+    description: "Eminent IPR expert and Senior Advocate delivered a comprehensive lecture on the challenges of IP protection in the age of Artificial Intelligence. The session covered global patent trends and the evolving digital copyright landscape in India.",
+    location: "Seminar Hall, Ishan Law"
   },
 ];
 

@@ -10,28 +10,44 @@ export default function PressCoveragePage() {
     publication: p.title.split('—')[1]?.trim() || "Press Release",
     date: p.date,
     headline: p.title.split('—')[0]?.trim() || p.title,
-    url: p.url
+    url: p.url,
+    tag: p.type || "Online"
   })) : [
-    { publication: "Times of India", date: "March 2025", headline: "IIMT Greater Noida achieves 95% placement in BBA program" },
-    { publication: "Hindustan Times", date: "Feb 2025", headline: "Kshitiz 2025: Greater Noida's largest inter-college cultural fest" },
-    { publication: "Dainik Jagran", date: "Jan 2025", headline: "IIMT signs MoU with HDFC Bank for campus recruitment" },
+    { publication: "Times of India", date: "15 March 2026", headline: "Ishan Institute of Law students excel in National Moot Court Competition", tag: "Print" },
+    { publication: "Hindustan Times", date: "02 Feb 2026", headline: "Legal Aid Camp organized by Ishan Law provides free counseling to villagers", tag: "Print" },
+    { publication: "LiveLaw", date: "20 Jan 2026", headline: "Ishan Law hosts national seminar on evolving digital evidence jurisprudence", tag: "Legal Journal" },
+    { publication: "NDTV", date: "05 Dec 2025", headline: "Law schools adapt to New Criminal Bills: Insights from Ishan Law experts", tag: "TV" },
+    { publication: "Bar & Bench", date: "12 Nov 2025", headline: "Ishan Institute of Law announces expansion of free legal aid clinics", tag: "Online" },
   ];
 
   return (
     <Layout>
-      <PageHeader title="Press Coverage" subtitle="IIMT in the news — media mentions and press clippings" breadcrumbs={[{ label: "Gallery" }, { label: "Press Coverage" }]} />
+      <PageHeader title="Press Coverage" subtitle="Media archives detailing institutional milestones and academic achievements" breadcrumbs={[{ label: "Gallery" }, { label: "Press Coverage" }]} />
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <div className="max-w-3xl mx-auto space-y-4">
+          <p className="reveal text-foreground/70 leading-relaxed max-w-4xl mx-auto text-center mb-16 text-lg">
+            Ishan Law's moot court achievements, legal aid work, and academic activities have been featured in regional and national media; this page archives press coverage for students, parents, and the legal community.
+          </p>
+          <div className="max-w-4xl mx-auto space-y-4">
             {pressItems.map((item, i) => (
-              <div key={i} className={`reveal delay-${Math.min(i, 5)}00 flex items-center gap-5 p-5 rounded-xl border bg-card hover:shadow-sm transition-shadow`}>
-                <div className="w-20 h-20 rounded-lg bg-muted flex items-center justify-center shrink-0"><span className="text-xs font-bold text-muted-foreground/30">CLIP</span></div>
-                <div>
-                  <div className="flex items-center gap-3 mb-1">
-                    <span className="text-xs font-semibold text-navy">{item.publication}</span>
-                    <span className="text-xs text-muted-foreground">{item.date}</span>
+              <div key={i} className={`reveal delay-${Math.min(i, 5)}00 flex flex-col sm:flex-row items-start sm:items-center gap-5 p-5 sm:p-6 rounded-xl border bg-card hover:shadow-[0_8px_30px_hsl(var(--navy)/0.06)] transition-all`}>
+                <div className="w-full sm:w-40 aspect-video sm:aspect-square rounded-lg bg-muted flex flex-col items-center justify-center shrink-0 border relative overflow-hidden group">
+                   <div className="absolute inset-0 flex items-center justify-center bg-muted/80">
+                      <span className="text-xl opacity-40">📰</span>
+                   </div>
+                   <div className="absolute inset-0 bg-navy/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
+                      <span className="text-[10px] font-bold text-white tracking-widest">VIEW</span>
+                   </div>
+                </div>
+                <div className="flex-1">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-2">
+                    <span className="text-xs font-bold text-navy uppercase tracking-wider">{item.publication}</span>
+                    <span className="w-1 h-1 rounded-full bg-border" />
+                    <span className="text-xs font-medium text-muted-foreground">{item.date}</span>
+                    <span className="w-1 h-1 rounded-full bg-border" />
+                    <span className="px-2 py-0.5 rounded-md bg-gold/10 text-[10px] font-bold text-gold-dark">{item.tag}</span>
                   </div>
-                  <h3 className="text-sm font-medium text-foreground">{item.headline}</h3>
+                  <h3 className="text-base sm:text-lg font-semibold text-foreground leading-tight">{item.headline}</h3>
                 </div>
               </div>
             ))}

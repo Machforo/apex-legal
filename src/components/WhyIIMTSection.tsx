@@ -1,16 +1,16 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Award, Users, Globe, BookOpen, Building, TrendingUp, Shield, Lightbulb } from "lucide-react";
+import { Award, Users, Globe, BookOpen, Building, TrendingUp, Shield, Lightbulb, Gavel, Scale } from "lucide-react";
 import { useIIMTData } from "@/hooks/useIIMTData";
 
 const defaultReasons = [
-  { icon: Award, title: "NAAC Accredited", desc: "Quality benchmark certified by the National Assessment body" },
-  { icon: TrendingUp, title: "90%+ Placements", desc: "Consistent placement record with top recruiters across sectors" },
-  { icon: Globe, title: "Global Exposure", desc: "International tours and cross-cultural learning opportunities" },
-  { icon: BookOpen, title: "Industry Curriculum", desc: "Courses designed with input from industry professionals" },
-  { icon: Building, title: "Modern Campus", desc: "State-of-the-art infrastructure with smart classrooms" },
-  { icon: Users, title: "Expert Faculty", desc: "Experienced academicians and visiting industry professionals" },
-  { icon: Shield, title: "UGC & AICTE Approved", desc: "Fully recognized by national regulatory bodies" },
-  { icon: Lightbulb, title: "Skill Programs", desc: "Tally, GST, Digital Marketing, and more add-on certifications" },
+  { icon: Shield, title: "BCI Approved", desc: "Bar Council of India recognized professional programs" },
+  { icon: Scale, title: "Clinical Focus", desc: "Mandatory court and jail visits starting from first year" },
+  { icon: Gavel, title: "Moot Court Hall", desc: "Dedicated high-tech hall for regular practice and competitions" },
+  { icon: Users, title: "Advocate Faculty", desc: "Learn from practicing High Court and Supreme Court advocates" },
+  { icon: Award, title: "Judicial Cell", desc: "Specialized guidance and training for judicial services exams" },
+  { icon: Globe, title: "Legal Aid Clinic", desc: "Live community service experience providing real legal aid" },
+  { icon: Lightbulb, title: "Research Library", desc: "Comprehensive legal library with digital research terminals" },
+  { icon: TrendingUp, title: "Location Advantage", desc: "Situated in Knowledge Park, the educational hub of Greater Noida" },
 ];
 
 export default function WhyIIMTSection() {
@@ -19,23 +19,23 @@ export default function WhyIIMTSection() {
   const reasons = data?.standApart?.length > 0 ? data.standApart : defaultReasons;
 
   return (
-    <section id="why-iimt" className="py-12 md:py-20" ref={ref}>
+    <section id="why-choose-us" className="py-12 md:py-20" ref={ref}>
       <div className="container-wide">
         <div className="grid lg:grid-cols-[1fr_2fr] gap-12 lg:gap-16">
           {/* Left */}
           <div className="reveal-left">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">Why Choose Us</p>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
-              What Makes IIMT Stand Apart
+              What Makes Ishan Law Stand Apart
             </h2>
             <p className="mt-4 text-foreground/60 leading-relaxed">
-              For over three decades, IIMT has maintained its commitment to academic excellence, holistic development, and career-focused education in the Delhi NCR region.
+              At Ishan Institute of Law, we bridge the gap between classroom theory and courtroom reality. Our focus on clinical legal education ensures that every student graduates with the confidence of a seasoned professional.
             </p>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 mt-8 px-6 py-3 text-sm font-semibold bg-navy text-primary-foreground rounded-lg hover:bg-navy/90 transition-colors active:scale-[0.97]"
+              className="inline-flex items-center gap-2 mt-8 px-6 py-3 text-sm font-semibold bg-navy text-primary-foreground rounded-lg hover:bg-gold hover:text-navy transition-all active:scale-[0.97] shimmer-btn"
             >
-              Schedule a Visit
+              Schedule a Campus Tour
             </a>
           </div>
 

@@ -3,14 +3,14 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const visitingFaculty = [
-  { name: "CA Rakesh Mehta", org: "Mehta & Associates", specialisation: "Advanced Accounting & Taxation", dept: "Commerce" },
-  { name: "Mr. Sunil Kapoor", org: "HDFC Bank (Retd. VP)", specialisation: "Banking Operations & Risk Management", dept: "Management" },
-  { name: "Ms. Deepika Nair", org: "Google India (Sr. Manager)", specialisation: "Digital Marketing & Analytics", dept: "IT" },
-  { name: "Dr. Anjali Saxena", org: "DPS Greater Noida (Principal)", specialisation: "School Administration & Leadership", dept: "Education" },
-  { name: "CFA Arun Bhatia", org: "Axis Capital", specialisation: "Investment Analysis & Portfolio Mgmt", dept: "Commerce" },
-  { name: "Mr. Rajiv Tandon", org: "Infosys (Project Lead)", specialisation: "Software Development & Agile", dept: "IT" },
-  { name: "Dr. Preeti Malhotra", org: "NCERT (Sr. Researcher)", specialisation: "Curriculum Design & Assessment", dept: "Education" },
-  { name: "Mr. Harsh Vardhan", org: "Startup Founder, eVentures", specialisation: "Entrepreneurship & Business Strategy", dept: "Management" },
+  { name: "Adv. Rahul Verma", org: "Senior Advocate", specialisation: "Constitutional Litigation & Writ Petitions", impact: "Provides practical insights into drafting writ petitions and arguing before constitutional benches.", bar: "D/124/1998" },
+  { name: "Hon'ble Justice S.K. Gupta (Retd.)", org: "Retired Judicial Officer", specialisation: "Criminal Jurisprudence & Judicial Ethics", impact: "Brings decades of bench experience, training students in judicial reasoning and ethics.", bar: "" },
+  { name: "Ms. Priyanka Iyer", org: "Corporate Counsel", specialisation: "Mergers & Acquisitions / Corporate Law", impact: "Guides students on corporate compliance, due diligence, and commercial contract drafting.", bar: "MAH/456/2005" },
+  { name: "Adv. Meenakshi Lekhi", org: "Senior Advocate", specialisation: "Gender Justice & Human Rights", impact: "Mentors students in public interest litigation and human rights advocacy strategies.", bar: "D/89/1990" },
+  { name: "Mr. Alok Prasanna", org: "Legal Academic", specialisation: "Legal Research & Policy Drafting", impact: "Equips students with advanced methodologies for legal research and policy analysis.", bar: "KAR/234/2010" },
+  { name: "Adv. Vikram Singh", org: "IPR Specialist", specialisation: "Patent Prosecution & Copyright Law", impact: "Demonstrates practical applications of intellectual property protection for emerging tech startups.", bar: "UP/789/2008" },
+  { name: "Ms. Shreya Dhull", org: "Cyber Law Expert", specialisation: "Digital Evidence & IT Act Compliance", impact: "Trains students in handling electronic evidence and navigating modern cyber regulations.", bar: "D/321/2012" },
+  { name: "Adv. Amit Bansal", org: "Senior Advocate", specialisation: "Commercial Arbitration & Mediation", impact: "Conducts hands-on simulation sessions for alternate dispute resolution and commercial mediation.", bar: "D/567/2001" },
 ];
 
 export default function VisitingFacultyPage() {
@@ -20,14 +20,14 @@ export default function VisitingFacultyPage() {
     <Layout>
       <PageHeader
         title="Visiting Faculty"
-        subtitle="Industry professionals and domain experts who bring real-world insights to the classroom"
+        subtitle="Distinguished advocates, legal scholars, and retired judges who bring courtroom insights to the classroom"
         breadcrumbs={[{ label: "Faculty", href: "/faculty" }, { label: "Visiting Faculty" }]}
       />
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <p className="reveal text-foreground/70 leading-relaxed max-w-3xl mb-12">
-            IIMT's visiting faculty program bridges the gap between academic theory and industry practice. These distinguished professionals — CAs, CFAs, corporate leaders, school principals, and startup founders — deliver guest lectures, workshop sessions, and mentoring that enriches the learning experience for all students.
+          <p className="reveal text-foreground/70 leading-relaxed max-w-4xl mx-auto text-center mb-16 text-lg">
+            Ishan Law invites distinguished visiting faculty — practising Senior Advocates from Allahabad High Court and Delhi High Court, retired judicial officers, corporate counsel from leading companies, and legal academics from premier law schools; students gain direct access to legal minds shaping India's legal landscape.
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -40,8 +40,17 @@ export default function VisitingFacultyPage() {
                 </div>
                 <h3 className="font-semibold text-foreground text-sm">{f.name}</h3>
                 <p className="text-xs text-gold font-medium mt-1">{f.org}</p>
-                <p className="text-xs text-foreground/60 mt-2">{f.specialisation}</p>
-                <span className="inline-block mt-3 px-2.5 py-1 rounded-md bg-muted text-xs font-medium text-muted-foreground">{f.dept}</span>
+                <div className="mt-3 pt-3 border-t">
+                  <p className="text-xs font-semibold text-foreground/80 mb-2">{f.specialisation}</p>
+                  <p className="text-[11px] text-muted-foreground leading-relaxed text-left">{f.impact}</p>
+                </div>
+                {f.bar && (
+                  <div className="mt-3 text-left">
+                    <span className="px-2 py-1 rounded bg-muted text-[10px] font-medium text-muted-foreground border">
+                      Reg: {f.bar}
+                    </span>
+                  </div>
+                )}
               </div>
             ))}
           </div>

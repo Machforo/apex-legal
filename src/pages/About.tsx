@@ -7,22 +7,22 @@ import studentsImg from "@/assets/students-library.jpg";
 import { useIIMTData } from "@/hooks/useIIMTData";
 
 const defaultMilestones = [
-  { year: "1994", event: "Ishan Institute of Management & Technology established as the first college under the group" },
-  { year: "2002", event: "Ishan Institute of Engineering & Technology (later renamed Ishan College of Engineering & Technology)" },
-  { year: "2008", event: "Ishan Law College established with Bar Council of India approval" },
-  { year: "2012", event: "Ishan Institute of Medical Sciences launched — Pharmacy, Nursing and Allied Health Sciences" },
-  { year: "2018", event: "NAAC Accreditation granted to IIMT — a testament to quality education" },
-  { year: "2023", event: "Ishan Group crosses 10,000+ alumni and expands to 5 colleges across Greater Noida" },
+  { year: "1994", event: "Ishan Institute of Management & Technology established as the foundation of the group" },
+  { year: "2008", event: "Ishan Institute of Law established with Bar Council of India (BCI) approval" },
+  { year: "2010", event: "Launch of specialized Clinical Legal Education programs and Court Visit initiatives" },
+  { year: "2015", event: "Establishment of the dedicated Legal Aid Cell for community service" },
+  { year: "2018", event: "NAAC Accreditation granted — a testament to quality in higher education" },
+  { year: "2023", event: "Crossed 2,000+ legal alumni successfully practicing in various courts and corporate houses" },
 ];
 
 export default function AboutPage() {
   const ref = useScrollReveal();
   const { data, isLoading } = useIIMTData("aboutus");
-  const fallback = `Established in 1994, Ishan Institute of Management & Technology (IIMT) stands as a pioneer of professional education in Knowledge Park, Greater Noida. Affiliated with Chaudhary Charan Singh (CCS) University, Meerut, and approved by the AICTE and NCTE, IIMT is a NAAC accredited institution committed to academic excellence and holistic development. Our journey began with a vision to provide quality higher education that transforms potential into professional performance.
+  const fallback = `Established with a vision to revolutionize legal education, Ishan Institute of Law stands as a premier center for legal studies in Knowledge Park, Greater Noida. Affiliated with Chaudhary Charan Singh (CCS) University, Meerut, and recognized by the Bar Council of India (BCI), our institution is committed to producing advocates who are not only masters of legal theory but also skilled in the art of practice.
 
-Over the decades, we have evolved into a multi-disciplinary hub offering six distinct programmes: B.Com, BBA, BCA, M.Com, B.Ed, and M.Ed. Our industry-aligned curriculum ensures that students are not just degree holders but industry-ready professionals equipped with critical thinking and leadership skills. The campus life at IIMT is vibrant, featuring the flagship 'Kshitiz' annual fest, NSS activities, and structured skill development workshops that complement classroom learning.
+Our curriculum is designed to bridge the gap between classroom learning and courtroom reality. From the very first semester, students are exposed to the living law through mandatory court visits, intensive moot court sessions, and participation in our Legal Aid Cell. We offer two flagship professional programs: the integrated BA LLB (Hons) and the Professional LLB, both structured to meet the demands of modern legal practice.
 
-The campus itself is designed to provide a world-class learning environment, featuring state-of-the-art IT labs, a well-stocked library, a modern auditorium, sports facilities, and secure hostel accommodation. We invite aspiring students to join our community and embark on a journey of growth and discovery. Admissions are now open for the current academic session; reach out to our counsellors to explore your future at IIMT.`;
+The Ishan Law campus provides a specialized environment for legal scholarship, featuring a high-tech Moot Court Hall, a comprehensive legal library with digital research terminals (Manupatra, SCC Online), and a dedicated Judicial Services Cell. We invite aspiring legal professionals to join our community and build a formidable foundation for a career in advocacy, judiciary, or corporate legal service.`;
 
   // Schema: aboutus.ourStory = { title, content } | aboutus.keyDifferentiators = [{title, description}]
   const ourStory = data?.ourStory;
@@ -31,22 +31,22 @@ The campus itself is designed to provide a world-class learning environment, fea
   const keyDifferentiators: string[] = keyDiffRaw?.length > 0
     ? keyDiffRaw.map((k: any) => typeof k === 'string' ? k : k.title)
     : [
+      "BCI Approved Professional Programs",
       "NAAC Accredited Institution",
-      "Affiliated to CCS University, Meerut",
-      "UGC, AICTE & NCTE Approved",
-      "Industry-aligned Curriculum",
-      "Modern Campus with Smart Classrooms",
-      "Active Skill Development Cell",
-      "20-week Practice Teaching (Education)",
-      "Vibrant Campus Life with Kshitiz Fest",
+      "Mandatory Court & Jail Visits",
+      "Integrated Legal Aid Clinic",
+      "High-Tech Moot Court Hall",
+      "Digital Legal Research Lab",
+      "Judicial Services Preparation Cell",
+      "Faculty of Practicing Advocates",
     ];
 
   return (
     <Layout>
-        <PageHeader
-        title={ourStory?.title || "About IIMT Greater Noida"}
-        subtitle="Transforming potential into performance through academic excellence since 1994."
-        breadcrumbs={[{ label: "About IIMT" }]}
+      <PageHeader
+        title={ourStory?.title || "About Ishan Law"}
+        subtitle="Excellence in legal education and practice-oriented learning since 2008."
+        breadcrumbs={[{ label: "About Ishan Law" }]}
       />
 
       <section className="py-20 md:py-28" ref={ref}>
@@ -54,7 +54,7 @@ The campus itself is designed to provide a world-class learning environment, fea
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="reveal-left relative">
               <div className="rounded-2xl overflow-hidden shadow-[0_8px_40px_hsl(var(--navy)/0.1)]">
-                <img src={studentsImg} alt="Students at IIMT campus" className="w-full h-[400px] object-cover" />
+                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg" alt="Students and faculty at Ishan Institute of Law campus" className="w-full h-[400px] object-cover" />
               </div>
             </div>
 

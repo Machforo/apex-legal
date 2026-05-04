@@ -19,7 +19,7 @@ const Index = () => {
       <StatsBar />
       <div id="about"><AboutSection /></div>
       <div id="programs"><ProgramsSection /></div>
-      <div id="why-iimt"><WhyIIMTSection /></div>
+      <div id="why-ishan-law"><WhyIIMTSection /></div>
       <div id="placements"><PlacementsSection /></div>
       <FacultySection />
       <div id="campus"><CampusExperience /></div>

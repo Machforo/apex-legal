@@ -9,12 +9,12 @@ export default function PastPapersPage() {
   const [searchTerm, setSearchTerm] = useState("");
 
   const papers = [
-    { program: "B.Com", year: "2023", semester: "Sem 1", subject: "Financial Accounting", size: "1.2 MB" },
-    { program: "BBA", year: "2023", semester: "Sem 2", subject: "Business Management", size: "1.5 MB" },
-    { program: "BCA", year: "2023", semester: "Sem 1", subject: "Programming in C", size: "2.1 MB" },
-    { program: "M.Com", year: "2022", semester: "Sem 4", subject: "Advanced Auditing", size: "1.8 MB" },
-    { program: "B.Ed", year: "2023", semester: "Sem 1", subject: "Pedagogy of English", size: "1.4 MB" },
-    { program: "M.Ed", year: "2022", semester: "Sem 2", subject: "Educational Research", size: "2.5 MB" },
+    { program: "BA LLB", year: "2023", semester: "Sem 1", subject: "Constitutional Law — I", size: "1.2 MB" },
+    { program: "BA LLB", year: "2023", semester: "Sem 1", subject: "Law of Torts", size: "1.1 MB" },
+    { program: "LLB", year: "2023", semester: "Sem 1", subject: "Jurisprudence", size: "1.5 MB" },
+    { program: "LLB", year: "2023", semester: "Sem 2", subject: "Indian Penal Code", size: "2.1 MB" },
+    { program: "BA LLB", year: "2022", semester: "Sem 4", subject: "Family Law — II", size: "1.8 MB" },
+    { program: "LLB", year: "2022", semester: "Sem 3", subject: "Civil Procedure Code", size: "1.4 MB" },
   ];
 
   const filteredPapers = papers.filter(p => 
@@ -37,7 +37,7 @@ export default function PastPapersPage() {
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Exam Resources</p>
               <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">Prepare with Confidence</h2>
               <p className="text-foreground/70 leading-relaxed max-w-2xl mx-auto">
-                Access previous years' CCS University question papers for B.Com, BBA, BCA, M.Com, B.Ed, and M.Ed. These are invaluable resources for understanding exam patterns and frequently asked questions. Papers are organised by programme, semester, and year.
+                Access previous years' CCS University question papers for BA LLB and LLB. These are invaluable resources for understanding exam patterns and frequently asked questions. Papers are organised by programme, semester, and year.
               </p>
             </div>
 

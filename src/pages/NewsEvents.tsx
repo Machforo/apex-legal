@@ -7,14 +7,14 @@ import { Calendar, ArrowRight, Search, X } from "lucide-react";
 import { useIIMTData } from "@/hooks/useIIMTData";
 
 const defaultEvents = [
-  { title: "Awareness Program on Gynecological Disorder", date: "April 15, 2025", category: "Seminar", excerpt: "A health awareness session organized for students featuring expert medical practitioners discussing women's health issues.", image: "https://iimt.ishan.ac/images/news/news-1.jpg" },
-  { title: "Vyaparniti: The Art of Business and Innovation", date: "April 3, 2025", category: "Event", excerpt: "Annual business competition where students showcase entrepreneurial skills through business plans and case study presentations.", image: "https://iimt.ishan.ac/images/news/news-2.jpg" },
-  { title: "Ishan Cultural Fest Kshitiz-2025", date: "March 26, 2025", category: "Cultural", excerpt: "The flagship cultural festival featuring music, dance, drama, art, and inter-college competitions across three days.", image: "https://iimt.ishan.ac/images/news/news-3.jpg" },
-  { title: "Digi-Udaya: Seminar on Digital Currency", date: "March 6, 2025", category: "Seminar", excerpt: "Expert-led seminar exploring the future of digital currencies, blockchain technology, and their impact on financial systems.", image: "https://iimt.ishan.ac/images/news/news-4.jpg" },
-  { title: "Annual Sports Meet 2025", date: "February 20, 2025", category: "Sports", excerpt: "Inter-department sports competition featuring cricket, basketball, badminton, athletics and more.", image: "" },
-  { title: "Industrial Visit to Reserve Bank of India", date: "February 8, 2025", category: "Industrial Visit", excerpt: "B.Com and BBA students visited the RBI facility to understand monetary policy, currency management, and central banking operations.", image: "" },
-  { title: "Guest Lecture: Career in Data Science", date: "January 22, 2025", category: "Guest Lecture", excerpt: "Mr. Amit Sharma from Infosys delivered an insightful session on career opportunities in data science and AI for BCA students.", image: "" },
-  { title: "Republic Day Celebration", date: "January 26, 2025", category: "Event", excerpt: "Flag hoisting ceremony followed by cultural performances celebrating India's Republic Day with the entire IIMT family.", image: "" },
+  { title: "National Moot Court Competition 2025", date: "April 15, 2025", category: "Clinical", excerpt: "The flagship national-level moot court competition hosted by Ishan Law, featuring teams from across India.", image: "" },
+  { title: "Legal Aid Awareness Camp: Rural Outreach", date: "April 3, 2025", category: "Social Service", excerpt: "Our Legal Aid Cell provided free legal counseling to rural communities in Gautam Budh Nagar.", image: "" },
+  { title: "Ishan Cultural Fest Kshitiz-2025", date: "March 26, 2025", category: "Cultural", excerpt: "The flagship cultural festival featuring music, dance, drama, art, and inter-college competitions across three days.", image: "" },
+  { title: "Seminar on Emerging Trends in IPR", date: "March 6, 2025", category: "Seminar", excerpt: "Expert-led seminar exploring the future of Intellectual Property Rights in the age of AI and digital transformation.", image: "" },
+  { title: "Annual Sports Meet 2025", date: "February 20, 2025", category: "Sports", excerpt: "Inter-college sports competition featuring cricket, basketball, badminton, athletics and more.", image: "" },
+  { title: "Institutional Visit to the Supreme Court", date: "February 8, 2025", category: "Institutional Visit", excerpt: "Final year law students visited the Supreme Court of India to observe live proceedings and judicial administration.", image: "" },
+  { title: "Guest Lecture: Preparing for Judiciary", date: "January 22, 2025", category: "Guest Lecture", excerpt: "Distinguished former judge shared insights and strategies for cracking the judicial services examination.", image: "" },
+  { title: "Republic Day Celebration", date: "January 26, 2025", category: "Event", excerpt: "Flag hoisting ceremony followed by cultural performances celebrating India's Republic Day with the entire Ishan Law family.", image: "" },
 ];
 
 export default function NewsEventsPage() {
@@ -40,7 +40,7 @@ export default function NewsEventsPage() {
     <Layout>
       <PageHeader
         title="News & Events"
-        subtitle="Stay updated with the latest happenings at IIMT — seminars, festivals, sports, and more"
+        subtitle="Stay updated with the latest happenings at Ishan Law — moot courts, legal aid camps, seminars, and more"
         breadcrumbs={[{ label: "News & Events" }]}
       />
 

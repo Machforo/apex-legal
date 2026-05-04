@@ -15,7 +15,7 @@ export default function BestPracticesPage() {
     <Layout>
       <PageHeader
         title="Best Practices"
-        subtitle="NAAC-documented institutional best practices that set IIMT apart"
+        subtitle="NAAC-documented institutional best practices that define Ishan Law's excellence"
         breadcrumbs={[{ label: "About", href: "/about" }, { label: "Best Practices" }]}
       />
 
@@ -33,30 +33,30 @@ export default function BestPracticesPage() {
               ) : (
                 <>
                   <p className="text-foreground/70 leading-relaxed">
-                    Ishan Institute of Management & Technology is deeply committed to the continuous improvement of teaching methodologies and institutional processes. Our best practices are systematically documented for NAAC peer review, ensuring that every initiative contributes to the holistic development of our students and the overall excellence of the institution.
+                    Ishan Institute of Law is committed to bridging the gap between classroom theory and courtroom practice. Our best practices are systematically documented for NAAC peer review, ensuring that every initiative contributes to the professional and ethical development of our aspiring advocates.
                   </p>
                   <div className="p-6 rounded-xl border bg-card">
-                    <h2 className="text-xl font-display font-bold text-foreground mb-3">1. Industry Integration & Experiential Learning</h2>
+                    <h2 className="text-xl font-display font-bold text-foreground mb-3">1. Integrated Clinical Legal Education</h2>
                     <p className="text-foreground/70 leading-relaxed">
-                      We bridge the gap between classroom theory and corporate reality through frequent industrial visits to manufacturing plants and financial hubs, expert guest lectures by industry veterans, and live project assignments. This practice ensures that our students gain real-world insights and are prepared for professional challenges from day one.
+                      Starting from the first year, students are exposed to real-world legal proceedings through structured court visits, jail visits, and police station observations. This practice ensures that students understand the procedural nuances of the Indian legal system and the practical challenges of litigation.
                     </p>
                   </div>
                   <div className="p-6 rounded-xl border bg-card">
-                    <h2 className="text-xl font-display font-bold text-foreground mb-3">2. Structured Skill Development Programme</h2>
+                    <h2 className="text-xl font-display font-bold text-foreground mb-3">2. Moot Court as a Core Pedagogy</h2>
                     <p className="text-foreground/70 leading-relaxed">
-                      Beyond academics, we implement a structured soft skills programme that includes communication workshops, digital literacy across all programmes, and professional etiquette training. This practice is designed to enhance the employability and confidence of our students, making them stand out in competitive job markets.
+                      Beyond theoretical lectures, we utilize our high-tech Moot Court Hall for mandatory simulation exercises. Every student is mentored in memorial drafting and oral advocacy, preparing them for national-level competitions and successful professional careers in the higher judiciary.
                     </p>
                   </div>
                   <div className="p-6 rounded-xl border bg-card">
-                    <h2 className="text-xl font-display font-bold text-foreground mb-3">3. Green Campus & Sustainability Initiatives</h2>
+                    <h2 className="text-xl font-display font-bold text-foreground mb-3">3. Community Legal Aid & Social Advocacy</h2>
                     <p className="text-foreground/70 leading-relaxed">
-                      IIMT prioritizes environmental consciousness through effective waste management, energy conservation measures, and student-led sustainability initiatives. Our commitment to a green campus fosters a sense of responsibility among students towards the environment and promotes a healthy, eco-friendly learning atmosphere.
+                      Our Legal Aid Cell actively organizes awareness camps in neighboring villages, where students provide free legal counseling under the supervision of faculty advocates. This practice fosters a sense of social responsibility and provides students with live experience in dealing with diverse legal issues.
                     </p>
                   </div>
                   <div className="p-6 rounded-xl border bg-card">
                     <h2 className="text-xl font-display font-bold text-foreground mb-3">Institutional Outcomes</h2>
                     <p className="text-foreground/70 leading-relaxed italic">
-                      These practices have resulted in measurable improvements in student confidence, higher industry acceptance of our graduates, and a sustained reputation for academic and ethical excellence in the North India region.
+                      These practices have resulted in a significant increase in student participation in national legal events, higher success rates in judicial examinations, and a growing reputation for producing practice-ready legal professionals.
                     </p>
                   </div>
                 </>

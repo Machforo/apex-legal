@@ -6,36 +6,36 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const eminentFaculty = [
   {
-    name: "Dr. Ramesh Kumar",
-    designation: "Professor & HoD (Management)",
-    qualification: "PhD, MBA",
-    specialisation: "Strategic Management & Marketing",
-    image: "https://www.whu.edu/fileadmin/_processed_/7/6/csm_2_Header_5c31248a9a.jpg",
-    bio: "Dr. Ramesh Kumar is a distinguished academician with over 20 years of experience in management education. He has published numerous research papers in international journals and has been a consultant to several Fortune 500 companies. His vision for the department is to blend rigorous academic theory with cutting-edge industry practices."
+    name: "Dr. Sandeep Singh",
+    designation: "Principal",
+    qualification: "PhD, LLM",
+    specialisation: "Constitutional Law & Jurisprudence",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80",
+    bio: "Dr. Sandeep Singh is a visionary academician dedicated to the advancement of legal education in India. With extensive experience in constitutional scholarship, he has mentored hundreds of judicial aspirants and published research that influences contemporary legal discourse."
   },
   {
-    name: "Dr. Meena Gupta",
-    designation: "Professor & HoD (Education)",
-    qualification: "PhD, M.Ed",
-    specialisation: "Pedagogy & Curriculum Development",
-    image: "https://www.jioinstitute.edu.in/sites/default/files/styles/webp/public/basic_pages/Faculty-Banner-1.jpg.webp?itok=9GxqRK6M",
-    bio: "Dr. Meena Gupta is a pioneer in the field of inclusive education. She has been instrumental in developing modern pedagogical frameworks that cater to diverse learning needs. Her research focuses on the intersection of educational technology and traditional teaching methods, ensuring that students are prepared for the evolving classroom landscape."
-  },
-  {
-    name: "Dr. Rajesh Tiwari",
-    designation: "Associate Professor (IT)",
-    qualification: "PhD, MCA",
-    specialisation: "Database Systems & Cloud Computing",
+    name: "Prof. Rajesh Khanna",
+    designation: "Professor (Law)",
+    qualification: "LLM, UGC NET",
+    specialisation: "Criminal Law & Procedure",
     image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80",
-    bio: "Dr. Rajesh Tiwari brings extensive technical expertise to the IT department. With a background in software architecture and cloud infrastructure, he guides students through the complexities of modern computing. He is a frequent speaker at tech conferences and an advocate for open-source software development."
+    bio: "Prof. Rajesh Khanna brings profound insights into criminal justice and procedural laws. His clinical approach to teaching ensures that students understand the nuances of the courtroom before they ever set foot in one."
   },
   {
-    name: "Dr. Sunita Sharma",
-    designation: "Associate Professor (Commerce)",
-    qualification: "PhD, M.Com, UGC NET",
-    specialisation: "Financial Accounting & Taxation",
+    name: "Dr. Megha Gupta",
+    designation: "Associate Professor",
+    qualification: "PhD, LLM",
+    specialisation: "International Law & Human Rights",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+    bio: "Dr. Megha Gupta is a specialist in international legal frameworks and human rights. She leads our Research & Publication wing, encouraging students to contribute to national and international legal journals."
+  },
+  {
+    name: "Ms. Anjali Sharma",
+    designation: "Assistant Professor",
+    qualification: "LLM, Former Advocate",
+    specialisation: "Advocacy Skills & Moot Courts",
     image: "https://images.unsplash.com/photo-1580894732230-282b963aee2b?auto=format&fit=crop&w=800&q=80",
-    bio: "Dr. Sunita Sharma is an expert in financial regulations and tax policy. Her practical approach to commerce education helps students bridge the gap between classroom learning and professional accounting standards. She is a mentor to aspiring CAs and has a deep passion for financial literacy."
+    bio: "Ms. Anjali Sharma, with her background as a practicing advocate, bridges the gap between academic theory and courtroom reality. She mentors our national-level moot court teams and leads clinical training sessions."
   }
 ];
 
@@ -53,7 +53,7 @@ export default function FacultySection() {
               Eminent Faculty & Mentors
             </h2>
             <p className="reveal delay-200 mt-5 text-foreground/60 leading-relaxed">
-              Our faculty members are seasoned academicians and industry practitioners dedicated to nurturing the next generation of global leaders through personalized mentorship.
+              Our faculty members are distinguished legal scholars and practicing advocates from the High Courts and Supreme Court, dedicated to nurturing the next generation of judicial leaders through practice-oriented mentorship.
             </p>
           </div>
           <Link 

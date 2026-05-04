@@ -24,7 +24,7 @@ export default function SportsPage() {
         <div className="container-wide">
           <div className="max-w-3xl mx-auto reveal space-y-6">
             <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
-              {content || "IIMT promotes physical fitness and sportsmanship through a comprehensive sports program. The campus features facilities for cricket, basketball, badminton, volleyball, table tennis, and athletics. The annual sports meet is a highlight of the academic calendar, bringing together students from all departments in a spirit of healthy competition."}
+              {content || "Ishan Law promotes physical fitness and sportsmanship through a comprehensive sports program. The campus features facilities for cricket, basketball, badminton, volleyball, table tennis, and athletics. The annual sports meet is a highlight of the academic calendar, bringing together students from across the Ishan Group in a spirit of healthy competition."}
             </p>
             <div className="grid sm:grid-cols-2 gap-4">
               {specs.map((s: any, i: number) => (

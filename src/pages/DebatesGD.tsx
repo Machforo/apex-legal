@@ -8,23 +8,23 @@ export default function DebatesGDPage() {
 
   const activities = [
     {
-      title: "Topic-based Debates",
-      description: "Regular sessions on current affairs, economic policies, and ethical dilemmas.",
+      title: "Constitutional & Legal Debates",
+      description: "Regular sessions on landmark judgments, constitutional amendments, and evolving legal doctrines.",
       icon: <Mic2 className="w-6 h-6 text-gold" />,
     },
     {
-      title: "Management Case GDs",
-      description: "Group discussions centered around real-world business cases and decision-making.",
+      title: "Case Law Analysis GDs",
+      description: "Group discussions centered around recent High Court and Supreme Court rulings and their societal impact.",
       icon: <Briefcase className="w-6 h-6 text-gold" />,
     },
     {
-      title: "Mock CAT GD-PI",
-      description: "Specialized training for students aiming for premium management admissions.",
+      title: "Mock Parliamentary Sessions",
+      description: "Specialized training where students debate bills, policies, and legislative procedures.",
       icon: <Trophy className="w-6 h-6 text-gold" />,
     },
     {
-      title: "Extempore Sessions",
-      description: "Spontaneous speaking drills to improve quick thinking and articulation.",
+      title: "Extempore Legal Arguments",
+      description: "Spontaneous drills to improve quick thinking, legal reasoning, and oral advocacy skills.",
       icon: <MessageSquare className="w-6 h-6 text-gold" />,
     },
   ];
@@ -33,20 +33,20 @@ export default function DebatesGDPage() {
     <Layout>
       <PageHeader
         title="Debates & Group Discussions"
-        subtitle="Articulating ideas, defending perspectives, and building leadership communication."
-        breadcrumbs={[{ label: "Debates & GD" }]}
+        subtitle="Articulating legal arguments, defending perspectives, and building the foundations of advocacy."
+        breadcrumbs={[{ label: "Learning", href: "/news-events" }, { label: "Debates & GD" }]}
       />
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="reveal-left space-y-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Communication Culture</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Advocacy Culture</p>
               <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
-                Preparing Students for Corporate Leadership
+                Preparing Students for India's Courtrooms
               </h2>
               <p className="text-foreground/70 leading-relaxed">
-                At IIMT, we believe the ability to articulate and defend ideas is as important as academic excellence. Regular debates and GD sessions prepare students for corporate interviews, competitive exams, and future leadership roles. This culture of open dialogue helps build confidence, critical thinking, and respectful disagreement.
+                At Ishan Law, we believe the ability to articulate and defend legal arguments is as important as academic excellence. Regular debates and GD sessions prepare students for litigation, corporate legal practice, and competitive exams like the Judiciary. This culture of open dialogue helps build confidence, critical thinking, and the ability to view a case from multiple legal perspectives.
               </p>
               <div className="space-y-4">
                 <p className="text-sm font-bold text-foreground">Participation includes:</p>

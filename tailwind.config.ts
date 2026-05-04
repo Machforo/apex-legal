@@ -14,8 +14,10 @@ export default {
     },
     extend: {
       fontFamily: {
+        heading: ['"Playfair Display"', 'Georgia', 'serif'],
+        display: ['"Playfair Display"', 'Georgia', 'serif'],
+        body: ['"Inter"', 'system-ui', 'sans-serif'],
         sans: ['"Inter"', 'system-ui', 'sans-serif'],
-        display: ['"Outfit"', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -51,6 +53,18 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        navy: {
+          DEFAULT: "#003366",
+          light: "#00478F",
+          dark: "#001F3D",
+        },
+        gold: {
+          DEFAULT: "#C59D5F",
+          light: "#D4B685",
+          dark: "#A67F47",
+        },
+        ivory: "#FDFCF0",
+        cream: "#FAF9F6",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

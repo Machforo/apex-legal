@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { motion, AnimatePresence } from "framer-motion";
 const galleryImages = [
-  { title: "Academic Excellence", img: "https://www.burohappold.com/wp-content/uploads/2022/05/BS-CMU_02_Albert-Vecerka-Esto-1024x683.jpg", category: "Campus" },
-  { title: "Smart Resources", img: "https://studyus.dapodik.co.id/wp-content/uploads/2023/08/Exploring-US-University-Facilities-and-Resources-8QR-MPR.jpg", category: "Facilities" },
-  { title: "Student Life", img: "https://www.kclas.ac.in/wp-content/uploads/2021/01/gallery-05.jpg", category: "Community" },
-  { title: "Sports Academy", img: "https://www.sanskriti.edu.in/images/sports1.jpg", category: "Sports" },
-  { title: "Indoor Training", img: "https://www.accurate.in/engg/img/sports/sports.webp", category: "Fitness" },
-  { title: "Campus Architecture", img: "https://woxsen.edu.in/uploads/A20230824084254.webp", category: "Architecture" },
-  { title: "Event Plenary", img: "https://lavasa.christuniversity.in/uploads/userfiles/IMG_1100_JPG.jpg", category: "Events" },
-  { title: "Lush Greenery", img: "https://www.iecaonline.com/wp-content/uploads/2018/03/College-Campus-cropped-scaled.jpg", category: "Environment" },
+  { title: "Moot Court Hall", img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200", category: "Advocacy" },
+  { title: "Legal Research Lab", img: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?auto=format&fit=crop&w=1200", category: "Research" },
+  { title: "Clinical Sessions", img: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200", category: "Training" },
+  { title: "Legal Aid Clinic", img: "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=1200", category: "Service" },
+  { title: "Academic Excellence", img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200", category: "Campus" },
+  { title: "Judicial Cell", img: "https://images.unsplash.com/photo-1453948576136-15d9095642a8?auto=format&fit=crop&w=1200", category: "Governance" },
+  { title: "Event Plenary", img: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200", category: "Events" },
+  { title: "Lush Greenery", img: "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=1200", category: "Environment" },
 ];
 
 export default function CampusExperience() {
@@ -19,7 +19,7 @@ export default function CampusExperience() {
   // Subtle rotation of images in specific tiles to keep it "dynamic"
   useEffect(() => {
     const interval = setInterval(() => {
-      const tileToChange = Math.floor(Math.random() * 10);
+      const tileToChange = Math.floor(Math.random() * 8);
       const nextImage = Math.floor(Math.random() * galleryImages.length);
       setActiveIndices(prev => {
         const next = [...prev];
@@ -34,9 +34,9 @@ export default function CampusExperience() {
     <section id="experience" className="py-16 md:py-24 bg-navy text-white overflow-hidden min-h-screen flex flex-col justify-center snap-start" ref={ref}>
       <div className="container-wide">
         <div className="mb-10 md:mb-12">
-          <p className="reveal text-xs font-bold uppercase tracking-[0.25em] text-gold mb-3 opacity-80">Life at IIMT</p>
+          <p className="reveal text-xs font-bold uppercase tracking-[0.25em] text-gold mb-3 opacity-80">Life at Ishan Law</p>
           <h2 className="reveal delay-100 text-3xl md:text-5xl lg:text-6xl font-display font-bold leading-tight max-w-4xl">
-            Experience the <span className="text-gold">Holistic</span> Campus Ecosystem
+            Where <span className="text-gold">Legal Professionals</span> Are Formed
           </h2>
         </div>
 

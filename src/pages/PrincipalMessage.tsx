@@ -2,29 +2,29 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useIIMTData } from "@/hooks/useIIMTData";
 
-export default function DirectorMessagePage() {
+export default function PrincipalMessagePage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("aboutus");
-  const defaultImage = "/assets/director.jpg"; // Placeholder path for now
-  const msg = data?.directorMessage || {
-      name: "Dr. D.K. Garg",
-      designation: "Founder Chairman, Ishan Group",
-      message: `Welcome to Ishan Institute of Law. As we navigate an era of significant legal and social transformation, I believe that legal education must go beyond textbooks—it is a vital force that shapes the defenders of justice. At Ishan Law, our philosophy is rooted in the belief that every student has the potential to become a champion of the rule of law when nurtured with practice-oriented guidance.
+  
+  const msg = {
+      name: "Dr. Sandeep Singh", // Placeholder name
+      designation: "Principal, Ishan Institute of Law",
+      message: `Welcome to Ishan Institute of Law, where we transform legal aspirants into practice-ready professionals. In an era where the legal landscape is rapidly evolving, our mission is to produce advocates and judicial leaders who are not only masters of legal theory but also deeply committed to the ethical pursuit of justice.
 
-Our vision for Ishan Law is to create an ecosystem that prioritizes clinical legal education and ethical practice. We aim for the holistic development of our students, focusing not just on legal scholarship, but on fostering critical reasoning, social empathy, and professional integrity. We want our graduates to be advocates who can lead with conscience and innovate in the pursuit of justice.
+What distinguishes Ishan Law is our unwavering focus on Clinical Legal Education. We believe that law is a living discipline, best mastered through immersion. Our curriculum is purposefully structured to integrate rigorous academic scholarship with mandatory court exposure from the very first semester. Whether it is arguing complex cases in our state-of-the-art Moot Court Hall or providing real-world assistance through our Legal Aid Cell, our students learn by doing.
 
-I warmly invite you to join the Ishan Law community and experience an education designed to prepare you for both professional success and social impact. Explore our programs and see how we can help you achieve your legal aspirations. We look forward to welcoming you to our campus in Knowledge Park.`,
-      image: defaultImage
+We provide our scholars with premier resources, including access to leading digital legal databases like Manupatra and SCC Online, and mentorship from a faculty composed of distinguished legal practitioners and scholars. Our dedicated Judicial Services Cell further ensures that students aspiring for the bench receive specialized guidance from day one.
+
+I invite you to join our community and embark on a journey that will build a formidable foundation for your legal career. At Ishan Law, we don't just teach the law; we prepare you to practice it with excellence and integrity.`,
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&q=80"
   };
 
   return (
     <Layout>
       <PageHeader
-        title="Director's Message"
-        subtitle="A vision for academic excellence and student success"
-        breadcrumbs={[{ label: "About", href: "/about" }, { label: "Director's Message" }]}
+        title="Principal's Message"
+        subtitle="Producing ethical and practice-ready legal professionals"
+        breadcrumbs={[{ label: "About", href: "/about" }, { label: "Principal's Message" }]}
       />
 
       <section className="py-20 md:py-28" ref={ref}>
@@ -39,7 +39,7 @@ I warmly invite you to join the Ishan Law community and experience an education 
                       <div className="aspect-[3/4] bg-muted flex items-center justify-center">
                         <div className="text-center">
                           <div className="w-24 h-24 mx-auto rounded-full bg-gold-light flex items-center justify-center mb-3">
-                            <span className="text-3xl font-display font-bold text-navy">{msg.name ? msg.name.charAt(0) : "D"}</span>
+                            <span className="text-3xl font-display font-bold text-navy">{msg.name ? msg.name.charAt(0) : "P"}</span>
                           </div>
                           <p className="text-sm font-semibold text-foreground">{msg.name}</p>
                           <p className="text-xs text-muted-foreground">{msg.designation}</p>

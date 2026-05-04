@@ -5,58 +5,50 @@ import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
 
 // ─── Slides ───────────────────────────────────────────────────────────────────
+// ─── Slides ───────────────────────────────────────────────────────────────────
 const SLIDES = [
   {
-    image: "https://images.unsplash.com/photo-1562774053-701939374585?w=1600&q=85&auto=format&fit=crop",
-    badge: "NAAC Accredited · CCS University Affiliated",
-    title: "Shaping Tomorrow's",
-    highlight: "Leaders Since 1994",
-    subtitle: "Offering BBA, B.Com, BCA, M.Com, B.Ed & M.Ed programs with an industry-driven curriculum at Knowledge Park, Greater Noida.",
-    cta1: { label: "Explore Programs", href: "/education-overview" },
-    cta2: { label: "Virtual Tour", href: "/infrastructure" },
+    image: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg",
+    badge: "BCI Approved · NAAC Accredited · CCS University Affiliated",
+    title: "Forge Your Legacy in",
+    highlight: "India's Courtrooms",
+    subtitle: "Excellence in legal education through integrated BA LLB and Professional LLB programs in Knowledge Park, Greater Noida.",
+    cta1: { label: "Our Law Programs", href: "/programs-overview" },
+    cta2: { label: "Moot Court Tour", href: "/moot-court" },
   },
   {
-    image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1600&q=85&auto=format&fit=crop",
-    badge: "6 Professional Programmes",
-    title: "Build Your Career",
-    highlight: "With Purpose",
-    subtitle: "From BBA and BCA to B.Ed and M.Ed — expert faculty, modern labs, and 90%+ placement support await you at IIMT.",
-    cta1: { label: "View All Courses", href: "/education-overview" },
-    cta2: { label: "Apply Now", href: "/admissions" },
+    image: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg",
+    badge: "Clinical Legal Education",
+    title: "Learn Law by",
+    highlight: "Practicing It",
+    subtitle: "Mandatory court visits, regular moot court sessions, and legal aid clinics ensure you are practice-ready from day one.",
+    cta1: { label: "Clinical Training", href: "/moot-court" },
+    cta2: { label: "Apply for 2025", href: "/admissions" },
   },
   {
-    image: "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=1600&q=85&auto=format&fit=crop",
-    badge: "Knowledge Park III, Greater Noida",
-    title: "A Campus Built",
-    highlight: "For Excellence",
-    subtitle: "State-of-the-art IT labs, 500-seat auditorium, library with 15,000+ books, and vibrant campus life await every student.",
-    cta1: { label: "Explore Campus", href: "/infrastructure" },
-    cta2: { label: "Admissions 2025", href: "/admissions" },
+    image: "https://law.ishan.ac/static/gallery/infra/infra-16.jpg",
+    badge: "Specialized Legal Infrastructure",
+    title: "Dedicated Resources",
+    highlight: "For Future Advocates",
+    subtitle: "Comprehensive legal library, state-of-the-art moot court hall, and digital research terminals with Manupatra & SCC Online.",
+    cta1: { label: "Explore Library", href: "/library" },
+    cta2: { label: "Virtual Campus", href: "/infrastructure" },
   },
   {
-    image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=1600&q=85&auto=format&fit=crop",
-    badge: "Placements & Careers",
-    title: "150+ Recruiters,",
-    highlight: "Unlimited Futures",
-    subtitle: "Our dedicated placement cell connects you with top companies across BFSI, IT, and retail. Average CTC of ₹3.5 LPA and growing.",
-    cta1: { label: "See Placements", href: "/placements" },
-    cta2: { label: "Alumni Stories", href: "/alumni-network" },
-  },
-  {
-    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1600&q=85&auto=format&fit=crop",
-    badge: "30 Years of Academic Legacy",
-    title: "Education That",
-    highlight: "Transforms Lives",
-    subtitle: "Over 5,000 successful alumni across the globe. Three decades of shaping careers and building institutions in Delhi NCR.",
-    cta1: { label: "Our Story", href: "/about" },
-    cta2: { label: "Director's Message", href: "/director-message" },
+    image: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-8.jpg",
+    badge: "Career Outcomes",
+    title: "From Classrooms to",
+    highlight: "Judicial Chambers",
+    subtitle: "Structured guidance for Judiciary, Advocacy, and Corporate Legal roles. Join a network of successful legal professionals.",
+    cta1: { label: "Placement Cell", href: "/placements" },
+    cta2: { label: "Alumni Network", href: "/alumni-network" },
   },
 ];
 
 // Pick a random start index once per browser session
 const SESSION_START = (() => {
   try {
-    const key = "iimt_hero_start";
+    const key = "ishan_law_hero_start";
     const s = sessionStorage.getItem(key);
     if (s !== null) return parseInt(s, 10) % SLIDES.length;
     const r = Math.floor(Math.random() * SLIDES.length);
@@ -78,40 +70,41 @@ export default function HeroSection() {
   const newsData = [
     { 
       type: 'EVENT', 
-      title: 'National Seminar on Drug Regulation', 
-      date: 'MAR 15', 
+      title: 'National Moot Court Competition 2025', 
+      date: 'MAR 22', 
       action: 'popup',
-      image: 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=800&auto=format&fit=crop',
-      details: 'A comprehensive seminar focusing on the latest regulatory updates and CDSCO guidelines for pharmacy students and professionals. Join industry experts for an in-depth discussion on global standards and local compliance.'
+      image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&auto=format&fit=crop',
+      details: 'Ishan Institute of Law hosts its annual National Moot Court Competition. Teams from across India will debate complex constitutional issues before a bench of sitting and retired High Court judges.'
     },
     { 
       type: 'NEWS', 
-      title: 'Top Placements at Fortis Healthcare', 
-      date: 'FEB 24', 
-      action: 'link',
-      url: '/news'
+      title: 'Legal Aid Cell Camp at Greater Noida', 
+      date: 'FEB 18', 
+      action: 'popup',
+      image: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=800&auto=format&fit=crop',
+      details: 'Our students served over 50 community members in our latest free legal awareness and assistance camp, focusing on family law and property rights.'
     },
     { 
-      type: 'FEATURED', 
-      title: 'Ishan Pharmacy Excellence Award', 
-      date: 'JAN 10', 
+      type: 'VISIT', 
+      title: 'Students Visit Supreme Court of India', 
+      date: 'JAN 25', 
       action: 'none'
     },
     { 
       type: 'EVENT', 
-      title: 'Annual Sports Meet 2025', 
-      date: 'APR 05', 
+      title: 'Seminar on Digital Personal Data Protection', 
+      date: 'APR 12', 
       action: 'popup',
-      image: 'https://images.unsplash.com/photo-1526676037777-05a232554f77?w=800&auto=format&fit=crop',
-      details: 'The most anticipated athletic event of the year. Students from all departments compete in track, field, and indoor sports. A celebration of spirit, teamwork, and athletic excellence at IIMT.'
+      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop',
+      details: 'Eminent legal scholars and industry experts discuss the implications of India’s new data protection law on corporate compliance and individual privacy.'
     },
     { 
       type: 'NEWS', 
-      title: 'New Research Lab Inaugurated', 
-      date: 'DEC 20', 
+      title: 'Moot Court Hall Upgraded with Digital Tech', 
+      date: 'DEC 15', 
       action: 'popup',
-      image: 'https://images.unsplash.com/photo-1581093588401-fbb62a02f120?w=800&auto=format&fit=crop',
-      details: 'State-of-the-art research facilities now available for advanced studies in pharmaceutical sciences and management analytics. Equipped with latest tools and industry-standard software.'
+      image: 'https://images.unsplash.com/photo-1453723490680-899513d4206e?w=800&auto=format&fit=crop',
+      details: 'New high-definition recording and video conferencing facilities installed in the Moot Court Hall to support international competitions and self-review.'
     }
   ];
 
@@ -220,7 +213,7 @@ export default function HeroSection() {
 
             {/* CTAs */}
             <div key={`cta-${current}`} className="flex flex-wrap gap-4" style={{ animation: "fadeUp 0.55s 0.18s ease both" }}>
-              <Link to={slide.cta1.href} className="inline-flex items-center gap-2 px-8 py-4 text-sm font-bold bg-gold text-navy rounded-xl shadow-[0_8px_30px_rgba(212,175,55,0.35)] hover:shadow-[0_12px_40px_rgba(212,175,55,0.5)] hover:scale-105 active:scale-95 transition-all">
+              <Link to={slide.cta1.href} className="inline-flex items-center gap-2 px-8 py-4 text-sm font-bold bg-gold text-navy rounded-xl shadow-[0_8px_30px_rgba(212,175,55,0.35)] hover:shadow-[0_12px_40px_rgba(212,175,55,0.5)] hover:scale-105 active:scale-95 transition-all shimmer-btn">
                 {slide.cta1.label} <ArrowRight className="w-4 h-4" />
               </Link>
               <Link to={slide.cta2.href} className="inline-flex items-center gap-2 px-8 py-4 text-sm font-bold text-white border-2 border-white/40 rounded-xl hover:bg-white/10 backdrop-blur-sm transition-all">
@@ -311,14 +304,14 @@ export default function HeroSection() {
                           <BookOpen size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-foreground/40" />
                           <select required value={formData.course} onChange={(e) => setFormData((p) => ({ ...p, course: e.target.value }))} className="w-full pl-10 pr-4 py-3.5 bg-muted/60 border rounded-xl outline-none focus:ring-2 focus:ring-gold/60 focus:bg-white appearance-none transition-all text-sm cursor-pointer">
                             <option value="">Select Programme *</option>
-                            <option>BBA</option><option>BCA</option><option>B.Com</option>
-                            <option>M.Com</option><option>B.Ed</option><option>M.Ed</option>
+                            <option>BA LLB (Hons) - 5 Years</option>
+                            <option>LLB - 3 Years</option>
                           </select>
                         </div>
                         <div className="flex items-start gap-2 pt-1">
                           <input type="checkbox" id="hero-consent" className="mt-1 accent-gold w-4 h-4" defaultChecked />
                           <label htmlFor="hero-consent" className="text-[11px] text-foreground/60 leading-relaxed">
-                            I authorize IIMT to contact me regarding my admission inquiry.
+                            I authorize Ishan Law to contact me regarding my admission inquiry.
                           </label>
                         </div>
                         <button type="submit" className="w-full py-4 bg-navy text-white font-bold rounded-xl shadow-lg hover:bg-gold hover:text-navy transition-all flex items-center justify-center gap-2 group mt-4">
@@ -448,7 +441,7 @@ export default function HeroSection() {
                 </p>
                 
                 <div className="mt-auto flex flex-wrap gap-4 pt-6 border-t border-navy/5">
-                  <button className="px-8 py-3 bg-navy text-white font-bold rounded-xl hover:bg-gold hover:text-navy transition-all shadow-lg">Register Now</button>
+                  <button className="px-8 py-3 bg-navy text-white font-bold rounded-xl hover:bg-gold hover:text-navy transition-all shadow-lg shimmer-btn">Register Now</button>
                   <button onClick={() => setSelectedNews(null)} className="px-8 py-3 text-navy font-bold hover:text-gold transition-colors">Close</button>
                 </div>
               </div>

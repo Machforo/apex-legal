@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -11,10 +11,10 @@ import ScrollToTop from "./components/ScrollToTop";
 
 // Lazy load all inner pages
 const About = lazy(() => import("./pages/About"));
-const DirectorMessage = lazy(() => import("./pages/DirectorMessage"));
+const PrincipalMessage = lazy(() => import("./pages/PrincipalMessage"));
 const MissionVision = lazy(() => import("./pages/MissionVision"));
 const Approvals = lazy(() => import("./pages/Approvals"));
-const WhyIIMT = lazy(() => import("./pages/WhyIIMT"));
+const WhyChooseUs = lazy(() => import("./pages/WhyIIMT")); // Will update component content
 const BestPractices = lazy(() => import("./pages/BestPractices"));
 const GreenInitiatives = lazy(() => import("./pages/GreenInitiatives"));
 const MandatoryDisclosure = lazy(() => import("./pages/MandatoryDisclosure"));
@@ -26,7 +26,7 @@ const AdmissionsEnquiry = lazy(() => import("./pages/AdmissionsEnquiry"));
 const Consultation = lazy(() => import("./pages/Consultation"));
 const Scholarships = lazy(() => import("./pages/Scholarships"));
 const FAQs = lazy(() => import("./pages/FAQs"));
-const EducationOverview = lazy(() => import("./pages/EducationOverview"));
+const ProgramsOverview = lazy(() => import("./pages/EducationOverview")); // Renamed in nav
 
 const Faculty = lazy(() => import("./pages/Faculty"));
 const VisitingFaculty = lazy(() => import("./pages/VisitingFaculty"));
@@ -55,21 +55,23 @@ const StudentPortal = lazy(() => import("./pages/StudentPortal"));
 
 const Placements = lazy(() => import("./pages/Placements"));
 const ResearchJournal = lazy(() => import("./pages/ResearchJournal"));
+const Publications = lazy(() => import("./pages/ResearchJournal")); // Placeholder for now
 
 const Contact = lazy(() => import("./pages/Contact"));
 const Careers = lazy(() => import("./pages/Careers"));
 const Feedback = lazy(() => import("./pages/Feedback"));
+const ThankYou = lazy(() => import("./pages/ThankYou"));
 
 const AntiRagging = lazy(() => import("./pages/AntiRagging"));
 const GrievanceRedressal = lazy(() => import("./pages/GrievanceRedressal"));
 const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
 
-const PedagogyLabs = lazy(() => import("./pages/PedagogyLabs"));
-const ECell = lazy(() => import("./pages/ECell"));
-const EventsCalendar = lazy(() => import("./pages/EventsCalendar"));
-const DebatesGD = lazy(() => import("./pages/DebatesGD"));
-const IndustrialVisits = lazy(() => import("./pages/IndustrialVisits"));
+const MootCourt = lazy(() => import("./pages/MootCourt"));
+const LegalAidCell = lazy(() => import("./pages/LegalAidCell"));
+const CourtJailVisits = lazy(() => import("./pages/IndustrialVisits"));
 const GuestLectures = lazy(() => import("./pages/GuestLectures"));
+const DebatesGD = lazy(() => import("./pages/DebatesGD"));
+const InternshipExternship = lazy(() => import("./pages/Admissions")); // Placeholder
 
 const queryClient = new QueryClient();
 
@@ -126,23 +128,31 @@ const App = () => (
         <GlobalClickInterceptor />
         <Suspense fallback={<PageLoader />}>
           <Routes>
+            {/* 301 Redirects */}
+            <Route path="/application-form" element={<Navigate to="/admissions" replace />} />
+            <Route path="/join-us" element={<Navigate to="/careers" replace />} />
+            <Route path="/director-message" element={<Navigate to="/principal-message" replace />} />
+            <Route path="/why-iimt" element={<Navigate to="/why-choose-us" replace />} />
+            <Route path="/education-overview" element={<Navigate to="/programs-overview" replace />} />
+            <Route path="/industrial-visits" element={<Navigate to="/court-jail-visits" replace />} />
+            <Route path="/pedagogy-labs" element={<Navigate to="/moot-court" replace />} />
+
             <Route path="/" element={<Index />} />
 
             {/* About */}
             <Route path="/about" element={<About />} />
-            <Route path="/director-message" element={<DirectorMessage />} />
+            <Route path="/principal-message" element={<PrincipalMessage />} />
             <Route path="/mission-vision" element={<MissionVision />} />
             <Route path="/approvals" element={<Approvals />} />
-            <Route path="/why-iimt" element={<WhyIIMT />} />
+            <Route path="/why-choose-us" element={<WhyChooseUs />} />
             <Route path="/best-practices" element={<BestPractices />} />
             <Route path="/green-initiatives" element={<GreenInitiatives />} />
             <Route path="/mandatory-disclosure" element={<MandatoryDisclosure />} />
 
             {/* Courses */}
             <Route path="/courses/:courseId" element={<DynamicCourse />} />
-            <Route path="/education-overview" element={<EducationOverview />} />
-            <Route path="/admissions-education" element={<Admissions />} />
-            <Route path="/pedagogy-labs" element={<PedagogyLabs />} />
+            <Route path="/programs-overview" element={<ProgramsOverview />} />
+            <Route path="/internship-externship" element={<InternshipExternship />} />
 
             {/* Admissions & Consultation */}
             <Route path="/admissions" element={<Admissions />} />
@@ -161,11 +171,11 @@ const App = () => (
             <Route path="/skill-development" element={<SkillDevelopment />} />
             <Route path="/cultural-activities" element={<CulturalActivities />} />
             <Route path="/sports" element={<Sports />} />
-            <Route path="/e-cell" element={<ECell />} />
-            <Route path="/events-calendar" element={<EventsCalendar />} />
-            <Route path="/debates-gd" element={<DebatesGD />} />
-            <Route path="/industrial-visits" element={<IndustrialVisits />} />
+            <Route path="/moot-court" element={<MootCourt />} />
+            <Route path="/legal-aid-cell" element={<LegalAidCell />} />
+            <Route path="/court-jail-visits" element={<CourtJailVisits />} />
             <Route path="/guest-lectures" element={<GuestLectures />} />
+            <Route path="/debates-gd" element={<DebatesGD />} />
 
             {/* Campus */}
             <Route path="/infrastructure" element={<Infrastructure />} />
@@ -188,14 +198,15 @@ const App = () => (
 
             {/* Research & Placements */}
             <Route path="/placements" element={<Placements />} />
-            <Route path="/placement-testimonials" element={<Placements />} />
             <Route path="/alumni-network" element={<Placements />} />
             <Route path="/research-journal" element={<ResearchJournal />} />
+            <Route path="/publications" element={<Publications />} />
 
             {/* Contact */}
             <Route path="/contact" element={<Contact />} />
             <Route path="/careers" element={<Careers />} />
             <Route path="/feedback" element={<Feedback />} />
+            <Route path="/thank-you" element={<ThankYou />} />
 
             {/* Policies */}
             <Route path="/anti-ragging" element={<AntiRagging />} />

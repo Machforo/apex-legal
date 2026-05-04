@@ -5,28 +5,28 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const faqs = [
   {
-    question: "What courses are offered at IIMT Greater Noida?",
-    answer: "IIMT offers a variety of undergraduate and postgraduate programs including BBA, BCA, B.Com, M.Com, B.Ed, and M.Ed, all affiliated with CCS University and recognized by UGC."
+    question: "What legal programs are offered at Ishan Law?",
+    answer: "Ishan Institute of Law offers the 5-year Integrated BA LLB program and the 3-year LLB program, both approved by the Bar Council of India (BCI) and affiliated with CCS University, Meerut."
   },
   {
-    question: "Is IIMT affiliated with any University?",
-    answer: "Yes, all our academic programs are affiliated with Chaudhary Charan Singh (CCS) University, Meerut, and are approved by the appropriate regulatory bodies like NCTE (for Education) and UGC."
+    question: "Is Ishan Institute of Law approved by the BCI?",
+    answer: "Yes, the Ishan Institute of Law is fully approved by the Bar Council of India (BCI), ensuring that our graduates are eligible to enroll as advocates with any State Bar Council across India."
   },
   {
-    question: "What is the placement record of IIMT?",
-    answer: "IIMT has a robust placement cell with a track record of over 90% placement success. Our students are placed in top MNCs including Barclays, HDFC Bank, ICICI Bank, Infosys, and TCS."
+    question: "How does the institute support judicial service aspirants?",
+    answer: "We have a dedicated Judicial Services Cell that provides specialized coaching, mock interviews, and guest lectures from serving judges to prepare students for various state judiciary examinations."
   },
   {
-    question: "What are the eligibility criteria for BBA/BCA?",
-    answer: "For BBA and BCA, candidates must have passed 10+2 with a minimum of 45% marks (40% for SC/ST). For BCA, Mathematics at the high school or intermediate level is preferred."
+    question: "What is Clinical Legal Education?",
+    answer: "Clinical legal education at Ishan Law involves mandatory court visits, jail visits, legal aid camps, and moot court exercises, ensuring students gain practical advocacy skills alongside theoretical knowledge."
   },
   {
-    question: "Does the institute provide hostel facilities?",
-    answer: "Yes, IIMT provides separate, well-furnished hostel facilities for both boys and girls with all modern amenities, including Wi-Fi, 24/7 security, and hygienic mess facilities."
+    question: "Does the institute have a Moot Court facility?",
+    answer: "Yes, we have a high-tech Moot Court Hall designed to simulate a realistic High Court environment where students participate in regular competitions and clinical training sessions."
   },
   {
-    question: "Are there any scholarship programs available?",
-    answer: "Yes, IIMT offers merit-based scholarships to deserving students. Additionally, students can also apply for state government scholarships as per the eligibility norms."
+    question: "What are the eligibility criteria for BA LLB and LLB?",
+    answer: "For BA LLB, candidates must have passed 10+2 with 45% marks (42% for OBC, 40% for SC/ST). For LLB, a graduation degree with similar percentage criteria is required."
   }
 ];
 

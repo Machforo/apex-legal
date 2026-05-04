@@ -5,21 +5,17 @@ import { useState } from "react";
 import { Search, X } from "lucide-react";
 import { useIIMTData } from "@/hooks/useIIMTData";
 
-const defaultDepartments = ["All", "Management", "Commerce", "IT", "Education"];
+const defaultDepartments = ["All", "Law", "Clinical Education", "Research & Publication"];
 
 const defaultFaculty = [
-  { name: "Dr. Ramesh Kumar", designation: "Professor & HoD", dept: "Management", qualification: "PhD, MBA", specialisation: "Strategic Management & Marketing" },
-  { name: "Dr. Sunita Sharma", designation: "Associate Professor", dept: "Commerce", qualification: "PhD, M.Com, UGC NET", specialisation: "Financial Accounting & Taxation" },
-  { name: "Prof. Anil Verma", designation: "Assistant Professor", dept: "IT", qualification: "MCA, M.Tech", specialisation: "Data Structures & Software Engineering" },
-  { name: "Dr. Meena Gupta", designation: "Professor & HoD", dept: "Education", qualification: "PhD, M.Ed", specialisation: "Pedagogy & Curriculum Development" },
-  { name: "Dr. Vikash Singh", designation: "Associate Professor", dept: "Management", qualification: "PhD, MBA", specialisation: "Human Resource Management" },
-  { name: "Prof. Priya Jain", designation: "Assistant Professor", dept: "Commerce", qualification: "M.Com, CA Inter, UGC NET", specialisation: "Cost Accounting & Auditing" },
-  { name: "Dr. Rajesh Tiwari", designation: "Associate Professor", dept: "IT", qualification: "PhD, MCA", specialisation: "Database Systems & Cloud Computing" },
-  { name: "Prof. Kavita Yadav", designation: "Assistant Professor", dept: "Education", qualification: "M.Ed, UGC NET", specialisation: "Educational Psychology" },
-  { name: "Dr. Sanjay Mishra", designation: "Professor", dept: "Management", qualification: "PhD, MBA, FDP (IIM)", specialisation: "Operations & Supply Chain Management" },
-  { name: "Prof. Neha Agarwal", designation: "Assistant Professor", dept: "Commerce", qualification: "M.Com, UGC NET", specialisation: "Banking & Financial Services" },
-  { name: "Prof. Amit Chauhan", designation: "Assistant Professor", dept: "IT", qualification: "M.Tech, MCA", specialisation: "Web Technologies & Python" },
-  { name: "Dr. Pooja Rawat", designation: "Associate Professor", dept: "Education", qualification: "PhD, M.Ed", specialisation: "Inclusive Education & Assessment" },
+  { name: "Dr. Sandeep Singh", designation: "Principal", dept: "Law", qualification: "PhD, LLM", specialisation: "Constitutional Law & Jurisprudence", bio: "Extensive experience in constitutional matters and legal theory. Author of several seminal papers on Indian jurisprudence.", publications: "12 Research Papers" },
+  { name: "Prof. Rajesh Khanna", designation: "Professor", dept: "Law", qualification: "LLM, UGC NET", specialisation: "Criminal Law & Procedure", bio: "Former practitioner with deep insights into criminal justice. Focuses on procedural law and evidence act interpretations.", publications: "8 Publications" },
+  { name: "Ms. Anjali Sharma", designation: "Assistant Professor", dept: "Clinical Education", qualification: "LLM, Former Advocate", specialisation: "Advocacy Skills & Moot Courts", bio: "Specialises in practical advocacy and clinical training. Mentors teams for national moot court competitions." },
+  { name: "Mr. Vivek Verma", designation: "Assistant Professor", dept: "Law", qualification: "LLM", specialisation: "Corporate & Commercial Laws", bio: "Expertise in company law and commercial dispute resolution. Bridges corporate practice with academic theory." },
+  { name: "Dr. Megha Gupta", designation: "Associate Professor", dept: "Research & Publication", qualification: "PhD, LLM", specialisation: "International Law & Human Rights", bio: "Focuses on human rights advocacy and international treaties. Actively guides student research initiatives.", publications: "15 Publications" },
+  { name: "Prof. Amit Das", designation: "Assistant Professor", dept: "Law", qualification: "LLM, UGC NET", specialisation: "Family Law & ADR", bio: "Dedicated to alternate dispute resolution mechanisms and modern family law practice in India." },
+  { name: "Ms. Neha Singh", designation: "Assistant Professor", dept: "Law", qualification: "LLM", specialisation: "Intellectual Property Rights", bio: "Passionate about intellectual property regimes and their impact on emerging technologies and startups." },
+  { name: "Mr. Karan Bajaj", designation: "Assistant Professor", dept: "Clinical Education", qualification: "LLM, Advocate", specialisation: "Civil Procedure & Drafting", bio: "Brings active civil practice experience to drafting modules. Emphasises practical pleading techniques." },
 ];
 
 export default function FacultyPage() {
@@ -44,7 +40,7 @@ export default function FacultyPage() {
     <Layout>
       <PageHeader
         title="Faculty Directory"
-        subtitle="Experienced academicians and industry practitioners shaping future professionals"
+        subtitle="Distinguished legal scholars and practicing advocates shaping future judicial leaders"
         breadcrumbs={[{ label: "Faculty" }]}
       />
 
@@ -53,11 +49,8 @@ export default function FacultyPage() {
           <div className="max-w-4xl mx-auto mb-16 space-y-6 text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Academic Excellence</p>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">Guided by Expert Mentors</h2>
-            <p className="text-foreground/70 leading-relaxed">
-              At IIMT, our faculty is a vibrant mix of seasoned academicians, PhD scholars, and industry practitioners who bring a wealth of practical experience to the classroom. We maintain a healthy student-faculty ratio to ensure personalized attention and foster a strong mentoring culture, where every student is assigned a dedicated faculty mentor (1 mentor per 20 students) to guide their academic and professional growth.
-            </p>
-            <p className="text-foreground/70 leading-relaxed">
-              Our faculty members are actively involved in continuous professional development, participating in national FDPs, workshops, and international conferences. Their contributions to academic research papers and curriculum design ensure that the learning at IIMT remains contemporary and industry-aligned. Our core team is dedicated to the holistic development of every student, nurturing both technical proficiency and ethical leadership.
+            <p className="text-foreground/70 leading-relaxed text-lg">
+              Ishan Law's faculty combines academic scholarship with courtroom experience — permanent faculty hold LLM and PhD qualifications in specialised areas of law; visiting advocates bring current practice insights; together they prepare students not just to understand law but to argue it.
             </p>
           </div>
 
@@ -110,9 +103,13 @@ export default function FacultyPage() {
                 <p className="text-xs text-gold font-medium mt-1">{f.designation}</p>
                 <p className="text-xs text-muted-foreground mt-1">{f.qualification}</p>
                 <div className="mt-3 pt-3 border-t">
-                  <p className="text-xs text-foreground/60">{f.specialisation || f.specialization}</p>
+                  <p className="text-xs font-semibold text-foreground/80 mb-2">{f.specialisation || f.specialization}</p>
+                  <p className="text-[11px] text-muted-foreground leading-relaxed text-left line-clamp-3">{f.bio}</p>
                 </div>
-                <span className="inline-block mt-3 px-2.5 py-1 rounded-md bg-muted text-xs font-medium text-muted-foreground">{f.dept || f.department}</span>
+                <div className="flex items-center justify-between mt-3">
+                  <span className="px-2.5 py-1 rounded-md bg-muted text-[10px] font-medium text-muted-foreground">{f.dept || f.department}</span>
+                  {f.publications && <span className="text-[10px] font-medium text-gold">{f.publications}</span>}
+                </div>
               </div>
             ))}
           </div>

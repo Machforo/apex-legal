@@ -6,19 +6,24 @@ import { TrendingUp, Building2, Users2, Star, CheckCircle2 } from "lucide-react"
 import { useIIMTData } from "@/hooks/useIIMTData";
 
 const defaultStats = [
-  { icon: TrendingUp, value: "90%+", label: "Placement Rate" },
-  { icon: Building2, value: "150+", label: "Recruiting Partners" },
-  { icon: Users2, value: "5000+", label: "Students Placed" },
-  { icon: Star, value: "₹8 LPA", label: "Highest Package" },
+  { icon: TrendingUp, value: "100%", label: "Internship Support" },
+  { icon: Building2, value: "50+", label: "Law Firm Partners" },
+  { icon: Users2, value: "500+", label: "Advocates Produced" },
+  { icon: Star, value: "10+", label: "Judicial Selections" },
 ];
 
-const defaultRecruiters = ["Barclays", "HDFC Bank", "ICICI Bank", "Infosys", "TCS", "Wipro", "Deloitte", "Amazon", "Byju's", "Kotak Mahindra", "Axis Bank", "Genpact", "HCL", "Tech Mahindra", "Paytm"];
+const defaultRecruiters = [
+  "Shardul Amarchand Mangaldas", "AZB & Partners", "Khaitan & Co.", "JSA Law", "Trilegal", 
+  "Luthra and Luthra", "Dua Associates", "Fox Mandal", "Lakshmikumaran & Sridharan", 
+  "Supreme Court of India (Clerkships)", "Delhi High Court", "Allahabad High Court", 
+  "District Courts (NCR)", "HDFC Legal Dept.", "ICICI Bank Legal"
+];
 
 const defaultTestimonials = [
-  { name: "Priya Sharma", program: "BBA 2023", company: "HDFC Bank", quote: "The placement cell at IIMT was incredibly supportive. They prepared me through mock interviews and resume workshops. I secured a role at HDFC Bank before my final exams." },
-  { name: "Rohit Verma", program: "BCA 2022", company: "Infosys", quote: "The practical training in IT labs and the certificate programs in Python gave me an edge during campus placements. Infosys was my dream company." },
-  { name: "Anjali Gupta", program: "B.Com 2023", company: "Deloitte", quote: "My Tally and GST certification from IIMT, combined with the B.Com degree, opened doors I didn't expect. The faculty mentoring was exceptional." },
-  { name: "Amit Kumar", program: "BBA 2022", company: "Amazon", quote: "IIMT's industry visits and guest lectures gave me real-world perspective. The placement team connected me with Amazon's recruitment drive." },
+  { name: "Rahul Deshmukh", program: "BA LLB 2022", company: "Delhi High Court", quote: "The clinical training and moot court exposure at Ishan Law were instrumental in my transition to advocacy. I felt courtroom-ready from day one of my practice." },
+  { name: "Sanya Malhotra", program: "LLB 2021", company: "JSA Law", quote: "The placement cell's focus on corporate law internships helped me secure a role at a top-tier firm. The digital research skills I learned here are invaluable." },
+  { name: "Priyanka Singh", program: "BA LLB 2023", company: "Judicial Services", quote: "The dedicated Judicial Services Cell provided me with the structured guidance and mock tests that helped me clear the preliminary examinations in my first attempt." },
+  { name: "Arjun Verma", program: "LLB 2022", company: "Corporate Legal Cell", quote: "Ishan Law's faculty, many of whom are practicing advocates, gave me a real-world perspective that you can't find in textbooks. Highly recommended for serious legal aspirants." },
 ];
 
 export default function PlacementsPage() {
@@ -41,7 +46,7 @@ export default function PlacementsPage() {
 
   return (
     <Layout>
-      <PageHeader title="Placements" subtitle="Consistent 90%+ placement record with 150+ recruiting partners across industries" breadcrumbs={[{ label: "Placements" }]} />
+      <PageHeader title="Career Outcomes" subtitle="Consistent record of placements in top-tier law firms, corporate legal cells, and judicial services" breadcrumbs={[{ label: "Career Outcomes" }]} />
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">

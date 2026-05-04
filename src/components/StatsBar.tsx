@@ -3,10 +3,10 @@ import { useEffect, useState, useRef } from "react";
 import { useIIMTData } from "@/hooks/useIIMTData";
 
 const defaultStats = [
-  { value: "30+", label: "Years of Excellence" },
-  { value: "94%", label: "Placement Success" },
-  { value: "15,000+", label: "Alumni Network" },
-  { value: "6", label: "Specializations" },
+  { value: "BCI", label: "Approved Programs" },
+  { value: "Sem 1", label: "Court Exposure" },
+  { value: "2000+", label: "Legal Alumni" },
+  { value: "100%", label: "Practical Training" },
 ];
 
 function AnimatedCounter({ rawValue }: { rawValue: string }) {
@@ -19,6 +19,7 @@ function AnimatedCounter({ rawValue }: { rawValue: string }) {
   const hasAnimated = useRef(false);
 
   useEffect(() => {
+    if (isNaN(target)) return;
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated.current) {
@@ -46,7 +47,7 @@ function AnimatedCounter({ rawValue }: { rawValue: string }) {
 
   return (
     <span ref={ref} className="stat-value">
-      {count.toLocaleString()}{suffix}
+      {isNaN(target) ? rawValue : (count.toLocaleString() + suffix)}
     </span>
   );
 }
@@ -65,15 +66,10 @@ export default function StatsBar() {
   }, [data]);
 
   const brands = [
-    { name: "Barclays", logo: "https://www.openbanking.org.uk/wp-content/uploads/barclays.png" },
-    { name: "HDFC Bank", logo: "https://cdn.zeebiz.com/sites/default/files/2020/04/08/116007-hdfc.jpg?im=FitAndFill=(448,252)&format=webp&quality=medium" },
-    { name: "ICICI Bank", logo: "https://upload.wikimedia.org/wikipedia/commons/1/12/ICICI_Bank_Logo.svg" },
-    { name: "Infosys", logo: "https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg" },
-    { name: "TCS", logo: "https://ifs-p-001.sitecorecontenthub.cloud/api/public/content/new_size_948-711_ifs_tata_consultancy_services_logo_july_2022_670x300.jpg-273f76?v=676a79ee" },
-    { name: "Wipro", logo: "https://equippp.in/wp-content/uploads/2023/08/WIPRO.png" },
-    { name: "AICTE", logo: "https://upload.wikimedia.org/wikipedia/en/e/eb/All_India_Council_for_Technical_Education_logo.png" },
-    { name: "UGC", logo: "https://upload.wikimedia.org/wikipedia/en/4/4e/UGC_India_Logo.png" },
-    { name: "NCTE", logo: "https://upload.wikimedia.org/wikipedia/en/d/d1/NCTE_logo.png" }
+    { name: "Bar Council of India", logo: "https://law.ishan.ac/all-law/home-page/Logo_of_Bar_Council_of_India.png" },
+    { name: "CCS University", logo: "https://law.ishan.ac/images/home/regulatory-4.png" },
+    { name: "NAAC", logo: "https://law.ishan.ac/all-law/home-page/naac-2.png" },
+    { name: "UGC", logo: "https://law.ishan.ac/static/about/approvals/UGC_India_Logo.png" },
   ];
 
   return (

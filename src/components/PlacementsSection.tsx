@@ -3,20 +3,22 @@ import { TrendingUp, Building2, Users2, Star } from "lucide-react";
 import { useIIMTData } from "@/hooks/useIIMTData";
 
 const defaultRecruiters = [
-  { name: "Barclays", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e4/Barclays_logo.svg" },
-  { name: "HDFC Bank", logo: "https://upload.wikimedia.org/wikipedia/commons/4/48/HDFC_Bank_Logo.svg" },
-  { name: "ICICI Bank", logo: "https://upload.wikimedia.org/wikipedia/commons/1/12/ICICI_Bank_Logo.svg" },
-  { name: "Infosys", logo: "https://upload.wikimedia.org/wikipedia/commons/9/95/Infosys_logo.svg" },
-  { name: "TCS", logo: "https://upload.wikimedia.org/wikipedia/commons/b/b1/Tata_Consultancy_Services_Logo.svg" },
-  { name: "Wipro", logo: "https://upload.wikimedia.org/wikipedia/commons/a/af/Wipro_logo.svg" },
-  { name: "Deloitte", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2b/Deloitte.svg" },
-  { name: "Amazon", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" },
+  { name: "Shardul Amarchand Mangaldas", logo: "" },
+  { name: "AZB & Partners", logo: "" },
+  { name: "Khaitan & Co.", logo: "" },
+  { name: "JSA Law", logo: "" },
+  { name: "Trilegal", logo: "" },
+  { name: "Luthra and Luthra", logo: "" },
+  { name: "Dua Associates", logo: "" },
+  { name: "Fox Mandal", logo: "" },
+  { name: "HDFC Legal", logo: "" },
+  { name: "ICICI Legal", logo: "" },
 ];
 
 export default function PlacementsSection() {
   const ref = useScrollReveal();
   const { data } = useIIMTData("homepage");
-  const placementsCfg = data?.placements || { title: "Placements That Speak for Themselves", description: "Career Outcomes" };
+  const placementsCfg = data?.placements || { title: "Career Outcomes & Placements", description: "Our alumni practice in top-tier firms and judicial courts across India." };
   const recruiters = data?.recruitingPartners?.length > 0 ? data.recruitingPartners : defaultRecruiters;
 
   return (

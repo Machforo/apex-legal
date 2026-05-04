@@ -6,12 +6,12 @@ import { Monitor, Wifi, Clock, Shield } from "lucide-react";
 import { useIIMTData } from "@/hooks/useIIMTData";
 
 const defaultSpecs = [
-  { label: "Computers", value: "120+ desktops" },
+  { label: "Research Terminals", value: "60+ high-end systems" },
+  { label: "Legal Databases", value: "Manupatra, SCC Online, LexisNexis" },
   { label: "Internet Speed", value: "100 Mbps dedicated" },
-  { label: "Student:Computer", value: "1:1 during lab hours" },
-  { label: "Operating Systems", value: "Windows 11, Ubuntu" },
-  { label: "Software", value: "MS Office, VS Code, Eclipse, MySQL, Python, Tally" },
-  { label: "Timings", value: "8:30 AM – 5:30 PM (Mon-Sat)" },
+  { label: "Operating Systems", value: "Windows 11 Professional" },
+  { label: "Software", value: "MS Office 365, Grammarly, Turnitin (Plagiarism Check)" },
+  { label: "Timings", value: "8:30 AM – 6:30 PM (Mon-Sat)" },
 ];
 
 export default function ITLabPage() {
@@ -24,9 +24,9 @@ export default function ITLabPage() {
   return (
     <Layout>
       <PageHeader
-        title="IT Lab"
-        subtitle="Well-equipped computer labs supporting BCA, BBA, B.Com and certificate programs"
-        breadcrumbs={[{ label: "Campus", href: "/infrastructure" }, { label: "IT Lab" }]}
+        title="Digital Research Lab"
+        subtitle="State-of-the-art computing facilities for comprehensive legal research and drafting"
+        breadcrumbs={[{ label: "Campus", href: "/infrastructure" }, { label: "Research Lab" }]}
       />
 
       <section className="py-20 md:py-28" ref={ref}>
@@ -38,10 +38,10 @@ export default function ITLabPage() {
               ) : (
                 <>
                   <p className="text-foreground/70 leading-relaxed">
-                    The IT labs at IIMT are designed to provide hands-on computing experience for students across all programs. Equipped with the latest hardware and licensed software, the labs support practical sessions in programming, database management, web development, and accounting software.
+                    The Digital Research Lab at Ishan Institute of Law is designed to provide students with the technological tools essential for modern legal practice. In an era where case law research and memorial drafting have become digitized, our lab ensures that students are proficient in using premier legal databases.
                   </p>
                   <p className="text-foreground/70 leading-relaxed">
-                    The lab infrastructure includes 100 Mbps dedicated internet connectivity, networked printers, UPS backup, and professional IT support.
+                    The lab is equipped with 60+ high-end terminals featuring 24/7 access to Manupatra, SCC Online, and LexisNexis. Beyond research, the facility supports students in mastering legal drafting software, document management, and academic writing tools like Grammarly and Turnitin.
                   </p>
                 </>
               )}

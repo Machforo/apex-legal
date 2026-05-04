@@ -1,101 +1,101 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Factory, Landmark, Cpu, Building2, ExternalLink } from "lucide-react";
+import { Landmark, Shield, Users, Scale, FileText } from "lucide-react";
 
 export default function IndustrialVisitsPage() {
   const ref = useScrollReveal();
 
   const visits = [
     {
-      company: "Mother Dairy",
-      sector: "FMCG / Manufacturing",
-      program: "B.Com, BBA",
+      company: "District & Sessions Court, Gautam Buddh Nagar",
+      sector: "District Judiciary",
+      program: "BA LLB, LLB",
       year: "2023-24",
-      outcome: "Understanding large-scale logistics, quality control, and supply chain management.",
+      outcome: "Understanding the practical procedure of trial courts, filing of suits, and examination of witnesses.",
     },
     {
-      company: "NSE (National Stock Exchange)",
-      sector: "Finance / BFSI",
-      program: "B.Com, M.Com",
+      company: "Supreme Court of India, New Delhi",
+      sector: "Apex Court",
+      program: "BA LLB, LLB",
       year: "2023-24",
-      outcome: "Insights into stock market operations, trading mechanisms, and financial regulations.",
+      outcome: "Observing constitutional bench proceedings and understanding the nuances of appellate advocacy.",
     },
     {
-      company: "Yamaha Motors",
-      sector: "Automobile / Tech",
-      program: "BCA, BBA",
+      company: "Central Jail, Tihar",
+      sector: "Correctional Services",
+      program: "BA LLB, LLB",
       year: "2022-23",
-      outcome: "Exposure to automated assembly lines and industrial management systems.",
+      outcome: "First-hand exposure to prison administration, reformation activities, and the rights of the incarcerated.",
     },
     {
-      company: "Parle-G",
-      sector: "FMCG",
-      program: "BBA",
+      company: "NCDRC, New Delhi",
+      sector: "Consumer Disputes",
+      program: "BA LLB",
       year: "2022-23",
-      outcome: "Learning about mass production processes and brand management in real-time.",
+      outcome: "Observing summary procedures and consumer rights enforcement in quasi-judicial bodies.",
     },
   ];
 
   return (
     <Layout>
       <PageHeader
-        title="Industrial Visits"
-        subtitle="Connecting classroom theory with real-world industrial operations."
-        breadcrumbs={[{ label: "Industrial Visits" }]}
+        title="Court & Jail Visits"
+        subtitle="Bridging the gap between legal theory and courtroom practice through structured exposure."
+        breadcrumbs={[{ label: "Court & Jail Visits" }]}
       />
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="reveal-left space-y-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Experiential Learning</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Clinical Legal Education</p>
               <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
-                Beyond the Classroom Walls
+                Law in Motion: Beyond Textbooks
               </h2>
               <p className="text-foreground/70 leading-relaxed">
-                Industrial visits are a core part of experiential learning at IIMT. Students visit manufacturing plants, financial institutions, tech companies, and government organisations to witness classroom theory in action. These visits are organised semester-wise for all programmes to ensure students stay updated with current industry practices.
+                At Ishan Law, we believe that the legal profession is best mastered through direct observation. Court and Jail visits are an integral part of our clinical legal education model. Students visit trial courts, high courts, and the supreme court to witness the living law in action. These structured visits ensure that our students are familiar with the procedural realities of the Indian judicial system long before they begin their practice.
               </p>
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-4 rounded-xl border bg-card flex items-center gap-3">
-                  <Factory className="w-5 h-5 text-gold" />
-                  <span className="text-xs font-bold text-foreground uppercase tracking-wider">Manufacturing</span>
-                </div>
-                <div className="p-4 rounded-xl border bg-card flex items-center gap-3">
                   <Landmark className="w-5 h-5 text-gold" />
-                  <span className="text-xs font-bold text-foreground uppercase tracking-wider">Finance</span>
+                  <span className="text-xs font-bold text-foreground uppercase tracking-wider">Judiciary</span>
                 </div>
                 <div className="p-4 rounded-xl border bg-card flex items-center gap-3">
-                  <Cpu className="w-5 h-5 text-gold" />
-                  <span className="text-xs font-bold text-foreground uppercase tracking-wider">Technology</span>
+                  <Shield className="w-5 h-5 text-gold" />
+                  <span className="text-xs font-bold text-foreground uppercase tracking-wider">Human Rights</span>
                 </div>
                 <div className="p-4 rounded-xl border bg-card flex items-center gap-3">
-                  <Building2 className="w-5 h-5 text-gold" />
-                  <span className="text-xs font-bold text-foreground uppercase tracking-wider">Corporate</span>
+                  <Users className="w-5 h-5 text-gold" />
+                  <span className="text-xs font-bold text-foreground uppercase tracking-wider">Advocacy</span>
+                </div>
+                <div className="p-4 rounded-xl border bg-card flex items-center gap-3">
+                  <Scale className="w-5 h-5 text-gold" />
+                  <span className="text-xs font-bold text-foreground uppercase tracking-wider">Justice</span>
                 </div>
               </div>
             </div>
 
             <div className="reveal-right bg-section-alt rounded-3xl p-8 md:p-10 border shadow-sm">
-              <h3 className="text-2xl font-display font-bold text-foreground mb-6">Why Visits Matter</h3>
+              <h3 className="text-2xl font-display font-bold text-foreground mb-6">Why These Visits Matter</h3>
               <ul className="space-y-6">
                 <li className="flex gap-4">
                   <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-1">
                     <span className="text-xs font-bold text-gold">1</span>
                   </div>
-                  <p className="text-foreground/70 text-sm">Professional environment exposure helps students adapt to workplace culture early.</p>
+                  <p className="text-foreground/70 text-sm">Understanding procedural law (CrPC, CPC, Evidence Act) in actual trial court settings.</p>
                 </li>
                 <li className="flex gap-4">
                   <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-1">
                     <span className="text-xs font-bold text-gold">2</span>
                   </div>
-                  <p className="text-foreground/70 text-sm">Industry networking opportunities with professionals and HR managers during visits.</p>
+                  <p className="text-foreground/70 text-sm">Observing courtroom etiquette and the professional conduct of advocates and judges.</p>
                 </li>
                 <li className="flex gap-4">
                   <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-1">
                     <span className="text-xs font-bold text-gold">3</span>
                   </div>
-                  <p className="text-foreground/70 text-sm">Organisational culture insights provide clarity on career paths and industry expectations.</p>
+                  <p className="text-foreground/70 text-sm">Developing empathy and social responsibility through exposure to prison reformation and legal aid needs.</p>
                 </li>
               </ul>
             </div>
@@ -105,7 +105,7 @@ export default function IndustrialVisitsPage() {
 
       <section className="py-16 md:py-24 bg-card">
         <div className="container-wide">
-          <h2 className="text-3xl font-display font-bold text-foreground mb-12 text-center">Recent Industrial Visits</h2>
+          <h2 className="text-3xl font-display font-bold text-foreground mb-12 text-center">Recent Institutional Visits</h2>
           <div className="grid md:grid-cols-2 gap-6">
             {visits.map((v, i) => (
               <div key={i} className="group p-6 rounded-2xl border bg-background hover:border-gold transition-all duration-300">

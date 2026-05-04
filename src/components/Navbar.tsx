@@ -24,9 +24,9 @@ const navLinks: NavItem[] = [
   {
     label: "About Us",
     featured: {
-      img: "https://images.unsplash.com/photo-1562774053-701939374585?w=800&q=80",
-      title: "30 Years of Excellence",
-      desc: "Pioneering professional education in Knowledge Park, Greater Noida since 1994.",
+      img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80",
+      title: "Excellence in Legal Education",
+      desc: "BCI Approved & NAAC Accredited institution in Greater Noida, dedicated to producing ethical legal professionals.",
       href: "/about",
     },
     columns: [
@@ -34,14 +34,76 @@ const navLinks: NavItem[] = [
         heading: "Institution",
         icon: Building2,
         links: [
-          { label: "About IIMT", href: "/about" },
-          { label: "Director's Message", href: "/director-message" },
+          { label: "About Ishan Law", href: "/about" },
+          { label: "Principal's Message", href: "/principal-message" },
           { label: "Mission & Vision", href: "/mission-vision" },
-          { label: "Why Choose Us", href: "/why-iimt" },
+          { label: "Why Choose Us", href: "/why-choose-us" },
           { label: "Best Practices", href: "/best-practices" },
           { label: "Green Initiatives", href: "/green-initiatives" },
           { label: "Approvals & Affiliations", href: "/approvals" },
           { label: "Mandatory Disclosure", href: "/mandatory-disclosure" },
+        ],
+      },
+      {
+        heading: "Regulatory",
+        icon: Shield,
+        links: [
+          { label: "BCI Compliance", href: "/mandatory-disclosure" },
+          { label: "Anti-Ragging", href: "/anti-ragging" },
+          { label: "Grievance Redressal", href: "/grievance-redressal" },
+          { label: "FAQs", href: "/faqs" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Our Courses",
+    featured: {
+      img: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=800&q=80",
+      title: "Professional Law Programs",
+      desc: "Integrated BA LLB and Professional LLB programs designed for modern legal practice.",
+      href: "/programs-overview",
+    },
+    columns: [
+      {
+        heading: "Law Programs",
+        icon: GraduationCap,
+        links: [
+          { label: "Programs Overview", href: "/programs-overview" },
+          { label: "BA LLB (Hons) - 5 Years", href: "/courses/ba-llb" },
+          { label: "LLB - 3 Years", href: "/courses/llb" },
+          { label: "Certificate Programs", href: "/certificate-programs" },
+        ],
+      },
+      {
+        heading: "Admissions",
+        icon: ArrowRight,
+        links: [
+          { label: "Admission Process", href: "/admissions" },
+          { label: "Scholarships", href: "/scholarships" },
+          { label: "Internship & Externship", href: "/internship-externship" },
+          { label: "Fee Structure", href: "/fee-payment" },
+        ],
+      },
+    ],
+  },
+  {
+    label: "Learning",
+    featured: {
+      img: "https://images.unsplash.com/photo-1453723490680-899513d4206e?w=800&q=80",
+      title: "Clinical Legal Education",
+      desc: "Beyond textbooks: Moot courts, legal aid clinics, and direct court exposure.",
+      href: "/moot-court",
+    },
+    columns: [
+      {
+        heading: "Clinical Training",
+        icon: Microscope,
+        links: [
+          { label: "Moot Court Sessions", href: "/moot-court" },
+          { label: "Legal Aid Cell", href: "/legal-aid-cell" },
+          { label: "Court & Jail Visits", href: "/court-jail-visits" },
+          { label: "Skill Development", href: "/skill-development" },
         ],
       },
       {
@@ -50,105 +112,43 @@ const navLinks: NavItem[] = [
         links: [
           { label: "Faculty Directory", href: "/faculty" },
           { label: "Visiting Faculty", href: "/visiting-faculty" },
-          { label: "Research Journal", href: "/research-journal" },
-          { label: "FAQs", href: "/faqs" },
         ],
       },
       {
-        heading: "Placements",
-        icon: Award,
+        heading: "Events",
+        icon: Camera,
         links: [
-          { label: "Placement Overview", href: "/placements" },
-          { label: "Placement Testimonials", href: "/placement-testimonials" },
-          { label: "Alumni Network", href: "/alumni-network" },
-          { label: "Entrepreneurship Cell", href: "/e-cell" },
+          { label: "News & Events", href: "/news-events" },
+          { label: "Debates & GD", href: "/debates-gd" },
+          { label: "Cultural Activities", href: "/cultural-activities" },
+          { label: "Guest Lectures", href: "/guest-lectures" },
         ],
       },
     ],
   },
   {
-    label: "Academics",
+    label: "Campus",
     featured: {
-      img: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&q=80",
-      title: "6 Professional Programmes",
-      desc: "Undergraduate & postgraduate courses in Management, Commerce, IT and Teacher Education.",
-      href: "/education-overview",
-    },
-    columns: [
-      {
-        heading: "Management & Commerce",
-        icon: BookOpen,
-        links: [
-          { label: "BBA", href: "/courses/bba" },
-          { label: "B.Com", href: "/courses/bcom" },
-          { label: "M.Com", href: "/courses/mcom" },
-        ],
-      },
-      {
-        heading: "Technology",
-        icon: Microscope,
-        links: [
-          { label: "BCA", href: "/courses/bca" },
-        ],
-      },
-      {
-        heading: "Education",
-        icon: GraduationCap,
-        links: [
-          { label: "Education Overview", href: "/education-overview" },
-          { label: "B.Ed", href: "/courses/bed" },
-          { label: "M.Ed", href: "/courses/med" },
-          { label: "Pedagogy Labs", href: "/pedagogy-labs" },
-        ],
-      },
-      {
-        heading: "Admissions",
-        icon: ArrowRight,
-        links: [
-          { label: "Admissions 2025-26", href: "/admissions" },
-          { label: "Admissions Enquiry", href: "/admissions-enquiry" },
-          { label: "Scholarships", href: "/scholarships" },
-          { label: "Certificate Programs", href: "/certificate-programs" },
-        ],
-      },
-    ],
-  },
-  {
-    label: "Campus Life",
-    featured: {
-      img: "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?w=800&q=80",
-      title: "Vibrant Campus Experience",
-      desc: "State-of-the-art facilities, cultural festivals, and endless opportunities to grow.",
+      img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80",
+      title: "World-Class Infrastructure",
+      desc: "Purpose-designed campus with specialized legal library and IT facilities.",
       href: "/infrastructure",
     },
     columns: [
       {
-        heading: "Learning & Activities",
-        icon: BookOpen,
-        links: [
-          { label: "News & Events", href: "/news-events" },
-          { label: "Events Calendar", href: "/events-calendar" },
-          { label: "Skill Development", href: "/skill-development" },
-          { label: "Cultural & Kshitiz", href: "/cultural-activities" },
-          { label: "Debates & GD", href: "/debates-gd" },
-          { label: "Industrial Visits", href: "/industrial-visits" },
-          { label: "Guest Lectures", href: "/guest-lectures" },
-        ],
-      },
-      {
-        heading: "Campus Facilities",
+        heading: "Facilities",
         icon: Building2,
         links: [
           { label: "Infrastructure", href: "/infrastructure" },
+          { label: "Legal Library", href: "/library" },
           { label: "IT Lab", href: "/it-lab" },
-          { label: "Library", href: "/library" },
           { label: "Auditorium", href: "/auditorium" },
-          { label: "Hostel", href: "/hostel" },
+          { label: "Hostel Facilities", href: "/hostel" },
           { label: "Sports", href: "/sports" },
         ],
       },
       {
-        heading: "Gallery & Media",
+        heading: "Gallery",
         icon: Camera,
         links: [
           { label: "Photo Gallery", href: "/photo-gallery" },
@@ -161,67 +161,52 @@ const navLinks: NavItem[] = [
   {
     label: "Student Zone",
     featured: {
-      img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80",
-      title: "Everything You Need",
-      desc: "Your one-stop hub for academic resources, portals, policies and student welfare.",
+      img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80",
+      title: "Student Resources",
+      desc: "One-stop access to academic materials, portals, and professional placements.",
       href: "/student-portal",
     },
     columns: [
       {
-        heading: "Resources",
+        heading: "Academic Hub",
         icon: FileText,
         links: [
           { label: "Downloads", href: "/downloads" },
           { label: "Past Exam Papers", href: "/past-papers" },
-          { label: "Fee Payment", href: "/fee-payment" },
+          { label: "Code of Conduct", href: "/code-of-conduct" },
           { label: "Student Portal", href: "/student-portal" },
         ],
       },
       {
-        heading: "Policies & Welfare",
-        icon: Shield,
+        heading: "Career & Research",
+        icon: Briefcase,
         links: [
-          { label: "Code of Conduct", href: "/code-of-conduct" },
-          { label: "Anti-Ragging", href: "/anti-ragging" },
-          { label: "Grievance Redressal", href: "/grievance-redressal" },
-          { label: "Privacy Policy", href: "/privacy-policy" },
+          { label: "Placements", href: "/placements" },
+          { label: "Research Journal", href: "/research-journal" },
+          { label: "Publications", href: "/publications" },
+          { label: "Alumni Network", href: "/alumni-network" },
         ],
       },
     ],
-    extraImgs: [
-      { img: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=500&q=80", caption: "Library & Resources", href: "/library" },
-      { img: "https://images.unsplash.com/photo-1588072432836-e10032774350?w=500&q=80", caption: "Campus Examinations", href: "/past-papers" },
-    ],
   },
   {
-    label: "Contact",
+    label: "Contact Us",
     featured: {
       img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
-      title: "We're Here to Help",
-      desc: "Reach out to our admissions team, explore career opportunities, or share your feedback.",
+      title: "Get in Touch",
+      desc: "Reach out to Ishan Law for admissions, career opportunities, and feedback.",
       href: "/contact",
     },
     columns: [
       {
-        heading: "Get in Touch",
-        icon: MessageSquare,
+        heading: "Connect",
+        icon: Phone,
         links: [
           { label: "Contact Us", href: "/contact" },
-          { label: "Admissions Enquiry", href: "/admissions-enquiry" },
+          { label: "Careers", href: "/careers" },
           { label: "Feedback", href: "/feedback" },
         ],
       },
-      {
-        heading: "Work With Us",
-        icon: Briefcase,
-        links: [
-          { label: "Careers at IIMT", href: "/careers" },
-        ],
-      },
-    ],
-    extraImgs: [
-      { img: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500&q=80", caption: "Knowledge Park Campus", href: "/contact" },
-      { img: "https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=500&q=80", caption: "Admissions Helpdesk", href: "/admissions-enquiry" },
     ],
   },
 ];
@@ -238,12 +223,10 @@ export default function Navbar({ isNotFound = false }: { isNotFound?: boolean })
 
   // Searchable items
   const searchableItems = [
-    { name: "BBA", href: "/courses/bba" },
-    { name: "BCA", href: "/courses/bca" },
-    { name: "B.Com", href: "/courses/bcom" },
-    { name: "M.Com", href: "/courses/mcom" },
-    { name: "B.Ed", href: "/courses/bed" },
-    { name: "M.Ed", href: "/courses/med" },
+    { name: "BA LLB (Hons)", href: "/courses/ba-llb" },
+    { name: "LLB (3 Years)", href: "/courses/llb" },
+    { name: "Moot Court", href: "/moot-court" },
+    { name: "Legal Aid Cell", href: "/legal-aid-cell" },
     { name: "Admissions", href: "/admissions" },
     { name: "Placements", href: "/placements" },
     { name: "Faculty", href: "/faculty" },
@@ -282,16 +265,16 @@ export default function Navbar({ isNotFound = false }: { isNotFound?: boolean })
     const currentSize = parseFloat(getComputedStyle(root).getPropertyValue('--base-font-size') || "16");
     const newSize = Math.max(12, Math.min(24, currentSize + amount));
     root.style.setProperty('--base-font-size', `${newSize}px`);
-    localStorage.setItem('iimt_font_size', newSize.toString());
+    localStorage.setItem('ishan_law_font_size', newSize.toString());
   };
 
   const resetFont = () => {
     document.documentElement.style.setProperty('--base-font-size', '16px');
-    localStorage.setItem('iimt_font_size', '16');
+    localStorage.setItem('ishan_law_font_size', '16');
   };
 
   useEffect(() => {
-    const savedSize = localStorage.getItem('iimt_font_size');
+    const savedSize = localStorage.getItem('ishan_law_font_size');
     if (savedSize) {
       document.documentElement.style.setProperty('--base-font-size', `${savedSize}px`);
     }
@@ -343,14 +326,14 @@ export default function Navbar({ isNotFound = false }: { isNotFound?: boolean })
         <div className={`container-wide flex items-center justify-between transition-all duration-500 ${scrolled ? "h-14 md:h-[64px]" : "h-16 md:h-20"}`}>
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-3 shrink-0">
-            <img src="/favicon.png" alt="IIMT Logo" className="h-8 md:h-10 w-auto" />
+            <Link to="/" className="flex items-center gap-3 shrink-0">
+            <img src="/favicon.png" alt="Ishan Legal Logo" className="h-8 md:h-10 w-auto" />
             <div className="flex flex-col leading-tight">
               <span className={`font-display font-bold text-lg md:text-xl tracking-tight transition-colors duration-500 ${(scrolled || isNotFound) ? "text-navy" : "text-white drop-shadow-lg"}`}>
                 ISHAN
               </span>
               <span className={`text-[9px] uppercase font-bold tracking-[0.15em] leading-none transition-colors duration-500 ${(scrolled || isNotFound) ? "text-muted-foreground" : "text-white/90 drop-shadow-md"}`}>
-                Institute of Management &amp; Technology
+                Institute of Law
               </span>
             </div>
           </Link>
@@ -380,7 +363,7 @@ export default function Navbar({ isNotFound = false }: { isNotFound?: boolean })
             </button>
             <Link
               to="/admissions"
-              className={`hidden md:inline-flex items-center px-5 py-2.5 text-[13px] font-bold rounded-xl shadow-lg transition-all active:scale-[0.98] ${scrolled ? "bg-gold text-navy hover:scale-[1.02]" : "bg-white text-navy hover:bg-gold hover:scale-[1.05]"}`}
+              className={`hidden md:inline-flex items-center px-5 py-2.5 text-[13px] font-bold rounded-xl shadow-lg transition-all active:scale-[0.98] shimmer-btn ${scrolled ? "bg-gold text-navy hover:scale-[1.02]" : "bg-white text-navy hover:bg-gold hover:scale-[1.05]"}`}
             >
               Apply Now
             </Link>
@@ -596,7 +579,7 @@ export default function Navbar({ isNotFound = false }: { isNotFound?: boolean })
                     <div>
                       <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-6">Popular Searches</p>
                       <div className="flex flex-wrap gap-3">
-                        {["BBA", "BCA", "B.Com", "Admissions", "Placements", "Contact"].map(tag => (
+                        {["BA LLB", "LLB", "Moot Court", "Admissions", "Placements", "Contact"].map(tag => (
                           <button 
                             key={tag}
                             onClick={() => setSearchQuery(tag)}

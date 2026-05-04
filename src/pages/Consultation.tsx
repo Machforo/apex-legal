@@ -34,16 +34,16 @@ export default function Consultation() {
             <div>
               <h2 className="text-3xl font-display font-bold text-navy mb-4">Why Book a Consultation?</h2>
               <p className="text-muted-foreground leading-relaxed">
-                Choosing the right professional degree is the most important decision of your career. Our academic counsellors are here to help you navigate your options, understand the placement landscape, and find your perfect fit at IIMT.
+                Choosing the right professional degree is the most important decision of your career. Our academic counsellors are here to help you navigate your options, understand the legal career landscape, and find your perfect fit at Ishan Law.
               </p>
             </div>
             
             <ul className="space-y-6">
               {[
-                { title: "Personalized Career Path", desc: "Get tailored advice based on your strengths and goals." },
-                { title: "Course Details & Curriculum", desc: "Understand exactly what you'll learn and how it applies to the real world." },
-                { title: "Placement & Internship Opportunities", desc: "Learn about our 150+ corporate tie-ups and average salary packages." },
-                { title: "Scholarship Guidance", desc: "Find out if you qualify for merit-based or early-bird scholarships." }
+                { title: "Personalized Legal Career Path", desc: "Get tailored advice on pursuing litigation, corporate law, or the judiciary." },
+                { title: "Course Details & Curriculum", desc: "Understand how our clinical legal education model prepares you for the courtroom." },
+                { title: "Judiciary & Placement Support", desc: "Learn about our dedicated Judicial Services Cell and internships with top firms and advocates." },
+                { title: "Scholarship Guidance", desc: "Find out if you qualify for merit-based or Ishan Law entrance test scholarships." }
               ].map((item, i) => (
                 <li key={i} className="flex gap-4">
                   <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center shrink-0">
@@ -128,12 +128,8 @@ export default function Consultation() {
                           className="w-full pl-12 pr-4 py-3.5 bg-muted/50 border rounded-xl outline-none focus:ring-2 focus:ring-gold/60 focus:bg-white appearance-none transition-all text-sm cursor-pointer"
                         >
                           <option value="" disabled>Select Programme</option>
-                          <option value="BBA">BBA (Bachelor of Business Administration)</option>
-                          <option value="BCA">BCA (Bachelor of Computer Applications)</option>
-                          <option value="B.Com">B.Com (Bachelor of Commerce)</option>
-                          <option value="M.Com">M.Com (Master of Commerce)</option>
-                          <option value="B.Ed">B.Ed (Bachelor of Education)</option>
-                          <option value="M.Ed">M.Ed (Master of Education)</option>
+                          <option value="BA LLB">BA LLB (5-Year Integrated Degree)</option>
+                          <option value="LLB">LLB (3-Year Professional Degree)</option>
                           <option value="Not Sure">Not sure yet, need guidance</option>
                         </select>
                       </div>
@@ -179,7 +175,7 @@ export default function Consultation() {
                     </button>
                     
                     <p className="text-xs text-center text-muted-foreground">
-                      By submitting this form, you agree to our privacy policy and authorize IIMT to contact you regarding your consultation.
+                      By submitting this form, you agree to our privacy policy and authorize Ishan Law to contact you regarding your consultation.
                     </p>
                   </form>
                 </>

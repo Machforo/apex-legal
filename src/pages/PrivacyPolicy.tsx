@@ -9,7 +9,7 @@ export default function PrivacyPolicyPage() {
       <PageHeader title="Privacy Policy" breadcrumbs={[{ label: "Privacy Policy" }]} />
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide"><div className="max-w-3xl mx-auto reveal space-y-6 text-sm text-foreground/70 leading-relaxed">
-          <p>Ishan Educational Group ("we," "us," "our") is committed to protecting the privacy of visitors to our websites (ishan.ac and all sub-sites including iimt.ishan.ac). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or submit forms.</p>
+          <p>Ishan Educational Group ("we," "us," "our") is committed to protecting the privacy of visitors to our websites (ishan.ac and all sub-sites including legal.ishan.ac). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or submit forms.</p>
           <h2 className="text-lg font-display font-bold text-foreground">Information We Collect</h2>
           <p>We may collect personal information that you voluntarily provide when filling out enquiry forms, admission applications, feedback forms, or fee payment portals. This includes: name, email address, phone number, mailing address, date of birth, educational qualifications, and payment information.</p>
           <h2 className="text-lg font-display font-bold text-foreground">How We Use Your Information</h2>

@@ -1,35 +1,30 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { CheckCircle2, Beaker, Video, Monitor, BookOpen, GraduationCap } from "lucide-react";
+import { CheckCircle2, Gavel, Video, Monitor, BookOpen, Scale } from "lucide-react";
 
-export default function PedagogyLabsPage() {
+export default function MootCourtPage() {
   const ref = useScrollReveal();
 
   const facilities = [
     {
-      title: "Micro-teaching Studio",
-      description: "Equipped with recording and playback facilities for self-evaluation and peer feedback.",
+      title: "High-Tech Moot Court Hall",
+      description: "A professionally designed courtroom environment with a judge's bench, witness box, and counsel tables.",
+      icon: <Gavel className="w-6 h-6 text-gold" />,
+    },
+    {
+      title: "Video Recording & Review",
+      description: "Equipped with HD cameras to record student arguments for self-evaluation and faculty feedback.",
       icon: <Video className="w-6 h-6 text-gold" />,
     },
     {
-      title: "Language Lab",
-      description: "Focuses on communication skills and linguistic proficiency for trainee teachers.",
+      title: "Digital Research Wing",
+      description: "High-speed terminals with access to SCC Online and Manupatra for instant case law verification.",
       icon: <Monitor className="w-6 h-6 text-gold" />,
     },
     {
-      title: "Science Teaching Lab",
-      description: "Equipped with apparatus for demonstrating scientific concepts in school settings.",
-      icon: <Beaker className="w-6 h-6 text-gold" />,
-    },
-    {
-      title: "ICT Integration Lab",
-      description: "Training in using digital tools, smart boards, and educational software.",
-      icon: <Monitor className="w-6 h-6 text-gold" />,
-    },
-    {
-      title: "Resource Material Library",
-      description: "A collection of teaching aids, charts, and models developed by students.",
+      title: "Memorial Drafting Zone",
+      description: "Dedicated workspace for teams to collaborate on research and drafting of legal memorials.",
       icon: <BookOpen className="w-6 h-6 text-gold" />,
     },
   ];
@@ -37,34 +32,34 @@ export default function PedagogyLabsPage() {
   return (
     <Layout>
       <PageHeader
-        title="Demo Teaching & Pedagogy Labs"
-        subtitle="Dedicated facilities for nurturing professional teaching skills and practical pedagogy."
-        breadcrumbs={[{ label: "Pedagogy Labs" }]}
+        title="Moot Court & Clinical Training"
+        subtitle="Bridging the gap between legal theory and courtroom practice through intensive clinical training."
+        breadcrumbs={[{ label: "Learning", href: "/news-events" }, { label: "Moot Court" }]}
       />
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="reveal-left space-y-6">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Facility Overview</p>
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Advocacy Training</p>
               <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">
-                Simulated Classrooms for Future Educators
+                Simulated Excellence for Future Advocates
               </h2>
               <p className="text-foreground/70 leading-relaxed">
-                IIMT provides dedicated labs with micro-teaching setups, video recording for self-evaluation, and simulated classroom environments for trainee teachers. These facilities allow students to practice their teaching methodology in a controlled, supportive environment before entering real schools for internships.
+                Ishan Law provides a state-of-the-art Moot Court Hall that simulates a realistic High Court environment. This facility is central to our Clinical Legal Education model, where students learn to research, draft memorials, and present oral arguments before a bench of legal experts and practicing advocates.
               </p>
               <div className="space-y-4">
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-1" />
-                  <p className="text-foreground/80 font-medium">Confidence building before school internships</p>
+                  <p className="text-foreground/80 font-medium">Mandatory mooting for all students starting from Year 1</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-1" />
-                  <p className="text-foreground/80 font-medium">Systematic lesson plan development and testing</p>
+                  <p className="text-foreground/80 font-medium">Structured training in legal research and memorial drafting</p>
                 </div>
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="w-5 h-5 text-gold shrink-0 mt-1" />
-                  <p className="text-foreground/80 font-medium">Culture of peer feedback and reflective practice</p>
+                  <p className="text-foreground/80 font-medium">Exposure to national and international moot court competitions</p>
                 </div>
               </div>
             </div>
@@ -85,10 +80,10 @@ export default function PedagogyLabsPage() {
       <section className="py-16 md:py-24 bg-section-alt">
         <div className="container-wide text-center">
           <div className="max-w-3xl mx-auto space-y-6">
-            <GraduationCap className="w-12 h-12 text-gold mx-auto" />
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">Practice Teaching Programme</h2>
+            <Scale className="w-12 h-12 text-gold mx-auto" />
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">Clinical Legal Education</h2>
             <p className="text-foreground/70 leading-relaxed">
-              Our 20-week supervised placement at partner schools is a cornerstone of the B.Ed and M.Ed programmes. Students engage in lesson plan development, reflective journal maintenance, and receive regular faculty supervision to ensure high standards of pedagogical practice.
+              Our clinical training goes beyond mooting to include legal aid camps, client counseling sessions, and court visits. We ensure that every Ishan Law student is not just a degree holder, but a practice-ready legal professional equipped with the ethics and skills required for modern advocacy.
             </p>
           </div>
         </div>

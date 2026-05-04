@@ -10,7 +10,7 @@ export default function CTASection() {
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", course: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
   const { data } = useIIMTData("homepage");
-  const ctaContent = data?.contactUs?.content || "Admissions are open for 2025-26. Connect with our counsellors for guidance on programs, eligibility, and scholarships.";
+  const ctaContent = data?.contactUs?.content || "Admissions are open for the session 2025-26. Connect with our admission counselors to discuss your career in law and clarify your doubts about eligibility and the application process.";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ export default function CTASection() {
     
     setSubmitting(true);
     try {
-      const res = await fetch("http://localhost:5000/api/iimt/leads", {
+      const res = await fetch("http://localhost:5000/api/legal/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
@@ -43,7 +43,7 @@ export default function CTASection() {
     <section id="contact" className="relative py-24 md:py-32 overflow-hidden" ref={ref}>
       {/* Background */}
       <div className="absolute inset-0">
-        <img src={auditoriumImg} alt="" className="w-full h-full object-cover" />
+        <img src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=1200" alt="" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-[hsl(var(--navy-dark)/0.9)]" />
       </div>
 
@@ -53,7 +53,7 @@ export default function CTASection() {
           <div className="reveal-left space-y-6">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Get In Touch</p>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-primary-foreground leading-tight">
-              Start Your Journey at IIMT Today
+              Begin Your Legal Career at Ishan Institute of Law
             </h2>
             <p className="text-primary-foreground/60 leading-relaxed whitespace-pre-wrap">
               {ctaContent}
@@ -62,7 +62,7 @@ export default function CTASection() {
             <div className="space-y-4 pt-4">
               {[
                 { icon: Phone, text: "8448797700", href: "tel:+918448797700" },
-                { icon: MapPin, text: "Greater Noida, Uttar Pradesh — Delhi NCR" },
+                { icon: MapPin, text: "Knowledge Park III, Greater Noida — Delhi NCR" },
                 { icon: Clock, text: "Mon – Sat: 9:00 AM – 5:00 PM" },
               ].map(({ icon: Icon, text, href }) => (
                 <div key={text} className="flex items-center gap-3">
@@ -118,12 +118,8 @@ export default function CTASection() {
                   onChange={(e) => setFormData({ ...formData, course: e.target.value })}
                 >
                   <option value="">Select Program</option>
-                  <option value="BBA">BBA</option>
-                  <option value="B.Com">B.Com</option>
-                  <option value="BCA">BCA</option>
-                  <option value="M.Com">M.Com</option>
-                  <option value="B.Ed">B.Ed</option>
-                  <option value="M.Ed">M.Ed</option>
+                  <option value="BA LLB">BA LLB (5 Years)</option>
+                  <option value="LLB">LLB (3 Years)</option>
                 </select>
                 <textarea
                   placeholder="Your Message (optional)"
@@ -135,7 +131,7 @@ export default function CTASection() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-3.5 text-sm font-semibold bg-gold text-foreground rounded-lg shadow-[0_4px_16px_hsl(var(--gold)/0.3)] hover:shadow-[0_6px_24px_hsl(var(--gold)/0.4)] transition-shadow active:scale-[0.97] disabled:opacity-70"
+                  className="w-full py-3.5 text-sm font-semibold bg-gold text-foreground rounded-lg shadow-[0_4px_16px_hsl(var(--gold)/0.3)] hover:shadow-[0_6px_24px_hsl(var(--gold)/0.4)] transition-shadow active:scale-[0.97] disabled:opacity-70 shimmer-btn"
                 >
                   {submitting ? "Submitting..." : "Submit Enquiry"}
                 </button>

@@ -31,7 +31,7 @@ export default function HostelPage() {
           <div className="max-w-4xl mx-auto">
             <div className="reveal space-y-5 mb-12">
               <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
-                {content || "IIMT provides comfortable hostel accommodation for both boys and girls in separate residential blocks located within 200 metres of the main campus. The hostel offers a home-away-from-home experience with furnished rooms, nutritious mess meals, and 24/7 security — allowing students to focus on their academics in a safe environment."}
+                {content || "Ishan Institute of Law provides comfortable hostel accommodation for both boys and girls in separate residential blocks located within 200 metres of the main campus. The hostel offers a home-away-from-home experience with furnished rooms, nutritious mess meals, and 24/7 security — allowing students to focus on their academics in a safe environment."}
               </p>
             </div>
 

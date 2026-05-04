@@ -6,12 +6,12 @@ import { Award, ExternalLink } from "lucide-react";
 import { useIIMTData } from "@/hooks/useIIMTData";
 
 const defaultScholarships = [
-  { category: "Merit Scholarship", concession: "Up to 25% fee waiver", description: "Automatically applied for students in the top 10% of university exam results." },
-  { category: "SC/ST/OBC Scholarship", concession: "As per UP Scholarship Portal norms", description: "Apply through scholarship.up.gov.in. IIMT assists in documentation." },
+  { category: "ILET Merit Scholarship", concession: "Up to 100% tuition fee waiver", description: "Awarded to top performers in the Ishan Law Entrance Test (ILET). Details available at the time of counseling." },
+  { category: "Academic Excellence", concession: "Up to 25% fee waiver", description: "Automatically applied for students with 90% and above in 10+2 (for BA LLB) or Graduation (for LLB)." },
+  { category: "SC/ST/OBC Scholarship", concession: "As per UP Scholarship Portal norms", description: "Apply through scholarship.up.gov.in. Ishan Law assists in documentation and verification." },
   { category: "Economically Weaker Section", concession: "Partial fee concession", description: "Family income below ₹2.5 LPA. Submit income certificate with admission application." },
   { category: "Sibling Discount", concession: "10% fee waiver", description: "Two or more siblings enrolled simultaneously at Ishan Group. Inform admissions office during enrolment." },
   { category: "Sports Scholarship", concession: "Up to 15% fee waiver", description: "State or National level sports achievement required. Submit certificates during admission." },
-  { category: "Single Girl Child", concession: "5% fee concession", description: "Sole girl child in family. Submit affidavit with admission documents." },
 ];
 
 export default function ScholarshipsPage() {
@@ -24,7 +24,7 @@ export default function ScholarshipsPage() {
     <Layout>
       <PageHeader
         title="Scholarships"
-        subtitle="Financial support options for deserving students across all programs"
+        subtitle="Financial support options for deserving legal aspirants across all programs"
         breadcrumbs={[{ label: "Admissions", href: "/admissions" }, { label: "Scholarships" }]}
       />
 
@@ -32,7 +32,7 @@ export default function ScholarshipsPage() {
         <div className="container-wide">
           <div className="max-w-4xl mx-auto">
             <p className="reveal text-foreground/70 leading-relaxed mb-12">
-              IIMT believes that financial constraints should never hinder a student's access to quality education. We offer multiple scholarship schemes — merit-based, category-based, and need-based — to ensure that every deserving student can pursue their academic goals.
+              Ishan Law believes that financial constraints should never hinder a student's access to quality legal education. We offer multiple scholarship schemes — including ILET merit awards, category-based support, and need-based concessions — to ensure that every deserving student can pursue their legal career.
             </p>
 
             <div className="space-y-6">

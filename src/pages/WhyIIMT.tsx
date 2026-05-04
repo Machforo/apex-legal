@@ -6,14 +6,14 @@ import { Award, Users, Globe, BookOpen, Building, TrendingUp, Shield, Lightbulb,
 import { useIIMTData } from "@/hooks/useIIMTData";
 
 const defaultReasons = [
-  { icon: Award, title: "30 Years of Academic Legacy", description: "Established in 1994, IIMT has three decades of experience in producing industry-ready professionals. Our legacy is built on a foundation of trust, quality, and a proven track record of transforming students into leaders in Knowledge Park, Greater Noida." },
-  { icon: Users, title: "Experienced & Mentoring Faculty", description: "Our faculty is a rich blend of academic researchers and industry practitioners. With qualifications from top universities, they bring real-world context to the classroom and maintain a strong mentoring culture for every student." },
-  { icon: Lightbulb, title: "Practical & Experiential Learning", description: "Education at IIMT goes beyond theory. We emphasize case studies, live projects, industrial visits, and hands-on training through our E-Cell and skill development workshops to ensure practical proficiency." },
-  { icon: TrendingUp, title: "Dedicated Placement Support", description: "Our active placement cell works year-round to build corporate tie-ups and organize placement drives. We provide comprehensive interview preparation, aptitude training, and communication workshops to ensure students are career-ready." },
-  { icon: Building, title: "Modern Campus & Facilities", description: "Located in the educational hub of Knowledge Park I, our campus features smart classrooms, well-equipped IT labs, a vast library, and a professional auditorium, all designed to enhance the student experience." },
-  { icon: Heart, title: "Vibrant Student Life", description: "From the flagship 'Kshitiz' annual fest to NSS activities and sports meets, IIMT offers a vibrant campus life that encourages talent, teamwork, and overall personality development." },
-  { icon: Shield, title: "Regulatory Excellence", description: "NAAC accredited and fully approved by AICTE and NCTE, with affiliation to CCS University, Meerut. We maintain the highest standards of regulatory compliance for student peace of mind." },
-  { icon: GraduationCap, title: "Holistic Development Focus", description: "We focus on the all-round development of our students, integrating soft skills, professional etiquette, and ethical values into the core academic experience." },
+  { icon: Shield, title: "BCI Approved & NAAC Accredited", description: "Ishan Institute of Law is fully recognized by the Bar Council of India (BCI) and NAAC accredited, ensuring that your professional degree is globally valid and meets the highest regulatory standards." },
+  { icon: Building, title: "Clinical Legal Education Focus", description: "We bridge the gap between classroom theory and courtroom reality through an integrated clinical legal education model, prioritizing practical skills over rote memorization." },
+  { icon: Award, title: "Mandatory Court & Jail Exposure", description: "From the very first semester, our students undergo structured visits to District Courts, High Courts, and the Supreme Court, providing them with firsthand insight into the judicial process." },
+  { icon: Users, title: "Expert Advocate Faculty", description: "Learn from a distinguished faculty of practicing advocates, legal scholars, and retired judicial officers who bring live cases and contemporary legal challenges into the classroom." },
+  { icon: GraduationCap, title: "Dedicated Judicial Services Cell", description: "For students aspiring to enter the judiciary, we provide specialized coaching, guest lectures from judges, and competitive exam preparation starting from the early years of the program." },
+  { icon: BookOpen, title: "State-of-the-Art Moot Court Hall", description: "Our specialized moot court hall provides a professional environment for students to sharpen their advocacy skills, research complex cases, and participate in national competitions." },
+  { icon: Lightbulb, title: "Digital Research Terminals", description: "Students have 24/7 access to premier legal databases like Manupatra, SCC Online, and LexisNexis, ensuring they are proficient in modern legal research techniques." },
+  { icon: Heart, title: "Legal Aid & Community Service", description: "Through our Legal Aid Cell, students provide free legal assistance to the underprivileged, developing a strong sense of social responsibility and ethical legal practice." },
 ];
 
 export default function WhyIIMTPage() {
@@ -25,9 +25,9 @@ export default function WhyIIMTPage() {
   return (
     <Layout>
       <PageHeader
-        title="Why IIMT?"
-        subtitle="10 reasons why students and parents choose IIMT for quality education in Delhi NCR"
-        breadcrumbs={[{ label: "Why IIMT?" }]}
+        title="Why Ishan Law?"
+        subtitle="8 reasons why students choose Ishan Institute of Law for a career in advocacy and judiciary"
+        breadcrumbs={[{ label: "Why Ishan Law?" }]}
       />
 
       <section className="py-20 md:py-28" ref={ref}>

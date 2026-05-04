@@ -15,7 +15,7 @@ export default function StudentPortalPage() {
         <div className="container-wide">
           <div className="max-w-2xl mx-auto">
             <div className="reveal space-y-4 mb-10 text-center">
-              <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">{content?.instructions || "Current IIMT students can access their Office 365 accounts for email, timetables, and academic resources. Examination results are available through the CCS University result portal."}</p>
+              <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">{content?.instructions || "Current Ishan Law students can access their academic profiles, attendance records, and library resources through the unified student portal. University examination results are available via the CCS University portal."}</p>
             </div>
             
             {content?.link ? (

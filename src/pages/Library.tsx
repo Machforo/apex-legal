@@ -12,27 +12,27 @@ export default function LibraryPage() {
   const library = data?.library;
   const content = library?.content;
   const specs = library?.specs?.length > 0 ? library.specs : [
-    { label: "Total Books", value: "15,000+" },
-    { label: "Journals", value: "50+ subscriptions" },
-    { label: "Reading Room", value: "100+ seats" },
-    { label: "Timings", value: "8 AM – 6 PM" },
-    { label: "Digital Access", value: "INFLIBNET N-LIST" },
-    { label: "Borrowing Limit", value: "3 books / 14 days" },
-    { label: "E-Journals", value: "6,000+ via N-LIST" },
-    { label: "Archive", value: "Past papers & dissertations" },
+    { label: "Total Titles", value: "10,000+" },
+    { label: "Law Reports", value: "AIR, SCC, SCR" },
+    { label: "Digital Access", value: "Manupatra, SCC Online" },
+    { label: "Bare Acts", value: "150+ unique titles" },
+    { label: "Reading Room", value: "150+ seats" },
+    { label: "Timings", value: "8 AM – 8 PM" },
+    { label: "Journals", value: "National & Int'l" },
+    { label: "Borrowing", value: "4 books / 14 days" },
   ];
   return (
     <Layout>
       <PageHeader
-        title="Library"
-        subtitle="A comprehensive knowledge resource centre supporting academic excellence"
+        title="Legal Library"
+        subtitle="A specialized resource centre for legal scholarship and research"
         breadcrumbs={[{ label: "Campus", href: "/infrastructure" }, { label: "Library" }]}
       />
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="max-w-4xl mx-auto">
-            <div className="reveal rounded-2xl overflow-hidden shadow-[0_8px_40px_hsl(var(--navy)/0.1)] mb-10">
-              <img src={library?.imageUrl || defaultImage} alt="IIMT Library" className="w-full h-[350px] object-cover" />
+            <div className="reveal rounded-2xl overflow-hidden shadow-[0_8px_40px_hsl(var(--navy)/0.1)] mb-10 border">
+              <img src={library?.imageUrl || "https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1200&auto=format&fit=crop"} alt="Ishan Law Library" className="w-full h-[350px] object-cover" />
             </div>
             <div className="reveal space-y-5 mb-12">
               {content ? (
@@ -40,10 +40,10 @@ export default function LibraryPage() {
               ) : (
                 <>
                   <p className="text-foreground/70 leading-relaxed">
-                    The IIMT library serves as the academic backbone of the institution, housing over 15,000 books across management, commerce, computer science, education, and general reference categories. The library subscribes to national and international journals and provides INFLIBNET N-LIST access for digital resources.
+                    The Legal Library at Ishan Institute of Law is the academic cornerstone of our institution, meticulously curated to support the research needs of aspiring advocates and legal scholars. Our collection includes an extensive range of legal treatises, commentaries, and encyclopedias across diverse branches of law.
                   </p>
                   <p className="text-foreground/70 leading-relaxed">
-                    A spacious reading room accommodates 100+ students simultaneously, providing a quiet, air-conditioned environment for focused study.
+                    We maintain complete sets of the All India Reporter (AIR), Supreme Court Cases (SCC), and Supreme Court Reports (SCR). To ensure our students stay abreast of contemporary developments, we provide 24/7 access to premier digital databases such as Manupatra and SCC Online. The library also features a dedicated reading zone and a digital research wing equipped with high-speed terminals.
                   </p>
                 </>
               )}

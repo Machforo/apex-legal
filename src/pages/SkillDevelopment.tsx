@@ -7,12 +7,21 @@ export default function SkillDevelopmentPage() {
   const ref = useScrollReveal();
   return (
     <Layout>
-      <PageHeader title="Skill Development" subtitle="Soft skills, communication, and leadership training integrated into every program" breadcrumbs={[{ label: "Learning" }, { label: "Skill Development" }]} />
+      <PageHeader title="Skill Development" subtitle="Advocacy skills, legal research, and courtroom etiquette integrated into our curriculum" breadcrumbs={[{ label: "Learning" }, { label: "Skill Development" }]} />
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide"><div className="max-w-3xl mx-auto reveal space-y-6">
-          <p className="text-foreground/70 leading-relaxed">IIMT's Skill Development Cell organizes structured workshops and training sessions every semester, designed to bridge the gap between academic knowledge and professional competence. These programs are mandatory for all students and contribute to their overall personality development.</p>
+          <p className="text-foreground/70 leading-relaxed">The Skill Development Cell at Ishan Law organizes specialized workshops and clinical training sessions designed to transform legal aspirants into practice-ready advocates. These programs focus on the core competencies required for successful litigation, judicial services, and corporate legal careers.</p>
           <div className="grid sm:grid-cols-2 gap-4">
-            {["Communication Skills & Public Speaking", "Resume Building & Interview Prep", "Leadership & Team Management", "Business Etiquette & Grooming", "Presentation Skills", "Time Management & Goal Setting", "Critical Thinking & Problem Solving", "Emotional Intelligence"].map((s) => (
+            {[
+              "Legal Research & Online Databases",
+              "Memorial & Legal Drafting",
+              "Mooting & Oral Advocacy",
+              "Client Counseling & Interviewing",
+              "ADR, Mediation & Conciliation",
+              "Courtroom Etiquette & Decorum",
+              "Public Speaking & Debating",
+              "Case Analysis & Strategic Reasoning"
+            ].map((s) => (
               <div key={s} className="flex items-center gap-2.5 px-4 py-3 rounded-lg border bg-card text-sm text-foreground/80">
                 <div className="w-1.5 h-1.5 rounded-full bg-gold shrink-0" /> {s}
               </div>

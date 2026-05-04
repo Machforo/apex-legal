@@ -6,24 +6,24 @@ import { FileText, Calendar, Phone, CheckCircle2, ArrowRight } from "lucide-reac
 import { useIIMTData } from "@/hooks/useIIMTData";
 
 const steps = [
-  { num: "01", title: "CCS University Registration", desc: "Begin by registering on the official CCS University web-portal. This is mandatory for all students seeking admission to B.Com, BBA, BCA, M.Com, B.Ed, and M.Ed programmes at IIMT." },
-  { num: "02", title: "Entrance Exam Participation", desc: "Appear for the relevant entrance examinations. CUET is mandatory for UG programs; UP Joint B.Ed Entrance for B.Ed; and the CCS University Entrance for M.Ed admissions." },
-  { num: "03", title: "Merit-Based Selection", desc: "Admissions are processed through centralized university counselling. Seat allotment is based on your entrance merit and preference for IIMT as your choice institution." },
-  { num: "04", title: "Document Verification", desc: "Once allotted a seat, visit our Knowledge Park campus with original documents (marksheets, transfer certificates, and scorecards) for physical verification and registration." },
-  { num: "05", title: "Fee Submission & Finalization", desc: "Finalize your admission by submitting the requisite semester fees. Our administrative team will guide you through the final registration on the university and college portals." },
+  { num: "01", title: "CCS University Registration", desc: "Begin by registering on the official CCS University web-portal. This is the mandatory first step for all students seeking admission to BA LLB and LLB programmes at Ishan Law." },
+  { num: "02", title: "Entrance Exam & Registration", desc: "Submit your application form at Ishan Institute of Law. Admissions are based on merit in CLAT, LSAT-India, or the Ishan Law Entrance Test (ILET) followed by a personal interview." },
+  { num: "03", title: "Personal Interview (PI)", desc: "Shortlisted candidates are invited for a personal interview to assess their aptitude for legal studies, communication skills, and ethical reasoning." },
+  { num: "04", title: "Document Verification", desc: "Upon selection, visit our campus in Knowledge Park-III with original documents including marksheets, migration certificates, and character certificates for physical verification." },
+  { num: "05", title: "Admission Finalization", desc: "Confirm your seat by submitting the requisite admission fees. Our team will assist you with the final enrollment on the University and Bar Council of India portals." },
 ];
 
 const documents = [
-  "10th & 12th Marksheets (original + 2 copies)",
-  "Graduation Marksheets (for PG/B.Ed/M.Ed)",
-  "Transfer Certificate from last institution",
-  "Migration Certificate",
-  "Character Certificate",
-  "Category Certificate (SC/ST/OBC if applicable)",
-  "Aadhar Card (original + copy)",
+  "10th & 12th Marksheets (Original + 3 Copies)",
+  "Graduation Marksheets (for 3-Year LLB)",
+  "Transfer & Migration Certificates",
+  "Character Certificate from last institution",
+  "Aadhar Card (Original + Copy)",
   "8 Passport-size Photographs",
-  "CUET / JEECUP Scorecard",
-  "Allotment Letter from counselling portal",
+  "CLAT / LSAT-India / ILET Scorecard",
+  "Category Certificate (if applicable)",
+  "Income Certificate (for scholarship applicants)",
+  "Medical Fitness Certificate",
 ];
 
 export default function AdmissionsPage() {
@@ -39,7 +39,7 @@ export default function AdmissionsPage() {
     <Layout>
       <PageHeader
         title="Admissions 2025-26"
-        subtitle="Step-by-step guide to securing your seat at IIMT — BBA, B.Com, BCA, M.Com, B.Ed & M.Ed"
+        subtitle="Your pathway to a professional legal career — BA LLB (Hons) & LLB"
         breadcrumbs={[{ label: "Admissions" }]}
       />
 

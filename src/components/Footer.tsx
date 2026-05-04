@@ -2,26 +2,25 @@ import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Linkedin, Twitter } 
 import { Link } from "react-router-dom";
 
 const quickLinks = [
-  { label: "About IIMT", href: "/about" },
-  { label: "Programs", href: "/education-overview" },
+  { label: "About Ishan Law", href: "/about" },
+  { label: "Law Programs", href: "/programs-overview" },
   { label: "Admissions", href: "/admissions" },
-  { label: "Placements", href: "/placements" },
+  { label: "Moot Court", href: "/moot-court" },
   { label: "Contact", href: "/contact" },
 ];
 
 const programs = [
-  { label: "BBA", href: "/courses/bba" },
-  { label: "BCA", href: "/courses/bca" },
-  { label: "B.Com", href: "/courses/bcom" },
-  { label: "B.Ed", href: "/courses/bed" },
+  { label: "BA LLB (Hons)", href: "/courses/ba-llb" },
+  { label: "LLB (3 Years)", href: "/courses/llb" },
+  { label: "Certificate Courses", href: "/certificate-programs" },
 ];
 
 const socialLinks = [
-  { icon: Facebook, href: "https://facebook.com/ishan.ac", label: "Facebook" },
-  { icon: Instagram, href: "https://instagram.com/ishan.ac", label: "Instagram" },
-  { icon: Youtube, href: "https://youtube.com/@ishanac", label: "YouTube" },
-  { icon: Linkedin, href: "https://linkedin.com/company/ishan-ac", label: "LinkedIn" },
-  { icon: Twitter, href: "https://twitter.com/ishan_ac", label: "Twitter" },
+  { icon: Facebook, href: "https://facebook.com/ishan.law", label: "Facebook" },
+  { icon: Instagram, href: "https://instagram.com/ishan.law", label: "Instagram" },
+  { icon: Youtube, href: "https://youtube.com/@ishanlaw", label: "YouTube" },
+  { icon: Linkedin, href: "https://linkedin.com/company/ishan-law", label: "LinkedIn" },
+  { icon: Twitter, href: "https://twitter.com/ishan_law", label: "Twitter" },
 ];
 
 export default function Footer() {
@@ -31,14 +30,14 @@ export default function Footer() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="space-y-6">
             <Link to="/" className="flex items-center gap-3">
-              <img src="/favicon.png" alt="IIMT Logo" className="h-10 w-auto" />
+              <img src="/favicon.png" alt="Ishan Institute of Law Logo" className="h-10 w-auto" />
               <div>
                 <p className="font-display font-bold text-lg leading-tight">ISHAN</p>
-                <p className="text-[10px] uppercase tracking-[0.15em] text-primary-foreground/40 leading-tight">Institute of Management & Technology</p>
+                <p className="text-[10px] uppercase tracking-[0.15em] text-primary-foreground/40 leading-tight">Institute of Law</p>
               </div>
             </Link>
             <p className="text-sm text-primary-foreground/50 leading-relaxed max-w-xs">
-              NAAC Accredited | Affiliated to CCS University, Meerut | Approved by UGC & AICTE. Pioneering professional education since 1994.
+              BCI Approved | Affiliated to CCS University, Meerut | NAAC Accredited. Excellence in legal education and practice-oriented learning.
             </p>
             <div className="flex gap-2">
               {socialLinks.map((s) => (
@@ -71,7 +70,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-bold text-sm uppercase tracking-wider mb-6 text-gold">Top Programs</h4>
+            <h4 className="font-bold text-sm uppercase tracking-wider mb-6 text-gold">Law Programs</h4>
             <ul className="space-y-3">
               {programs.map((p) => (
                 <li key={p.label}>
@@ -107,7 +106,7 @@ export default function Footer() {
       <div className="border-t border-white/5 py-6 bg-black/20">
         <div className="container-wide flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-[11px] text-primary-foreground/30">
-            © {new Date().getFullYear()} Ishan Institute of Management & Technology. All rights reserved.
+            © {new Date().getFullYear()} Ishan Institute of Law. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             {[
