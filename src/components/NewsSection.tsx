@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Calendar, ArrowRight, X, MapPin, Tag, Share2 } from "lucide-react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { motion, AnimatePresence } from "framer-motion";
 
 const defaultNews = [
@@ -42,7 +42,7 @@ const defaultNews = [
 export default function NewsSection() {
   const ref = useScrollReveal();
   const [selectedNews, setSelectedNews] = useState<any>(null);
-  const { data } = useIIMTData("homepage");
+  const { data } = useIshanLawData("homepage");
   const news = data?.newsEvents?.length > 0 ? data.newsEvents : defaultNews;
 
   return (
@@ -152,7 +152,7 @@ export default function NewsSection() {
                       </div>
                       <div className="flex items-center gap-1.5">
                         <MapPin size={14} className="text-gold" />
-                        {selectedNews.location || "IIMT Campus"}
+                        {selectedNews.location || "Ishan Law Institute Campus"}
                       </div>
                     </div>
                     <h2 className="text-2xl md:text-3xl font-display font-bold text-navy leading-tight">

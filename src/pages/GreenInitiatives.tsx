@@ -3,7 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Leaf, Sun, Recycle, Droplets, TreePine } from "lucide-react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const initiatives = [
   { icon: Sun, title: "Energy Conservation", desc: "We prioritize energy efficiency through LED lighting across campus, sensor-based systems in common areas, and a commitment to reducing overall carbon footprint. Solar installations contribute significantly to our renewable energy goals.", stat: "20% Renewable energy" },
@@ -15,7 +15,7 @@ const initiatives = [
 
 export default function GreenInitiativesPage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("aboutus");
+  const { data } = useIshanLawData("aboutus");
   const content = data?.greenInitiatives?.content;
 
   return (
@@ -28,9 +28,17 @@ export default function GreenInitiativesPage() {
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <div className="max-w-4xl mx-auto space-y-8">
+          <div className="max-w-4xl mx-auto space-y-12">
+            <div className="reveal grid sm:grid-cols-2 gap-6">
+              <div className="rounded-2xl overflow-hidden shadow-2xl border aspect-[16/9]">
+                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg" alt="Ishan Law Green Campus" className="w-full h-full object-cover" />
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-2xl border aspect-[16/9] hidden sm:block">
+                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg" alt="Ishan Law Sustainability" className="w-full h-full object-cover" />
+              </div>
+            </div>
             {content && (
-              <div className="reveal space-y-6 mb-12">
+              <div className="reveal space-y-6">
                 <p className="text-lg text-foreground/70 leading-relaxed whitespace-pre-wrap">{content}</p>
               </div>
             )}

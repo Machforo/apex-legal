@@ -1,13 +1,13 @@
 import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { BookOpen, ArrowUpRight, Search, X, GraduationCap, Briefcase } from "lucide-react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function ProgramsSection() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("homepage");
+  const { data } = useIshanLawData("homepage");
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const fallbackPrograms = [

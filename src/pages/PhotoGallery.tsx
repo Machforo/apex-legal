@@ -2,57 +2,90 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultAlbums = [
   { 
     category: "Moot Court", 
-    date: "April 2026", 
+    date: "2025-26", 
     images: [
       { id: "mc-1", alt: "Moot Court 1", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg" },
-      { id: "mc-2", alt: "Moot Court 2", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg" },
-      { id: "mc-3", alt: "Moot Court 3", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-6.jpg" },
-      { id: "mc-4", alt: "Moot Court 4", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-9.jpg" },
+      { id: "mc-2", alt: "Moot Court 2", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-10.jpg" },
+      { id: "mc-3", alt: "Moot Court 3", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-14.jpg" },
+      { id: "mc-4", alt: "Moot Court 4", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-6.jpg" },
     ]
   },
   { 
     category: "Court & Jail Visits", 
-    date: "March 2026", 
+    date: "Clinical Training", 
     images: [
-      { id: "cv-1", alt: "Court Visit 1", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-10.jpg" },
-      { id: "cv-2", alt: "Court Visit 2", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-11.jpg" },
-      { id: "cv-3", alt: "Court Visit 3", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-12.jpg" },
-      { id: "cv-4", alt: "Court Visit 4", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-14.jpg" },
+      { id: "cj-1", alt: "Court Visit", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg" },
+      { id: "cj-2", alt: "Legal Visit", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg" },
+      { id: "cj-3", alt: "Students at Court", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-8.jpg" },
     ]
   },
   { 
-    category: "Campus Life", 
-    date: "Ongoing", 
+    category: "Campus Infrastructure", 
+    date: "Facilities", 
     images: [
-      { id: "cl-1", alt: "Infrastructure 1", url: "https://law.ishan.ac/static/gallery/infra/infra-16.jpg" },
-      { id: "cl-2", alt: "Infrastructure 2", url: "https://law.ishan.ac/static/gallery/infra/infra-2.png" },
-      { id: "cl-3", alt: "Infrastructure 3", url: "https://law.ishan.ac/static/gallery/infra/infra-6.jpeg" },
-      { id: "cl-4", alt: "Highlights 13", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-13.jpg" },
+      { id: "infra-1", alt: "Campus Building", url: "https://law.ishan.ac/static/gallery/infra/infra-16.jpg" },
+      { id: "infra-2", alt: "Library", url: "https://law.ishan.ac/static/gallery/infra/infra-2.png" },
+      { id: "infra-3", alt: "Hostel", url: "https://law.ishan.ac/static/gallery/infra/infra-6.jpeg" },
+      { id: "infra-4", alt: "Digital Lab", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-12.jpg" },
     ]
   },
+  { 
+    category: "Academic Excellence", 
+    date: "Learning", 
+    images: [
+      { id: "acad-1", alt: "Classroom", url: "https://law.ishan.ac/all-law/gallery-photos/academics/academics-1.jpg" },
+      { id: "acad-2", alt: "Seminar", url: "https://law.ishan.ac/all-law/gallery-photos/academics/academics-11.jpg" },
+      { id: "acad-3", alt: "Presentation", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-11.jpg" },
+      { id: "acad-4", alt: "Interactive Session", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-13.jpg" },
+    ]
+  },
+  { 
+    category: "Cultural Activities", 
+    date: "Events", 
+    images: [
+      { id: "cl-1", alt: "Cultural Fest", url: "https://law.ishan.ac/all-law/gallery-photos/cultural-activities/cultural-11.jpg" },
+      { id: "cl-2", alt: "Dance Performance", url: "https://law.ishan.ac/all-law/gallery-photos/cultural-activities/cultural-21.jpg" },
+      { id: "cl-6", alt: "Group Photo", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg" },
+    ]
+  },
+  { 
+    category: "Sports", 
+    date: "Athletics", 
+    images: [
+      { id: "cl-3", alt: "Sports 1", url: "https://law.ishan.ac/static/gallery/sports/sports-10.jpg" },
+      { id: "cl-4", alt: "Sports 2", url: "https://law.ishan.ac/static/gallery/sports/sports-7.jpg" },
+      { id: "cl-5", alt: "Sports 3", url: "https://law.ishan.ac/static/gallery/sports/sports-16.jpeg" },
+    ]
+  }
 ];
 
-const cmsCategories = ["Moot Court", "Court & Jail Visits", "Seminars & Conferences", "Cultural Activities", "Sports", "Guest Lectures", "Campus Life", "Legal Aid Cell"];
+const cmsCategories = ["Moot Court", "Court & Jail Visits", "Academic Excellence", "Cultural Activities", "Sports", "Campus Infrastructure"];
 
 export default function PhotoGalleryPage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("gallery");
+  const { data } = useIshanLawData("gallery");
 
-  // Dynamic albums from CMS or fallback to static placeholders
-  // Schema: gallery.photos = [{title, url}] (flat, no categories)
-  const photos: Array<{title:string;url:string}> = data?.photos?.length > 0 ? data.photos : [];
+  // Dynamic photos from CMS or fallback to static placeholders
+  const photos: Array<{title:string;url:string;category?:string}> = data?.photos?.length > 0 ? data.photos : [];
   
   const [filter, setFilter] = useState("All");
 
   const usingCMS = photos.length > 0;
-  const albumsToRender = usingCMS ? [] : defaultAlbums;
   const displayCategories = ["All", ...cmsCategories];
-  const filtered = usingCMS ? photos : (filter === "All" ? albumsToRender : albumsToRender.filter(a => a.category === filter));
+  
+  // Filtering logic:
+  // If using CMS, filter the flat photos array by category.
+  // If not, filter the defaultAlbums array by category.
+  const filtered = usingCMS 
+    ? (filter === "All" ? photos : photos.filter(p => p.category === filter))
+    : (filter === "All" ? defaultAlbums : defaultAlbums.filter(a => a.category === filter));
+
+  const showPlaceholder = !usingCMS && filtered.length === 0 && filter !== "All";
 
   return (
     <Layout>
@@ -68,7 +101,12 @@ export default function PhotoGalleryPage() {
               <button key={c} onClick={() => setFilter(c)} className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors active:scale-[0.97] ${filter === c ? "bg-navy text-primary-foreground" : "bg-muted text-muted-foreground hover:bg-muted/80"}`}>{c}</button>
             ))}
           </div>
-          {usingCMS ? (
+          {showPlaceholder ? (
+            <div className="reveal py-20 text-center bg-muted/30 rounded-3xl border border-dashed">
+              <p className="text-muted-foreground">No photos found in the "{filter}" category yet.</p>
+              <button onClick={() => setFilter("All")} className="mt-4 text-navy font-bold hover:text-gold transition-colors underline">View all photos</button>
+            </div>
+          ) : usingCMS ? (
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
               {(filtered as Array<{title:string;url:string}>).map((photo, i) => (
                 <div key={photo.url || i} className={`reveal delay-${Math.min(i % 4, 3)}00 aspect-[4/3] rounded-xl bg-muted border overflow-hidden group cursor-pointer`}>
@@ -92,7 +130,7 @@ export default function PhotoGalleryPage() {
                 </div>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
                   {album.images.map((img, i) => (
-                    <div className={`reveal delay-${Math.min(i % 4, 3)}00 aspect-[4/3] rounded-xl bg-muted border overflow-hidden group cursor-pointer`}>
+                    <div key={img.id} className={`reveal delay-${Math.min(i % 4, 3)}00 aspect-[4/3] rounded-xl bg-muted border overflow-hidden group cursor-pointer`}>
                       <img 
                         src={img.url} 
                         alt={img.alt} 
@@ -108,7 +146,7 @@ export default function PhotoGalleryPage() {
               </div>
             ))
           )}
-          {!usingCMS && <p className="text-center text-sm text-muted-foreground mt-8">Upload photos via the CMS gallery manager to populate this section.</p>}
+          {!usingCMS && !showPlaceholder && <p className="text-center text-sm text-muted-foreground mt-8">Upload photos via the CMS gallery manager to populate this section.</p>}
 
         </div>
       </section>

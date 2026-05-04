@@ -3,7 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Award, ExternalLink } from "lucide-react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultScholarships = [
   { category: "ILET Merit Scholarship", concession: "Up to 100% tuition fee waiver", description: "Awarded to top performers in the Ishan Law Entrance Test (ILET). Details available at the time of counseling." },
@@ -16,7 +16,7 @@ const defaultScholarships = [
 
 export default function ScholarshipsPage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("admissions");
+  const { data } = useIshanLawData("admissions");
   // Schema: scholarships = [{category, concession, description}]
   const scholarships = data?.scholarships?.length > 0 ? data.scholarships : defaultScholarships;
 
@@ -30,13 +30,17 @@ export default function ScholarshipsPage() {
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <div className="max-w-4xl mx-auto">
-            <p className="reveal text-foreground/70 leading-relaxed mb-12">
-              Ishan Law believes that financial constraints should never hinder a student's access to quality legal education. We offer multiple scholarship schemes — including ILET merit awards, category-based support, and need-based concessions — to ensure that every deserving student can pursue their legal career.
-            </p>
-
+          <div className="grid lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto mb-12">
+            <div className="reveal space-y-8">
+              <p className="text-foreground/70 leading-relaxed">
+                Ishan Law believes that financial constraints should never hinder a student's access to quality legal education. We offer multiple scholarship schemes — including ILET merit awards, category-based support, and need-based concessions — to ensure that every deserving student can pursue their legal career.
+              </p>
+              <div className="rounded-2xl overflow-hidden shadow-2xl border">
+                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-8.jpg" alt="Ishan Law Student Success" className="w-full h-80 object-cover" />
+              </div>
+            </div>
             <div className="space-y-6">
-              {scholarships.map((s: any, i: number) => (
+              {scholarships.slice(0, 3).map((s: any, i: number) => (
                 <div key={s.category || i} className={`reveal delay-${Math.min(i, 5)}00 rounded-xl border bg-card p-6`}>
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-lg bg-gold-light flex items-center justify-center shrink-0">
@@ -44,22 +48,30 @@ export default function ScholarshipsPage() {
                     </div>
                     <div className="flex-1">
                       <h3 className="font-semibold text-foreground mb-3">{s.category}</h3>
-                      <div className="grid sm:grid-cols-3 gap-3 text-sm">
-                        <div><span className="text-muted-foreground block text-xs mb-1">Concession / Benefit</span><span className="text-foreground/80 font-medium">{s.concession}</span></div>
-                        <div className="sm:col-span-2"><span className="text-muted-foreground block text-xs mb-1">Details</span><span className="text-foreground/80">{s.description}</span></div>
+                      <div className="grid gap-2 text-sm">
+                        <div><span className="text-muted-foreground block text-xs">Benefit:</span><span className="text-foreground/80 font-medium">{s.concession}</span></div>
+                        <div><span className="text-muted-foreground block text-xs">Details:</span><span className="text-foreground/80">{s.description}</span></div>
                       </div>
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-
-            <div className="mt-12 p-6 rounded-xl bg-section-alt border text-center">
-              <p className="text-sm text-foreground/70 mb-3">Government Scholarships (SC/ST/OBC) are processed through:</p>
-              <a href="https://scholarship.up.gov.in" target="_blank" rel="noopener" className="inline-flex items-center gap-2 text-sm font-semibold text-navy hover:underline">
-                UP Scholarship Portal <ExternalLink className="w-3.5 h-3.5" />
-              </a>
-            </div>
+          </div>
+          <div className="max-w-6xl mx-auto grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {scholarships.slice(3).map((s: any, i: number) => (
+              <div key={s.category || i} className={`reveal delay-${Math.min(i, 5)}00 rounded-xl border bg-card p-6`}>
+                <h3 className="font-semibold text-foreground mb-3">{s.category}</h3>
+                <p className="text-sm text-foreground/80 mb-2 font-medium">{s.concession}</p>
+                <p className="text-xs text-muted-foreground leading-relaxed">{s.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="max-w-6xl mx-auto mt-12 p-6 rounded-xl bg-section-alt border text-center">
+            <p className="text-sm text-foreground/70 mb-3">Government Scholarships (SC/ST/OBC) are processed through:</p>
+            <a href="https://scholarship.up.gov.in" target="_blank" rel="noopener" className="inline-flex items-center gap-2 text-sm font-semibold text-navy hover:underline">
+              UP Scholarship Portal <ExternalLink className="w-3.5 h-3.5" />
+            </a>
           </div>
         </div>
       </section>

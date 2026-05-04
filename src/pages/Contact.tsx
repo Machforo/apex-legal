@@ -2,13 +2,13 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { useState } from "react";
 import { toast } from "sonner";
 
 export default function ContactPage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("contact");
+  const { data } = useIshanLawData("contact");
   const mainContact = data?.mainContact || {
     address: "Knowledge Park-III, Greater Noida, Uttar Pradesh 201308",
     phone: "8448797700",

@@ -45,7 +45,7 @@ export default function MootCourtPage() {
               <div className="rounded-2xl overflow-hidden shadow-2xl border">
                 <img 
                   src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg" 
-                  alt="Moot Court Hall at Ishan Institute of Law" 
+                  alt="Moot Court Hall at Ishan Law Institute" 
                   className="w-full h-[450px] object-cover"
                 />
               </div>
@@ -61,7 +61,7 @@ export default function MootCourtPage() {
                 Mastering the Art of Advocacy
               </h2>
               <p className="text-foreground/70 leading-relaxed">
-                The Moot Court Hall at Ishan Institute of Law is the heart of our clinical legal education program. It is designed to provide students with a realistic courtroom experience, bridging the gap between classroom lectures and professional practice. 
+                The Moot Court Hall at Ishan Law Institute is the heart of our clinical legal education program. It is designed to provide students with a realistic courtroom experience, bridging the gap between classroom lectures and professional practice. 
               </p>
               <p className="text-foreground/70 leading-relaxed">
                 Participation in moot courts is mandatory for all students, ensuring they develop essential skills such as case analysis, legal research, memorial drafting, and oral presentation. Our students are trained to handle pressure, think on their feet, and respect the decorum of the judicial process.

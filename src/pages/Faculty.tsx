@@ -3,7 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
 import { Search, X } from "lucide-react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultDepartments = ["All", "Law", "Clinical Education", "Research & Publication"];
 
@@ -20,7 +20,7 @@ const defaultFaculty = [
 
 export default function FacultyPage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("campuslife");
+  const { data } = useIshanLawData("campuslife");
 
   const faculty = data?.faculty?.length > 0 ? data.faculty : defaultFaculty;
   const departments = ["All", ...Array.from(new Set(faculty.map((f: any) => f.dept || f.department || "General"))).filter(Boolean) as string[]];
@@ -46,12 +46,19 @@ export default function FacultyPage() {
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <div className="max-w-4xl mx-auto mb-16 space-y-6 text-center">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Academic Excellence</p>
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">Guided by Expert Mentors</h2>
-            <p className="text-foreground/70 leading-relaxed text-lg">
-              Ishan Law's faculty combines academic scholarship with courtroom experience — permanent faculty hold LLM and PhD qualifications in specialised areas of law; visiting advocates bring current practice insights; together they prepare students not just to understand law but to argue it.
-            </p>
+          <div className="max-w-5xl mx-auto mb-16 grid lg:grid-cols-2 gap-12 items-center">
+            <div className="reveal space-y-6">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Academic Excellence</p>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">Guided by Expert Mentors</h2>
+              <p className="text-foreground/70 leading-relaxed">
+                Ishan Law's faculty combines academic scholarship with courtroom experience — permanent faculty hold LLM and PhD qualifications in specialised areas of law; visiting advocates bring current practice insights; together they prepare students not just to understand law but to argue it.
+              </p>
+            </div>
+            <div className="reveal hidden lg:block">
+              <div className="rounded-2xl overflow-hidden shadow-2xl border">
+                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-4.jpg" alt="Ishan Law Faculty" className="w-full h-64 object-cover" />
+              </div>
+            </div>
           </div>
 
           <div className="reveal max-w-2xl mx-auto mb-12 relative group">

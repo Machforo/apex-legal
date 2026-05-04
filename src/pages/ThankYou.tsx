@@ -9,13 +9,13 @@ export default function ThankYouPage() {
         <div className="max-w-3xl w-full bg-card rounded-3xl border shadow-xl overflow-hidden flex flex-col md:flex-row">
           
           <div className="md:w-5/12 bg-navy p-10 flex items-center relative overflow-hidden">
-            <div className="absolute inset-0 opacity-20">
+            <div className="absolute inset-0 opacity-40">
               <img 
-                src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80" 
+                src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg" 
                 alt="Campus background" 
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-navy mix-blend-multiply" />
+              <div className="absolute inset-0 bg-navy/60 mix-blend-multiply" />
             </div>
             
             <div className="relative z-10 text-white text-center md:text-left">

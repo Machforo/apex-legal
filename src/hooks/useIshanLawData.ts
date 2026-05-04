@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 
-export function useIIMTData(endpoint: string) {
+export function useIshanLawData(endpoint: string) {
   return useQuery({
-    queryKey: ['iimt', endpoint],
+    queryKey: ['ishan-law-institute', endpoint],
     queryFn: async () => {
-      const response = await fetch(`https://ishan-backend-g096.onrender.com/api/iimt/${endpoint}`);
+      const response = await fetch(`https://ishan-backend-g096.onrender.com/api/Ishan Law Institute/${endpoint}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${endpoint} data`);
       }

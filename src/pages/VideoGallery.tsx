@@ -1,7 +1,7 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultVideos = [
   { title: "National Moot Court Competition Final Round", category: "Moot Court Highlights", ytId: "" },
@@ -14,7 +14,7 @@ const defaultVideos = [
 
 export default function VideoGalleryPage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("gallery");
+  const { data } = useIshanLawData("gallery");
 
   const getYTId = (url: string) => {
     if (!url) return "";

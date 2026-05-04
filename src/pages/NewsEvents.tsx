@@ -4,7 +4,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { Calendar, ArrowRight, Search, X } from "lucide-react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultEvents = [
   { title: "National Moot Court Competition 2025", date: "April 15, 2025", category: "Clinical", excerpt: "The flagship national-level moot court competition hosted by Ishan Law, featuring teams from across India.", image: "" },
@@ -19,7 +19,7 @@ const defaultEvents = [
 
 export default function NewsEventsPage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("newsevent");
+  const { data } = useIshanLawData("newsevent");
   const events = data?.events?.length > 0 
     ? data.events.map((e: any) => ({ ...e, excerpt: e.description })) 
     : defaultEvents;

@@ -1,13 +1,13 @@
 import { useParams } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { Clock, GraduationCap, IndianRupee, Users, CheckCircle2 } from "lucide-react";
 import NotFound from "./NotFound";
 
 export default function DynamicCourse() {
   const { courseId } = useParams();
-  const { data, isLoading } = useIIMTData("courses");
+  const { data, isLoading } = useIshanLawData("courses");
 
   if (isLoading) return <div className="min-h-screen flex flex-col"><Navbar /><div className="flex-1 flex items-center justify-center font-display text-xl text-navy animate-pulse">Loading Academic Program...</div></div>;
   
@@ -16,58 +16,34 @@ export default function DynamicCourse() {
   
   const fallbackCourses = [
     {
-      programName: "BBA (Bachelor of Business Administration)",
-      duration: "3 Years (Full-time)",
-      eligibility: "10+2 from any recognized board. CUET/Entrance based.",
-      annualIntake: "60 Seats",
-      overview: "The Bachelor of Business Administration (BBA) at IIMT is designed to nurture future business leaders and entrepreneurs. The programme provides a strong foundation in core business disciplines including Marketing, Finance, HR, and Operations. We emphasize practical learning through case studies, industrial visits, and regular interactions with industry veterans in Knowledge Park, Greater Noida.",
-      curriculumStructure: "The 3-year programme follows the CCS University curriculum, integrated with IIMT's professional development modules. Key subjects include Management Principles, Business Communication, Financial Accounting, Marketing Management, and Organizational Behaviour. Students also undertake a mandatory industry internship in their final year.",
-      careerScope: "BBA graduates can explore diverse roles in corporate sectors, including Management Trainee, Marketing Executive, Business Analyst, and HR Assistant. It also serves as a perfect stepping stone for pursuing an MBA or launching your own startup venture.",
-    },
-    {
-      programName: "BCA (Bachelor of Computer Applications)",
-      duration: "3 Years (Full-time)",
-      eligibility: "10+2 with Mathematics (preferred). CUET/Entrance based.",
-      annualIntake: "60 Seats",
-      overview: "Our BCA programme is a launchpad for a successful career in the rapidly evolving IT industry. We focus on providing deep technical knowledge alongside practical programming skills. With state-of-the-art computer labs and a curriculum aligned with modern tech trends, IIMT ensures that BCA students are ready for the digital-first economy.",
-      curriculumStructure: "The curriculum covers core areas like Programming in C/C++, Java, Database Management Systems, Web Development, and Software Engineering. Students also gain exposure to emerging technologies like Python and Data Science through specialized workshops and live lab sessions.",
-      careerScope: "Graduates can pursue careers as Software Developers, Web Developers, System Analysts, Database Administrators, and IT Consultants. Many of our students also progress to MCA or specialized masters in Data Science and AI.",
-    },
-    {
-      programName: "B.Com (Bachelor of Commerce)",
-      duration: "3 Years (Full-time)",
-      eligibility: "10+2 from any recognized board. Merit-based.",
+      programName: "BA LLB (Hons)",
+      duration: "5 Years (Integrated)",
+      eligibility: "10+2 with 45% marks (General), 42% (OBC), 40% (SC/ST). CLAT/LSAT/Ishan Entrance.",
       annualIntake: "120 Seats",
-      overview: "The B.Com programme at IIMT offers a comprehensive understanding of accounting, finance, and business laws. It is designed for students aiming for careers in banking, financial services, and corporate accounting. Our faculty brings a blend of academic rigor and professional insights from the world of commerce and taxation.",
-      curriculumStructure: "The programme follows the CCS University framework, covering subjects like Financial Accounting, Corporate Law, Auditing, Income Tax, and Macro-economics. We supplement this with workshops on Tally, GST, and advanced Excel to enhance employability.",
-      careerScope: "B.Com graduates find opportunities in Banking, Insurance, Accounting firms, and Corporate Finance departments. It is an ideal foundation for professional certifications like CA, CS, and CMA, as well as for pursuing an M.Com or MBA.",
+      overview: "The integrated BA LLB (Hons) at Ishan Law Institute is a flagship 5-year professional program that seamlessly blends liberal arts with legal scholarship. It is meticulously designed to produce legal professionals who possess a deep understanding of the socio-economic and political landscape. From the first year, students are immersed in our Clinical Legal Education model, ensuring they develop practical skills alongside academic theory.",
+      curriculumStructure: "The program follows the CCS University and BCI curriculum, covering Political Science, Sociology, and Economics in the initial years, followed by core law subjects including Constitutional Law, IPR, International Law, and Criminal Jurisprudence. Practical components include mandatory Moot Court sessions, legal aid clinics, and structured court visits.",
+      careerScope: "Graduates are prepared for diverse careers in Litigation (Advocacy), Judicial Services (PCS-J), Corporate Law firms, LPOs, Legal Research, and Civil Services. The integrated nature of the course provides a competitive edge in competitive examinations.",
+      image: "https://law.ishan.ac/all-law/gallery-photos/academics/academics-1.jpg"
     },
     {
-      programName: "M.Com (Master of Commerce)",
-      duration: "2 Years (Full-time)",
-      eligibility: "B.Com / BBA / Graduate with Commerce background. Merit-based.",
+      programName: "LLB (Professional)",
+      duration: "3 Years (Professional)",
+      eligibility: "Graduation with 45% marks (General), 42% (OBC), 40% (SC/ST).",
+      annualIntake: "120 Seats",
+      overview: "Our 3-year LLB program is a rigorous professional course tailored for graduates from any discipline who aspire to enter the legal arena. At Ishan Law Institute, we prioritize intensive clinical training and procedural proficiency. Our curriculum is designed to bridge the gap between classroom lectures and courtroom reality, leveraging our strategic proximity to the courts of Delhi-NCR for real-time exposure.",
+      curriculumStructure: "The curriculum focuses on substantive and procedural laws, including Civil Procedure, Criminal Procedure, Evidence Law, and Professional Ethics. Specialized modules on Drafting, Pleading, and Conveyance (DPC) and Alternative Dispute Resolution (ADR) ensure students are practice-ready from day one.",
+      careerScope: "LLB graduates are eligible to enroll as Advocates with State Bar Councils. Career paths include Private Practice, Law Officers in Banks/PSUs, Corporate Legal Counsel, and Legal Advisors to NGOs and international organizations.",
+      image: "https://law.ishan.ac/all-law/gallery-photos/academics/academics-11.jpg"
+    },
+    {
+      programName: "LLM (Master of Laws)",
+      duration: "2 Years",
+      eligibility: "LLB/BA LLB degree from a recognized university with minimum 50% marks.",
       annualIntake: "30 Seats",
-      overview: "Our M.Com programme is designed for advanced learning in commerce and research methodologies. It caters to students aspiring for careers in higher education, specialized accounting, and research. IIMT provides an environment that encourages critical inquiry and academic excellence in the field of commerce.",
-      curriculumStructure: "The 2-year programme covers advanced topics in Financial Management, Research Methodology, Marketing Research, and Strategic Management. Students are required to complete a research project/dissertation as part of their final assessment.",
-      careerScope: "Graduates are well-prepared for roles in academic research, teaching (post-NET/JRF), senior accounting positions, and financial consultancy. It also provides a strong base for pursuing a Ph.D. in Commerce or Management.",
-    },
-    {
-      programName: "B.Ed (Bachelor of Education)",
-      duration: "2 Years (Full-time)",
-      eligibility: "Graduate/Post-graduate with 50% marks. UP Joint B.Ed Entrance qualified.",
-      annualIntake: "100 Seats",
-      overview: "The B.Ed programme at IIMT is dedicated to nurturing highly skilled and compassionate educators. Approved by NCTE and affiliated with CCS University, we emphasize pedagogical innovation, psychological foundations of education, and reflective teaching practices. Our Pedagogy Labs and micro-teaching setups provide the perfect training ground for future teachers.",
-      curriculumStructure: "The programme includes theory papers on Educational Psychology, Contemporary India and Education, and Pedagogy of School Subjects. A cornerstone of the course is the 20-week supervised practice teaching programme in partner schools, ensuring real classroom exposure.",
-      careerScope: "Graduates are eligible for teaching positions in secondary and senior secondary schools across India (CTET/TET qualified). They can also work as educational consultants, curriculum designers, and academic coordinators.",
-    },
-    {
-      programName: "M.Ed (Master of Education)",
-      duration: "2 Years (Full-time)",
-      eligibility: "B.Ed / B.A. B.Ed / B.Sc. B.Ed with 50% marks. University Entrance based.",
-      annualIntake: "50 Seats",
-      overview: "Our M.Ed programme is an advanced professional degree for those seeking leadership roles in education and academic research. We focus on developing expertise in educational administration, curriculum development, and advanced research techniques. IIMT's M.Ed scholars are trained to lead and innovate in the educational ecosystem.",
-      curriculumStructure: "The curriculum includes advanced study of Educational Philosophy, Sociology of Education, Information & Communication Technology in Education, and Teacher Education. A significant portion of the programme is dedicated to independent research through a Master's dissertation.",
-      careerScope: "M.Ed graduates are prepared for careers as Teacher Educators in B.Ed/D.El.Ed colleges, Educational Administrators, Curriculum Specialists, and Researchers in government and private educational organizations.",
+      overview: "The LLM program at Ishan Law Institute is an advanced postgraduate degree designed for law graduates and legal professionals seeking to specialize in niche areas of legal scholarship. The program emphasizes advanced legal research, critical thinking, and jurisprudential analysis, fostering an environment of intellectual inquiry and academic leadership.",
+      curriculumStructure: "Students can specialize in Constitutional Law, Corporate Law, or Criminal Law. The curriculum includes advanced modules on Research Methodology, Comparative Public Law, and Judicial Process, culminating in a mandatory research dissertation under the guidance of expert faculty.",
+      careerScope: "LLM graduates are highly sought after for academic roles as Assistant Professors, specialized legal consultants in corporate houses, research associates in legal think-tanks, and for higher judicial services exams.",
+      image: "https://law.ishan.ac/all-law/gallery-photos/academics/academics-1.jpg"
     },
   ];
 
@@ -82,13 +58,23 @@ export default function DynamicCourse() {
       
       {/* Header */}
       <div className="bg-navy py-20 md:py-32 relative overflow-hidden">
+        {/* Background Image Overlay */}
+        <div className="absolute inset-0 z-0">
+           <img 
+             src={course.image || "https://law.ishan.ac/all-law/gallery-photos/academics/academics-1.jpg"} 
+             className="w-full h-full object-cover opacity-20 mix-blend-overlay scale-110" 
+             alt="Background"
+           />
+           <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-transparent" />
+        </div>
+
         <div className="container-wide relative z-10">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-display font-bold text-primary-foreground leading-tight mb-4">
               {course.programName}
             </h1>
             <p className="text-lg text-primary-foreground/70 leading-relaxed font-light">
-              Expand your horizons and build a foundation for success.
+              Forge your legacy at Ishan Law Institute with our comprehensive {course.duration} program.
             </p>
           </div>
         </div>

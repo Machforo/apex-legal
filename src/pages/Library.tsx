@@ -2,13 +2,11 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useIIMTData } from "@/hooks/useIIMTData";
-import libraryImg from "@/assets/students-library.jpg";
-
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 export default function LibraryPage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("campuslife");
-  const defaultImage = libraryImg;
+  const { data } = useIshanLawData("campuslife");
+  const defaultImage = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-10.jpg";
   const library = data?.library;
   const content = library?.content;
   const specs = library?.specs?.length > 0 ? library.specs : [
@@ -32,7 +30,7 @@ export default function LibraryPage() {
         <div className="container-wide">
           <div className="max-w-4xl mx-auto">
             <div className="reveal rounded-2xl overflow-hidden shadow-[0_8px_40px_hsl(var(--navy)/0.1)] mb-10 border">
-              <img src={library?.imageUrl || "https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1200&auto=format&fit=crop"} alt="Ishan Law Library" className="w-full h-[350px] object-cover" />
+              <img src={defaultImage} alt="Ishan Law Institute Library" className="w-full h-[400px] object-cover" />
             </div>
             <div className="reveal space-y-5 mb-12">
               {content ? (
@@ -40,7 +38,7 @@ export default function LibraryPage() {
               ) : (
                 <>
                   <p className="text-foreground/70 leading-relaxed">
-                    The Legal Library at Ishan Institute of Law is the academic cornerstone of our institution, meticulously curated to support the research needs of aspiring advocates and legal scholars. Our collection includes an extensive range of legal treatises, commentaries, and encyclopedias across diverse branches of law.
+                    The Legal Library at Ishan Law Institute is the academic cornerstone of our institution, meticulously curated to support the research needs of aspiring advocates and legal scholars. Our collection includes an extensive range of legal treatises, commentaries, and encyclopedias across diverse branches of law.
                   </p>
                   <p className="text-foreground/70 leading-relaxed">
                     We maintain complete sets of the All India Reporter (AIR), Supreme Court Cases (SCC), and Supreme Court Reports (SCR). To ensure our students stay abreast of contemporary developments, we provide 24/7 access to premier digital databases such as Manupatra and SCC Online. The library also features a dedicated reading zone and a digital research wing equipped with high-speed terminals.

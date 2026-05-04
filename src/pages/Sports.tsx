@@ -3,11 +3,11 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 export default function SportsPage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("campuslife");
+  const { data } = useIshanLawData("campuslife");
   const sports = data?.sports;
   const content = sports?.content;
   const specs = sports?.specs?.length > 0 ? sports.specs : [
@@ -22,7 +22,17 @@ export default function SportsPage() {
       <PageHeader title="Sports" subtitle="Inter-college competitions, annual sports meet, and campus recreational facilities" breadcrumbs={[{ label: "Campus", href: "/infrastructure" }, { label: "Sports" }]} />
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <div className="max-w-3xl mx-auto reveal space-y-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            <div className="reveal relative">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden border shadow-lg">
+                <img src="https://law.ishan.ac/static/gallery/sports/sports-16.jpeg" alt="Sports Meet" className="w-full h-full object-cover" />
+              </div>
+              <div className="absolute -bottom-6 -right-6 bg-navy text-white p-4 rounded-xl shadow-xl font-bold hidden md:block">
+                ANNUAL SPORTS MEET
+              </div>
+            </div>
+            <div className="reveal-right space-y-6">
+              <h2 className="text-3xl font-display font-bold text-foreground leading-tight">Fitness & Sportsmanship</h2>
             <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
               {content || "Ishan Law promotes physical fitness and sportsmanship through a comprehensive sports program. The campus features facilities for cricket, basketball, badminton, volleyball, table tennis, and athletics. The annual sports meet is a highlight of the academic calendar, bringing together students from across the Ishan Group in a spirit of healthy competition."}
             </p>
@@ -33,6 +43,16 @@ export default function SportsPage() {
                   <span className="font-semibold">{s.value}</span>
                 </div>
               ))}
+            </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 mt-8">
+              <div className="rounded-xl overflow-hidden border">
+                <img src="https://law.ishan.ac/static/gallery/sports/sports-10.jpg" alt="Basketball Court" className="w-full h-40 object-cover" />
+              </div>
+              <div className="rounded-xl overflow-hidden border">
+                <img src="https://law.ishan.ac/static/gallery/sports/sports-7.jpg" alt="Cricket Match" className="w-full h-40 object-cover" />
+              </div>
             </div>
           </div>
         </div>

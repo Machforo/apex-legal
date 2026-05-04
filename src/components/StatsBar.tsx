@@ -1,18 +1,19 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useEffect, useState, useRef } from "react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultStats = [
-  { value: "BCI", label: "Approved Programs" },
-  { value: "Sem 1", label: "Court Exposure" },
-  { value: "2000+", label: "Legal Alumni" },
-  { value: "100%", label: "Practical Training" },
+  { value: "95%", label: "PLACEMENTS" },
+  { value: "6.5 LPA", label: "AVG PACKAGE" },
+  { value: "15,000+", label: "ALUMNI NETWORK" },
+  { value: "250+", label: "FACULTY HUB" },
 ];
 
 function AnimatedCounter({ rawValue }: { rawValue: string }) {
   const numMatch = typeof rawValue === 'string' ? rawValue.match(/^[\d,.]+/) : null;
-  const target = numMatch ? parseFloat(numMatch[0].replace(/,/g, '')) : parseFloat(rawValue as any) || 0;
-  const suffix = typeof rawValue === 'string' ? rawValue.replace(/^[\d,.]+/, '') : "";
+  const hasNumber = !!numMatch;
+  const target = hasNumber ? parseFloat(numMatch[0].replace(/,/g, '')) : NaN;
+  const suffix = hasNumber ? rawValue.replace(/^[\d,.]+/, '') : rawValue;
 
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
@@ -47,14 +48,14 @@ function AnimatedCounter({ rawValue }: { rawValue: string }) {
 
   return (
     <span ref={ref} className="stat-value">
-      {isNaN(target) ? rawValue : (count.toLocaleString() + suffix)}
+      {isNaN(target) ? rawValue : ((count || target).toLocaleString() + suffix)}
     </span>
   );
 }
 
 export default function StatsBar() {
   const ref = useScrollReveal();
-  const { data, isLoading } = useIIMTData("homepage");
+  const { data, isLoading } = useIshanLawData("homepage");
   
   // Use a ref to keep the stats stable once they are loaded or if using defaults
   const [statsList, setStatsList] = useState(defaultStats);
@@ -99,7 +100,7 @@ export default function StatsBar() {
                   <img
                     src={brand.logo}
                     alt={brand.name}
-                    className="h-10 md:h-12 w-auto object-contain transition-all duration-300 hover:scale-110"
+                    className="h-16 md:h-20 w-auto object-contain transition-all duration-300 hover:scale-110"
                   />
                 </div>
               ))}

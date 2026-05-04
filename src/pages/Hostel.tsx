@@ -3,7 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { CheckCircle2 } from "lucide-react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const amenities = [
   "Separate boys and girls blocks", "Furnished rooms (2/3 sharing)", "Attached washrooms",
@@ -14,7 +14,7 @@ const amenities = [
 
 export default function HostelPage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("campuslife");
+  const { data } = useIshanLawData("campuslife");
   const hostel = data?.hostel;
   const content = hostel?.content;
   const specs = hostel?.specs?.length > 0 ? hostel.specs : [
@@ -31,7 +31,7 @@ export default function HostelPage() {
           <div className="max-w-4xl mx-auto">
             <div className="reveal space-y-5 mb-12">
               <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
-                {content || "Ishan Institute of Law provides comfortable hostel accommodation for both boys and girls in separate residential blocks located within 200 metres of the main campus. The hostel offers a home-away-from-home experience with furnished rooms, nutritious mess meals, and 24/7 security — allowing students to focus on their academics in a safe environment."}
+                {content || "Ishan Law Institute provides comfortable hostel accommodation for both boys and girls in separate residential blocks located within 200 metres of the main campus. The hostel offers a home-away-from-home experience with furnished rooms, nutritious mess meals, and 24/7 security — allowing students to focus on their academics in a safe environment."}
               </p>
             </div>
 

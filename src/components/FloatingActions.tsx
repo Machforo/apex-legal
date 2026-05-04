@@ -5,7 +5,7 @@ import { toast } from "sonner";
 
 export function WhatsAppButton() {
   const phoneNumber = "919569394675";
-  const message = encodeURIComponent("I want to inquire more about IIMT");
+  const message = encodeURIComponent("I want to inquire more about Ishan Law Institute");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
   const [isHovered, setIsHovered] = useState(false);
 

@@ -24,7 +24,7 @@ const navLinks: NavItem[] = [
   {
     label: "About Us",
     featured: {
-      img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80",
+      img: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg",
       title: "Excellence in Legal Education",
       desc: "BCI Approved & NAAC Accredited institution in Greater Noida, dedicated to producing ethical legal professionals.",
       href: "/about",
@@ -59,7 +59,7 @@ const navLinks: NavItem[] = [
   {
     label: "Our Courses",
     featured: {
-      img: "https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=800&q=80",
+      img: "https://law.ishan.ac/all-law/gallery-photos/academics/academics-1.jpg",
       title: "Professional Law Programs",
       desc: "Integrated BA LLB and Professional LLB programs designed for modern legal practice.",
       href: "/programs-overview",
@@ -72,6 +72,7 @@ const navLinks: NavItem[] = [
           { label: "Programs Overview", href: "/programs-overview" },
           { label: "BA LLB (Hons) - 5 Years", href: "/courses/ba-llb" },
           { label: "LLB - 3 Years", href: "/courses/llb" },
+          { label: "LLM - 2 Years", href: "/courses/llm" },
           { label: "Certificate Programs", href: "/certificate-programs" },
         ],
       },
@@ -90,7 +91,7 @@ const navLinks: NavItem[] = [
   {
     label: "Learning",
     featured: {
-      img: "https://images.unsplash.com/photo-1453723490680-899513d4206e?w=800&q=80",
+      img: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg",
       title: "Clinical Legal Education",
       desc: "Beyond textbooks: Moot courts, legal aid clinics, and direct court exposure.",
       href: "/moot-court",
@@ -129,7 +130,7 @@ const navLinks: NavItem[] = [
   {
     label: "Campus",
     featured: {
-      img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800&q=80",
+      img: "https://law.ishan.ac/static/gallery/infra/infra-16.jpg",
       title: "World-Class Infrastructure",
       desc: "Purpose-designed campus with specialized legal library and IT facilities.",
       href: "/infrastructure",
@@ -161,7 +162,7 @@ const navLinks: NavItem[] = [
   {
     label: "Student Zone",
     featured: {
-      img: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=80",
+      img: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-8.jpg",
       title: "Student Resources",
       desc: "One-stop access to academic materials, portals, and professional placements.",
       href: "/student-portal",
@@ -192,7 +193,7 @@ const navLinks: NavItem[] = [
   {
     label: "Contact Us",
     featured: {
-      img: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
+      img: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg",
       title: "Get in Touch",
       desc: "Reach out to Ishan Law for admissions, career opportunities, and feedback.",
       href: "/contact",
@@ -225,6 +226,7 @@ export default function Navbar({ isNotFound = false }: { isNotFound?: boolean })
   const searchableItems = [
     { name: "BA LLB (Hons)", href: "/courses/ba-llb" },
     { name: "LLB (3 Years)", href: "/courses/llb" },
+    { name: "LLM (2 Years)", href: "/courses/llm" },
     { name: "Moot Court", href: "/moot-court" },
     { name: "Legal Aid Cell", href: "/legal-aid-cell" },
     { name: "Admissions", href: "/admissions" },
@@ -326,8 +328,18 @@ export default function Navbar({ isNotFound = false }: { isNotFound?: boolean })
         <div className={`container-wide flex items-center justify-between transition-all duration-500 ${scrolled ? "h-14 md:h-[64px]" : "h-16 md:h-20"}`}>
 
           {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 shrink-0">
-            <img src="/favicon.png" alt="Ishan Legal Logo" className="h-8 md:h-10 w-auto" />
+            <Link to="/" className="flex items-center gap-3 shrink-0 group">
+            <div className="w-10 h-10 rounded-xl bg-white overflow-hidden flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500 border border-gold/20 p-1">
+              <img 
+                src="/favicon.png" 
+                alt="Ishan Law Logo" 
+                className="w-full h-full object-contain"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).style.display = 'none';
+                  (e.target as HTMLImageElement).parentElement!.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-navy"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>';
+                }}
+              />
+            </div>
             <div className="flex flex-col leading-tight">
               <span className={`font-display font-bold text-lg md:text-xl tracking-tight transition-colors duration-500 ${(scrolled || isNotFound) ? "text-navy" : "text-white drop-shadow-lg"}`}>
                 ISHAN

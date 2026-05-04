@@ -33,12 +33,17 @@ export default function PastPapersPage() {
       <section className="py-20" ref={ref}>
         <div className="container-wide">
           <div className="max-w-4xl mx-auto space-y-12">
-            <div className="reveal-up space-y-6 text-center">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Exam Resources</p>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground">Prepare with Confidence</h2>
-              <p className="text-foreground/70 leading-relaxed max-w-2xl mx-auto">
-                Access previous years' CCS University question papers for BA LLB and LLB. These are invaluable resources for understanding exam patterns and frequently asked questions. Papers are organised by programme, semester, and year.
-              </p>
+            <div className="reveal-up grid lg:grid-cols-2 gap-12 items-center">
+              <div className="space-y-6 text-left">
+                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Exam Resources</p>
+                <h2 className="text-3xl md:text-4xl font-display font-bold text-foreground leading-tight">Prepare with Confidence</h2>
+                <p className="text-foreground/70 leading-relaxed">
+                  Access previous years' CCS University question papers for BA LLB and LLB. These are invaluable resources for understanding exam patterns and frequently asked questions. Papers are organised by programme, semester, and year.
+                </p>
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-2xl border">
+                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg" alt="Ishan Law Exam Preparation" className="w-full h-64 object-cover" />
+              </div>
             </div>
 
             <div className="reveal-up">

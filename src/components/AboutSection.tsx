@@ -1,6 +1,6 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { CheckCircle2 } from "lucide-react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 import libraryImg from "@/assets/students-library.jpg";
 
 const defaultHighlights = [
@@ -12,11 +12,11 @@ const defaultHighlights = [
 
 export default function AboutSection() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("homepage");
-  const apiAbout = data?.aboutIimt;
+  const { data } = useIshanLawData("homepage");
+  const apiAbout = data?.aboutIshanLaw;
   const about = {
     title: apiAbout?.title || "Excellence in Legal Education & Professional Practice",
-    description: apiAbout?.description || "Ishan Institute of Law, established as a premier center for legal studies, is dedicated to producing ethical and skilled advocates. Recognized by the Bar Council of India (BCI) and affiliated to CCS University, Meerut, we combine rigorous academic curriculum with mandatory court exposure and community legal service.",
+    description: apiAbout?.description || "Ishan Law Institute, established as a premier center for legal studies, is dedicated to producing ethical and skilled advocates. Recognized by the Bar Council of India (BCI) and affiliated to CCS University, Meerut, we combine rigorous academic curriculum with mandatory court exposure and community legal service.",
     image: (apiAbout?.image && apiAbout.image.length > 5) ? apiAbout.image : "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg"
   };
 

@@ -4,7 +4,7 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Link } from "react-router-dom";
 import { Wifi, Monitor, BookOpen, Building2, Cctv, MapPin, ArrowRight, Scale } from "lucide-react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const facilities = [
   { icon: Building2, title: "Moot Court Hall", desc: "A realistic High Court environment for regular clinical training, oral advocacy practice, and national competitions.", link: "/moot-court" },
@@ -17,8 +17,8 @@ const facilities = [
 
 export default function InfrastructurePage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("campuslife");
-  const intro = `Ishan Institute of Law's campus is strategically located in Knowledge Park III, Greater Noida, offering a specialized environment designed for legal scholarship and professional training. The campus is built on a foundation of tradition and modern infrastructure, providing a premium learning experience for aspiring advocates.
+  const { data } = useIshanLawData("campuslife");
+  const intro = `Ishan Law Institute's campus is strategically located in Knowledge Park III, Greater Noida, offering a specialized environment designed for legal scholarship and professional training. The campus is built on a foundation of tradition and modern infrastructure, providing a premium learning experience for aspiring advocates.
 
 Our facilities include a high-tech Moot Court Hall, a comprehensive legal library with digital research terminals, and a dedicated Legal Aid Cell for community service. We also provide smart classrooms and secure campus-wide Wi-Fi, ensuring that our students have access to the best tools for legal research and advocacy.
 

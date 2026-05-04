@@ -3,12 +3,11 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { CheckCircle2 } from "lucide-react";
-import studentsImg from "@/assets/students-library.jpg";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultMilestones = [
   { year: "1994", event: "Ishan Institute of Management & Technology established as the foundation of the group" },
-  { year: "2008", event: "Ishan Institute of Law established with Bar Council of India (BCI) approval" },
+  { year: "2008", event: "Ishan Law Institute established with Bar Council of India (BCI) approval" },
   { year: "2010", event: "Launch of specialized Clinical Legal Education programs and Court Visit initiatives" },
   { year: "2015", event: "Establishment of the dedicated Legal Aid Cell for community service" },
   { year: "2018", event: "NAAC Accreditation granted — a testament to quality in higher education" },
@@ -17,8 +16,8 @@ const defaultMilestones = [
 
 export default function AboutPage() {
   const ref = useScrollReveal();
-  const { data, isLoading } = useIIMTData("aboutus");
-  const fallback = `Established with a vision to revolutionize legal education, Ishan Institute of Law stands as a premier center for legal studies in Knowledge Park, Greater Noida. Affiliated with Chaudhary Charan Singh (CCS) University, Meerut, and recognized by the Bar Council of India (BCI), our institution is committed to producing advocates who are not only masters of legal theory but also skilled in the art of practice.
+  const { data, isLoading } = useIshanLawData("aboutus");
+  const fallback = `Established with a vision to revolutionize legal education, Ishan Law Institute stands as a premier center for legal studies in Knowledge Park, Greater Noida. Affiliated with Chaudhary Charan Singh (CCS) University, Meerut, and recognized by the Bar Council of India (BCI), our institution is committed to producing advocates who are not only masters of legal theory but also skilled in the art of practice.
 
 Our curriculum is designed to bridge the gap between classroom learning and courtroom reality. From the very first semester, students are exposed to the living law through mandatory court visits, intensive moot court sessions, and participation in our Legal Aid Cell. We offer two flagship professional programs: the integrated BA LLB (Hons) and the Professional LLB, both structured to meet the demands of modern legal practice.
 
@@ -54,7 +53,7 @@ The Ishan Law campus provides a specialized environment for legal scholarship, f
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="reveal-left relative">
               <div className="rounded-2xl overflow-hidden shadow-[0_8px_40px_hsl(var(--navy)/0.1)]">
-                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg" alt="Students and faculty at Ishan Institute of Law campus" className="w-full h-[400px] object-cover" />
+                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg" alt="Students and faculty at Ishan Law Institute campus" className="w-full h-[400px] object-cover" />
               </div>
             </div>
 

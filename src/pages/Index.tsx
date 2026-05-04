@@ -3,7 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import StatsBar from "@/components/StatsBar";
 import AboutSection from "@/components/AboutSection";
 import ProgramsSection from "@/components/ProgramsSection";
-import WhyIIMTSection from "@/components/WhyIIMTSection";
+import WhyIshanLawSection from "@/components/WhyIshanLawSection";
 import PlacementsSection from "@/components/PlacementsSection";
 import CampusExperience from "@/components/CampusExperience";
 import NewsSection from "@/components/NewsSection";
@@ -19,7 +19,7 @@ const Index = () => {
       <StatsBar />
       <div id="about"><AboutSection /></div>
       <div id="programs"><ProgramsSection /></div>
-      <div id="why-ishan-law"><WhyIIMTSection /></div>
+      <div id="why-ishan-law"><WhyIshanLawSection /></div>
       <div id="placements"><PlacementsSection /></div>
       <FacultySection />
       <div id="campus"><CampusExperience /></div>

@@ -3,7 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { TrendingUp, Building2, Users2, Star, CheckCircle2 } from "lucide-react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultStats = [
   { icon: TrendingUp, value: "100%", label: "Internship Support" },
@@ -13,10 +13,18 @@ const defaultStats = [
 ];
 
 const defaultRecruiters = [
-  "Shardul Amarchand Mangaldas", "AZB & Partners", "Khaitan & Co.", "JSA Law", "Trilegal", 
-  "Luthra and Luthra", "Dua Associates", "Fox Mandal", "Lakshmikumaran & Sridharan", 
-  "Supreme Court of India (Clerkships)", "Delhi High Court", "Allahabad High Court", 
-  "District Courts (NCR)", "HDFC Legal Dept.", "ICICI Bank Legal"
+  { name: "BAJAJ", logo: "https://law.ishan.ac/images/company/BAJAJ.png" },
+  { name: "Welspun", logo: "https://law.ishan.ac/images/company/welspun.png" },
+  { name: "Body Care", logo: "https://law.ishan.ac/images/company/Body-Care.png" },
+  { name: "KPMG", logo: "https://law.ishan.ac/images/company/kpmg.png" },
+  { name: "SBI", logo: "https://law.ishan.ac/images/company/SBI.png" },
+  { name: "Nirala", logo: "https://law.ishan.ac/images/company/Nirala.png" },
+  { name: "Spice", logo: "https://law.ishan.ac/images/company/Spice.png" },
+  { name: "The Times", logo: "https://law.ishan.ac/images/company/The-Times.png" },
+  { name: "47 Billion", logo: "https://law.ishan.ac/images/company/47-Billion.png" },
+  { name: "Shardul Amarchand Mangaldas", logo: "" },
+  { name: "AZB & Partners", logo: "" },
+  { name: "Khaitan & Co.", logo: "" },
 ];
 
 const defaultTestimonials = [
@@ -28,7 +36,7 @@ const defaultTestimonials = [
 
 export default function PlacementsPage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("placements");
+  const { data } = useIshanLawData("placements");
 
   // Schema field names: placementNumbers, recruitingPartners, successStories, placementProcess
   const stats = data?.placementNumbers?.length > 0 ? data.placementNumbers : defaultStats;
@@ -79,10 +87,16 @@ export default function PlacementsPage() {
 
           {/* Recruiters */}
           <div className="reveal delay-200 mb-16">
-            <h2 className="text-2xl font-display font-bold text-foreground mb-6 text-center">Our Recruiting Partners</h2>
-            <div className="flex flex-wrap justify-center gap-4">
-              {recruiters.map((r: string, i: number) => (
-                <div key={r || i} className="px-6 py-3 rounded-lg border bg-card text-sm font-medium text-foreground/60">{r}</div>
+            <h2 className="text-2xl font-display font-bold text-foreground mb-10 text-center">Our Recruiting Partners</h2>
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+              {recruiters.map((r: any, i: number) => (
+                <div key={r.name || i} className="flex items-center justify-center p-8 rounded-xl border bg-card hover:shadow-md transition-shadow h-32">
+                  {r.logo ? (
+                    <img src={r.logo} alt={r.name} className="h-16 md:h-20 w-auto object-contain" />
+                  ) : (
+                    <span className="text-sm font-semibold text-foreground/50">{r.name || r}</span>
+                  )}
+                </div>
               ))}
             </div>
           </div>

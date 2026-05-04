@@ -44,7 +44,7 @@ export default function AdmissionsEnquiryPage() {
               <div className="space-y-6">
                 <h2 className="text-3xl font-display font-bold text-foreground">Begin Your Journey</h2>
                 <p className="text-foreground/70 leading-relaxed">
-                  Choosing the right institution is a significant decision. At IIMT, we offer personal guidance to help you navigate your academic and career path. Whether you are curious about our programmes, eligibility, or campus life, our admissions team is here to provide all the information you need.
+                  Choosing the right institution is a significant decision. At Ishan Law Institute, we offer personal guidance to help you navigate your academic and career path. Whether you are curious about our programmes, eligibility, or campus life, our admissions team is here to provide all the information you need.
                 </p>
                 <div className="bg-gold-light p-6 rounded-2xl border border-gold/20 flex gap-4">
                   <MapPin className="w-6 h-6 text-navy shrink-0" />
@@ -56,7 +56,7 @@ export default function AdmissionsEnquiryPage() {
                 <h3 className="text-xl font-display font-bold text-foreground flex items-center gap-2">
                   <MessageSquare className="w-5 h-5 text-gold" /> Personal Counselling Session
                 </h3>
-                <p className="text-sm text-foreground/70 leading-relaxed">During your counselling session at IIMT, you can expect:</p>
+                <p className="text-sm text-foreground/70 leading-relaxed">During your counselling session at Ishan Law Institute, you can expect:</p>
                 <ul className="grid sm:grid-cols-2 gap-4">
                   <li className="flex items-center gap-3 text-sm text-foreground/80 font-medium">
                     <CheckCircle2 className="w-4 h-4 text-gold" /> Eligibility Assessment
@@ -80,6 +80,9 @@ export default function AdmissionsEnquiryPage() {
                 <p className="text-sm text-foreground/70 leading-relaxed">
                   For your convenience, our online admissions portal allows you to track your application, upload documents, and pay fees digitally, ensuring a low-friction admission experience from anywhere.
                 </p>
+                <div className="rounded-2xl overflow-hidden shadow-2xl border mt-8">
+                  <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-4.jpg" alt="Ishan Law Admissions" className="w-full h-64 object-cover" />
+                </div>
               </div>
             </div>
 
@@ -113,14 +116,10 @@ export default function AdmissionsEnquiryPage() {
                     </div>
                     <div className="space-y-1.5">
                       <label className="text-xs font-bold text-foreground/50 uppercase tracking-wider ml-1">Programme of Interest</label>
-                      <select value={form.program} onChange={e => setForm(p => ({...p, program: e.target.value}))} className="w-full px-4 py-3 rounded-xl border bg-background text-foreground/60 focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all appearance-none">
+                      <select value={form.program} onChange={e => setForm(p => ({...p, program: e.target.value}))} className="w-full px-4 py-3 rounded-xl border bg-background text-foreground/60 focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all appearance-none" required>
                         <option value="">Select Programme</option>
-                        <option>BBA</option>
-                        <option>B.Com</option>
-                        <option>BCA</option>
-                        <option>M.Com</option>
-                        <option>B.Ed</option>
-                        <option>M.Ed</option>
+                        <option value="BA LLB">BA LLB (Hons)</option>
+                        <option value="LLB">LLB (3 Years)</option>
                       </select>
                     </div>
                     <div className="space-y-1.5">

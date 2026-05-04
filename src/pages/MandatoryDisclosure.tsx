@@ -4,7 +4,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { FileText, Download } from "lucide-react";
 
 const disclosureItems = [
-  { category: "Institution Details", items: ["Name: Ishan Institute of Law", "Address: Knowledge Park-III, Greater Noida", "Year of Establishment: 2008", "Status: Private Self-Financing", "Type: Co-educational Professional Institution"] },
+  { category: "Institution Details", items: ["Name: Ishan Law Institute", "Address: Knowledge Park-III, Greater Noida", "Year of Establishment: 2008", "Status: Private Self-Financing", "Type: Co-educational Professional Institution"] },
   { category: "Academic Information", items: ["Programs Offered: BA LLB (Hons), LLB", "BCI Approval Status — Current", "Annual Intake per Program", "Faculty-Student Ratio", "Student Success Rate (Last 5 Years)"] },
   { category: "Regulatory Information", items: ["BCI Approval Letters", "CCS University Affiliation Documents", "Anti-Ragging Committee Constitution", "Grievance Redressal Mechanism"] },
   { category: "Infrastructure", items: ["Moot Court Hall Specifications", "Legal Library — Titles, Journals & Digital Resources", "IT Lab — Manupatra & SCC Online Access", "Legal Aid Clinic — Community Reach"] },
@@ -30,7 +30,7 @@ export default function MandatoryDisclosurePage() {
               <div>
                 <p className="font-semibold text-foreground mb-1">BCI Compliance Statement</p>
                 <p className="text-sm text-foreground/70 leading-relaxed">
-                  The information provided below is submitted as required by the Bar Council of India (BCI) and is updated annually to ensure full transparency. Any discrepancies found in the reported data should be immediately brought to the notice of the Registrar at Ishan Institute of Law, Knowledge Park, Greater Noida.
+                  The information provided below is submitted as required by the Bar Council of India (BCI) and is updated annually to ensure full transparency. Any discrepancies found in the reported data should be immediately brought to the notice of the Registrar at Ishan Law Institute, Knowledge Park, Greater Noida.
                 </p>
                 <p className="text-sm text-foreground/70 leading-relaxed mt-4">
                   BCI mandates public disclosure for the benefit of current and prospective students, legal practitioners, and regulatory authorities. It serves as a comprehensive record of the institution's legal aid services, moot court facilities, and faculty expertise, ensuring accountability in legal education.

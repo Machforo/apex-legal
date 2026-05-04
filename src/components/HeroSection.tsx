@@ -73,15 +73,15 @@ export default function HeroSection() {
       title: 'National Moot Court Competition 2025', 
       date: 'MAR 22', 
       action: 'popup',
-      image: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&auto=format&fit=crop',
-      details: 'Ishan Institute of Law hosts its annual National Moot Court Competition. Teams from across India will debate complex constitutional issues before a bench of sitting and retired High Court judges.'
+      image: 'https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg',
+      details: 'Ishan Law Institute hosts its annual National Moot Court Competition. Teams from across India will debate complex constitutional issues before a bench of sitting and retired High Court judges.'
     },
     { 
       type: 'NEWS', 
       title: 'Legal Aid Cell Camp at Greater Noida', 
       date: 'FEB 18', 
       action: 'popup',
-      image: 'https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=800&auto=format&fit=crop',
+      image: 'https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg',
       details: 'Our students served over 50 community members in our latest free legal awareness and assistance camp, focusing on family law and property rights.'
     },
     { 
@@ -95,7 +95,7 @@ export default function HeroSection() {
       title: 'Seminar on Digital Personal Data Protection', 
       date: 'APR 12', 
       action: 'popup',
-      image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&auto=format&fit=crop',
+      image: 'https://law.ishan.ac/all-law/gallery-photos/academics/academics-1.jpg',
       details: 'Eminent legal scholars and industry experts discuss the implications of India’s new data protection law on corporate compliance and individual privacy.'
     },
     { 
@@ -103,7 +103,7 @@ export default function HeroSection() {
       title: 'Moot Court Hall Upgraded with Digital Tech', 
       date: 'DEC 15', 
       action: 'popup',
-      image: 'https://images.unsplash.com/photo-1453723490680-899513d4206e?w=800&auto=format&fit=crop',
+      image: 'https://law.ishan.ac/static/gallery/infra/infra-16.jpg',
       details: 'New high-definition recording and video conferencing facilities installed in the Moot Court Hall to support international competitions and self-review.'
     }
   ];
@@ -306,6 +306,7 @@ export default function HeroSection() {
                             <option value="">Select Programme *</option>
                             <option>BA LLB (Hons) - 5 Years</option>
                             <option>LLB - 3 Years</option>
+                            <option>LLM - 2 Years</option>
                           </select>
                         </div>
                         <div className="flex items-start gap-2 pt-1">

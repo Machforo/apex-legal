@@ -21,7 +21,16 @@ export default function DownloadsPage() {
       <PageHeader title="Downloads" subtitle="Timetables, syllabi, forms, and notices for current students" breadcrumbs={[{ label: "Students" }, { label: "Downloads" }]} />
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <div className="max-w-3xl mx-auto space-y-3">
+          <div className="grid lg:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
+            <div className="reveal space-y-8">
+              <p className="text-foreground/70 leading-relaxed">
+                Access mandatory forms, academic calendars, and syllabus documents. All documents are in PDF format for easy accessibility across devices. For any specific document not listed here, please contact the academic office.
+              </p>
+              <div className="rounded-2xl overflow-hidden shadow-2xl border">
+                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg" alt="Ishan Law Resources" className="w-full h-80 object-cover" />
+              </div>
+            </div>
+            <div className="space-y-3">
             {downloads.map((d, i) => (
               <div key={d.name} className={`reveal delay-${Math.min(i % 4, 3)}00 flex items-center gap-4 p-4 rounded-xl border bg-card hover:shadow-sm transition-shadow`}>
                 <div className="w-10 h-10 rounded-lg bg-destructive/10 flex items-center justify-center shrink-0"><FileText className="w-5 h-5 text-destructive" /></div>
@@ -34,7 +43,8 @@ export default function DownloadsPage() {
             ))}
           </div>
         </div>
-      </section>
+      </div>
+    </section>
     </Layout>
   );
 }

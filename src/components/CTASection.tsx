@@ -3,13 +3,13 @@ import auditoriumImg from "@/assets/auditorium.jpg";
 import { Phone, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 export default function CTASection() {
   const ref = useScrollReveal();
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", course: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
-  const { data } = useIIMTData("homepage");
+  const { data } = useIshanLawData("homepage");
   const ctaContent = data?.contactUs?.content || "Admissions are open for the session 2025-26. Connect with our admission counselors to discuss your career in law and clarify your doubts about eligibility and the application process.";
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -53,7 +53,7 @@ export default function CTASection() {
           <div className="reveal-left space-y-6">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Get In Touch</p>
             <h2 className="text-3xl md:text-4xl font-display font-bold text-primary-foreground leading-tight">
-              Begin Your Legal Career at Ishan Institute of Law
+              Begin Your Legal Career at Ishan Law Institute
             </h2>
             <p className="text-primary-foreground/60 leading-relaxed whitespace-pre-wrap">
               {ctaContent}

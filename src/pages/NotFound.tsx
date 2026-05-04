@@ -18,8 +18,11 @@ const NotFound = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-navy/5 rounded-full blur-3xl -z-10" />
 
         <div className="container-wide text-center px-4 relative z-10 py-20">
-          <div className="inline-flex items-center justify-center w-24 h-24 bg-white rounded-full shadow-xl mb-8">
-            <Search className="w-10 h-10 text-gold" />
+          <div className="reveal inline-flex items-center justify-center w-32 h-32 bg-white rounded-full shadow-2xl mb-8 overflow-hidden border-4 border-gold/20 relative">
+            <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg" alt="Ishan Law" className="w-full h-full object-cover opacity-80" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Search className="w-12 h-12 text-navy drop-shadow-lg" />
+            </div>
           </div>
           
           <h1 className="text-8xl md:text-[120px] font-display font-bold text-navy leading-none mb-4 drop-shadow-sm">

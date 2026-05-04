@@ -3,11 +3,11 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Target, Eye, Compass } from "lucide-react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 export default function MissionVisionPage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("aboutus");
+  const { data } = useIshanLawData("aboutus");
   
   const mv = data?.missionVision;
   
@@ -50,6 +50,14 @@ export default function MissionVisionPage() {
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="max-w-4xl mx-auto space-y-16">
+            <div className="reveal grid sm:grid-cols-2 gap-6 mb-20">
+               <div className="rounded-2xl overflow-hidden shadow-2xl border aspect-[16/9]">
+                 <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg" alt="Ishan Law Excellence" className="w-full h-full object-cover" />
+               </div>
+               <div className="rounded-2xl overflow-hidden shadow-2xl border aspect-[16/9] hidden sm:block">
+                 <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg" alt="Ishan Law Campus" className="w-full h-full object-cover" />
+               </div>
+            </div>
             {/* Vision */}
             <div className="reveal grid md:grid-cols-[80px_1fr] gap-6 items-start">
               <div className="w-16 h-16 rounded-2xl bg-gold-light flex items-center justify-center shrink-0">

@@ -76,28 +76,33 @@ export default function IndustrialVisitsPage() {
               </div>
             </div>
 
-            <div className="reveal-right bg-section-alt rounded-3xl p-8 md:p-10 border shadow-sm">
-              <h3 className="text-2xl font-display font-bold text-foreground mb-6">Why These Visits Matter</h3>
-              <ul className="space-y-6">
-                <li className="flex gap-4">
-                  <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-1">
-                    <span className="text-xs font-bold text-gold">1</span>
-                  </div>
-                  <p className="text-foreground/70 text-sm">Understanding procedural law (CrPC, CPC, Evidence Act) in actual trial court settings.</p>
-                </li>
-                <li className="flex gap-4">
-                  <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-1">
-                    <span className="text-xs font-bold text-gold">2</span>
-                  </div>
-                  <p className="text-foreground/70 text-sm">Observing courtroom etiquette and the professional conduct of advocates and judges.</p>
-                </li>
-                <li className="flex gap-4">
-                  <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-1">
-                    <span className="text-xs font-bold text-gold">3</span>
-                  </div>
-                  <p className="text-foreground/70 text-sm">Developing empathy and social responsibility through exposure to prison reformation and legal aid needs.</p>
-                </li>
-              </ul>
+            <div className="reveal-right">
+               <div className="rounded-3xl overflow-hidden shadow-2xl border mb-6">
+                 <img src="https://law.ishan.ac/all-law/gallery-photos/outreach/outreach-12.jpeg" alt="Outreach and Court Visit" className="w-full h-80 object-cover" />
+               </div>
+               <div className="bg-section-alt rounded-3xl p-8 md:p-10 border shadow-sm">
+                 <h3 className="text-2xl font-display font-bold text-foreground mb-6">Why These Visits Matter</h3>
+                 <ul className="space-y-6">
+                   <li className="flex gap-4">
+                     <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-1">
+                       <span className="text-xs font-bold text-gold">1</span>
+                     </div>
+                     <p className="text-foreground/70 text-sm">Understanding procedural law (CrPC, CPC, Evidence Act) in actual trial court settings.</p>
+                   </li>
+                   <li className="flex gap-4">
+                     <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-1">
+                       <span className="text-xs font-bold text-gold">2</span>
+                     </div>
+                     <p className="text-foreground/70 text-sm">Observing courtroom etiquette and the professional conduct of advocates and judges.</p>
+                   </li>
+                   <li className="flex gap-4">
+                     <div className="w-6 h-6 rounded-full bg-gold/20 flex items-center justify-center shrink-0 mt-1">
+                       <span className="text-xs font-bold text-gold">3</span>
+                     </div>
+                     <p className="text-foreground/70 text-sm">Developing empathy and social responsibility through exposure to prison reformation and legal aid needs.</p>
+                   </li>
+                 </ul>
+               </div>
             </div>
           </div>
         </div>

@@ -3,7 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultFaqCategories = [
   {
@@ -19,7 +19,7 @@ const defaultFaqCategories = [
   {
     category: "Programmes",
     faqs: [
-      { q: "Is Ishan Institute of Law approved by the Bar Council of India?", a: "Yes, Ishan Institute of Law is fully approved by the Bar Council of India (BCI) and affiliated with Chaudhary Charan Singh (CCS) University, Meerut." },
+      { q: "Is Ishan Law Institute approved by the Bar Council of India?", a: "Yes, Ishan Law Institute is fully approved by the Bar Council of India (BCI) and affiliated with Chaudhary Charan Singh (CCS) University, Meerut." },
       { q: "What is Clinical Legal Education?", a: "It is a practice-oriented pedagogy that integrates theoretical law with hands-on training through moot courts, legal aid clinics, court visits, and internship programs." },
       { q: "Are moot court sessions mandatory?", a: "Yes, participation in moot courts is integrated into the curriculum to ensure every student develops advocacy, research, and drafting skills from the early semesters." },
       { q: "Does the college provide coaching for Judicial Services?", a: "Yes, we have a dedicated Judicial Services Preparation Cell that provides specialized guidance and coaching for various State Judicial Services Examinations." },
@@ -52,7 +52,7 @@ const defaultFaqCategories = [
 
 export default function FAQsPage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("admissions");
+  const { data } = useIshanLawData("admissions");
 
   // If API provides faqs array, group them into a single category; otherwise fall back to default
   const faqCategories = data?.faq?.length > 0
@@ -69,24 +69,36 @@ export default function FAQsPage() {
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <div className="max-w-3xl mx-auto space-y-10">
-            {faqCategories.map((cat, ci) => (
-              <div key={cat.category} className={`reveal delay-${Math.min(ci, 4)}00`}>
-                <h2 className="text-xl font-display font-bold text-foreground mb-4">{cat.category}</h2>
-                <Accordion type="single" collapsible className="space-y-2">
-                  {cat.faqs.map((faq, i) => (
-                    <AccordionItem key={i} value={`${ci}-${i}`} className="border rounded-lg bg-card px-5">
-                      <AccordionTrigger className="text-sm font-semibold text-foreground text-left py-4 hover:no-underline">
-                        {faq.q}
-                      </AccordionTrigger>
-                      <AccordionContent className="text-sm text-foreground/70 leading-relaxed pb-4">
-                        {faq.a}
-                      </AccordionContent>
-                    </AccordionItem>
-                  ))}
-                </Accordion>
+          <div className="grid lg:grid-cols-[1fr_350px] gap-12 items-start max-w-6xl mx-auto">
+            <div className="space-y-10">
+              {faqCategories.map((cat, ci) => (
+                <div key={cat.category} className={`reveal delay-${Math.min(ci, 4)}00`}>
+                  <h2 className="text-xl font-display font-bold text-foreground mb-4">{cat.category}</h2>
+                  <Accordion type="single" collapsible className="space-y-2">
+                    {cat.faqs.map((faq, i) => (
+                      <AccordionItem key={i} value={`${ci}-${i}`} className="border rounded-lg bg-card px-5">
+                        <AccordionTrigger className="text-sm font-semibold text-foreground text-left py-4 hover:no-underline">
+                          {faq.q}
+                        </AccordionTrigger>
+                        <AccordionContent className="text-sm text-foreground/70 leading-relaxed pb-4">
+                          {faq.a}
+                        </AccordionContent>
+                      </AccordionItem>
+                    ))}
+                  </Accordion>
+                </div>
+              ))}
+            </div>
+            <div className="reveal hidden lg:block sticky top-32">
+              <div className="rounded-2xl overflow-hidden shadow-2xl border mb-6">
+                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg" alt="Ishan Law Campus Life" className="w-full h-[450px] object-cover" />
               </div>
-            ))}
+              <div className="p-6 rounded-xl bg-gold-light border border-[hsl(var(--gold)/0.2)]">
+                <p className="text-sm font-bold text-navy mb-2">Still have questions?</p>
+                <p className="text-xs text-foreground/70 leading-relaxed">Our admissions counselors are available Monday to Saturday, 9 AM to 6 PM.</p>
+                <a href="tel:+918448797700" className="inline-block mt-3 text-sm font-bold text-navy hover:underline">Call: +91 8448797700</a>
+              </div>
+            </div>
           </div>
         </div>
       </section>

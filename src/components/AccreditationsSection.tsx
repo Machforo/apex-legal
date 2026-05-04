@@ -1,16 +1,16 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultAccreditations = [
-  { name: "UGC", url: "https://iimt.ishan.ac/images/accreditation/ugc-logo.gif" },
-  { name: "AICTE", url: "https://iimt.ishan.ac/images/accreditation/aicte-logo.png" },
-  { name: "NCTE", url: "https://iimt.ishan.ac/images/accreditation/ncte-logo.png" },
-  { name: "SCERT", url: "https://iimt.ishan.ac/images/accreditation/scert-logo.jpg" },
+  { name: "UGC", url: "https://Ishan Law Institute.ishan.ac/images/accreditation/ugc-logo.gif" },
+  { name: "AICTE", url: "https://Ishan Law Institute.ishan.ac/images/accreditation/aicte-logo.png" },
+  { name: "NCTE", url: "https://Ishan Law Institute.ishan.ac/images/accreditation/ncte-logo.png" },
+  { name: "SCERT", url: "https://Ishan Law Institute.ishan.ac/images/accreditation/scert-logo.jpg" },
 ];
 
 export default function AccreditationsSection() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("homepage");
+  const { data } = useIshanLawData("homepage");
   const accreditations = data?.accreditations?.length > 0 ? data.accreditations : defaultAccreditations;
 
   return (

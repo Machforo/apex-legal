@@ -3,7 +3,32 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, Component, ReactNode } from "react";
+
+class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
+  constructor(props: { children: ReactNode }) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(error: any, errorInfo: any) { console.error("Uncaught error:", error, errorInfo); }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen flex flex-col items-center justify-center p-4 text-center">
+          <h2 className="text-2xl font-bold mb-4">Something went wrong.</h2>
+          <button 
+            onClick={() => window.location.reload()} 
+            className="px-6 py-2 bg-navy text-white rounded-lg"
+          >
+            Refresh Page
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
@@ -14,7 +39,7 @@ const About = lazy(() => import("./pages/About"));
 const PrincipalMessage = lazy(() => import("./pages/PrincipalMessage"));
 const MissionVision = lazy(() => import("./pages/MissionVision"));
 const Approvals = lazy(() => import("./pages/Approvals"));
-const WhyChooseUs = lazy(() => import("./pages/WhyIIMT")); // Will update component content
+const WhyChooseUs = lazy(() => import("./pages/WhyIshanLaw")); // Will update component content
 const BestPractices = lazy(() => import("./pages/BestPractices"));
 const GreenInitiatives = lazy(() => import("./pages/GreenInitiatives"));
 const MandatoryDisclosure = lazy(() => import("./pages/MandatoryDisclosure"));
@@ -126,13 +151,14 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <GlobalClickInterceptor />
-        <Suspense fallback={<PageLoader />}>
-          <Routes>
+        <ErrorBoundary>
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
             {/* 301 Redirects */}
             <Route path="/application-form" element={<Navigate to="/admissions" replace />} />
             <Route path="/join-us" element={<Navigate to="/careers" replace />} />
             <Route path="/director-message" element={<Navigate to="/principal-message" replace />} />
-            <Route path="/why-iimt" element={<Navigate to="/why-choose-us" replace />} />
+            <Route path="/why-ishan-law-institute" element={<Navigate to="/why-choose-us" replace />} />
             <Route path="/education-overview" element={<Navigate to="/programs-overview" replace />} />
             <Route path="/industrial-visits" element={<Navigate to="/court-jail-visits" replace />} />
             <Route path="/pedagogy-labs" element={<Navigate to="/moot-court" replace />} />
@@ -216,6 +242,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
+      </ErrorBoundary>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

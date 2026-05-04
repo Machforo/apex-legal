@@ -27,6 +27,9 @@ export default function CertificateProgramsPage() {
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
+          <div className="reveal rounded-2xl overflow-hidden border mb-12 shadow-sm max-w-4xl mx-auto">
+            <img src="https://law.ishan.ac/all-law/gallery-photos/academics/academics-11.jpg" alt="Certificate Programs" className="w-full h-80 object-cover" />
+          </div>
           <p className="reveal text-foreground/70 leading-relaxed max-w-3xl mb-12">
             Ishan Law offers structured certificate programs alongside regular degree courses. These specialized short courses help students develop practical skills that legal employers actively seek — from cyber law expertise to mediation skills and advanced legal drafting. All certificate programs include hands-on sessions, assessments, and a certificate of completion.
           </p>

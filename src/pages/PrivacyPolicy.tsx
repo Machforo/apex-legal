@@ -8,8 +8,17 @@ export default function PrivacyPolicyPage() {
     <Layout>
       <PageHeader title="Privacy Policy" breadcrumbs={[{ label: "Privacy Policy" }]} />
       <section className="py-20 md:py-28" ref={ref}>
-        <div className="container-wide"><div className="max-w-3xl mx-auto reveal space-y-6 text-sm text-foreground/70 leading-relaxed">
-          <p>Ishan Educational Group ("we," "us," "our") is committed to protecting the privacy of visitors to our websites (ishan.ac and all sub-sites including legal.ishan.ac). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or submit forms.</p>
+        <div className="container-wide">
+          <div className="grid lg:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
+            <div className="reveal space-y-8">
+              <p className="text-foreground/70 leading-relaxed text-sm">
+                Ishan Educational Group ("we," "us," "our") is committed to protecting the privacy of visitors to our websites (ishan.ac and all sub-sites including legal.ishan.ac). This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or submit forms.
+              </p>
+              <div className="rounded-2xl overflow-hidden shadow-2xl border">
+                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg" alt="Ishan Law Institutional Ethics" className="w-full h-80 object-cover" />
+              </div>
+            </div>
+            <div className="reveal delay-100 space-y-6 text-sm text-foreground/70 leading-relaxed">
           <h2 className="text-lg font-display font-bold text-foreground">Information We Collect</h2>
           <p>We may collect personal information that you voluntarily provide when filling out enquiry forms, admission applications, feedback forms, or fee payment portals. This includes: name, email address, phone number, mailing address, date of birth, educational qualifications, and payment information.</p>
           <h2 className="text-lg font-display font-bold text-foreground">How We Use Your Information</h2>
@@ -21,8 +30,10 @@ export default function PrivacyPolicyPage() {
           <h2 className="text-lg font-display font-bold text-foreground">Contact Us</h2>
           <p>For questions about this Privacy Policy, contact us at <a href="mailto:info@ishan.ac" className="text-navy font-semibold">info@ishan.ac</a> or write to: Ishan Educational Group, Knowledge Park-III, Greater Noida, UP 201308.</p>
           <p className="text-xs text-muted-foreground">Last updated: January 2025</p>
-        </div></div>
-      </section>
+        </div>
+      </div>
+    </div>
+  </section>
     </Layout>
   );
 }

@@ -2,16 +2,16 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 export default function DirectorMessagePage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("aboutus");
+  const { data } = useIshanLawData("aboutus");
   const defaultImage = "/assets/director.jpg"; // Placeholder path for now
   const msg = data?.directorMessage || {
       name: "Dr. D.K. Garg",
       designation: "Founder Chairman, Ishan Group",
-      message: `Welcome to Ishan Institute of Law. As we navigate an era of significant legal and social transformation, I believe that legal education must go beyond textbooks—it is a vital force that shapes the defenders of justice. At Ishan Law, our philosophy is rooted in the belief that every student has the potential to become a champion of the rule of law when nurtured with practice-oriented guidance.
+      message: `Welcome to Ishan Law Institute. As we navigate an era of significant legal and social transformation, I believe that legal education must go beyond textbooks—it is a vital force that shapes the defenders of justice. At Ishan Law, our philosophy is rooted in the belief that every student has the potential to become a champion of the rule of law when nurtured with practice-oriented guidance.
 
 Our vision for Ishan Law is to create an ecosystem that prioritizes clinical legal education and ethical practice. We aim for the holistic development of our students, focusing not just on legal scholarship, but on fostering critical reasoning, social empathy, and professional integrity. We want our graduates to be advocates who can lead with conscience and innovate in the pursuit of justice.
 
@@ -49,7 +49,7 @@ I warmly invite you to join the Ishan Law community and experience an education 
                 </div>
               </div>
 
-              <div className="reveal-right space-y-6">
+              <div className="reveal-right space-y-8">
                 <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
                    {msg.message}
                 </p>
@@ -57,6 +57,10 @@ I warmly invite you to join the Ishan Law community and experience an education 
                 <div className="pt-4 border-t">
                   <p className="font-semibold text-foreground">{msg.name}</p>
                   <p className="text-sm text-muted-foreground">{msg.designation}</p>
+                </div>
+
+                <div className="rounded-2xl overflow-hidden shadow-2xl border">
+                  <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg" alt="Ishan Law Campus" className="w-full h-64 object-cover" />
                 </div>
               </div>
             </div>

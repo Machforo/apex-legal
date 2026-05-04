@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Linkedin, Twitter } from "lucide-react";
+import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Linkedin, Twitter, GraduationCap } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const quickLinks = [
@@ -29,10 +29,20 @@ export default function Footer() {
       <div className="container-wide py-12">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-12">
           <div className="space-y-6">
-            <Link to="/" className="flex items-center gap-3">
-              <img src="/favicon.png" alt="Ishan Institute of Law Logo" className="h-10 w-auto" />
+            <Link to="/" className="flex items-center gap-3 group">
+              <div className="w-10 h-10 rounded-xl bg-white overflow-hidden flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500 p-1">
+                <img 
+                  src="/favicon.png" 
+                  alt="Ishan Law Logo" 
+                  className="w-full h-full object-contain"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = 'none';
+                    (e.target as HTMLImageElement).parentElement!.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-navy"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>';
+                  }}
+                />
+              </div>
               <div>
-                <p className="font-display font-bold text-lg leading-tight">ISHAN</p>
+                <p className="font-display font-bold text-lg leading-tight text-white">ISHAN</p>
                 <p className="text-[10px] uppercase tracking-[0.15em] text-primary-foreground/40 leading-tight">Institute of Law</p>
               </div>
             </Link>
@@ -106,7 +116,7 @@ export default function Footer() {
       <div className="border-t border-white/5 py-6 bg-black/20">
         <div className="container-wide flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-[11px] text-primary-foreground/30">
-            © {new Date().getFullYear()} Ishan Institute of Law. All rights reserved.
+            © {new Date().getFullYear()} Ishan Law Institute. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
             {[

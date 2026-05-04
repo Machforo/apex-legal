@@ -6,11 +6,11 @@ import { motion, AnimatePresence } from "framer-motion";
 const faqs = [
   {
     question: "What legal programs are offered at Ishan Law?",
-    answer: "Ishan Institute of Law offers the 5-year Integrated BA LLB program and the 3-year LLB program, both approved by the Bar Council of India (BCI) and affiliated with CCS University, Meerut."
+    answer: "Ishan Law Institute offers the 5-year Integrated BA LLB program and the 3-year LLB program, both approved by the Bar Council of India (BCI) and affiliated with CCS University, Meerut."
   },
   {
-    question: "Is Ishan Institute of Law approved by the BCI?",
-    answer: "Yes, the Ishan Institute of Law is fully approved by the Bar Council of India (BCI), ensuring that our graduates are eligible to enroll as advocates with any State Bar Council across India."
+    question: "Is Ishan Law Institute approved by the BCI?",
+    answer: "Yes, the Ishan Law Institute is fully approved by the Bar Council of India (BCI), ensuring that our graduates are eligible to enroll as advocates with any State Bar Council across India."
   },
   {
     question: "How does the institute support judicial service aspirants?",

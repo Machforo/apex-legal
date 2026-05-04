@@ -2,11 +2,11 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 export default function BestPracticesPage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("aboutus");
+  const { data } = useIshanLawData("aboutus");
   // Schema: bestPractices is an array of { title, content }
   const practices: Array<{title:string;content:string}> = data?.bestPractices?.length > 0 ? data.bestPractices : [];
   const legacyContent = practices.length === 0 ? null : null; // just to keep clarity
@@ -33,7 +33,7 @@ export default function BestPracticesPage() {
               ) : (
                 <>
                   <p className="text-foreground/70 leading-relaxed">
-                    Ishan Institute of Law is committed to bridging the gap between classroom theory and courtroom practice. Our best practices are systematically documented for NAAC peer review, ensuring that every initiative contributes to the professional and ethical development of our aspiring advocates.
+                    Ishan Law Institute is committed to bridging the gap between classroom theory and courtroom practice. Our best practices are systematically documented for NAAC peer review, ensuring that every initiative contributes to the professional and ethical development of our aspiring advocates.
                   </p>
                   <div className="p-6 rounded-xl border bg-card">
                     <h2 className="text-xl font-display font-bold text-foreground mb-3">1. Integrated Clinical Legal Education</h2>

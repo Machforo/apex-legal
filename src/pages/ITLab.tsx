@@ -3,7 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Monitor, Wifi, Clock, Shield } from "lucide-react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultSpecs = [
   { label: "Research Terminals", value: "60+ high-end systems" },
@@ -16,7 +16,7 @@ const defaultSpecs = [
 
 export default function ITLabPage() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("campuslife");
+  const { data } = useIshanLawData("campuslife");
   const itLab = data?.itLab;
   const content = itLab?.content;
   const specs = itLab?.specs?.length > 0 ? itLab.specs : defaultSpecs;
@@ -32,13 +32,16 @@ export default function ITLabPage() {
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="max-w-4xl mx-auto">
+            <div className="reveal rounded-2xl overflow-hidden border mb-12 shadow-sm">
+              <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-12.jpg" alt="Digital Research Lab" className="w-full h-80 object-cover" />
+            </div>
             <div className="reveal space-y-5 mb-12">
               {content ? (
                 <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">{content}</p>
               ) : (
                 <>
                   <p className="text-foreground/70 leading-relaxed">
-                    The Digital Research Lab at Ishan Institute of Law is designed to provide students with the technological tools essential for modern legal practice. In an era where case law research and memorial drafting have become digitized, our lab ensures that students are proficient in using premier legal databases.
+                    The Digital Research Lab at Ishan Law Institute is designed to provide students with the technological tools essential for modern legal practice. In an era where case law research and memorial drafting have become digitized, our lab ensures that students are proficient in using premier legal databases.
                   </p>
                   <p className="text-foreground/70 leading-relaxed">
                     The lab is equipped with 60+ high-end terminals featuring 24/7 access to Manupatra, SCC Online, and LexisNexis. Beyond research, the facility supports students in mastering legal drafting software, document management, and academic writing tools like Grammarly and Turnitin.

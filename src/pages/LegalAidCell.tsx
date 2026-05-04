@@ -47,7 +47,7 @@ export default function LegalAidCellPage() {
                 Empowering the Underprivileged
               </h2>
               <p className="text-foreground/70 leading-relaxed mb-6">
-                The Legal Aid Cell at Ishan Institute of Law is dedicated to the constitutional mandate of ensuring that justice is not denied to any citizen by reason of economic or other disabilities. It serves as a vital link between the institution and the community.
+                The Legal Aid Cell at Ishan Law Institute is dedicated to the constitutional mandate of ensuring that justice is not denied to any citizen by reason of economic or other disabilities. It serves as a vital link between the institution and the community.
               </p>
               <p className="text-foreground/70 leading-relaxed">
                 By participating in the Legal Aid Cell, students gain practical experience in handling real-life legal problems while developing a deep sense of social responsibility. Our students assist in drafting representations, conducting field surveys, and organizing awareness rallies on critical legal issues.

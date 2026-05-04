@@ -7,7 +7,7 @@ export default function AnnouncementPopup() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const hasSeen = localStorage.getItem("iimt_announcement_seen");
+    const hasSeen = localStorage.getItem("Ishan Law Institute_announcement_seen");
     if (hasSeen) return;
 
     const timer = setTimeout(() => {
@@ -19,7 +19,7 @@ export default function AnnouncementPopup() {
 
   const handleClose = () => {
     setIsVisible(false);
-    localStorage.setItem("iimt_announcement_seen", "true");
+    localStorage.setItem("Ishan Law Institute_announcement_seen", "true");
   };
 
   return (
@@ -53,7 +53,7 @@ export default function AnnouncementPopup() {
               
               <h2 className="text-3xl font-display font-bold text-navy mb-4">Admissions Open 2025-26</h2>
               <p className="text-foreground/70 leading-relaxed mb-8">
-                The gates to a brighter future are open. Apply now for BBA, BCA, B.Com, B.Ed, and M.Ed programs at IIMT Greater Noida.
+                The gates to a brighter future are open. Apply now for BBA, BCA, B.Com, B.Ed, and M.Ed programs at Ishan Law Institute Greater Noida.
               </p>
 
               <div className="space-y-3">

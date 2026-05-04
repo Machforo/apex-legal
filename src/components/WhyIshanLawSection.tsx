@@ -1,6 +1,6 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Award, Users, Globe, BookOpen, Building, TrendingUp, Shield, Lightbulb, Gavel, Scale } from "lucide-react";
-import { useIIMTData } from "@/hooks/useIIMTData";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultReasons = [
   { icon: Shield, title: "BCI Approved", desc: "Bar Council of India recognized professional programs" },
@@ -13,9 +13,9 @@ const defaultReasons = [
   { icon: TrendingUp, title: "Location Advantage", desc: "Situated in Knowledge Park, the educational hub of Greater Noida" },
 ];
 
-export default function WhyIIMTSection() {
+export default function WhyIshanLawSection() {
   const ref = useScrollReveal();
-  const { data } = useIIMTData("homepage");
+  const { data } = useIshanLawData("homepage");
   const reasons = data?.standApart?.length > 0 ? data.standApart : defaultReasons;
 
   return (
@@ -29,7 +29,7 @@ export default function WhyIIMTSection() {
               What Makes Ishan Law Stand Apart
             </h2>
             <p className="mt-4 text-foreground/60 leading-relaxed">
-              At Ishan Institute of Law, we bridge the gap between classroom theory and courtroom reality. Our focus on clinical legal education ensures that every student graduates with the confidence of a seasoned professional.
+              At Ishan Law Institute, we bridge the gap between classroom theory and courtroom reality. Our focus on clinical legal education ensures that every student graduates with the confidence of a seasoned professional.
             </p>
             <a
               href="#contact"
