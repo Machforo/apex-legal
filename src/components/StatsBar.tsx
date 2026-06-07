@@ -61,8 +61,8 @@ export default function StatsBar() {
   const [statsList, setStatsList] = useState(defaultStats);
 
   useEffect(() => {
-    if (data?.numbers?.length > 0) {
-      setStatsList(data.numbers);
+    if (data?.stats?.length > 0) {
+      setStatsList(data.stats);
     }
   }, [data]);
 

@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { ArrowRight, Award, GraduationCap, Send, User, Phone as PhoneIcon, BookOpen, ChevronLeft, ChevronRight, CheckCircle, Newspaper, Sparkles, Calendar, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 // ─── Slides ───────────────────────────────────────────────────────────────────
 // ─── Slides ───────────────────────────────────────────────────────────────────
-const SLIDES = [
+const DEFAULT_SLIDES = [
   {
     image: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg",
     badge: "BCI Approved · NAAC Accredited · CCS University Affiliated",
@@ -45,21 +46,30 @@ const SLIDES = [
   },
 ];
 
-// Pick a random start index once per browser session
-const SESSION_START = (() => {
-  try {
-    const key = "ishan_law_hero_start";
-    const s = sessionStorage.getItem(key);
-    if (s !== null) return parseInt(s, 10) % SLIDES.length;
-    const r = Math.floor(Math.random() * SLIDES.length);
-    sessionStorage.setItem(key, String(r));
-    return r;
-  } catch { return 0; }
-})();
-
-const DELAY = 5500;
-
 export default function HeroSection() {
+  const { data } = useIshanLawData("homepage");
+  const SLIDES = data?.banners?.length > 0 ? data.banners.map((b: any) => ({
+    image: b.image,
+    badge: "BCI Approved · NAAC Accredited · CCS University Affiliated",
+    title: b.heading || "Forge Your Legacy in",
+    highlight: b.subheading || "India's Courtrooms",
+    subtitle: b.description || "Excellence in legal education.",
+    cta1: { label: b.ctaText || "Our Law Programs", href: b.ctaLink || "/programs-overview" },
+    cta2: { label: "Moot Court Tour", href: "/moot-court" },
+  })) : DEFAULT_SLIDES;
+
+  const SESSION_START = (() => {
+    try {
+      const key = "ishan_law_hero_start";
+      const s = sessionStorage.getItem(key);
+      if (s !== null) return parseInt(s, 10) % SLIDES.length;
+      const r = Math.floor(Math.random() * SLIDES.length);
+      sessionStorage.setItem(key, String(r));
+      return r;
+    } catch { return 0; }
+  })();
+
+  const DELAY = 5500;
   const [current, setCurrent] = useState(SESSION_START);
   const [formData, setFormData] = useState({ name: "", phone: "", course: "" });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -118,7 +128,7 @@ export default function HeroSection() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic phone validation
@@ -128,14 +138,32 @@ export default function HeroSection() {
       return;
     }
 
-    console.log("Admission enquiry submitted:", formData);
-    setIsSubmitted(true);
-    toast.success("Application received! Our admissions team will reach out shortly.");
-    
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: "", phone: "", course: "" });
-    }, 5000);
+    try {
+      const response = await fetch("https://ishan-backend-g096.onrender.com/api/legal/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: `${formData.phone}@placeholder.com`,
+          phone: formData.phone,
+          course: formData.course,
+          source: "Hero Section Quick Enquiry"
+        }),
+      });
+
+      if (!response.ok) throw new Error("Failed to submit enquiry");
+
+      console.log("Admission enquiry submitted:", formData);
+      setIsSubmitted(true);
+      toast.success("Application received! Our admissions team will reach out shortly.");
+      
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({ name: "", phone: "", course: "" });
+      }, 5000);
+    } catch (error) {
+      toast.error("Failed to submit. Please try again.");
+    }
   };
 
   const go = useCallback((idx: number) => {

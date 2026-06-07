@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { motion, AnimatePresence } from "framer-motion";
-const galleryImages = [
+import { useIshanLawData } from "@/hooks/useIshanLawData";
+const defaultGalleryImages = [
   { title: "Moot Court Hall", img: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg", category: "Advocacy" },
   { title: "Legal Research Lab", img: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-12.jpg", category: "Research" },
   { title: "Clinical Sessions", img: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg", category: "Training" },
@@ -15,6 +16,10 @@ const galleryImages = [
 export default function CampusExperience() {
   const ref = useScrollReveal();
   const [activeIndices, setActiveIndices] = useState([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+  const { data } = useIshanLawData("homepage");
+  const galleryImages = data?.lifeAtIshan?.length > 0 
+    ? data.lifeAtIshan.map((img: any) => ({ img: img.image || img.url || img, category: "Campus", title: "Life at Ishan" })) 
+    : (data?.gallery?.length > 0 ? data.gallery.map((img: any) => ({ img: img.image || img.url || img, category: "Campus", title: "Life at Ishan" })) : defaultGalleryImages);
 
   // Subtle rotation of images in specific tiles to keep it "dynamic"
   useEffect(() => {

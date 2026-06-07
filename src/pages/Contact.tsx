@@ -39,7 +39,7 @@ export default function ContactPage() {
     
     // Attempt real submit but don't block the UI if it fails (as backend might not be up)
     try {
-      await fetch("http://localhost:5000/api/legal/leads", {
+      await fetch("https://ishan-backend-g096.onrender.com/api/legal/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, source: "Contact Page" }),

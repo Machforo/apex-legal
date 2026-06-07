@@ -13,10 +13,10 @@ const defaultHighlights = [
 export default function AboutSection() {
   const ref = useScrollReveal();
   const { data } = useIshanLawData("homepage");
-  const apiAbout = data?.aboutIshanLaw;
+  const apiAbout = data?.aboutSnippet;
   const about = {
-    title: apiAbout?.title || "Excellence in Legal Education & Professional Practice",
-    description: apiAbout?.description || "Ishan Law Institute, established as a premier center for legal studies, is dedicated to producing ethical and skilled advocates. Recognized by the Bar Council of India (BCI) and affiliated to CCS University, Meerut, we combine rigorous academic curriculum with mandatory court exposure and community legal service.",
+    title: apiAbout?.title || "A Legacy of Legal Excellence in Greater Noida",
+    description: apiAbout?.content || "Ishan Law Institute, established as a premier center for legal studies, is dedicated to producing ethical and skilled advocates. Recognized by the Bar Council of India (BCI) and affiliated to CCS University, Meerut, we combine rigorous academic curriculum with mandatory court exposure and community legal service.",
     image: (apiAbout?.image && apiAbout.image.length > 5) ? apiAbout.image : "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg"
   };
 
@@ -47,7 +47,7 @@ export default function AboutSection() {
           <div className="reveal-right space-y-6">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">About Ishan Law</p>
             <h2 className="font-bold text-foreground leading-tight">
-              A Legacy of Legal Excellence in Greater Noida
+              {about.title}
             </h2>
             <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
               {about.description}

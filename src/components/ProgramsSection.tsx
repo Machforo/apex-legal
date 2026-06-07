@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function ProgramsSection() {
   const ref = useScrollReveal();
-  const { data } = useIshanLawData("homepage");
+  const { data } = useIshanLawData("programs");
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const fallbackPrograms = [
@@ -40,7 +40,7 @@ export default function ProgramsSection() {
     }
   ];
   
-  const programs = data?.academicPrograms?.length > 0 ? data.academicPrograms : fallbackPrograms;
+  const programs = data?.length > 0 ? data : (data?.data?.length > 0 ? data.data : fallbackPrograms);
   
   // Dynamically generate available filters
   const availableTypes = Array.from(new Set(programs.map((p: any) => p.type))).filter(Boolean) as string[];

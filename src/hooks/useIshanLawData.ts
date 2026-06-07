@@ -4,7 +4,7 @@ export function useIshanLawData(endpoint: string) {
   return useQuery({
     queryKey: ['ishan-law-institute', endpoint],
     queryFn: async () => {
-      const response = await fetch(`https://ishan-backend-g096.onrender.com/api/Ishan Law Institute/${endpoint}`);
+      const response = await fetch(`https://ishan-backend-g096.onrender.com/api/legal/${endpoint}`);
       if (!response.ok) {
         throw new Error(`Failed to fetch ${endpoint} data`);
       }
