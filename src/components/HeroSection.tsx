@@ -78,40 +78,40 @@ export default function HeroSection() {
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const newsData = [
-    { 
-      type: 'EVENT', 
-      title: 'National Moot Court Competition 2025', 
-      date: 'MAR 22', 
+    {
+      type: 'EVENT',
+      title: 'National Moot Court Competition 2025',
+      date: 'MAR 22',
       action: 'popup',
       image: 'https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg',
       details: 'Ishan Law Institute hosts its annual National Moot Court Competition. Teams from across India will debate complex constitutional issues before a bench of sitting and retired High Court judges.'
     },
-    { 
-      type: 'NEWS', 
-      title: 'Legal Aid Cell Camp at Greater Noida', 
-      date: 'FEB 18', 
+    {
+      type: 'NEWS',
+      title: 'Legal Aid Cell Camp at Greater Noida',
+      date: 'FEB 18',
       action: 'popup',
       image: 'https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg',
       details: 'Our students served over 50 community members in our latest free legal awareness and assistance camp, focusing on family law and property rights.'
     },
-    { 
-      type: 'VISIT', 
-      title: 'Students Visit Supreme Court of India', 
-      date: 'JAN 25', 
+    {
+      type: 'VISIT',
+      title: 'Students Visit Supreme Court of India',
+      date: 'JAN 25',
       action: 'none'
     },
-    { 
-      type: 'EVENT', 
-      title: 'Seminar on Digital Personal Data Protection', 
-      date: 'APR 12', 
+    {
+      type: 'EVENT',
+      title: 'Seminar on Digital Personal Data Protection',
+      date: 'APR 12',
       action: 'popup',
       image: 'https://law.ishan.ac/all-law/gallery-photos/academics/academics-1.jpg',
       details: 'Eminent legal scholars and industry experts discuss the implications of India’s new data protection law on corporate compliance and individual privacy.'
     },
-    { 
-      type: 'NEWS', 
-      title: 'Moot Court Hall Upgraded with Digital Tech', 
-      date: 'DEC 15', 
+    {
+      type: 'NEWS',
+      title: 'Moot Court Hall Upgraded with Digital Tech',
+      date: 'DEC 15',
       action: 'popup',
       image: 'https://law.ishan.ac/static/gallery/infra/infra-16.jpg',
       details: 'New high-definition recording and video conferencing facilities installed in the Moot Court Hall to support international competitions and self-review.'
@@ -130,7 +130,7 @@ export default function HeroSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Basic phone validation
     const phoneRegex = /^\d{10}$/;
     if (!phoneRegex.test(formData.phone)) {
@@ -156,7 +156,7 @@ export default function HeroSection() {
       console.log("Admission enquiry submitted:", formData);
       setIsSubmitted(true);
       toast.success("Application received! Our admissions team will reach out shortly.");
-      
+
       setTimeout(() => {
         setIsSubmitted(false);
         setFormData({ name: "", phone: "", course: "" });
@@ -185,7 +185,7 @@ export default function HeroSection() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const slide = SLIDES[current];
+  const slide = SLIDES[current] || SLIDES[0];
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-navy">
@@ -223,16 +223,20 @@ export default function HeroSection() {
           <div className="lg:col-span-7 space-y-7">
 
             {/* Badge */}
-            <div key={`badge-${current}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm" style={{ animation: "fadeUp 0.5s ease both" }}>
-              <Award className="w-4 h-4 text-gold shrink-0" />
-              <span className="text-xs font-bold text-white uppercase tracking-wider">{slide.badge}</span>
-            </div>
+            {slide && (
+              <div key={`badge-${current}`} className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm" style={{ animation: "fadeUp 0.5s ease both" }}>
+                <Award className="w-4 h-4 text-gold shrink-0" />
+                <span className="text-xs font-bold text-white uppercase tracking-wider">{slide.badge}</span>
+              </div>
+            )}
 
             {/* Headline */}
-            <h1 key={`h1-${current}`} className="font-bold text-white leading-[1.1] tracking-tight drop-shadow-xl" style={{ animation: "fadeUp 0.55s 0.06s ease both" }}>
-              {slide.title}
-              <span className="text-gold block mt-1">{slide.highlight}</span>
-            </h1>
+            {slide && (
+              <h1 key={`h1-${current}`} className="font-bold text-white leading-[1.1] tracking-tight drop-shadow-xl" style={{ animation: "fadeUp 0.55s 0.06s ease both" }}>
+                {slide.title}
+                <span className="text-gold block mt-1">{slide.highlight}</span>
+              </h1>
+            )}
 
             {/* Subtitle */}
             <p key={`sub-${current}`} className="text-lg md:text-xl text-white/85 max-w-xl leading-relaxed" style={{ animation: "fadeUp 0.55s 0.12s ease both" }}>
@@ -278,16 +282,16 @@ export default function HeroSection() {
           {/* ── Combined Enquiry & Campus Life (Tabbed) ── */}
           <div className="lg:col-span-5">
             <div className="bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl overflow-hidden flex flex-col min-h-[540px]">
-              
+
               {/* Tabs Header */}
               <div className="flex border-b border-navy/5">
-                <button 
+                <button
                   onClick={() => setHeroActiveTab('enquiry')}
                   className={`flex-1 py-5 text-xs font-bold uppercase tracking-widest transition-all ${heroActiveTab === 'enquiry' ? 'bg-white text-navy' : 'bg-navy/[0.03] text-muted-foreground hover:bg-navy/[0.05]'}`}
                 >
                   Quick Enquiry
                 </button>
-                <button 
+                <button
                   onClick={() => setHeroActiveTab('campus')}
                   className={`flex-1 py-5 text-xs font-bold uppercase tracking-widest transition-all flex items-center justify-center gap-2 ${heroActiveTab === 'campus' ? 'bg-white text-navy' : 'bg-navy/[0.03] text-muted-foreground hover:bg-navy/[0.05]'}`}
                 >
@@ -304,7 +308,7 @@ export default function HeroSection() {
                       <h3 className="text-2xl font-bold text-navy mb-2">Quick Enquiry</h3>
                       <p className="text-xs leading-relaxed font-medium uppercase tracking-wider">Start your professional journey</p>
                     </div>
-                    
+
                     {isSubmitted ? (
                       <div className="py-10 text-center space-y-6 flex-1 flex flex-col justify-center">
                         <div className="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto">
@@ -371,8 +375,8 @@ export default function HeroSection() {
                     <div className="flex-1 relative overflow-hidden group mb-6">
                       <div className="flex flex-col gap-4 animate-marquee-vertical group-hover:pause">
                         {newsData.concat(newsData.slice(0, 2)).map((item, idx) => (
-                          <div 
-                            key={idx} 
+                          <div
+                            key={idx}
                             onClick={() => handleNewsClick(item)}
                             className="p-4 rounded-2xl bg-muted/20 border border-transparent hover:border-gold/20 hover:bg-white hover:shadow-xl transition-all cursor-pointer group/item"
                           >
@@ -425,12 +429,12 @@ export default function HeroSection() {
       <AnimatePresence>
         {selectedNews && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-navy/60 backdrop-blur-md">
-            <motion.div 
-              initial={{ opacity: 0 }} 
-              animate={{ opacity: 1 }} 
-              exit={{ opacity: 0 }} 
-              onClick={() => setSelectedNews(null)} 
-              className="absolute inset-0" 
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedNews(null)}
+              className="absolute inset-0"
             />
             <motion.div
               initial={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -438,7 +442,7 @@ export default function HeroSection() {
               exit={{ scale: 0.95, opacity: 0, y: 20 }}
               className="relative w-full max-w-4xl bg-white rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row"
             >
-              <button 
+              <button
                 onClick={() => setSelectedNews(null)}
                 className="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/10 text-navy hover:bg-gold transition-colors flex items-center justify-center z-10"
               >
@@ -447,13 +451,13 @@ export default function HeroSection() {
 
               {/* Left Side: Image */}
               <div className="md:w-5/12 h-64 md:h-auto relative overflow-hidden">
-                <img 
-                  src={selectedNews.image} 
+                <img
+                  src={selectedNews.image}
                   alt={selectedNews.title}
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/60 to-transparent flex items-end p-8">
-                   <span className="text-white/80 text-xs font-bold uppercase tracking-widest">{selectedNews.date}</span>
+                  <span className="text-white/80 text-xs font-bold uppercase tracking-widest">{selectedNews.date}</span>
                 </div>
               </div>
 
@@ -468,7 +472,7 @@ export default function HeroSection() {
                 <p className="text-foreground/70 leading-relaxed text-base mb-8 whitespace-pre-wrap">
                   {selectedNews.details}
                 </p>
-                
+
                 <div className="mt-auto flex flex-wrap gap-4 pt-6 border-t border-navy/5">
                   <button className="px-8 py-3 bg-navy text-white font-bold rounded-xl hover:bg-gold hover:text-navy transition-all shadow-lg shimmer-btn">Register Now</button>
                   <button onClick={() => setSelectedNews(null)} className="px-8 py-3 text-navy font-bold hover:text-gold transition-colors">Close</button>
