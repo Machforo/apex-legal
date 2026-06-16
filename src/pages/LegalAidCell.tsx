@@ -3,38 +3,56 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Heart, ShieldCheck, Scale, HandHelping } from "lucide-react";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 export default function LegalAidCellPage() {
-  const ref = useScrollReveal();
+  const { data } = useIshanLawData("legalaidcell");
+  const ref = useScrollReveal([data]);
 
-  const services = [
+  const title = data?.title || "Legal Aid Cell";
+  const subtitle = data?.subtitle || "Bridging the gap between law and society through community service";
+  const content = data?.content || "The Legal Aid Cell at Ishan Law Institute is dedicated to the constitutional mandate of ensuring that justice is not denied to any citizen by reason of economic or other disabilities. It serves as a vital link between the institution and the community.\n\nBy participating in the Legal Aid Cell, students gain practical experience in handling real-life legal problems while developing a deep sense of social responsibility. Our students assist in drafting representations, conducting field surveys, and organizing awareness rallies on critical legal issues.";
+  const image = data?.image || "https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1200&auto=format&fit=crop";
+  const services = data?.items?.length > 0 ? data.items : [
     {
-      icon: HandHelping,
+      icon: "HandHelping",
       title: "Free Legal Advice",
       desc: "Our students, under the supervision of faculty advocates, provide free legal counseling to the underprivileged and marginalized sections of society."
     },
     {
-      icon: ShieldCheck,
+      icon: "ShieldCheck",
       title: "Legal Awareness Camps",
       desc: "We organize regular outreach programs in nearby villages and urban clusters to educate citizens about their fundamental rights and legal remedies."
     },
     {
-      icon: Scale,
+      icon: "Scale",
       title: "Para-Legal Training",
       desc: "The cell trains students as Para-Legal Volunteers (PLVs), empowering them to assist the District Legal Services Authority (DLSA) in various social initiatives."
     },
     {
-      icon: Heart,
+      icon: "Heart",
       title: "Social Justice Advocacy",
       desc: "We focus on issues such as women's rights, consumer protection, and labor laws, fostering a spirit of public service among future advocates."
     }
   ];
 
+  const getIcon = (iconName: string) => {
+    switch (iconName) {
+      case "HandHelping": return HandHelping;
+      case "ShieldCheck": return ShieldCheck;
+      case "Scale": return Scale;
+      case "Heart": return Heart;
+      case "Users": return HandHelping; // Fallbacks
+      case "Shield": return ShieldCheck;
+      default: return Heart;
+    }
+  };
+
   return (
     <Layout>
       <PageHeader 
-        title="Legal Aid Cell" 
-        subtitle="Bridging the gap between law and society through community service" 
+        title={title} 
+        subtitle={subtitle} 
         breadcrumbs={[{ label: "Governance" }, { label: "Legal Aid Cell" }]} 
       />
 
@@ -43,22 +61,20 @@ export default function LegalAidCellPage() {
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20">
             <div className="reveal-left order-2 lg:order-1">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">Community Outreach</p>
-              <h2 className="font-bold text-foreground leading-tight">
+              <h2 className="font-bold text-foreground leading-tight mb-6">
                 Empowering the Underprivileged
               </h2>
-              <p className="text-foreground/70 leading-relaxed mb-6">
-                The Legal Aid Cell at Ishan Law Institute is dedicated to the constitutional mandate of ensuring that justice is not denied to any citizen by reason of economic or other disabilities. It serves as a vital link between the institution and the community.
-              </p>
-              <p className="text-foreground/70 leading-relaxed">
-                By participating in the Legal Aid Cell, students gain practical experience in handling real-life legal problems while developing a deep sense of social responsibility. Our students assist in drafting representations, conducting field surveys, and organizing awareness rallies on critical legal issues.
-              </p>
+              <div 
+                className="text-foreground/70 leading-relaxed whitespace-pre-wrap format-rich-text"
+                dangerouslySetInnerHTML={{ __html: content }}
+              />
             </div>
 
             <div className="reveal-right order-1 lg:order-2 relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl border">
                 <img 
-                  src="https://images.unsplash.com/photo-1505664194779-8beaceb93744?w=1200&auto=format&fit=crop" 
-                  alt="Legal Aid Cell Activity" 
+                  src={image} 
+                  alt={title} 
                   className="w-full h-[450px] object-cover"
                 />
               </div>
@@ -70,15 +86,21 @@ export default function LegalAidCellPage() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((s, i) => (
-              <div key={i} className="reveal p-6 rounded-xl border bg-card hover:shadow-lg transition-shadow group">
-                <div className="w-12 h-12 rounded-lg bg-gold-light flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
-                  <s.icon className="w-6 h-6 text-navy" />
+            {services.map((s: any, i: number) => {
+              const IconComp = typeof s.icon === 'string' ? getIcon(s.icon) : s.icon;
+              return (
+                <div key={s.title || i} className="reveal p-6 rounded-xl border bg-card hover:shadow-lg transition-shadow group">
+                  <div className="w-12 h-12 rounded-lg bg-gold-light flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
+                    <IconComp className="w-6 h-6 text-navy" />
+                  </div>
+                  <h3 className="font-bold text-foreground mb-2">{s.title}</h3>
+                  <div 
+                    className="text-sm leading-relaxed text-foreground/80 format-rich-text whitespace-pre-wrap"
+                    dangerouslySetInnerHTML={{ __html: s.desc }}
+                  />
                 </div>
-                <h3 className="font-bold text-foreground mb-2">{s.title}</h3>
-                <p className="text-sm leading-relaxed">{s.desc}</p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

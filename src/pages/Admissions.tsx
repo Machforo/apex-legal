@@ -27,8 +27,8 @@ const documents = [
 ];
 
 export default function AdmissionsPage() {
-  const ref = useScrollReveal();
   const { data } = useIshanLawData("admissions");
+  const ref = useScrollReveal([data]);
   
   const howToApply = data?.howToApply?.length > 0 ? data.howToApply : steps;
   const docs = data?.documents?.length > 0 ? data.documents.map((d: any) => d.docName) : documents;

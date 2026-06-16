@@ -2,14 +2,27 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
+import { useIshanLawData } from "@/hooks/useIshanLawData";
+
 export default function CareersPage() {
+  const { data } = useIshanLawData("careers");
   const ref = useScrollReveal();
-  const jobs = [
+  const fallbackJobs = [
     { title: "Professor / Associate Professor — Law", qualification: "LLM with PhD", experience: "10+ Years", dept: "Law", type: "Full-time" },
     { title: "Assistant Professor — Law", qualification: "LLM with UGC NET / PhD", experience: "0–5 Years", dept: "Law", type: "Full-time" },
     { title: "Clinical Instructor — Moot Court", qualification: "LLM", experience: "3+ Years Litigation", dept: "Clinical Education", type: "Full-time" },
     { title: "Academic Coordinator", qualification: "Graduate", experience: "5+ Years Administration", dept: "Academic Office", type: "Full-time" },
   ];
+
+  const jobs = Array.isArray(data) && data.length > 0 
+    ? data.map((j: any) => ({
+        title: j.title,
+        qualification: j.requirements || "N/A",
+        experience: j.description || "N/A",
+        dept: j.department || "Law",
+        type: j.type || "Full-time"
+      }))
+    : fallbackJobs;
 
   return (
     <Layout>

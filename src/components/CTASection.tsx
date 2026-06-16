@@ -10,7 +10,13 @@ export default function CTASection() {
   const [formData, setFormData] = useState({ name: "", phone: "", email: "", course: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
   const { data } = useIshanLawData("homepage");
-  const ctaContent = data?.contactUs?.content || "Admissions are open for the session 2025-26. Connect with our admission counselors to discuss your career in law and clarify your doubts about eligibility and the application process.";
+  const cta = data?.contactUs || {
+    title: "Begin Your Legal Career at Ishan Law Institute",
+    content: "Admissions are open for the session 2025-26. Connect with our admission counselors to discuss your career in law and clarify your doubts about eligibility and the application process.",
+    phone: "8448797700",
+    address: "Knowledge Park III, Greater Noida — Delhi NCR",
+    workingHours: "Mon – Sat: 9:00 AM – 5:00 PM"
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,7 +27,8 @@ export default function CTASection() {
 
     setSubmitting(true);
     try {
-      const res = await fetch("https://ishan-backend-g096.onrender.com/api/legal/leads", {
+      const apiBase = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+      const res = await fetch(`${apiBase}/legal/leads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
@@ -53,17 +60,18 @@ export default function CTASection() {
           <div className="reveal-left space-y-6">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Get In Touch</p>
             <h2 className="font-bold text-primary-foreground leading-tight">
-              Begin Your Legal Career at Ishan Law Institute
+              {cta.title}
             </h2>
-            <p className="text-primary-foreground/60 leading-relaxed whitespace-pre-wrap">
-              {ctaContent}
-            </p>
+            <div 
+              className="text-primary-foreground/60 leading-relaxed whitespace-pre-wrap prose prose-sm prose-p:mb-2 prose-p:last:mb-0 prose-invert max-w-none"
+              dangerouslySetInnerHTML={{ __html: cta.content }}
+            />
 
             <div className="space-y-4 pt-4">
               {[
-                { icon: Phone, text: "8448797700", href: "tel:+918448797700" },
-                { icon: MapPin, text: "Knowledge Park III, Greater Noida — Delhi NCR" },
-                { icon: Clock, text: "Mon – Sat: 9:00 AM – 5:00 PM" },
+                { icon: Phone, text: cta.phone, href: `tel:+91${cta.phone?.replace(/\D/g, '')}` },
+                { icon: MapPin, text: cta.address },
+                { icon: Clock, text: cta.workingHours },
               ].map(({ icon: Icon, text, href }) => (
                 <div key={text} className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-lg bg-[hsl(var(--gold)/0.15)] flex items-center justify-center shrink-0">

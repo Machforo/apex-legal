@@ -3,12 +3,7 @@ import { CheckCircle2 } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import libraryImg from "@/assets/students-library.jpg";
 
-const defaultHighlights = [
-  "BCI Approved & CCS University Affiliated",
-  "NAAC Accredited Institution",
-  "Integrated Clinical Legal Education",
-  "Dedicated Moot Court & Legal Aid Cell",
-];
+const defaultHighlights = [];
 
 export default function AboutSection() {
   const ref = useScrollReveal();
@@ -49,9 +44,10 @@ export default function AboutSection() {
             <h2 className="font-bold text-foreground leading-tight">
               {about.title}
             </h2>
-            <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
-              {about.description}
-            </p>
+            <div 
+              className="text-foreground/70 leading-relaxed whitespace-pre-wrap prose prose-sm prose-p:mb-2 prose-p:last:mb-0 max-w-none"
+              dangerouslySetInnerHTML={{ __html: about.description }}
+            />
             <div className="space-y-3 pt-2">
               {defaultHighlights.map((item) => (
                 <div key={item} className="flex items-start gap-3">

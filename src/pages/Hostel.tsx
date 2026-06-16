@@ -14,25 +14,45 @@ const amenities = [
 
 export default function HostelPage() {
   const ref = useScrollReveal();
-  const { data } = useIshanLawData("campuslife");
-  const hostel = data?.hostel;
-  const content = hostel?.content;
-  const specs = hostel?.specs?.length > 0 ? hostel.specs : [
-    { label: "Boys Hostel Fee", value: "₹60,000 / year" },
-    { label: "Girls Hostel Fee", value: "₹65,000 / year" },
-    { label: "Mess Charges", value: "Included in hostel fee" }
+  const { data } = useIshanLawData("facilities");
+  const facility = Array.isArray(data) ? data.find((d: any) => d.slug === 'hostel') : null;
+  
+  const title = facility?.title || "Hostel";
+  const subtitle = facility?.subtitle || "Safe, comfortable residential facilities for outstation students";
+  const overviewHeading = facility?.overviewHeading || "Residential Life at Ishan";
+  const content = facility?.overviewContent || "Ishan Law Institute provides comfortable hostel accommodation for both boys and girls in separate residential blocks located within 200 metres of the main campus. The hostel offers a home-away-from-home experience with furnished rooms, nutritious mess meals, and 24/7 security — allowing students to focus on their academics in a safe environment.";
+  
+  const specs = facility?.highlights?.length > 0 ? facility.highlights : [
+    { title: "Accommodation", description: "Well-ventilated, furnished single and double occupancy rooms." },
+    { title: "Security", description: "24/7 CCTV surveillance and dedicated security personnel." },
+    { title: "Mess Facility", description: "Hygienic, nutritious vegetarian meals served four times a day." },
+    { title: "Recreation", description: "Common rooms with TV, indoor games, and reading areas." }
+  ];
+
+  const amenities = [
+    "Separate boys and girls blocks", "Furnished rooms (2/3 sharing)", "Attached washrooms",
+    "Vegetarian mess facility", "CCTV surveillance 24/7", "Wi-Fi connectivity",
+    "Common room with TV", "RO water purifier", "Laundry facility",
+    "First aid and medical support", "Warden supervision round the clock", "200m from main campus",
   ];
 
   return (
     <Layout>
-      <PageHeader title="Hostel" subtitle="Safe, comfortable residential facilities for outstation students" breadcrumbs={[{ label: "Campus", href: "/infrastructure" }, { label: "Hostel" }]} />
+      <PageHeader title={title} subtitle={subtitle} breadcrumbs={[{ label: "Campus", href: "/infrastructure" }, { label: "Hostel" }]} />
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="max-w-4xl mx-auto">
+            {facility?.image && (
+              <div className="reveal rounded-2xl overflow-hidden shadow-[0_8px_40px_hsl(var(--navy)/0.1)] mb-10 border">
+                <img src={facility.image} alt={title} className="w-full h-[400px] object-cover" />
+              </div>
+            )}
             <div className="reveal space-y-5 mb-12">
-              <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
-                {content || "Ishan Law Institute provides comfortable hostel accommodation for both boys and girls in separate residential blocks located within 200 metres of the main campus. The hostel offers a home-away-from-home experience with furnished rooms, nutritious mess meals, and 24/7 security — allowing students to focus on their academics in a safe environment."}
-              </p>
+              <h2 className="text-2xl font-bold">{overviewHeading}</h2>
+              <div 
+                className="text-foreground/70 leading-relaxed format-rich-text whitespace-pre-wrap"
+                dangerouslySetInnerHTML={{ __html: content }}
+              />
             </div>
 
             <div className="reveal delay-100 grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-12">
@@ -43,11 +63,11 @@ export default function HostelPage() {
               ))}
             </div>
 
-            <div className="reveal delay-200 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+            <div className="reveal delay-200 grid sm:grid-cols-2 gap-4 mb-12">
               {specs.map((s: any, i: number) => (
-                <div key={s.label || i} className="p-5 rounded-xl border bg-section-alt text-center">
-                  <p className="text-xs text-muted-foreground mb-1">{s.label}</p>
-                  <p className="text-sm font-semibold text-foreground">{s.value}</p>
+                <div key={s.title || i} className="p-5 rounded-xl border bg-section-alt text-center">
+                  <p className="text-xs text-muted-foreground mb-1">{s.title}</p>
+                  <p className="text-sm font-semibold text-foreground">{s.description}</p>
                 </div>
               ))}
             </div>

@@ -213,6 +213,9 @@ const navLinks: NavItem[] = [
 ];
 
 // ─── Component ─────────────────────────────────────────────────────────────────
+import { useIshanLawData } from "@/hooks/useIshanLawData";
+import * as Icons from "lucide-react";
+
 export default function Navbar({ isNotFound = false }: { isNotFound?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -222,8 +225,12 @@ export default function Navbar({ isNotFound = false }: { isNotFound?: boolean })
   const location = useLocation();
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const { data } = useIshanLawData("navbar");
+  
+  const navItems = data?.navLinks?.length > 0 ? data.navLinks : navLinks;
+  
   // Searchable items
-  const searchableItems = [
+  const searchableItems = data?.searchableItems?.length > 0 ? data.searchableItems : [
     { name: "BA LLB (Hons)", href: "/courses/ba-llb" },
     { name: "LLB (3 Years)", href: "/courses/llb" },
     { name: "LLM (2 Years)", href: "/courses/llm" },
@@ -237,8 +244,10 @@ export default function Navbar({ isNotFound = false }: { isNotFound?: boolean })
     { name: "News & Events", href: "/news-events" },
   ];
 
+  const popSearches = data?.popularSearches?.length > 0 ? data.popularSearches.map((p: any) => p.text) : ["BA LLB", "LLB", "Moot Court", "Admissions", "Placements", "Contact"];
+
   const filteredItems = searchQuery.trim().length > 0 
-    ? searchableItems.filter(item => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
+    ? searchableItems.filter((item: any) => item.name.toLowerCase().includes(searchQuery.toLowerCase()))
     : [];
 
   useEffect(() => { 
@@ -282,7 +291,7 @@ export default function Navbar({ isNotFound = false }: { isNotFound?: boolean })
     }
   }, []);
 
-  const activeLink = navLinks.find((l) => l.label === openDropdown) ?? null;
+  const activeLink = navItems.find((l: any) => l.label === openDropdown) ?? null;
   const textCls = (scrolled || isNotFound)
     ? "text-navy/80 hover:text-navy hover:bg-muted"
     : "text-white hover:text-white hover:bg-white/10 drop-shadow-lg";
@@ -352,7 +361,7 @@ export default function Navbar({ isNotFound = false }: { isNotFound?: boolean })
 
           {/* Desktop nav — only trigger buttons here */}
           <nav className="hidden lg:flex items-center gap-0.5">
-            {navLinks.map((link) => (
+            {navItems.map((link: any) => (
               <button
                 key={link.label}
                 className={`flex items-center gap-1 px-3 py-1.5 text-sm font-bold transition-all rounded-md ${textCls} ${openDropdown === link.label ? "bg-white/10" : ""}`}
@@ -435,8 +444,8 @@ export default function Navbar({ isNotFound = false }: { isNotFound?: boolean })
                       className="grid gap-6"
                       style={{ gridTemplateColumns: `repeat(${activeLink.columns.length}, minmax(0,1fr))` }}
                     >
-                      {activeLink.columns.map((col) => {
-                        const ColIcon = col.icon;
+                      {activeLink.columns?.map((col: any) => {
+                        const ColIcon = typeof col.icon === 'string' ? ((Icons as any)[col.icon] || Icons.FileText) : (col.icon || Icons.FileText);
                         return (
                           <div key={col.heading}>
                             <div className="flex items-center gap-2 mb-3 pb-2 border-b border-border/50">
@@ -498,8 +507,8 @@ export default function Navbar({ isNotFound = false }: { isNotFound?: boolean })
           <div className="lg:hidden border-t bg-card animate-fade-up max-h-[80vh] overflow-y-auto">
             <div className="container-wide py-4 space-y-1">
               <Link to="/" className="block px-3 py-2.5 text-sm font-bold text-navy">🏠 Home</Link>
-              {navLinks.map((link) => {
-                const allChildren = link.columns.flatMap((c) => c.links);
+              {navItems.map((link: any) => {
+                const allChildren = link.columns ? link.columns.flatMap((c: any) => c.links) : [];
                 return (
                   <div key={link.label}>
                     <button
@@ -591,7 +600,7 @@ export default function Navbar({ isNotFound = false }: { isNotFound?: boolean })
                     <div>
                       <p className="text-white/40 text-xs font-bold uppercase tracking-widest mb-6">Popular Searches</p>
                       <div className="flex flex-wrap gap-3">
-                        {["BA LLB", "LLB", "Moot Court", "Admissions", "Placements", "Contact"].map(tag => (
+                        {popSearches.map((tag: string) => (
                           <button 
                             key={tag}
                             onClick={() => setSearchQuery(tag)}

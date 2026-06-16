@@ -9,11 +9,11 @@ import { toast } from "sonner";
 export default function ContactPage() {
   const ref = useScrollReveal();
   const { data } = useIshanLawData("contact");
-  const mainContact = data?.mainContact || {
-    address: "Knowledge Park-III, Greater Noida, Uttar Pradesh 201308",
-    phone: "8448797700",
-    email: "admissions@ishan.ac",
-    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.2!2d77.49!3d28.47!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sIshan+Institute+of+Law!5e0!3m2!1sen!2sin!4v1"
+  const mainContact = {
+    address: data?.address || "Knowledge Park-III, Greater Noida, Uttar Pradesh 201308",
+    phone: data?.phone || "8448797700",
+    email: data?.email || "admissions@ishan.ac",
+    mapEmbed: data?.mapEmbed || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.2!2d77.49!3d28.47!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sIshan+Institute+of+Law!5e0!3m2!1sen!2sin!4v1"
   };
   const collegeContacts = data?.collegeContacts || [];
 
@@ -32,25 +32,25 @@ export default function ContactPage() {
       return;
     }
 
-    setSubmitting(true);
-
-    // Simulate network delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
-
-    // Attempt real submit but don't block the UI if it fails (as backend might not be up)
     try {
-      await fetch("https://ishan-backend-g096.onrender.com/api/legal/leads", {
+      const apiBase = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+      const response = await fetch(`${apiBase}/legal/leads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, source: "Contact Page" }),
       });
+      if (!response.ok) {
+        throw new Error("Failed to submit");
+      }
+      toast.success("Your message has been sent successfully!");
+      setSubmitted(true);
+      setForm({ name: "", phone: "", email: "", program: "", message: "" });
     } catch (err) {
-      console.warn("Backend not reachable, simulating success for demo", err);
+      toast.error("Unable to send message. Please try again.");
+      console.error(err);
+    } finally {
+      setSubmitting(false);
     }
-
-    setSubmitted(true);
-    setForm({ name: "", phone: "", email: "", program: "", message: "" });
-    setSubmitting(false);
   };
 
   return (

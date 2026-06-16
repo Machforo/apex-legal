@@ -4,74 +4,16 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 
-const defaultAlbums = [
-  { 
-    category: "Moot Court", 
-    date: "2025-26", 
-    images: [
-      { id: "mc-1", alt: "Moot Court 1", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg" },
-      { id: "mc-2", alt: "Moot Court 2", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-10.jpg" },
-      { id: "mc-3", alt: "Moot Court 3", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-14.jpg" },
-      { id: "mc-4", alt: "Moot Court 4", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-6.jpg" },
-    ]
-  },
-  { 
-    category: "Court & Jail Visits", 
-    date: "Clinical Training", 
-    images: [
-      { id: "cj-1", alt: "Court Visit", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg" },
-      { id: "cj-2", alt: "Legal Visit", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg" },
-      { id: "cj-3", alt: "Students at Court", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-8.jpg" },
-    ]
-  },
-  { 
-    category: "Campus Infrastructure", 
-    date: "Facilities", 
-    images: [
-      { id: "infra-1", alt: "Campus Building", url: "https://law.ishan.ac/static/gallery/infra/infra-16.jpg" },
-      { id: "infra-2", alt: "Library", url: "https://law.ishan.ac/static/gallery/infra/infra-2.png" },
-      { id: "infra-3", alt: "Hostel", url: "https://law.ishan.ac/static/gallery/infra/infra-6.jpeg" },
-      { id: "infra-4", alt: "Digital Lab", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-12.jpg" },
-    ]
-  },
-  { 
-    category: "Academic Excellence", 
-    date: "Learning", 
-    images: [
-      { id: "acad-1", alt: "Classroom", url: "https://law.ishan.ac/all-law/gallery-photos/academics/academics-1.jpg" },
-      { id: "acad-2", alt: "Seminar", url: "https://law.ishan.ac/all-law/gallery-photos/academics/academics-11.jpg" },
-      { id: "acad-3", alt: "Presentation", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-11.jpg" },
-      { id: "acad-4", alt: "Interactive Session", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-13.jpg" },
-    ]
-  },
-  { 
-    category: "Cultural Activities", 
-    date: "Events", 
-    images: [
-      { id: "cl-1", alt: "Cultural Fest", url: "https://law.ishan.ac/all-law/gallery-photos/cultural-activities/cultural-11.jpg" },
-      { id: "cl-2", alt: "Dance Performance", url: "https://law.ishan.ac/all-law/gallery-photos/cultural-activities/cultural-21.jpg" },
-      { id: "cl-6", alt: "Group Photo", url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg" },
-    ]
-  },
-  { 
-    category: "Sports", 
-    date: "Athletics", 
-    images: [
-      { id: "cl-3", alt: "Sports 1", url: "https://law.ishan.ac/static/gallery/sports/sports-10.jpg" },
-      { id: "cl-4", alt: "Sports 2", url: "https://law.ishan.ac/static/gallery/sports/sports-7.jpg" },
-      { id: "cl-5", alt: "Sports 3", url: "https://law.ishan.ac/static/gallery/sports/sports-16.jpeg" },
-    ]
-  }
-];
+const defaultAlbums = [];
 
 const cmsCategories = ["Moot Court", "Court & Jail Visits", "Academic Excellence", "Cultural Activities", "Sports", "Campus Infrastructure"];
 
 export default function PhotoGalleryPage() {
-  const ref = useScrollReveal();
-  const { data } = useIshanLawData("gallery");
+  const { data } = useIshanLawData("photos");
+  const ref = useScrollReveal([data]);
 
   // Dynamic photos from CMS or fallback to static placeholders
-  const photos: Array<{title:string;url:string;category?:string}> = data?.photos?.length > 0 ? data.photos : [];
+  const photos: Array<{title:string;url:string;category?:string}> = Array.isArray(data) ? data : [];
   
   const [filter, setFilter] = useState("All");
 

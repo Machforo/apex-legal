@@ -6,53 +6,48 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const defaultNews = [
   {
-    title: "National Moot Court Competition 2025: Grand Finale",
-    date: "April 15, 2025",
-    category: "Clinical",
-    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&w=800&q=80",
-    description: "Ishan Law hosted its flagship National Moot Court Competition, where teams from top law schools across India debated complex constitutional issues. The final round was presided over by a bench of sitting High Court judges, providing students with invaluable feedback and judicial insight.",
-    location: "Moot Court Hall, Ishan Law"
+    title: "National Moot Court Competition 2025",
+    date: "MAR 22",
+    description: "Ishan Law Institute hosts its annual National Moot Court Competition featuring top law schools from across the country.",
+    link: "/news/moot-court-2025",
+    image: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg"
   },
   {
-    title: "Legal Aid Awareness Camp in Rural Gautam Budh Nagar",
-    date: "April 3, 2025",
-    category: "Social Service",
-    image: "https://images.unsplash.com/photo-1593113598332-cd288d649433?auto=format&fit=crop&w=800&q=80",
-    description: "Our Legal Aid Cell organized a community outreach program to provide free legal counseling to villagers. Students, under the supervision of faculty and practicing advocates, addressed issues related to land rights, family law, and government welfare schemes, fulfilling our commitment to social justice.",
-    location: "Gautam Budh Nagar District"
-  },
-  {
-    title: "Final Year Students Visit the Supreme Court of India",
-    date: "March 26, 2025",
-    category: "Institutional",
-    image: "https://images.unsplash.com/photo-1589923188900-85dae523342b?auto=format&fit=crop&w=800&q=80",
-    description: "Students of the 5th Year BA LLB and 3rd Year LLB programs visited the Supreme Court of India. They observed live proceedings in the Chief Justice's courtroom and interacted with registry officials to understand the judicial administration of the apex court.",
-    location: "Supreme Court, New Delhi"
-  },
-  {
-    title: "Expert Lecture on Emerging Trends in Intellectual Property Rights",
-    date: "March 6, 2025",
-    category: "Guest Lecture",
-    image: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=800&q=80",
-    description: "Eminent IPR expert and Senior Advocate delivered a comprehensive lecture on the challenges of IP protection in the age of Artificial Intelligence. The session covered global patent trends and the evolving digital copyright landscape in India.",
-    location: "Seminar Hall, Ishan Law"
-  },
+    title: "Legal Aid Cell Camp at Greater Noida",
+    date: "FEB 18",
+    description: "Our students served over 50 community members in our latest free legal awareness camp focusing on consumer rights.",
+    link: "/news/legal-aid-camp",
+    image: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg"
+  }
 ];
 
 export default function NewsSection() {
-  const ref = useScrollReveal();
-  const [selectedNews, setSelectedNews] = useState<any>(null);
   const { data } = useIshanLawData("news");
+  const { data: homeData } = useIshanLawData("homepage");
   const news = data?.length > 0 ? data : (data?.data?.length > 0 ? data.data : defaultNews);
+  const ref = useScrollReveal([news]);
+  const [selectedNews, setSelectedNews] = useState<any>(null);
+  const config = homeData?.newsConfig || { subheading: "Latest Updates", title: "News & Events" };
+
+  const formatDate = (dateString: string) => {
+    if (!dateString) return "Update";
+    if (dateString.includes("-")) {
+      const date = new Date(dateString);
+      if (!isNaN(date.getTime())) {
+        return date.toLocaleDateString("en-US", { month: "short", day: "numeric" }).toUpperCase();
+      }
+    }
+    return dateString;
+  };
 
   return (
     <section className="py-20 md:py-28 bg-section-alt" ref={ref}>
       <div className="container-wide">
         <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-12">
           <div>
-            <p className="reveal text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">Latest Updates</p>
+            <p className="reveal text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">{config.subheading}</p>
             <h2 className="reveal delay-100 font-bold text-foreground">
-              News &amp; Events
+              {config.title}
             </h2>
           </div>
           <a href="/news" className="reveal delay-200 inline-flex items-center gap-2 text-sm font-semibold text-navy hover:text-gold transition-colors group">
@@ -89,7 +84,7 @@ export default function NewsSection() {
               <div className="p-5">
                 <div className="flex items-center gap-1.5 text-xs text-muted-foreground mb-2">
                   <Calendar className="w-3.5 h-3.5" />
-                  {item.date}
+                  {formatDate(item.date)}
                 </div>
                 <h3 className="font-semibold text-sm text-foreground leading-snug line-clamp-2 group-hover:text-navy transition-colors">
                   {item.title}
@@ -148,7 +143,7 @@ export default function NewsSection() {
                     <div className="flex items-center gap-4 text-xs font-semibold text-muted-foreground">
                       <div className="flex items-center gap-1.5">
                         <Calendar size={14} className="text-gold" />
-                        {selectedNews.date}
+                        {formatDate(selectedNews.date)}
                       </div>
                       <div className="flex items-center gap-1.5">
                         <MapPin size={14} className="text-gold" />
@@ -162,9 +157,16 @@ export default function NewsSection() {
 
                   <div className="space-y-6 flex-grow">
                     <div className="prose prose-sm prose-navy max-w-none">
-                      <p className="text-foreground/70 leading-relaxed text-base md:text-lg">
-                        {selectedNews.description || "Stay tuned for more updates regarding this event. Detailed coverage and media highlights will be shared soon."}
-                      </p>
+                      {selectedNews.description ? (
+                        <div 
+                          className="text-foreground/70 leading-relaxed text-base md:text-lg prose prose-sm prose-p:mb-3 prose-p:last:mb-0 max-w-none"
+                          dangerouslySetInnerHTML={{ __html: selectedNews.description }}
+                        />
+                      ) : (
+                        <p className="text-foreground/70 leading-relaxed text-base md:text-lg">
+                          Stay tuned for more updates regarding this event. Detailed coverage and media highlights will be shared soon.
+                        </p>
+                      )}
                     </div>
                     
                     <div className="pt-8 mt-auto border-t border-muted flex flex-wrap gap-4 items-center justify-between">

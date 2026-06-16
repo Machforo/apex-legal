@@ -17,8 +17,8 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boole
       return (
         <div className="min-h-screen flex flex-col items-center justify-center p-4 text-center">
           <h2 className="text-2xl font-bold mb-4">Something went wrong.</h2>
-          <button 
-            onClick={() => window.location.reload()} 
+          <button
+            onClick={() => window.location.reload()}
             className="px-6 py-2 bg-navy text-white rounded-lg"
           >
             Refresh Page
@@ -80,7 +80,8 @@ const StudentPortal = lazy(() => import("./pages/StudentPortal"));
 
 const Placements = lazy(() => import("./pages/Placements"));
 const ResearchJournal = lazy(() => import("./pages/ResearchJournal"));
-const Publications = lazy(() => import("./pages/ResearchJournal")); // Placeholder for now
+const Publications = lazy(() => import("./pages/Publications"));
+const AlumniNetwork = lazy(() => import("./pages/AlumniNetwork"));
 
 const Contact = lazy(() => import("./pages/Contact"));
 const Careers = lazy(() => import("./pages/Careers"));
@@ -96,7 +97,7 @@ const LegalAidCell = lazy(() => import("./pages/LegalAidCell"));
 const CourtJailVisits = lazy(() => import("./pages/IndustrialVisits"));
 const GuestLectures = lazy(() => import("./pages/GuestLectures"));
 const DebatesGD = lazy(() => import("./pages/DebatesGD"));
-const InternshipExternship = lazy(() => import("./pages/Admissions")); // Placeholder
+const InternshipExternship = lazy(() => import("./pages/InternshipExternship"));
 
 const queryClient = new QueryClient();
 
@@ -126,10 +127,10 @@ function GlobalClickInterceptor() {
       if (href.startsWith('/courses/') || href === '/admissions' || href === '/admissions-education') {
         // Prevent default navigation
         e.preventDefault();
-        
+
         // Open the target (Course/Admissions) in a NEW tab
         window.open(href, '_blank');
-        
+
         // Redirect the CURRENT tab to the consultation page
         navigate('/consultation');
       }
@@ -154,95 +155,95 @@ const App = () => (
         <ErrorBoundary>
           <Suspense fallback={<PageLoader />}>
             <Routes>
-            {/* 301 Redirects */}
-            <Route path="/application-form" element={<Navigate to="/admissions" replace />} />
-            <Route path="/join-us" element={<Navigate to="/careers" replace />} />
-            <Route path="/director-message" element={<Navigate to="/principal-message" replace />} />
-            <Route path="/why-ishan-law-institute" element={<Navigate to="/why-choose-us" replace />} />
-            <Route path="/education-overview" element={<Navigate to="/programs-overview" replace />} />
-            <Route path="/industrial-visits" element={<Navigate to="/court-jail-visits" replace />} />
-            <Route path="/pedagogy-labs" element={<Navigate to="/moot-court" replace />} />
+              {/* 301 Redirects */}
+              <Route path="/application-form" element={<Navigate to="/admissions" replace />} />
+              <Route path="/join-us" element={<Navigate to="/careers" replace />} />
+              <Route path="/director-message" element={<Navigate to="/principal-message" replace />} />
+              <Route path="/why-ishan-law-institute" element={<Navigate to="/why-choose-us" replace />} />
+              <Route path="/education-overview" element={<Navigate to="/programs-overview" replace />} />
+              <Route path="/industrial-visits" element={<Navigate to="/court-jail-visits" replace />} />
+              <Route path="/pedagogy-labs" element={<Navigate to="/moot-court" replace />} />
 
-            <Route path="/" element={<Index />} />
+              <Route path="/" element={<Index />} />
 
-            {/* About */}
-            <Route path="/about" element={<About />} />
-            <Route path="/principal-message" element={<PrincipalMessage />} />
-            <Route path="/mission-vision" element={<MissionVision />} />
-            <Route path="/approvals" element={<Approvals />} />
-            <Route path="/why-choose-us" element={<WhyChooseUs />} />
-            <Route path="/best-practices" element={<BestPractices />} />
-            <Route path="/green-initiatives" element={<GreenInitiatives />} />
-            <Route path="/mandatory-disclosure" element={<MandatoryDisclosure />} />
+              {/* About */}
+              <Route path="/about" element={<About />} />
+              <Route path="/principal-message" element={<PrincipalMessage />} />
+              <Route path="/mission-vision" element={<MissionVision />} />
+              <Route path="/approvals" element={<Approvals />} />
+              <Route path="/why-choose-us" element={<WhyChooseUs />} />
+              <Route path="/best-practices" element={<BestPractices />} />
+              <Route path="/green-initiatives" element={<GreenInitiatives />} />
+              <Route path="/mandatory-disclosure" element={<MandatoryDisclosure />} />
 
-            {/* Courses */}
-            <Route path="/courses/:courseId" element={<DynamicCourse />} />
-            <Route path="/programs-overview" element={<ProgramsOverview />} />
-            <Route path="/internship-externship" element={<InternshipExternship />} />
+              {/* Courses */}
+              <Route path="/courses/:courseId" element={<DynamicCourse />} />
+              <Route path="/programs-overview" element={<ProgramsOverview />} />
+              <Route path="/internship-externship" element={<InternshipExternship />} />
 
-            {/* Admissions & Consultation */}
-            <Route path="/admissions" element={<Admissions />} />
-            <Route path="/admissions-enquiry" element={<AdmissionsEnquiry />} />
-            <Route path="/consultation" element={<Consultation />} />
-            <Route path="/scholarships" element={<Scholarships />} />
-            <Route path="/faqs" element={<FAQs />} />
+              {/* Admissions & Consultation */}
+              <Route path="/admissions" element={<Admissions />} />
+              <Route path="/admissions-enquiry" element={<AdmissionsEnquiry />} />
+              <Route path="/consultation" element={<Consultation />} />
+              <Route path="/scholarships" element={<Scholarships />} />
+              <Route path="/faqs" element={<FAQs />} />
 
-            {/* Faculty */}
-            <Route path="/faculty" element={<Faculty />} />
-            <Route path="/visiting-faculty" element={<VisitingFaculty />} />
+              {/* Faculty */}
+              <Route path="/faculty" element={<Faculty />} />
+              <Route path="/visiting-faculty" element={<VisitingFaculty />} />
 
-            {/* Learning */}
-            <Route path="/news-events" element={<NewsEvents />} />
-            <Route path="/certificate-programs" element={<CertificatePrograms />} />
-            <Route path="/skill-development" element={<SkillDevelopment />} />
-            <Route path="/cultural-activities" element={<CulturalActivities />} />
-            <Route path="/sports" element={<Sports />} />
-            <Route path="/moot-court" element={<MootCourt />} />
-            <Route path="/legal-aid-cell" element={<LegalAidCell />} />
-            <Route path="/court-jail-visits" element={<CourtJailVisits />} />
-            <Route path="/guest-lectures" element={<GuestLectures />} />
-            <Route path="/debates-gd" element={<DebatesGD />} />
+              {/* Learning */}
+              <Route path="/news-events" element={<NewsEvents />} />
+              <Route path="/certificate-programs" element={<CertificatePrograms />} />
+              <Route path="/skill-development" element={<SkillDevelopment />} />
+              <Route path="/cultural-activities" element={<CulturalActivities />} />
+              <Route path="/sports" element={<Sports />} />
+              <Route path="/moot-court" element={<MootCourt />} />
+              <Route path="/legal-aid-cell" element={<LegalAidCell />} />
+              <Route path="/court-jail-visits" element={<CourtJailVisits />} />
+              <Route path="/guest-lectures" element={<GuestLectures />} />
+              <Route path="/debates-gd" element={<DebatesGD />} />
 
-            {/* Campus */}
-            <Route path="/infrastructure" element={<Infrastructure />} />
-            <Route path="/it-lab" element={<ITLab />} />
-            <Route path="/library" element={<Library />} />
-            <Route path="/auditorium" element={<Auditorium />} />
-            <Route path="/hostel" element={<Hostel />} />
+              {/* Campus */}
+              <Route path="/infrastructure" element={<Infrastructure />} />
+              <Route path="/it-lab" element={<ITLab />} />
+              <Route path="/library" element={<Library />} />
+              <Route path="/auditorium" element={<Auditorium />} />
+              <Route path="/hostel" element={<Hostel />} />
 
-            {/* Gallery */}
-            <Route path="/photo-gallery" element={<PhotoGallery />} />
-            <Route path="/video-gallery" element={<VideoGallery />} />
-            <Route path="/press-coverage" element={<PressCoverage />} />
+              {/* Gallery */}
+              <Route path="/photo-gallery" element={<PhotoGallery />} />
+              <Route path="/video-gallery" element={<VideoGallery />} />
+              <Route path="/press-coverage" element={<PressCoverage />} />
 
-            {/* Students */}
-            <Route path="/downloads" element={<Downloads />} />
-            <Route path="/past-papers" element={<PastPapers />} />
-            <Route path="/code-of-conduct" element={<CodeOfConduct />} />
-            <Route path="/fee-payment" element={<FeePayment />} />
-            <Route path="/student-portal" element={<StudentPortal />} />
+              {/* Students */}
+              <Route path="/downloads" element={<Downloads />} />
+              <Route path="/past-papers" element={<PastPapers />} />
+              <Route path="/code-of-conduct" element={<CodeOfConduct />} />
+              <Route path="/fee-payment" element={<FeePayment />} />
+              <Route path="/student-portal" element={<StudentPortal />} />
 
-            {/* Research & Placements */}
-            <Route path="/placements" element={<Placements />} />
-            <Route path="/alumni-network" element={<Placements />} />
-            <Route path="/research-journal" element={<ResearchJournal />} />
-            <Route path="/publications" element={<Publications />} />
+              {/* Research & Placements */}
+              <Route path="/placements" element={<Placements />} />
+              <Route path="/alumni-network" element={<AlumniNetwork />} />
+              <Route path="/research-journal" element={<ResearchJournal />} />
+              <Route path="/publications" element={<Publications />} />
 
-            {/* Contact */}
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/careers" element={<Careers />} />
-            <Route path="/feedback" element={<Feedback />} />
-            <Route path="/thank-you" element={<ThankYou />} />
+              {/* Contact */}
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/careers" element={<Careers />} />
+              <Route path="/feedback" element={<Feedback />} />
+              <Route path="/thank-you" element={<ThankYou />} />
 
-            {/* Policies */}
-            <Route path="/anti-ragging" element={<AntiRagging />} />
-            <Route path="/grievance-redressal" element={<GrievanceRedressal />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              {/* Policies */}
+              <Route path="/anti-ragging" element={<AntiRagging />} />
+              <Route path="/grievance-redressal" element={<GrievanceRedressal />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
-      </ErrorBoundary>
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </ErrorBoundary>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

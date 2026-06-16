@@ -5,18 +5,31 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Leaf, Sun, Recycle, Droplets, TreePine } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 
-const initiatives = [
-  { icon: Sun, title: "Energy Conservation", desc: "We prioritize energy efficiency through LED lighting across campus, sensor-based systems in common areas, and a commitment to reducing overall carbon footprint. Solar installations contribute significantly to our renewable energy goals.", stat: "20% Renewable energy" },
-  { icon: TreePine, title: "Tree Plantation Drives", desc: "Annual plantation drives are a hallmark of Ishan Law, resulting in over 1,500 trees across the Knowledge Park campus. These drives involve students and faculty, fostering a deep connection with nature and improving local air quality.", stat: "1,500+ trees planted" },
-  { icon: Recycle, title: "Waste Segregation & Plastic Ban", desc: "Ishan Law maintains a single-use plastic ban across campus. A robust waste segregation system ensures proper disposal of organic and inorganic waste, with organic waste being composted for campus gardens.", stat: "100% Plastic-free campus" },
-  { icon: Leaf, title: "Paperless Administration", desc: "We are progressively moving towards a paperless administration through digital portals for students and faculty, reducing paper consumption and improving administrative efficiency.", stat: "Digital-first workflow" },
-  { icon: Droplets, title: "Water Harvesting", desc: "Active rainwater harvesting systems recharge groundwater levels, while efficient plumbing fixtures ensure minimal water wastage across hostels and academic blocks.", stat: "Water harvesting active" },
+const defaultInitiatives = [
+  { icon: "Sun", title: "Energy Conservation", desc: "We prioritize energy efficiency through LED lighting across campus, sensor-based systems in common areas, and a commitment to reducing overall carbon footprint. Solar installations contribute significantly to our renewable energy goals.", stat: "20% Renewable energy" },
+  { icon: "TreePine", title: "Tree Plantation Drives", desc: "Annual plantation drives are a hallmark of Ishan Law, resulting in over 1,500 trees across the Knowledge Park campus. These drives involve students and faculty, fostering a deep connection with nature and improving local air quality.", stat: "1,500+ trees planted" },
+  { icon: "Recycle", title: "Waste Segregation & Plastic Ban", desc: "Ishan Law maintains a single-use plastic ban across campus. A robust waste segregation system ensures proper disposal of organic and inorganic waste, with organic waste being composted for campus gardens.", stat: "100% Plastic-free campus" },
+  { icon: "Leaf", title: "Paperless Administration", desc: "We are progressively moving towards a paperless administration through digital portals for students and faculty, reducing paper consumption and improving administrative efficiency.", stat: "Digital-first workflow" },
+  { icon: "Droplets", title: "Water Harvesting", desc: "Active rainwater harvesting systems recharge groundwater levels, while efficient plumbing fixtures ensure minimal water wastage across hostels and academic blocks.", stat: "Water harvesting active" },
 ];
 
 export default function GreenInitiativesPage() {
-  const ref = useScrollReveal();
   const { data } = useIshanLawData("aboutus");
-  const content = data?.greenInitiatives?.content;
+  const ref = useScrollReveal([data]);
+  const content = data?.greenInitiatives?.content || "We prioritize energy efficiency through LED lighting across campus, sensor-based systems in common areas, and a commitment to reducing overall carbon footprint.";
+  const image = data?.greenInitiatives?.image || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg";
+  const cmsInitiatives = data?.greenInitiatives?.initiatives?.length > 0 ? data.greenInitiatives.initiatives : defaultInitiatives;
+
+  const getIcon = (name: string) => {
+    switch (name) {
+      case "Sun": return Sun;
+      case "TreePine": return TreePine;
+      case "Recycle": return Recycle;
+      case "Droplets": return Droplets;
+      case "Leaf": return Leaf;
+      default: return Leaf;
+    }
+  };
 
   return (
     <Layout>
@@ -30,8 +43,8 @@ export default function GreenInitiativesPage() {
         <div className="container-wide">
           <div className="max-w-4xl mx-auto space-y-12">
             <div className="reveal grid sm:grid-cols-2 gap-6">
-              <div className="rounded-2xl overflow-hidden shadow-2xl border aspect-[16/9]">
-                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg" alt="Ishan Law Green Campus" className="w-full h-full object-cover" />
+              <div className="rounded-2xl overflow-hidden shadow-2xl border sticky top-32">
+                <img src={image} alt="Ishan Law Green Campus" className="w-full h-full object-cover min-h-[400px]" />
               </div>
               <div className="rounded-2xl overflow-hidden shadow-2xl border aspect-[16/9] hidden sm:block">
                 <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg" alt="Ishan Law Sustainability" className="w-full h-full object-cover" />
@@ -39,11 +52,14 @@ export default function GreenInitiativesPage() {
             </div>
             {content && (
               <div className="reveal space-y-6">
-                <p className="text-lg leading-relaxed whitespace-pre-wrap">{content}</p>
+                <div 
+                  className="text-lg leading-relaxed whitespace-pre-wrap format-rich-text"
+                  dangerouslySetInnerHTML={{ __html: content }}
+                />
               </div>
             )}
-            {initiatives.map((item, i) => {
-              const Icon = item.icon;
+            {cmsInitiatives.map((item: any, i: number) => {
+              const Icon = getIcon(item.icon);
               return (
                 <div key={item.title} className={`reveal delay-${Math.min(i, 4)}00 grid md:grid-cols-[1fr_auto] gap-6 items-center p-6 rounded-xl border bg-card`}>
                   <div className="flex gap-5">

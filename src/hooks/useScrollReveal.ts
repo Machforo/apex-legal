@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-export function useScrollReveal<T extends HTMLElement = HTMLDivElement>() {
+export function useScrollReveal<T extends HTMLElement = HTMLDivElement>(dependencies: any[] = []) {
   const ref = useRef<T>(null);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export function useScrollReveal<T extends HTMLElement = HTMLDivElement>() {
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, dependencies);
 
   return ref;
 }

@@ -2,7 +2,9 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-const visitingFaculty = [
+import { useIshanLawData } from "@/hooks/useIshanLawData";
+
+const defaultVisitingFaculty = [
   { name: "Adv. Rahul Verma", org: "Senior Advocate", specialisation: "Constitutional Litigation & Writ Petitions", impact: "Provides practical insights into drafting writ petitions and arguing before constitutional benches.", bar: "D/124/1998" },
   { name: "Hon'ble Justice S.K. Gupta (Retd.)", org: "Retired Judicial Officer", specialisation: "Criminal Jurisprudence & Judicial Ethics", impact: "Brings decades of bench experience, training students in judicial reasoning and ethics.", bar: "" },
   { name: "Ms. Priyanka Iyer", org: "Corporate Counsel", specialisation: "Mergers & Acquisitions / Corporate Law", impact: "Guides students on corporate compliance, due diligence, and commercial contract drafting.", bar: "MAH/456/2005" },
@@ -14,7 +16,10 @@ const visitingFaculty = [
 ];
 
 export default function VisitingFacultyPage() {
-  const ref = useScrollReveal();
+  const { data } = useIshanLawData("visitingfaculty");
+  const ref = useScrollReveal([data]);
+
+  const visitingFaculty = Array.isArray(data) && data.length > 0 ? data : defaultVisitingFaculty;
 
   return (
     <Layout>
@@ -31,11 +36,11 @@ export default function VisitingFacultyPage() {
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {visitingFaculty.map((f, i) => (
-              <div key={f.name} className={`reveal delay-${Math.min(i % 4, 3)}00 bg-card rounded-xl border p-6 hover:shadow-[0_4px_20px_hsl(var(--navy)/0.06)] transition-shadow`}>
+            {visitingFaculty.map((f: any, i: number) => (
+              <div key={f.name || i} className={`reveal delay-${Math.min(i % 4, 3)}00 bg-card rounded-xl border p-6 hover:shadow-[0_4px_20px_hsl(var(--navy)/0.06)] transition-shadow`}>
                 <div className="w-14 h-14 rounded-full bg-navy flex items-center justify-center mb-4">
                   <span className="text-sm font-bold text-primary-foreground">
-                    {f.name.split(" ").map((n) => n[0]).join("").slice(0, 2)}
+                    {f.name?.split(" ").map((n: string) => n[0]).join("").slice(0, 2) || "VF"}
                   </span>
                 </div>
                 <h3 className="font-semibold text-foreground text-sm">{f.name}</h3>

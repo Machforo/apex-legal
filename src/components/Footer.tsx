@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Linkedin, Twitter, GraduationCap } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const quickLinks = [
   { label: "About Ishan Law", href: "/about" },
@@ -25,6 +26,16 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const { data } = useIshanLawData("footer");
+
+  const aboutText = data?.aboutText || "BCI Approved | Affiliated to CCS University, Meerut | NAAC Accredited. Excellence in legal education and practice-oriented learning.";
+  
+  const qLinks = data?.quickLinks?.length > 0 ? data.quickLinks : quickLinks;
+  const progs = data?.programs?.length > 0 ? data.programs : programs;
+  
+  const cInfo = data?.contactInfo || { address: "Knowledge Park-III, Greater Noida, UP 201308", phone: "8448797700", email: "info@ishan.ac" };
+  const sLinks = data?.socialLinks || { facebook: "https://facebook.com/ishan.law", instagram: "https://instagram.com/ishan.law", youtube: "https://youtube.com/@ishanlaw", linkedin: "https://linkedin.com/company/ishan-law", twitter: "https://twitter.com/ishan_law" };
+
   return (
     <footer className="bg-navy-dark text-primary-foreground border-t border-white/5">
       <div className="container-wide py-12">
@@ -48,28 +59,21 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-sm text-primary-foreground/50 leading-relaxed max-w-xs">
-              BCI Approved | Affiliated to CCS University, Meerut | NAAC Accredited. Excellence in legal education and practice-oriented learning.
+              {aboutText}
             </p>
             <div className="flex gap-2">
-              {socialLinks.map((s) => (
-                <a 
-                  key={s.label} 
-                  href={s.href} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="w-9 h-9 rounded-full bg-white/5 hover:bg-gold hover:text-navy flex items-center justify-center transition-all duration-300"
-                  aria-label={s.label}
-                >
-                  <s.icon size={18} />
-                </a>
-              ))}
+              {sLinks.facebook && <a href={sLinks.facebook} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/5 hover:bg-gold hover:text-navy flex items-center justify-center transition-all duration-300" aria-label="Facebook"><Facebook size={18} /></a>}
+              {sLinks.instagram && <a href={sLinks.instagram} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/5 hover:bg-gold hover:text-navy flex items-center justify-center transition-all duration-300" aria-label="Instagram"><Instagram size={18} /></a>}
+              {sLinks.youtube && <a href={sLinks.youtube} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/5 hover:bg-gold hover:text-navy flex items-center justify-center transition-all duration-300" aria-label="YouTube"><Youtube size={18} /></a>}
+              {sLinks.linkedin && <a href={sLinks.linkedin} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/5 hover:bg-gold hover:text-navy flex items-center justify-center transition-all duration-300" aria-label="LinkedIn"><Linkedin size={18} /></a>}
+              {sLinks.twitter && <a href={sLinks.twitter} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-full bg-white/5 hover:bg-gold hover:text-navy flex items-center justify-center transition-all duration-300" aria-label="Twitter"><Twitter size={18} /></a>}
             </div>
           </div>
 
           <div>
             <h4 className="font-bold text-sm uppercase tracking-wider mb-6 text-gold">Quick Links</h4>
             <ul className="space-y-3">
-              {quickLinks.map((l) => (
+              {qLinks.map((l: any) => (
                 <li key={l.label}>
                   <Link to={l.href} className="text-sm text-primary-foreground/50 hover:text-white transition-colors flex items-center gap-2 group">
                     <span className="w-1 h-1 rounded-full bg-gold/50 group-hover:bg-gold transition-colors" />
@@ -83,7 +87,7 @@ export default function Footer() {
           <div>
             <h4 className="font-bold text-sm uppercase tracking-wider mb-6 text-gold">Law Programs</h4>
             <ul className="space-y-3">
-              {programs.map((p) => (
+              {progs.map((p: any) => (
                 <li key={p.label}>
                   <Link to={p.href} className="text-sm text-primary-foreground/50 hover:text-white transition-colors flex items-center gap-2 group">
                     <span className="w-1 h-1 rounded-full bg-gold/50 group-hover:bg-gold transition-colors" />
@@ -99,15 +103,15 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 shrink-0 text-gold mt-0.5" />
-                <span className="text-sm text-primary-foreground/50 leading-relaxed">Knowledge Park-III, Greater Noida, UP 201308</span>
+                <span className="text-sm text-primary-foreground/50 leading-relaxed">{cInfo.address}</span>
               </div>
               <div className="flex items-center gap-3">
                 <Phone className="w-5 h-5 shrink-0 text-gold" />
-                <a href="tel:+918448797700" className="text-sm text-primary-foreground/50 hover:text-white transition-colors">8448797700</a>
+                <a href={`tel:${cInfo.phone}`} className="text-sm text-primary-foreground/50 hover:text-white transition-colors">{cInfo.phone}</a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 shrink-0 text-gold" />
-                <a href="mailto:info@ishan.ac" className="text-sm text-primary-foreground/50 hover:text-white transition-colors">info@ishan.ac</a>
+                <a href={`mailto:${cInfo.email}`} className="text-sm text-primary-foreground/50 hover:text-white transition-colors">{cInfo.email}</a>
               </div>
             </div>
           </div>

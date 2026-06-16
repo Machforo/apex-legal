@@ -6,21 +6,37 @@ import { Award, Users, Globe, BookOpen, Building, TrendingUp, Shield, Lightbulb,
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultReasons = [
-  { icon: Shield, title: "BCI Approved & NAAC Accredited", description: "Ishan Law Institute is fully recognized by the Bar Council of India (BCI) and NAAC accredited, ensuring that your professional degree is globally valid and meets the highest regulatory standards." },
-  { icon: Building, title: "Clinical Legal Education Focus", description: "We bridge the gap between classroom theory and courtroom reality through an integrated clinical legal education model, prioritizing practical skills over rote memorization." },
-  { icon: Award, title: "Mandatory Court & Jail Exposure", description: "From the very first semester, our students undergo structured visits to District Courts, High Courts, and the Supreme Court, providing them with firsthand insight into the judicial process." },
-  { icon: Users, title: "Expert Advocate Faculty", description: "Learn from a distinguished faculty of practicing advocates, legal scholars, and retired judicial officers who bring live cases and contemporary legal challenges into the classroom." },
-  { icon: GraduationCap, title: "Dedicated Judicial Services Cell", description: "For students aspiring to enter the judiciary, we provide specialized coaching, guest lectures from judges, and competitive exam preparation starting from the early years of the program." },
-  { icon: BookOpen, title: "State-of-the-Art Moot Court Hall", description: "Our specialized moot court hall provides a professional environment for students to sharpen their advocacy skills, research complex cases, and participate in national competitions." },
-  { icon: Lightbulb, title: "Digital Research Terminals", description: "Students have 24/7 access to premier legal databases like Manupatra, SCC Online, and LexisNexis, ensuring they are proficient in modern legal research techniques." },
-  { icon: Heart, title: "Legal Aid & Community Service", description: "Through our Legal Aid Cell, students provide free legal assistance to the underprivileged, developing a strong sense of social responsibility and ethical legal practice." },
+  { title: "Clinical Approach", description: "Learn by doing with our advanced Moot Court setups.", icon: "Gavel" },
+  { title: "Expert Faculty", description: "Learn from top advocates and legal scholars.", icon: "Users" },
+  { title: "BCI Approved", description: "All our programs are fully recognized by the Bar Council of India.", icon: "Shield" },
+  { title: "Moot Court Hall", description: "High-tech courtroom simulations to prepare you for practice.", icon: "Building" },
+  { title: "Legal Aid Clinic", description: "Hands-on experience helping the community.", icon: "Heart" },
+  { title: "Judicial Services Cell", description: "Dedicated preparation for judicial exams.", icon: "BookOpen" }
 ];
 
 export default function WhyIshanLawPage() {
-  const ref = useScrollReveal();
   const { data } = useIshanLawData("aboutus");
-  // Schema: WhyIshanLaw = { content: string }. Render as text content, fall back to card grid.
-  const whyContent: string | undefined = data?.WhyIshanLaw?.content;
+  const ref = useScrollReveal([data]);
+  // Schema: WhyIshanLaw = { content: string, reasons: [{title, description, icon}] }.
+  const whyContent = data?.WhyIshanLaw?.content || "Ishan Law Institute is not just an educational centre; it's a launchpad for judicial leaders and advocates. Our commitment to clinical training, moral ethics, and professional excellence sets us apart in the field of legal education.";
+  const image = data?.WhyIshanLaw?.image || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg";
+  const reasons = data?.WhyIshanLaw?.reasons?.length > 0 ? data.WhyIshanLaw.reasons : defaultReasons;
+
+  const getIcon = (name: string) => {
+    switch (name) {
+      case "Gavel": return Award;
+      case "Users": return Users;
+      case "Globe": return Globe;
+      case "Shield": return Shield;
+      case "Building": return Building;
+      case "Heart": return Heart;
+      case "BookOpen": return BookOpen;
+      case "GraduationCap": return GraduationCap;
+      case "Lightbulb": return Lightbulb;
+      case "TrendingUp": return TrendingUp;
+      default: return CheckCircle;
+    }
+  };
 
   return (
     <Layout>
@@ -34,16 +50,17 @@ export default function WhyIshanLawPage() {
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto mb-12">
             <div className="reveal space-y-8">
-              <p className="text-foreground/70 leading-relaxed text-lg">
-                Ishan Law Institute is not just an educational centre; it's a launchpad for judicial leaders and advocates. Our commitment to clinical training, moral ethics, and professional excellence sets us apart in the field of legal education.
-              </p>
+              <div 
+                className="text-foreground/70 leading-relaxed text-lg format-rich-text whitespace-pre-wrap"
+                dangerouslySetInnerHTML={{ __html: whyContent }}
+              />
               <div className="rounded-2xl overflow-hidden shadow-2xl border">
-                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg" alt="Ishan Law Excellence" className="w-full h-80 object-cover" />
+                <img src={image} alt="Ishan Law Excellence" className="w-full h-80 object-cover" />
               </div>
             </div>
             <div className="space-y-6">
-              {defaultReasons.slice(0, 4).map((r, i) => {
-                const Icon = r.icon;
+              {reasons.slice(0, 4).map((r: any, i: number) => {
+                const Icon = getIcon(r.icon);
                 return (
                   <div key={r.title} className={`reveal delay-${Math.min(i % 3, 2)}00 flex gap-5 p-6 rounded-xl border bg-card hover:shadow-[0_4px_20px_hsl(var(--navy)/0.06)] transition-shadow group`}>
                     <div className="w-12 h-12 rounded-xl bg-gold-light flex items-center justify-center shrink-0 group-hover:bg-gold/20 transition-colors">
@@ -59,8 +76,8 @@ export default function WhyIshanLawPage() {
             </div>
           </div>
           <div className="max-w-6xl mx-auto space-y-6">
-            {defaultReasons.slice(4).map((r, i) => {
-              const Icon = r.icon;
+            {reasons.slice(4).map((r: any, i: number) => {
+              const Icon = getIcon(r.icon);
               return (
                 <div key={r.title} className={`reveal delay-${Math.min(i % 3, 2)}00 flex gap-5 p-6 rounded-xl border bg-card hover:shadow-[0_4px_20px_hsl(var(--navy)/0.06)] transition-shadow group`}>
                   <div className="w-12 h-12 rounded-xl bg-gold-light flex items-center justify-center shrink-0 group-hover:bg-gold/20 transition-colors">

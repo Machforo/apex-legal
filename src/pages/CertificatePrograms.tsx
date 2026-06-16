@@ -5,7 +5,9 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
-const programs = [
+import { useIshanLawData } from "@/hooks/useIshanLawData";
+
+const defaultPrograms = [
   { name: "Cyber Law & Digital Security", duration: "3 Months", fee: "₹5,000", eligibility: "Any student / graduate", desc: "Covers IT Act 2000, cyber crimes, digital evidence, data protection, and social media regulations." },
   { name: "Intellectual Property Rights", duration: "2 Months", fee: "₹3,500", eligibility: "Law students / Professionals", desc: "Practical training in Patents, Trademarks, Copyrights registration, and IP litigation strategies." },
   { name: "Mediation & Conciliation (ADR)", duration: "3 Months", fee: "₹6,000", eligibility: "Law students", desc: "Learn alternative dispute resolution techniques, negotiation skills, and the role of a mediator in civil disputes." },
@@ -15,24 +17,29 @@ const programs = [
 ];
 
 export default function CertificateProgramsPage() {
-  const ref = useScrollReveal();
+  const { data: overviewData } = useIshanLawData("certificateoverview");
+  const { data: programsData } = useIshanLawData("certificates");
+  const ref = useScrollReveal([overviewData, programsData]);
+  
+  const programs = Array.isArray(programsData) && programsData.length > 0 ? programsData : defaultPrograms;
 
   return (
     <Layout>
       <PageHeader
-        title="Certificate Programs"
-        subtitle="Specialized legal add-on courses that complement your degree and boost professional readiness"
+        title={overviewData?.title || "Certificate Programs"}
+        subtitle={overviewData?.subtitle || "Specialized legal add-on courses that complement your degree and boost professional readiness"}
         breadcrumbs={[{ label: "Learning", href: "/news-events" }, { label: "Certificate Programs" }]}
       />
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="reveal rounded-2xl overflow-hidden border mb-12 shadow-sm max-w-4xl mx-auto">
-            <img src="https://law.ishan.ac/all-law/gallery-photos/academics/academics-11.jpg" alt="Certificate Programs" className="w-full h-80 object-cover" />
+            <img src={overviewData?.image || "https://law.ishan.ac/all-law/gallery-photos/academics/academics-11.jpg"} alt="Certificate Programs" className="w-full h-80 object-cover" />
           </div>
-          <p className="reveal leading-relaxed max-w-3xl mb-12">
-            Ishan Law offers structured certificate programs alongside regular degree courses. These specialized short courses help students develop practical skills that legal employers actively seek — from cyber law expertise to mediation skills and advanced legal drafting. All certificate programs include hands-on sessions, assessments, and a certificate of completion.
-          </p>
+          <div 
+            className="reveal leading-relaxed max-w-3xl mb-12 format-rich-text whitespace-pre-wrap"
+            dangerouslySetInnerHTML={{ __html: overviewData?.content || "Ishan Law offers structured certificate programs alongside regular degree courses. These specialized short courses help students develop practical skills that legal employers actively seek — from cyber law expertise to mediation skills and advanced legal drafting. All certificate programs include hands-on sessions, assessments, and a certificate of completion." }}
+          />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {programs.map((p, i) => (
@@ -42,7 +49,10 @@ export default function CertificateProgramsPage() {
                   <span className="px-2.5 py-1 rounded-md bg-muted font-medium">{p.duration}</span>
                   <span className="px-2.5 py-1 rounded-md bg-muted font-medium">{p.fee}</span>
                 </div>
-                <p className="text-sm leading-relaxed mb-4">{p.desc}</p>
+                <div 
+                  className="text-sm leading-relaxed mb-4 format-rich-text whitespace-pre-wrap"
+                  dangerouslySetInnerHTML={{ __html: p.desc }}
+                />
                 <p className="text-xs text-muted-foreground"><strong>Eligibility:</strong> {p.eligibility}</p>
               </div>
             ))}

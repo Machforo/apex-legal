@@ -17,32 +17,44 @@ const facilities = [
 
 export default function InfrastructurePage() {
   const ref = useScrollReveal();
-  const { data } = useIshanLawData("campuslife");
-  const intro = `Ishan Law Institute's campus is strategically located in Knowledge Park III, Greater Noida, offering a specialized environment designed for legal scholarship and professional training. The campus is built on a foundation of tradition and modern infrastructure, providing a premium learning experience for aspiring advocates.
+  const { data } = useIshanLawData("facilities");
+  const facility = Array.isArray(data) ? data.find((d: any) => d.slug === 'infrastructure') : null;
+  
+  const title = facility?.title || "Campus Infrastructure";
+  const subtitle = facility?.subtitle || "Modern facilities designed to create an optimal learning environment";
+  const overviewHeading = facility?.overviewHeading || "Modern Learning Environment";
+  const content = facility?.overviewContent || `Ishan Law Institute's campus is strategically located in Knowledge Park III, Greater Noida, offering a specialized environment designed for legal scholarship and professional training. The campus is built on a foundation of tradition and modern infrastructure, providing a premium learning experience for aspiring advocates.\n\nOur facilities include a high-tech Moot Court Hall, a comprehensive legal library with digital research terminals, and a dedicated Legal Aid Cell for community service.`;
+  const image = facility?.image || "https://law.ishan.ac/static/gallery/infra/infra-16.jpg";
 
-Our facilities include a high-tech Moot Court Hall, a comprehensive legal library with digital research terminals, and a dedicated Legal Aid Cell for community service. We also provide smart classrooms and secure campus-wide Wi-Fi, ensuring that our students have access to the best tools for legal research and advocacy.
-
-The campus is highly accessible, situated in the heart of Greater Noida's educational hub and well-connected by major transport links, including the Pari Chowk Metro Station, making it an ideal choice for serious legal professionals.`;
+  // Use CMS highlights if available, otherwise fallback
+  const highlights = facility?.highlights?.length > 0 ? facility.highlights : [
+    { title: "Smart Classrooms", description: "Fully air-conditioned lecture halls equipped with modern AV projection systems." },
+    { title: "Moot Court Hall", description: "A realistic courtroom replica for practical clinical training." },
+    { title: "Wi-Fi Campus", description: "24/7 seamless high-speed internet connectivity across all blocks." },
+    { title: "Green Campus", description: "Eco-friendly sustainable campus with lush green surroundings." }
+  ];
 
   return (
     <Layout>
       <PageHeader
-        title="Campus Infrastructure"
-        subtitle="Modern facilities designed to create an optimal learning environment"
+        title={title}
+        subtitle={subtitle}
         breadcrumbs={[{ label: "Campus", href: "/infrastructure" }, { label: "Infrastructure" }]}
       />
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="reveal max-w-3xl mb-14">
-            <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">
-              {intro}
-            </p>
+            <h2 className="text-2xl font-bold mb-4">{overviewHeading}</h2>
+            <div 
+              className="text-foreground/70 leading-relaxed format-rich-text whitespace-pre-wrap"
+              dangerouslySetInnerHTML={{ __html: content }}
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             <div className="reveal rounded-2xl overflow-hidden border shadow-sm">
-              <img src="https://law.ishan.ac/static/gallery/infra/infra-16.jpg" alt="Campus Building" className="w-full h-64 object-cover" />
+              <img src={image} alt="Campus Building" className="w-full h-64 object-cover" />
             </div>
             <div className="reveal delay-100 rounded-2xl overflow-hidden border shadow-sm">
               <img src="https://law.ishan.ac/static/gallery/infra/infra-2.png" alt="Institutional Facility" className="w-full h-64 object-cover" />
@@ -55,7 +67,7 @@ The campus is highly accessible, situated in the heart of Greater Noida's educat
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {facilities.map((f, i) => {
               const Icon = f.icon;
-              const content = (
+              const cardContent = (
                 <div className={`reveal delay-${Math.min(i, 5)}00 bg-card rounded-xl border p-6 h-full hover:shadow-[0_8px_30px_hsl(var(--navy)/0.08)] transition-shadow ${f.link ? 'group cursor-pointer' : ''}`}>
                   <div className="w-12 h-12 rounded-xl bg-gold-light flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
                     <Icon className="w-6 h-6 text-navy" />
@@ -69,7 +81,7 @@ The campus is highly accessible, situated in the heart of Greater Noida's educat
                   )}
                 </div>
               );
-              return f.link ? <Link key={f.title} to={f.link}>{content}</Link> : <div key={f.title}>{content}</div>;
+              return f.link ? <Link key={f.title} to={f.link}>{cardContent}</Link> : <div key={f.title}>{cardContent}</div>;
             })}
           </div>
         </div>

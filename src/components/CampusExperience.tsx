@@ -2,16 +2,7 @@ import { useState, useEffect } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-const defaultGalleryImages = [
-  { title: "Moot Court Hall", img: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg", category: "Advocacy" },
-  { title: "Legal Research Lab", img: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-12.jpg", category: "Research" },
-  { title: "Clinical Sessions", img: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg", category: "Training" },
-  { title: "Legal Aid Clinic", img: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg", category: "Service" },
-  { title: "Academic Excellence", img: "https://law.ishan.ac/all-law/gallery-photos/academics/academics-1.jpg", category: "Campus" },
-  { title: "Judicial Cell", img: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-8.jpg", category: "Governance" },
-  { title: "Event Plenary", img: "https://law.ishan.ac/all-law/gallery-photos/academics/academics-11.jpg", category: "Events" },
-  { title: "Lush Greenery", img: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-13.jpg", category: "Environment" },
-];
+const defaultGalleryImages = [];
 
 export default function CampusExperience() {
   const ref = useScrollReveal();
@@ -23,6 +14,7 @@ export default function CampusExperience() {
 
   // Subtle rotation of images in specific tiles to keep it "dynamic"
   useEffect(() => {
+    if (galleryImages.length === 0) return;
     const interval = setInterval(() => {
       const tileToChange = Math.floor(Math.random() * 8);
       const nextImage = Math.floor(Math.random() * galleryImages.length);
@@ -33,7 +25,11 @@ export default function CampusExperience() {
       });
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [galleryImages.length]);
+
+  if (!galleryImages || galleryImages.length === 0) {
+    return null;
+  }
 
   return (
     <section id="experience" className="py-16 md:py-24 bg-navy text-white overflow-hidden min-h-screen flex flex-col justify-center snap-start" ref={ref}>
@@ -67,40 +63,85 @@ export default function CampusExperience() {
             </div>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[1]} src={galleryImages[activeIndices[1] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800"; }} />
+          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10 group">
+            <motion.img key={activeIndices[1]} src={galleryImages[activeIndices[1] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800"; }} />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-[10px] font-bold text-gold uppercase tracking-widest">{galleryImages[activeIndices[1] % galleryImages.length].category}</span>
+              <h3 className="text-sm font-bold mt-0.5">{galleryImages[activeIndices[1] % galleryImages.length].title}</h3>
+            </div>
           </div>
 
-          <div className="col-span-2 relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[2]} src={galleryImages[activeIndices[2] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800"; }} />
+          <div className="col-span-2 relative rounded-2xl overflow-hidden shadow-lg border border-white/10 group">
+            <motion.img key={activeIndices[2]} src={galleryImages[activeIndices[2] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800"; }} />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-[10px] font-bold text-gold uppercase tracking-widest">{galleryImages[activeIndices[2] % galleryImages.length].category}</span>
+              <h3 className="text-sm font-bold mt-0.5">{galleryImages[activeIndices[2] % galleryImages.length].title}</h3>
+            </div>
           </div>
 
-          <div className="row-span-2 relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[3]} src={galleryImages[activeIndices[3] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
+          <div className="row-span-2 relative rounded-2xl overflow-hidden shadow-lg border border-white/10 group">
+            <motion.img key={activeIndices[3]} src={galleryImages[activeIndices[3] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-[10px] font-bold text-gold uppercase tracking-widest">{galleryImages[activeIndices[3] % galleryImages.length].category}</span>
+              <h3 className="text-sm font-bold mt-0.5">{galleryImages[activeIndices[3] % galleryImages.length].title}</h3>
+            </div>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[4]} src={galleryImages[activeIndices[4] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
+          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10 group">
+            <motion.img key={activeIndices[4]} src={galleryImages[activeIndices[4] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-[10px] font-bold text-gold uppercase tracking-widest">{galleryImages[activeIndices[4] % galleryImages.length].category}</span>
+              <h3 className="text-sm font-bold mt-0.5">{galleryImages[activeIndices[4] % galleryImages.length].title}</h3>
+            </div>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[5]} src={galleryImages[activeIndices[5] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
+          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10 group">
+            <motion.img key={activeIndices[5]} src={galleryImages[activeIndices[5] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-[10px] font-bold text-gold uppercase tracking-widest">{galleryImages[activeIndices[5] % galleryImages.length].category}</span>
+              <h3 className="text-sm font-bold mt-0.5">{galleryImages[activeIndices[5] % galleryImages.length].title}</h3>
+            </div>
           </div>
 
-          <div className="col-span-2 relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[6]} src={galleryImages[activeIndices[6] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
+          <div className="col-span-2 relative rounded-2xl overflow-hidden shadow-lg border border-white/10 group">
+            <motion.img key={activeIndices[6]} src={galleryImages[activeIndices[6] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-[10px] font-bold text-gold uppercase tracking-widest">{galleryImages[activeIndices[6] % galleryImages.length].category}</span>
+              <h3 className="text-sm font-bold mt-0.5">{galleryImages[activeIndices[6] % galleryImages.length].title}</h3>
+            </div>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[7]} src={galleryImages[activeIndices[7] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
+          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10 group">
+            <motion.img key={activeIndices[7]} src={galleryImages[activeIndices[7] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-[10px] font-bold text-gold uppercase tracking-widest">{galleryImages[activeIndices[7] % galleryImages.length].category}</span>
+              <h3 className="text-sm font-bold mt-0.5">{galleryImages[activeIndices[7] % galleryImages.length].title}</h3>
+            </div>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[8]} src={galleryImages[activeIndices[8] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
+          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10 group">
+            <motion.img key={activeIndices[8]} src={galleryImages[activeIndices[8] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-[10px] font-bold text-gold uppercase tracking-widest">{galleryImages[activeIndices[8] % galleryImages.length].category}</span>
+              <h3 className="text-sm font-bold mt-0.5">{galleryImages[activeIndices[8] % galleryImages.length].title}</h3>
+            </div>
           </div>
 
-          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10">
-            <motion.img key={activeIndices[9]} src={galleryImages[activeIndices[9] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
+          <div className="relative rounded-2xl overflow-hidden shadow-lg border border-white/10 group">
+            <motion.img key={activeIndices[9]} src={galleryImages[activeIndices[9] % galleryImages.length].img} className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onError={(e) => { (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1541339907198-e08756ebafe3?auto=format&fit=crop&w=800"; }} />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/90 via-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+            <div className="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+              <span className="text-[10px] font-bold text-gold uppercase tracking-widest">{galleryImages[activeIndices[9] % galleryImages.length].category}</span>
+              <h3 className="text-sm font-bold mt-0.5">{galleryImages[activeIndices[9] % galleryImages.length].title}</h3>
+            </div>
           </div>
         </div>
       </div>

@@ -5,24 +5,15 @@ import { useState } from "react";
 import { Search, X } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 
-const defaultDepartments = ["All", "Law", "Clinical Education", "Research & Publication"];
+const defaultDepartments = [];
 
-const defaultFaculty = [
-  { name: "Dr. Sandeep Singh", designation: "Principal", dept: "Law", qualification: "PhD, LLM", specialisation: "Constitutional Law & Jurisprudence", bio: "Extensive experience in constitutional matters and legal theory. Author of several seminal papers on Indian jurisprudence.", publications: "12 Research Papers" },
-  { name: "Prof. Rajesh Khanna", designation: "Professor", dept: "Law", qualification: "LLM, UGC NET", specialisation: "Criminal Law & Procedure", bio: "Former practitioner with deep insights into criminal justice. Focuses on procedural law and evidence act interpretations.", publications: "8 Publications" },
-  { name: "Ms. Anjali Sharma", designation: "Assistant Professor", dept: "Clinical Education", qualification: "LLM, Former Advocate", specialisation: "Advocacy Skills & Moot Courts", bio: "Specialises in practical advocacy and clinical training. Mentors teams for national moot court competitions." },
-  { name: "Mr. Vivek Verma", designation: "Assistant Professor", dept: "Law", qualification: "LLM", specialisation: "Corporate & Commercial Laws", bio: "Expertise in company law and commercial dispute resolution. Bridges corporate practice with academic theory." },
-  { name: "Dr. Megha Gupta", designation: "Associate Professor", dept: "Research & Publication", qualification: "PhD, LLM", specialisation: "International Law & Human Rights", bio: "Focuses on human rights advocacy and international treaties. Actively guides student research initiatives.", publications: "15 Publications" },
-  { name: "Prof. Amit Das", designation: "Assistant Professor", dept: "Law", qualification: "LLM, UGC NET", specialisation: "Family Law & ADR", bio: "Dedicated to alternate dispute resolution mechanisms and modern family law practice in India." },
-  { name: "Ms. Neha Singh", designation: "Assistant Professor", dept: "Law", qualification: "LLM", specialisation: "Intellectual Property Rights", bio: "Passionate about intellectual property regimes and their impact on emerging technologies and startups." },
-  { name: "Mr. Karan Bajaj", designation: "Assistant Professor", dept: "Clinical Education", qualification: "LLM, Advocate", specialisation: "Civil Procedure & Drafting", bio: "Brings active civil practice experience to drafting modules. Emphasises practical pleading techniques." },
-];
+const defaultFaculty = [];
 
 export default function FacultyPage() {
   const ref = useScrollReveal();
-  const { data } = useIshanLawData("campuslife");
+  const { data } = useIshanLawData("faculty");
 
-  const faculty = data?.faculty?.length > 0 ? data.faculty : defaultFaculty;
+  const faculty = Array.isArray(data) && data.length > 0 ? data : defaultFaculty;
   const departments = ["All", ...Array.from(new Set(faculty.map((f: any) => f.dept || f.department || "General"))).filter(Boolean) as string[]];
 
   const [filter, setFilter] = useState("All");

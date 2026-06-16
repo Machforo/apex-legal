@@ -5,34 +5,11 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { TrendingUp, Building2, Users2, Star, CheckCircle2 } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 
-const defaultStats = [
-  { icon: TrendingUp, value: "100%", label: "Internship Support" },
-  { icon: Building2, value: "50+", label: "Law Firm Partners" },
-  { icon: Users2, value: "500+", label: "Advocates Produced" },
-  { icon: Star, value: "10+", label: "Judicial Selections" },
-];
+const defaultStats = [];
 
-const defaultRecruiters = [
-  { name: "BAJAJ", logo: "https://law.ishan.ac/images/company/BAJAJ.png" },
-  { name: "Welspun", logo: "https://law.ishan.ac/images/company/welspun.png" },
-  { name: "Body Care", logo: "https://law.ishan.ac/images/company/Body-Care.png" },
-  { name: "KPMG", logo: "https://law.ishan.ac/images/company/kpmg.png" },
-  { name: "SBI", logo: "https://law.ishan.ac/images/company/SBI.png" },
-  { name: "Nirala", logo: "https://law.ishan.ac/images/company/Nirala.png" },
-  { name: "Spice", logo: "https://law.ishan.ac/images/company/Spice.png" },
-  { name: "The Times", logo: "https://law.ishan.ac/images/company/The-Times.png" },
-  { name: "47 Billion", logo: "https://law.ishan.ac/images/company/47-Billion.png" },
-  { name: "Shardul Amarchand Mangaldas", logo: "" },
-  { name: "AZB & Partners", logo: "" },
-  { name: "Khaitan & Co.", logo: "" },
-];
+const defaultRecruiters = [];
 
-const defaultTestimonials = [
-  { name: "Rahul Deshmukh", program: "BA LLB 2022", company: "Delhi High Court", quote: "The clinical training and moot court exposure at Ishan Law were instrumental in my transition to advocacy. I felt courtroom-ready from day one of my practice." },
-  { name: "Sanya Malhotra", program: "LLB 2021", company: "JSA Law", quote: "The placement cell's focus on corporate law internships helped me secure a role at a top-tier firm. The digital research skills I learned here are invaluable." },
-  { name: "Priyanka Singh", program: "BA LLB 2023", company: "Judicial Services", quote: "The dedicated Judicial Services Cell provided me with the structured guidance and mock tests that helped me clear the preliminary examinations in my first attempt." },
-  { name: "Arjun Verma", program: "LLB 2022", company: "Corporate Legal Cell", quote: "Ishan Law's faculty, many of whom are practicing advocates, gave me a real-world perspective that you can't find in textbooks. Highly recommended for serious legal aspirants." },
-];
+const defaultTestimonials = [];
 
 export default function PlacementsPage() {
   const ref = useScrollReveal();
@@ -40,21 +17,19 @@ export default function PlacementsPage() {
 
   // Schema field names: placementNumbers, recruitingPartners, successStories, placementProcess
   const stats = data?.placementNumbers?.length > 0 ? data.placementNumbers : defaultStats;
-  const recruiters: string[] = data?.recruitingPartners?.length > 0
-    ? data.recruitingPartners.map((r: any) => r.name || r)
-    : defaultRecruiters;
+  const recruiters = data?.recruitingPartners?.length > 0 ? data.recruitingPartners : defaultRecruiters;
   const testimonials = data?.successStories?.length > 0 ? data.successStories : defaultTestimonials;
-  const placementProcess: Array<{step:string;desc:string}> = data?.placementProcess?.length > 0 ? data.placementProcess : [
-    { step: "1", desc: "Pre-placement training: resume building, aptitude, group discussion, mock interviews" },
-    { step: "2", desc: "Company registration and job description sharing with students" },
-    { step: "3", desc: "Aptitude test and/or technical assessment by the recruiter" },
-    { step: "4", desc: "Group discussion and personal interview rounds" },
-    { step: "5", desc: "Offer letter issuance and onboarding support" },
+  const placementProcess = data?.placementProcess?.length > 0 ? data.placementProcess : [
+    { step: "1", title: "Pre-placement training", desc: "Resume building, aptitude, group discussion, mock interviews" },
+    { step: "2", title: "Registration", desc: "Company registration and job description sharing with students" },
+    { step: "3", title: "Assessment", desc: "Aptitude test and/or technical assessment by the recruiter" },
+    { step: "4", title: "Interviews", desc: "Group discussion and personal interview rounds" },
+    { step: "5", title: "Onboarding", desc: "Offer letter issuance and onboarding support" },
   ];
 
   return (
     <Layout>
-      <PageHeader title="Career Outcomes" subtitle="Consistent record of placements in top-tier law firms, corporate legal cells, and judicial services" breadcrumbs={[{ label: "Career Outcomes" }]} />
+      <PageHeader title={data?.title || "Career Outcomes"} subtitle={data?.subtitle || "Consistent record of placements in top-tier law firms, corporate legal cells, and judicial services"} breadcrumbs={[{ label: "Career Outcomes" }]} />
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
@@ -65,8 +40,8 @@ export default function PlacementsPage() {
               return (
                 <div key={s.label || i} className="text-center p-6 rounded-xl bg-section-alt border">
                   <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-gold-light flex items-center justify-center"><Icon className="w-6 h-6 text-navy" /></div>
-                  <p className="font-bold text-navy">{s.value}</p>
-                  <p className="text-xs text-muted-foreground mt-1 font-medium">{s.label}</p>
+                  <p className="font-bold text-navy text-2xl mb-1">{s.number || s.value}</p>
+                  <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider">{s.label}</p>
                 </div>
               );
             })}
@@ -77,9 +52,12 @@ export default function PlacementsPage() {
             <h2 className="text-2xl font-bold text-foreground mb-6">Placement Process</h2>
             <div className="space-y-4">
               {placementProcess.map((step: any, i: number) => (
-                <div key={i} className="flex gap-4 items-start p-4 rounded-lg border bg-card">
-                  <div className="w-8 h-8 rounded-full bg-navy flex items-center justify-center shrink-0"><span className="text-xs font-bold text-primary-foreground">{step.step || i+1}</span></div>
-                  <p className="text-sm">{step.desc}</p>
+                <div key={i} className="flex gap-4 items-start p-5 rounded-lg border bg-card">
+                  <div className="w-10 h-10 rounded-full bg-navy flex items-center justify-center shrink-0"><span className="text-sm font-bold text-primary-foreground">{step.step || i+1}</span></div>
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">{step.title}</h3>
+                    <p className="text-sm text-muted-foreground">{step.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
@@ -94,7 +72,7 @@ export default function PlacementsPage() {
                   {r.logo ? (
                     <img src={r.logo} alt={r.name} className="h-16 md:h-20 w-auto object-contain" />
                   ) : (
-                    <span className="text-sm font-semibold text-foreground/50">{r.name || r}</span>
+                    <span className="text-sm font-semibold text-foreground/70">{r.name || r}</span>
                   )}
                 </div>
               ))}
@@ -104,18 +82,21 @@ export default function PlacementsPage() {
           {/* Testimonials */}
           <div className="reveal delay-300">
             <h2 className="text-2xl font-bold text-foreground mb-6 text-center">Student Success Stories</h2>
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-3 gap-6">
               {testimonials.map((t: any, i: number) => (
-                <div key={t.name || i} className="p-6 rounded-xl border bg-card">
-                  {(t.quote || t.message) && <p className="text-sm leading-relaxed italic mb-4">"{t.quote || t.message}"</p>}
+                <div key={t.name || i} className="p-6 rounded-xl border bg-card flex flex-col justify-between h-full">
+                  <div>
+                    <Star className="w-5 h-5 text-gold mb-4" />
+                    {(t.quote || t.message) && <p className="text-sm leading-relaxed italic mb-6 text-foreground/80">"{t.quote || t.message}"</p>}
+                  </div>
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-gold-light flex items-center justify-center">
-                      {t.image ? <img src={t.image} alt={t.name} className="w-full h-full rounded-full object-cover" /> : <span className="text-sm font-bold text-navy">{t.name?.[0]}</span>}
+                    <div className="w-10 h-10 rounded-full bg-navy flex items-center justify-center overflow-hidden shrink-0">
+                      {t.image ? <img src={t.image} alt={t.name} className="w-full h-full object-cover" /> : <span className="text-sm font-bold text-primary-foreground">{t.name?.[0]}</span>}
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-foreground">{t.name}</p>
-                      <p className="text-xs text-muted-foreground">{t.program}{t.program && t.company ? " → " : ""}{t.company}</p>
-                      {t.package && <p className="text-xs font-medium text-gold">{t.package}</p>}
+                      <p className="text-xs text-muted-foreground">{t.role}{t.role && t.company ? " at " : ""}{t.company}</p>
+                      <p className="text-xs text-navy font-medium">{t.batch}</p>
                     </div>
                   </div>
                 </div>

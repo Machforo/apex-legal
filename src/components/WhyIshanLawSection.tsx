@@ -3,20 +3,16 @@ import { Award, Users, Globe, BookOpen, Building, TrendingUp, Shield, Lightbulb,
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultReasons = [
-  { icon: Shield, title: "BCI Approved", desc: "Bar Council of India recognized professional programs" },
-  { icon: Scale, title: "Clinical Focus", desc: "Mandatory court and jail visits starting from first year" },
-  { icon: Gavel, title: "Moot Court Hall", desc: "Dedicated high-tech hall for regular practice and competitions" },
-  { icon: Users, title: "Advocate Faculty", desc: "Learn from practicing High Court and Supreme Court advocates" },
-  { icon: Award, title: "Judicial Cell", desc: "Specialized guidance and training for judicial services exams" },
-  { icon: Globe, title: "Legal Aid Clinic", desc: "Live community service experience providing real legal aid" },
-  { icon: Lightbulb, title: "Research Library", desc: "Comprehensive legal library with digital research terminals" },
-  { icon: TrendingUp, title: "Location Advantage", desc: "Situated in Knowledge Park, the educational hub of Greater Noida" },
+  { title: "Clinical Legal Education", desc: "Learn through hands-on practice via mandatory court visits and legal aid clinics.", icon: Gavel },
+  { title: "Specialized Infrastructure", desc: "State-of-the-art moot court halls and well-equipped digital research libraries.", icon: Building },
+  { title: "Experienced Faculty", desc: "Learn from academicians, seasoned advocates, and retired judges.", icon: Users },
+  { title: "Focus on Ethics", desc: "Deep emphasis on professional ethics and the moral responsibilities of a lawyer.", icon: Scale }
 ];
 
 export default function WhyIshanLawSection() {
   const ref = useScrollReveal();
   const { data } = useIshanLawData("homepage");
-  const reasons = data?.standApart?.length > 0 ? data.standApart : defaultReasons;
+  const reasons = data?.whyIshan?.length > 0 ? data.whyIshan : defaultReasons;
 
   return (
     <section id="why-choose-us" className="py-12 md:py-20" ref={ref}>
@@ -26,11 +22,18 @@ export default function WhyIshanLawSection() {
           <div className="reveal-left">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">Why Choose Us</p>
             <h2 className="font-bold text-foreground leading-tight">
-              What Makes Ishan Law Stand Apart
+              {data?.whyIshanObj?.title || "What Makes Ishan Law Stand Apart"}
             </h2>
-            <p className="mt-4 leading-relaxed">
-              At Ishan Law Institute, we bridge the gap between classroom theory and courtroom reality. Our focus on clinical legal education ensures that every student graduates with the confidence of a seasoned professional.
-            </p>
+            {data?.whyIshanObj?.description ? (
+              <div 
+                className="mt-4 leading-relaxed whitespace-pre-wrap text-foreground/70 prose prose-sm prose-p:mb-2 prose-p:last:mb-0 max-w-none"
+                dangerouslySetInnerHTML={{ __html: data.whyIshanObj.description }}
+              />
+            ) : (
+              <p className="mt-4 leading-relaxed whitespace-pre-wrap text-foreground/70">
+                At Ishan Law Institute, we bridge the gap between classroom theory and courtroom reality. Our focus on clinical legal education ensures that every student graduates with the confidence of a seasoned professional.
+              </p>
+            )}
             <a
               href="#contact"
               className="inline-flex items-center gap-2 mt-8 px-6 py-3 text-sm font-semibold bg-navy text-primary-foreground rounded-lg hover:bg-gold hover:text-navy transition-all active:scale-[0.97] shimmer-btn"
@@ -46,7 +49,7 @@ export default function WhyIshanLawSection() {
               return (
                 <div
                   key={r.title || i}
-                  className={`reveal delay-${Math.min(i % 4, 4)}00 flex gap-4 p-5 rounded-xl border bg-card hover:shadow-[0_4px_20px_hsl(var(--navy)/0.06)] transition-shadow group`}
+                  className={`reveal delay-${(i % 4) * 100} flex gap-4 p-5 rounded-xl border bg-card hover:shadow-[0_4px_20px_hsl(var(--navy)/0.06)] transition-shadow group`}
                 >
                   <div className="w-10 h-10 rounded-lg bg-gold-light flex items-center justify-center shrink-0 group-hover:bg-gold/20 transition-colors">
                     <Icon className="w-5 h-5 text-navy" />

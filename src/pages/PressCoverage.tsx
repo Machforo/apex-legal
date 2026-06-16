@@ -4,14 +4,15 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 export default function PressCoveragePage() {
-  const ref = useScrollReveal();
-  const { data } = useIshanLawData("gallery");
-  const pressItems = data?.pressCoverage?.length > 0 ? data.pressCoverage.map((p: any) => ({
-    publication: p.title.split('—')[1]?.trim() || "Press Release",
+  const { data } = useIshanLawData("press");
+  const ref = useScrollReveal([data]);
+  const pressItems = Array.isArray(data) && data.length > 0 ? data.map((p: any) => ({
+    publication: p.publication || "Press Release",
     date: p.date,
-    headline: p.title.split('—')[0]?.trim() || p.title,
-    url: p.url,
-    tag: p.type || "Online"
+    headline: p.title,
+    url: p.link,
+    tag: "News",
+    image: p.image
   })) : [
     { publication: "Times of India", date: "15 March 2026", headline: "Ishan Law Institute students excel in National Moot Court Competition", tag: "Print" },
     { publication: "Hindustan Times", date: "02 Feb 2026", headline: "Legal Aid Camp organized by Ishan Law provides free counseling to villagers", tag: "Print" },
@@ -32,12 +33,16 @@ export default function PressCoveragePage() {
             {pressItems.map((item, i) => (
               <div key={i} className={`reveal delay-${Math.min(i, 5)}00 flex flex-col sm:flex-row items-start sm:items-center gap-5 p-5 sm:p-6 rounded-xl border bg-card hover:shadow-[0_8px_30px_hsl(var(--navy)/0.06)] transition-all`}>
                 <div className="w-full sm:w-40 aspect-video sm:aspect-square rounded-lg bg-muted flex flex-col items-center justify-center shrink-0 border relative overflow-hidden group">
-                   <div className="absolute inset-0 flex items-center justify-center bg-muted/80">
+                  {item.image ? (
+                    <img src={item.image} alt={item.publication} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-muted/80">
                       <span className="text-xl opacity-40">📰</span>
-                   </div>
-                   <div className="absolute inset-0 bg-navy/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
-                      <span className="text-xs font-bold text-white tracking-widest">VIEW</span>
-                   </div>
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-navy/80 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center cursor-pointer">
+                    <span className="text-xs font-bold text-white tracking-widest">VIEW</span>
+                  </div>
                 </div>
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-2 mb-2">

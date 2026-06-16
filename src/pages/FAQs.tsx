@@ -7,56 +7,23 @@ import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultFaqCategories = [
   {
-    category: "Admissions",
+    category: "Frequently Asked Questions",
     faqs: [
-      { q: "What is the admission process for BA LLB and LLB?", a: "Admissions at Ishan Law are based on merit in the Ishan Law Entrance Test (ILET) or scores from national tests like CLAT and LSAT-India, followed by a personal interview. Candidates must also register on the CCS University portal." },
-      { q: "What are the eligibility criteria for the 3-year LLB?", a: "Candidates must have a graduation degree in any discipline with at least 45% marks (40% for SC/ST) from a recognized university as per BCI and CCS University norms." },
-      { q: "Can I apply for admission before my 12th results are out?", a: "Yes, you can apply provisionally for BA LLB (Hons). Your admission will be finalized once you submit your qualifying marksheets meeting the eligibility criteria." },
-      { q: "Is the Ishan Law Entrance Test (ILET) mandatory?", a: "ILET is the primary entrance for our institutional scholarships. However, candidates with valid CLAT or LSAT-India scores may be exempted from the written test, subject to the interview process." },
-      { q: "How do I contact an admissions counsellor?", a: "You can reach our admissions helpline at +91 8448797700 or use the WhatsApp button on the website for immediate assistance." },
-    ],
-  },
-  {
-    category: "Programmes",
-    faqs: [
-      { q: "Is Ishan Law Institute approved by the Bar Council of India?", a: "Yes, Ishan Law Institute is fully approved by the Bar Council of India (BCI) and affiliated with Chaudhary Charan Singh (CCS) University, Meerut." },
-      { q: "What is Clinical Legal Education?", a: "It is a practice-oriented pedagogy that integrates theoretical law with hands-on training through moot courts, legal aid clinics, court visits, and internship programs." },
-      { q: "Are moot court sessions mandatory?", a: "Yes, participation in moot courts is integrated into the curriculum to ensure every student develops advocacy, research, and drafting skills from the early semesters." },
-      { q: "Does the college provide coaching for Judicial Services?", a: "Yes, we have a dedicated Judicial Services Preparation Cell that provides specialized guidance and coaching for various State Judicial Services Examinations." },
-    ],
-  },
-  {
-    category: "Fees & Scholarships",
-    faqs: [
-      { q: "What kind of scholarships are available?", a: "We offer merit-based scholarships based on ILET performance, academic excellence in 10+2 or graduation, and special categories as per government norms." },
-      { q: "Are installment options available for fee payment?", a: "Yes, annual fees can be paid in semester-wise installments. Our accounts office can provide a detailed schedule at the time of admission." },
-      { q: "What are the payment modes accepted?", a: "Fees can be paid online via our portal (fee.ishan.ac), through bank demand drafts, or direct bank transfers." },
-    ],
-  },
-  {
-    category: "Campus Life",
-    faqs: [
-      { q: "What facilities are available in the Legal Library?", a: "Our specialized library houses thousands of law books, journals, and reports, along with digital access to SCC Online, Manupatra, and LexisNexis." },
-      { q: "What are the hostel facilities like?", a: "We provide separate, secure hostels for boys and girls with 24/7 security, Wi-Fi, and nutritious mess facilities within the Knowledge Park campus." },
-      { q: "Are there court visits for first-year students?", a: "Yes, we initiate court visits and legal aid awareness programs from the first year itself to build a strong practical foundation." },
-    ],
-  },
-  {
-    category: "Career Outcomes",
-    faqs: [
-      { q: "How does the placement cell support law students?", a: "The cell facilitates internships with senior advocates, law firms, and NGOs, and provides placement support for corporate legal roles and litigating houses." },
-      { q: "What career paths can I pursue after LLB?", a: "Graduates can practice in courts, join the judiciary, work as legal advisors in corporate sectors, join civil services, or pursue higher studies like LLM and PhD." },
-    ],
-  },
+      { q: "Is Ishan Law Institute approved by BCI?", a: "Yes, Ishan Law Institute is approved by the Bar Council of India (BCI) and affiliated with Chaudhary Charan Singh (CCS) University, Meerut." },
+      { q: "What is the admission process for BA LLB?", a: "Admission is based on merit in qualifying exams, CLAT/LSAT scores, and a personal interview." },
+      { q: "Do you offer placement assistance?", a: "Yes, we have a dedicated placement cell that assists students with internships and final placements in top law firms." },
+      { q: "Is hostel facility available?", a: "Yes, we provide separate hostel facilities for boys and girls with all modern amenities." }
+    ]
+  }
 ];
 
 export default function FAQsPage() {
-  const ref = useScrollReveal();
-  const { data } = useIshanLawData("admissions");
+  const { data } = useIshanLawData("faqs");
+  const ref = useScrollReveal([data]);
 
   // If API provides faqs array, group them into a single category; otherwise fall back to default
-  const faqCategories = data?.faq?.length > 0
-    ? [{ category: "Frequently Asked Questions", faqs: data.faq.map((f: any) => ({ q: f.question, a: f.answer })) }]
+  const faqCategories = Array.isArray(data) && data.length > 0
+    ? [{ category: "Frequently Asked Questions", faqs: data.map((f: any) => ({ q: f.question, a: f.answer })) }]
     : defaultFaqCategories;
 
   return (
@@ -81,7 +48,10 @@ export default function FAQsPage() {
                           {faq.q}
                         </AccordionTrigger>
                         <AccordionContent className="text-sm leading-relaxed pb-4">
-                          {faq.a}
+                          <div 
+                            className="format-rich-text"
+                            dangerouslySetInnerHTML={{ __html: faq.a }}
+                          />
                         </AccordionContent>
                       </AccordionItem>
                     ))}

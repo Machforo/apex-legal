@@ -41,23 +41,28 @@ const eminentFaculty = [
 ];
 
 export default function FacultySection() {
-  const ref = useScrollReveal();
-  const [selectedFaculty, setSelectedFaculty] = useState<any>(null);
   const { data } = useIshanLawData("faculty");
+  const { data: homeData } = useIshanLawData("homepage");
   const faculty = data?.length > 0 ? data : (data?.data?.length > 0 ? data.data : eminentFaculty);
+  const ref = useScrollReveal([faculty]);
+  const [selectedFaculty, setSelectedFaculty] = useState<any>(null);
+  const config = homeData?.facultyConfig || { subheading: "Academic Leaders", title: "Eminent Faculty & Mentors", description: "Our faculty members are distinguished legal scholars and practicing advocates from the High Courts and Supreme Court, dedicated to nurturing the next generation of judicial leaders through practice-oriented mentorship." };
 
   return (
     <section className="py-20 md:py-28 bg-section-alt" ref={ref}>
       <div className="container-wide">
         <div className="flex flex-col md:flex-row items-end justify-between gap-6 mb-16">
           <div className="max-w-2xl">
-            <p className="reveal text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">Academic Leaders</p>
+            <p className="reveal text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">{config.subheading}</p>
             <h2 className="reveal delay-100 text-3xl md:text-5xl font-bold text-navy">
-              Eminent Faculty & Mentors
+              {config.title}
             </h2>
-            <p className="reveal delay-200 mt-5 leading-relaxed">
-              Our faculty members are distinguished legal scholars and practicing advocates from the High Courts and Supreme Court, dedicated to nurturing the next generation of judicial leaders through practice-oriented mentorship.
-            </p>
+            {config.description && (
+              <div 
+                className="reveal delay-200 mt-5 leading-relaxed whitespace-pre-wrap prose prose-sm prose-p:mb-2 prose-p:last:mb-0 max-w-none text-foreground/80"
+                dangerouslySetInnerHTML={{ __html: config.description }}
+              />
+            )}
           </div>
           <Link 
             to="/faculty" 
@@ -73,7 +78,7 @@ export default function FacultySection() {
             <div 
               key={f.name} 
               onClick={() => setSelectedFaculty(f)}
-              className={`reveal delay-${i % 4}00 group bg-card rounded-[2rem] border overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer`}
+              className={`reveal delay-${(i % 4) * 100} group bg-card rounded-[2rem] border overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer`}
             >
               <div className="aspect-[4/5] relative overflow-hidden">
                 <img 

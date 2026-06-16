@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { ChevronDown, ChevronUp, MessageSquare } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 
-const faqs = [
+const defaultFaqs = [
   {
     question: "What legal programs are offered at Ishan Law?",
     answer: "Ishan Law Institute offers the 5-year Integrated BA LLB program and the 3-year LLB program, both approved by the Bar Council of India (BCI) and affiliated with CCS University, Meerut."
@@ -31,8 +32,10 @@ const faqs = [
 ];
 
 export default function FAQSection() {
-  const ref = useScrollReveal();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { data } = useIshanLawData("faqs");
+  const ref = useScrollReveal([data]);
+  const faqs = Array.isArray(data) && data.length > 0 ? data : defaultFaqs;
 
   return (
     <section className="py-20 md:py-28 bg-white" ref={ref}>

@@ -7,7 +7,7 @@ import NotFound from "./NotFound";
 
 export default function DynamicCourse() {
   const { courseId } = useParams();
-  const { data, isLoading } = useIshanLawData("courses");
+  const { data, isLoading } = useIshanLawData("programs");
 
   if (isLoading) return <div className="min-h-screen flex flex-col"><Navbar /><div className="flex-1 flex items-center justify-center text-xl text-navy animate-pulse">Loading Academic Program...</div></div>;
   
@@ -47,8 +47,8 @@ export default function DynamicCourse() {
     },
   ];
 
-  const courseList = data?.courses?.length > 0 ? data.courses : fallbackCourses;
-  const course = courseList.find((c: any) => sanitizeSlug(c.programName).includes(sanitizeSlug(courseId || '')));
+  const courseList = data || fallbackCourses;
+  const course = courseList.find((c: any) => sanitizeSlug(c.name).includes(sanitizeSlug(courseId || '')));
 
   if (!course) return <NotFound />;
 
@@ -71,7 +71,7 @@ export default function DynamicCourse() {
         <div className="container-wide relative z-10">
           <div className="max-w-3xl">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground leading-tight mb-4">
-              {course.programName}
+              {course.name || course.programName}
             </h1>
             <p className="text-lg text-primary-foreground/70 leading-relaxed font-light">
               Forge your legacy at Ishan Law Institute with our comprehensive {course.duration} program.
@@ -87,19 +87,19 @@ export default function DynamicCourse() {
           <div className="lg:col-span-2 space-y-12">
             <div>
               <h2 className="text-2xl font-bold text-navy mb-5 text-gold-underline">Program Overview</h2>
-              <p className="text-base text-foreground/80 leading-relaxed whitespace-pre-wrap">{course.overview || "Program overview details will be updated shortly."}</p>
+              <div className="text-base text-foreground/80 leading-relaxed whitespace-pre-wrap format-rich-text" dangerouslySetInnerHTML={{ __html: course.overview || "Program overview details will be updated shortly." }} />
             </div>
 
             <div>
               <h2 className="text-2xl font-bold text-navy mb-5 text-gold-underline">Curriculum Structure</h2>
               <div className="bg-card border rounded-2xl p-6 shadow-sm">
-                 <p className="text-base text-foreground/80 leading-relaxed whitespace-pre-wrap">{course.curriculumStructure || "Curriculum structure will be updated shortly."}</p>
+                 <div className="text-base text-foreground/80 leading-relaxed whitespace-pre-wrap format-rich-text" dangerouslySetInnerHTML={{ __html: course.curriculumStructure || "Curriculum structure will be updated shortly." }} />
               </div>
             </div>
 
             <div>
               <h2 className="text-2xl font-bold text-navy mb-5 text-gold-underline">Career Scope</h2>
-              <p className="text-base text-foreground/80 leading-relaxed whitespace-pre-wrap">{course.careerScope || "Career scope will be updated shortly."}</p>
+              <div className="text-base text-foreground/80 leading-relaxed whitespace-pre-wrap format-rich-text" dangerouslySetInnerHTML={{ __html: course.careerScope || "Career scope will be updated shortly." }} />
             </div>
           </div>
 

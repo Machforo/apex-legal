@@ -5,27 +5,30 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Monitor, Wifi, Clock, Shield } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 
-const defaultSpecs = [
-  { label: "Research Terminals", value: "60+ high-end systems" },
-  { label: "Legal Databases", value: "Manupatra, SCC Online, LexisNexis" },
-  { label: "Internet Speed", value: "100 Mbps dedicated" },
-  { label: "Operating Systems", value: "Windows 11 Professional" },
-  { label: "Software", value: "MS Office 365, Grammarly, Turnitin (Plagiarism Check)" },
-  { label: "Timings", value: "8:30 AM – 6:30 PM (Mon-Sat)" },
-];
+
 
 export default function ITLabPage() {
   const ref = useScrollReveal();
-  const { data } = useIshanLawData("campuslife");
-  const itLab = data?.itLab;
-  const content = itLab?.content;
-  const specs = itLab?.specs?.length > 0 ? itLab.specs : defaultSpecs;
+  const { data } = useIshanLawData("facilities");
+  const facility = Array.isArray(data) ? data.find((d: any) => d.slug === 'it-lab') : null;
+  
+  const title = facility?.title || "Digital Research Lab";
+  const subtitle = facility?.subtitle || "State-of-the-art computing facilities for comprehensive legal research and drafting";
+  const overviewHeading = facility?.overviewHeading || "Technology in Legal Practice";
+  const content = facility?.overviewContent || "The Digital Research Lab at Ishan Law Institute is designed to provide students with the technological tools essential for modern legal practice. In an era where case law research and memorial drafting have become digitized, our lab ensures that students are proficient in using premier legal databases.\n\nThe lab is equipped with 60+ high-end terminals featuring 24/7 access to Manupatra, SCC Online, and LexisNexis. Beyond research, the facility supports students in mastering legal drafting software, document management, and academic writing tools.";
+  const image = facility?.image || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-12.jpg";
+
+  const specs = facility?.highlights?.length > 0 ? facility.highlights : [
+    { title: "Systems", description: "60+ Terminals" }, 
+    { title: "Databases", description: "SCC Online, Manupatra" }, 
+    { title: "Internet", description: "High-speed Wi-Fi" }
+  ];
 
   return (
     <Layout>
       <PageHeader
-        title="Digital Research Lab"
-        subtitle="State-of-the-art computing facilities for comprehensive legal research and drafting"
+        title={title}
+        subtitle={subtitle}
         breadcrumbs={[{ label: "Campus", href: "/infrastructure" }, { label: "Research Lab" }]}
       />
 
@@ -33,28 +36,21 @@ export default function ITLabPage() {
         <div className="container-wide">
           <div className="max-w-4xl mx-auto">
             <div className="reveal rounded-2xl overflow-hidden border mb-12 shadow-sm">
-              <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-12.jpg" alt="Digital Research Lab" className="w-full h-80 object-cover" />
+              <img src={image} alt={title} className="w-full h-80 object-cover" />
             </div>
             <div className="reveal space-y-5 mb-12">
-              {content ? (
-                <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">{content}</p>
-              ) : (
-                <>
-                  <p className="text-foreground/70 leading-relaxed">
-                    The Digital Research Lab at Ishan Law Institute is designed to provide students with the technological tools essential for modern legal practice. In an era where case law research and memorial drafting have become digitized, our lab ensures that students are proficient in using premier legal databases.
-                  </p>
-                  <p className="text-foreground/70 leading-relaxed">
-                    The lab is equipped with 60+ high-end terminals featuring 24/7 access to Manupatra, SCC Online, and LexisNexis. Beyond research, the facility supports students in mastering legal drafting software, document management, and academic writing tools like Grammarly and Turnitin.
-                  </p>
-                </>
-              )}
+              <h2 className="text-2xl font-bold">{overviewHeading}</h2>
+              <div 
+                className="text-foreground/70 leading-relaxed format-rich-text whitespace-pre-wrap"
+                dangerouslySetInnerHTML={{ __html: content }}
+              />
             </div>
 
             <div className="reveal delay-100 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
               {specs.map((s: any, i: number) => (
-                <div key={s.label || i} className="p-4 rounded-xl border bg-card">
-                  <p className="text-xs text-muted-foreground mb-1">{s.label}</p>
-                  <p className="text-sm font-semibold text-foreground">{s.value}</p>
+                <div key={s.title || i} className="p-4 rounded-xl border bg-card">
+                  <p className="text-xs text-muted-foreground mb-1">{s.title}</p>
+                  <p className="text-sm font-semibold text-foreground">{s.description}</p>
                 </div>
               ))}
             </div>

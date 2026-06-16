@@ -5,18 +5,11 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Award, ExternalLink } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 
-const defaultScholarships = [
-  { category: "ILET Merit Scholarship", concession: "Up to 100% tuition fee waiver", description: "Awarded to top performers in the Ishan Law Entrance Test (ILET). Details available at the time of counseling." },
-  { category: "Academic Excellence", concession: "Up to 25% fee waiver", description: "Automatically applied for students with 90% and above in 10+2 (for BA LLB) or Graduation (for LLB)." },
-  { category: "SC/ST/OBC Scholarship", concession: "As per UP Scholarship Portal norms", description: "Apply through scholarship.up.gov.in. Ishan Law assists in documentation and verification." },
-  { category: "Economically Weaker Section", concession: "Partial fee concession", description: "Family income below ₹2.5 LPA. Submit income certificate with admission application." },
-  { category: "Sibling Discount", concession: "10% fee waiver", description: "Two or more siblings enrolled simultaneously at Ishan Group. Inform admissions office during enrolment." },
-  { category: "Sports Scholarship", concession: "Up to 15% fee waiver", description: "State or National level sports achievement required. Submit certificates during admission." },
-];
+const defaultScholarships = [];
 
 export default function ScholarshipsPage() {
-  const ref = useScrollReveal();
   const { data } = useIshanLawData("admissions");
+  const ref = useScrollReveal([data]);
   // Schema: scholarships = [{category, concession, description}]
   const scholarships = data?.scholarships?.length > 0 ? data.scholarships : defaultScholarships;
 

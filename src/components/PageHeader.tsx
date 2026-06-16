@@ -22,7 +22,7 @@ export default function PageHeader({ title, subtitle, breadcrumbs }: PageHeaderP
         </h1>
         {subtitle && (
           <p className="reveal delay-200 mt-4 text-lg text-primary-foreground/60 max-w-2xl leading-relaxed">
-            {subtitle}
+            {subtitle.replace(/<[^>]+>/g, '')}
           </p>
         )}
       </div>

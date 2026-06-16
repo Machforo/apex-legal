@@ -1,12 +1,7 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 
-const defaultAccreditations = [
-  { name: "UGC", url: "https://Ishan Law Institute.ishan.ac/images/accreditation/ugc-logo.gif" },
-  { name: "AICTE", url: "https://Ishan Law Institute.ishan.ac/images/accreditation/aicte-logo.png" },
-  { name: "NCTE", url: "https://Ishan Law Institute.ishan.ac/images/accreditation/ncte-logo.png" },
-  { name: "SCERT", url: "https://Ishan Law Institute.ishan.ac/images/accreditation/scert-logo.jpg" },
-];
+const defaultAccreditations = [];
 
 export default function AccreditationsSection() {
   const ref = useScrollReveal();

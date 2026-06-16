@@ -3,10 +3,10 @@ import { useEffect, useState, useRef } from "react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultStats = [
-  { value: "95%", label: "PLACEMENTS" },
-  { value: "6.5 LPA", label: "AVG PACKAGE" },
-  { value: "15,000+", label: "ALUMNI NETWORK" },
-  { value: "250+", label: "FACULTY HUB" },
+  { label: "Successful Alumni", value: "3000+" },
+  { label: "Expert Faculty", value: "50+" },
+  { label: "Library Books", value: "20000+" },
+  { label: "Moot Court Rooms", value: "3" }
 ];
 
 function AnimatedCounter({ rawValue }: { rawValue: string }) {
@@ -47,7 +47,7 @@ function AnimatedCounter({ rawValue }: { rawValue: string }) {
   }, [target]);
 
   return (
-    <span ref={ref} className="stat-value">
+    <span ref={ref} className="stat-value text-4xl md:text-5xl font-black text-white block mb-2 tracking-tight">
       {isNaN(target) ? rawValue : ((count || target).toLocaleString() + suffix)}
     </span>
   );
@@ -66,12 +66,13 @@ export default function StatsBar() {
     }
   }, [data]);
 
-  const brands = [
+  const defaultBrands = [
     { name: "Bar Council of India", logo: "https://law.ishan.ac/all-law/home-page/Logo_of_Bar_Council_of_India.png" },
     { name: "CCS University", logo: "https://law.ishan.ac/images/home/regulatory-4.png" },
     { name: "NAAC", logo: "https://law.ishan.ac/all-law/home-page/naac-2.png" },
     { name: "UGC", logo: "https://law.ishan.ac/static/about/approvals/UGC_India_Logo.png" },
   ];
+  const brands = data?.brands?.length > 0 ? data.brands : defaultBrands;
 
   return (
     <section className="bg-navy relative z-10 overflow-hidden" ref={ref}>

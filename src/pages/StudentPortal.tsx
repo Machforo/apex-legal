@@ -4,27 +4,29 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 export default function StudentPortalPage() {
-  const ref = useScrollReveal();
   const { data } = useIshanLawData("studentportal");
-  const content = data?.content;
+  const ref = useScrollReveal([data]);
 
   return (
     <Layout>
-      <PageHeader title={content?.title || "Student Portal"} subtitle="Access timetables, attendance, and university results" breadcrumbs={[{ label: "Students" }, { label: "Student Portal" }]} />
+      <PageHeader title={data?.title || "Student Portal"} subtitle="Access timetables, attendance, and university results" breadcrumbs={[{ label: "Students" }, { label: "Student Portal" }]} />
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div className="reveal space-y-8">
-              <p className="text-foreground/70 leading-relaxed whitespace-pre-wrap">{content?.instructions || "Current Ishan Law students can access their academic profiles, attendance records, and library resources through the unified student portal. University examination results are available via the CCS University portal."}</p>
+              <div
+                className="text-foreground/70 leading-relaxed format-rich-text whitespace-pre-wrap"
+                dangerouslySetInnerHTML={{ __html: data?.instructions || "Current Ishan Law students can access their academic profiles, attendance records, and library resources through the unified student portal. University examination results are available via the CCS University portal." }}
+              />
               <div className="rounded-2xl overflow-hidden shadow-2xl border">
-                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg" alt="Ishan Law Student Resources" className="w-full h-80 object-cover" />
+                <img src={data?.image || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg"} alt={data?.title || "Ishan Law Student Resources"} className="w-full h-80 object-cover" />
               </div>
             </div>
-            
+
             <div className="space-y-6">
-              {content?.link ? (
+              {data?.link ? (
                 <div className="flex justify-center">
-                  <a href={content.link} target="_blank" rel="noopener" className="inline-flex items-center gap-2 px-8 py-4 text-sm font-semibold bg-gold text-foreground rounded-lg shadow-[0_4px_16px_hsl(var(--gold)/0.3)] hover:shadow-[0_6px_24px_hsl(var(--gold)/0.4)] transition-shadow active:scale-[0.97]">
+                  <a href={data.link} target="_blank" rel="noopener" className="inline-flex items-center gap-2 px-8 py-4 text-sm font-semibold bg-gold text-foreground rounded-lg shadow-[0_4px_16px_hsl(var(--gold)/0.3)] hover:shadow-[0_6px_24px_hsl(var(--gold)/0.4)] transition-shadow active:scale-[0.97]">
                     Access Student Portal →
                   </a>
                 </div>

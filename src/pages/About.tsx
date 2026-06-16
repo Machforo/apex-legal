@@ -5,14 +5,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { CheckCircle2 } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 
-const defaultMilestones = [
-  { year: "1994", event: "Ishan Institute of Management & Technology established as the foundation of the group" },
-  { year: "2008", event: "Ishan Law Institute established with Bar Council of India (BCI) approval" },
-  { year: "2010", event: "Launch of specialized Clinical Legal Education programs and Court Visit initiatives" },
-  { year: "2015", event: "Establishment of the dedicated Legal Aid Cell for community service" },
-  { year: "2018", event: "NAAC Accreditation granted — a testament to quality in higher education" },
-  { year: "2023", event: "Crossed 2,000+ legal alumni successfully practicing in various courts and corporate houses" },
-];
+const defaultMilestones = [];
 
 export default function AboutPage() {
   const ref = useScrollReveal();

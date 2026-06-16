@@ -1,63 +1,78 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { Download, FileText, Search } from "lucide-react";
 import { useState } from "react";
 
 export default function PastPapersPage() {
-  const ref = useScrollReveal();
+  const { data } = useIshanLawData("pastpapers");
+  const ref = useScrollReveal([data]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const papers = [
-    { program: "BA LLB", year: "2023", semester: "Sem 1", subject: "Constitutional Law — I", size: "1.2 MB" },
-    { program: "BA LLB", year: "2023", semester: "Sem 1", subject: "Law of Torts", size: "1.1 MB" },
-    { program: "LLB", year: "2023", semester: "Sem 1", subject: "Jurisprudence", size: "1.5 MB" },
-    { program: "LLB", year: "2023", semester: "Sem 2", subject: "Indian Penal Code", size: "2.1 MB" },
-    { program: "BA LLB", year: "2022", semester: "Sem 4", subject: "Family Law — II", size: "1.8 MB" },
-    { program: "LLB", year: "2022", semester: "Sem 3", subject: "Civil Procedure Code", size: "1.4 MB" },
+  const fallbackPapers = [
+    { program: "BA LLB", year: "2023", semester: "Sem 1", subject: "Constitutional Law — I", size: "450 KB", fileType: "PDF" },
+    { program: "BA LLB", year: "2023", semester: "Sem 1", subject: "Law of Contract", size: "380 KB", fileType: "PDF" },
+    { program: "LLB", year: "2022", semester: "Sem 3", subject: "Law of Crimes (IPC)", size: "510 KB", fileType: "PDF" },
+    { program: "LLB", year: "2022", semester: "Sem 3", subject: "Family Law — II", size: "420 KB", fileType: "PDF" },
+    { program: "LLM", year: "2023", semester: "Sem 2", subject: "Jurisprudence", size: "600 KB", fileType: "PDF" },
+    { program: "BA LLB", year: "2021", semester: "Sem 5", subject: "Company Law", size: "490 KB", fileType: "PDF" },
+    { program: "LLB", year: "2023", semester: "Sem 4", subject: "Environmental Law", size: "410 KB", fileType: "PDF" },
+    { program: "BA LLB", year: "2022", semester: "Sem 2", subject: "Special Contracts", size: "460 KB", fileType: "PDF" },
   ];
 
-  const filteredPapers = papers.filter(p => 
-    p.subject.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    p.program.toLowerCase().includes(searchTerm.toLowerCase())
+  const title = data?.title || "Past Exam Papers";
+  const subtitle = data?.subtitle || "University examination archives to aid student preparation";
+  const overview = data?.overview || "Browse through previous university examination papers to understand question patterns, weightage of topics, and examination trends. Papers are categorized by program and subject for easy access.";
+  const image = data?.image || "https://law.ishan.ac/all-law/gallery-photos/academics/academics-11.jpg";
+  
+  // Transform CMS files to match component structure if necessary
+  const papers = data?.files?.length > 0 ? data.files.map((f: any) => {
+    const parts = f.category ? f.category.split('|').map((s: string) => s.trim()) : [];
+    return {
+      subject: f.name,
+      fileType: f.fileType || "PDF",
+      program: parts[0] || "General",
+      year: parts[1] || "",
+      semester: parts[2] || "",
+      size: f.size || "Unknown",
+      url: f.url
+    };
+  }) : fallbackPapers;
+
+  const filteredPapers = papers.filter((p: any) => 
+    p.subject.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    p.program.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    p.year.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <Layout>
-      <PageHeader
-        title="Past Exam Papers"
-        subtitle="Access previous years' question papers for comprehensive exam preparation."
-        breadcrumbs={[{ label: "Past Papers" }]}
-      />
-
-      <section className="py-20" ref={ref}>
+      <PageHeader title={title} subtitle={subtitle} breadcrumbs={[{ label: "Students" }, { label: "Past Papers" }]} />
+      <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <div className="max-w-4xl mx-auto space-y-12">
-            <div className="reveal-up grid lg:grid-cols-2 gap-12 items-center">
-              <div className="space-y-6 text-left">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Exam Resources</p>
-                <h2 className="font-bold text-foreground leading-tight">Prepare with Confidence</h2>
-                <p className="text-foreground/70 leading-relaxed">
-                  Access previous years' CCS University question papers for BA LLB and LLB. These are invaluable resources for understanding exam patterns and frequently asked questions. Papers are organised by programme, semester, and year.
-                </p>
-              </div>
-              <div className="rounded-2xl overflow-hidden shadow-2xl border">
-                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg" alt="Ishan Law Exam Preparation" className="w-full h-64 object-cover" />
-              </div>
-            </div>
-
-            <div className="reveal-up">
-              <div className="relative mb-8">
+          <div className="grid lg:grid-cols-12 gap-12 items-start">
+            <div className="lg:col-span-5 reveal space-y-8">
+              <div 
+                className="text-foreground/70 leading-relaxed format-rich-text whitespace-pre-wrap"
+                dangerouslySetInnerHTML={{ __html: overview }}
+              />
+              <div className="relative">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
-                <input
-                  type="text"
-                  placeholder="Search by subject or programme..."
-                  className="w-full pl-12 pr-6 py-4 rounded-2xl border bg-card focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all shadow-sm"
+                <input 
+                  type="text" 
+                  placeholder="Search by subject, program, or year..." 
+                  className="w-full pl-12 pr-4 py-4 rounded-xl border bg-card focus:outline-none focus:ring-2 focus:ring-navy/20 transition-all shadow-sm"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
               </div>
-
+              <div className="rounded-2xl overflow-hidden shadow-2xl border hidden lg:block">
+                <img src={image} alt={title} className="w-full h-64 object-cover" />
+              </div>
+            </div>
+            
+            <div className="lg:col-span-7 reveal-up delay-100">
               <div className="bg-card border rounded-2xl overflow-hidden shadow-sm">
                 <div className="overflow-x-auto">
                   <table className="w-full text-left">
@@ -85,10 +100,17 @@ export default function PastPapersPage() {
                             <span className="text-xs">{p.year} | {p.semester}</span>
                           </td>
                           <td className="px-6 py-4 text-right">
-                            <button className="inline-flex items-center gap-2 text-gold hover:text-navy transition-colors font-bold text-xs uppercase tracking-wider">
-                              <Download className="w-4 h-4" />
-                              {p.size}
-                            </button>
+                            {p.url ? (
+                              <a href={p.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-gold hover:text-navy transition-colors font-bold text-xs uppercase tracking-wider">
+                                <Download className="w-4 h-4" />
+                                {p.size}
+                              </a>
+                            ) : (
+                              <button className="inline-flex items-center gap-2 text-gold hover:text-navy transition-colors font-bold text-xs uppercase tracking-wider">
+                                <Download className="w-4 h-4" />
+                                {p.size}
+                              </button>
+                            )}
                           </td>
                         </tr>
                       ))}
