@@ -31,6 +31,7 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boole
 }
 
 import Index from "./pages/Index";
+import DynamicPageRenderer from "./components/DynamicPageRenderer";
 import NotFound from "./pages/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 
@@ -240,7 +241,8 @@ const App = () => (
               <Route path="/grievance-redressal" element={<GrievanceRedressal />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
-              <Route path="*" element={<NotFound />} />
+              <Route path="/p/:slug" element={<DynamicPageRenderer portal="law" />} />
+            <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </ErrorBoundary>
