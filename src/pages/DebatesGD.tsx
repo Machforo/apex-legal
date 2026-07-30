@@ -33,6 +33,9 @@ export default function DebatesGDPage() {
     }
   };
 
+  const bannerImage: string | undefined = data?.bannerImage;
+  const galleryImages: { url: string }[] = data?.images || [];
+
   return (
     <Layout>
       <PageHeader
@@ -40,6 +43,14 @@ export default function DebatesGDPage() {
         subtitle={subtitle}
         breadcrumbs={[{ label: "Learning" }, { label: "Debates & GD" }]}
       />
+
+      {bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={bannerImage} alt="Debates and GD" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">

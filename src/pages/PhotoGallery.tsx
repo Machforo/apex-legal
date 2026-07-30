@@ -53,7 +53,13 @@ export default function PhotoGalleryPage() {
               {(filtered as Array<{title:string;url:string}>).map((photo, i) => (
                 <div key={photo.url || i} className={`reveal delay-${Math.min(i % 4, 3)}00 aspect-[4/3] rounded-xl bg-muted border overflow-hidden group cursor-pointer`}>
                   {photo.url ? (
-                    <img src={photo.url} alt={photo.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" />
+                    <img 
+                      src={photo.url} 
+                      alt={photo.title || "Gallery Photo"} 
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                      loading="lazy" 
+                      onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg"; }}
+                    />
                   ) : (
                     <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-muted to-muted/50 gap-2">
                       <span className="text-muted-foreground/20 text-3xl font-bold">📷</span>

@@ -14,6 +14,8 @@ export default function EducationOverviewPage() {
 
   const content = overviewData?.content || "The Ishan Law Institute offers Bar Council of India (BCI) approved Integrated BA LLB (5 Years) and LLB (3 Years) programs affiliated with CCS University, Meerut. Our pedagogical approach focuses on clinical legal education, ensuring students develop strong analytical, research, and advocacy skills. With a state-of-the-art Moot Court Hall, dedicated Legal Aid Cell, and mandatory court visits, Ishan Law provides a comprehensive platform for students to excel in litigation, corporate law, and judicial services.";
   const image = overviewData?.image || "https://law.ishan.ac/all-law/gallery-photos/academics/academics-1.jpg";
+  const bannerImage: string | undefined = overviewData?.bannerImage;
+  const editorialPhotos: {url:string}[] = overviewData?.editorialPhotos || [];
   const keyPoints = overviewData?.keyPoints?.length > 0 ? overviewData.keyPoints : [
     { point: "BCI approved institution" }, { point: "NAAC Accredited" }, { point: "CCS University affiliated" },
     { point: "Clinical Legal Education focus" }, { point: "Mandatory Court & Jail visits" }, { point: "Specialized Moot Court training" },
@@ -29,12 +31,30 @@ export default function EducationOverviewPage() {
         breadcrumbs={[{ label: "Programs Overview" }]}
       />
 
+      {bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={bannerImage} alt="Programs Overview" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
+
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="max-w-4xl mx-auto">
             <div className="reveal rounded-2xl overflow-hidden border mb-12 shadow-md">
               <img src={image} alt="Academics at Ishan Law" className="w-full h-96 object-cover" />
             </div>
+
+            {editorialPhotos.length > 0 && (
+              <div className="reveal mb-12 grid grid-cols-3 gap-4">
+                {editorialPhotos.slice(0, 3).map((p, i) => (
+                  <div key={i} className="rounded-2xl overflow-hidden shadow h-44">
+                    <img src={p.url} alt={`Academic highlight ${i+1}`} className="w-full h-full object-cover" />
+                  </div>
+                ))}
+              </div>
+            )}
             <div className="reveal space-y-5 mb-16">
               <p className="text-foreground/70 leading-relaxed">
                 {content}

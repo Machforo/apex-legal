@@ -48,6 +48,9 @@ export default function LegalAidCellPage() {
     }
   };
 
+  const bannerImage: string | undefined = data?.bannerImage;
+  const galleryImages: {url:string}[] = data?.images || [];
+
   return (
     <Layout>
       <PageHeader 
@@ -55,6 +58,14 @@ export default function LegalAidCellPage() {
         subtitle={subtitle} 
         breadcrumbs={[{ label: "Governance" }, { label: "Legal Aid Cell" }]} 
       />
+
+      {bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={bannerImage} alt="Legal Aid Cell" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">

@@ -19,9 +19,25 @@ export default function CulturalActivitiesPage() {
     { title: "Arts & Theatre Society", desc: "Student-led clubs organizing Nukkad Nataks (street plays) and art exhibitions focused on legal awareness and social issues." }
   ];
 
+  const bannerImage: string | undefined = data?.bannerImage;
+  const galleryImages: {url:string}[] = data?.images || [
+    { url: "https://law.ishan.ac/all-law/gallery-photos/cultural-activities/cultural-21.jpg" },
+    { url: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-13.jpg" },
+    { url: "https://law.ishan.ac/all-law/gallery-photos/cultural-activities/cultural-11.jpg" }
+  ];
+
   return (
     <Layout>
       <PageHeader title={title} subtitle={subtitle} breadcrumbs={[{ label: "Learning" }, { label: "Cultural Activities" }]} />
+
+      {bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={bannerImage} alt="Cultural Activities" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
+
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
@@ -54,14 +70,15 @@ export default function CulturalActivitiesPage() {
             </div>
             </div>
             
-            <div className="grid grid-cols-2 gap-4 mt-8">
-              <div className="rounded-xl overflow-hidden border">
-                <img src="https://law.ishan.ac/all-law/gallery-photos/cultural-activities/cultural-21.jpg" alt="Dance Performance" className="w-full h-40 object-cover" />
+            {galleryImages.length > 0 && (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+                {galleryImages.slice(0, 3).map((img, idx) => (
+                  <div key={idx} className="rounded-xl overflow-hidden border shadow h-40">
+                    <img src={img.url} alt={`Cultural Event ${idx+1}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                  </div>
+                ))}
               </div>
-              <div className="rounded-xl overflow-hidden border">
-                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-13.jpg" alt="Cultural Event" className="w-full h-40 object-cover" />
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </section>

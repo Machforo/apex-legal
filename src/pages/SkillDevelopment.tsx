@@ -13,7 +13,7 @@ export default function SkillDevelopmentPage() {
   const title = data?.title || "Skill Development";
   const subtitle = data?.subtitle || "Advocacy skills, legal research, and courtroom etiquette integrated into our curriculum";
   const content = data?.content || "The Skill Development Cell at Ishan Law organizes specialized workshops and clinical training sessions designed to transform legal aspirants into practice-ready advocates. These programs focus on the core competencies required for successful litigation, judicial services, and corporate legal careers.";
-  
+
   const items = data?.items?.length > 0 ? data.items : [
     { title: "Legal Research & Online Databases", desc: "" },
     { title: "Memorial & Legal Drafting", desc: "" },
@@ -31,17 +31,39 @@ export default function SkillDevelopmentPage() {
     }
   };
 
+  const bannerImage: string | undefined = data?.bannerImage;
+  const galleryImages: { url: string }[] = data?.images || [];
+
   return (
     <Layout>
       <PageHeader title={title} subtitle={subtitle} breadcrumbs={[{ label: "Learning" }, { label: "Skill Development" }]} />
+
+      {bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={bannerImage} alt="Skill Development" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
+
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="max-w-4xl mx-auto reveal space-y-10">
-            <div 
+            <div
               className="text-foreground/70 leading-relaxed text-lg whitespace-pre-wrap format-rich-text"
               dangerouslySetInnerHTML={{ __html: content }}
             />
-            
+
+            {galleryImages.length > 0 && (
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {galleryImages.slice(0, 3).map((img, idx) => (
+                  <div key={idx} className="rounded-2xl overflow-hidden shadow-md h-44">
+                    <img src={img.url} alt={`Skill Workshop ${idx + 1}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                  </div>
+                ))}
+              </div>
+            )}
+
             <div className="grid sm:grid-cols-2 gap-6">
               {items.map((s: any, i: number) => {
                 const IconComp = typeof s.icon === 'string' ? getIcon(s.icon) : getIcon("FileText");
@@ -52,7 +74,7 @@ export default function SkillDevelopmentPage() {
                     </div>
                     <h3 className="font-bold text-foreground mb-2">{s.title}</h3>
                     {s.desc && (
-                      <div 
+                      <div
                         className="text-sm leading-relaxed text-foreground/80 format-rich-text whitespace-pre-wrap"
                         dangerouslySetInnerHTML={{ __html: s.desc }}
                       />

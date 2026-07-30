@@ -14,7 +14,7 @@ export default function SportsPage() {
   const subtitle = facility?.subtitle || "Inter-college competitions, annual sports meet, and campus recreational facilities";
   const overviewHeading = facility?.overviewHeading || "Fitness & Sportsmanship";
   const content = facility?.overviewContent || "Ishan Law promotes physical fitness and sportsmanship through a comprehensive sports program. The campus features facilities for cricket, basketball, badminton, volleyball, table tennis, and athletics. The annual sports meet is a highlight of the academic calendar, bringing together students from across the Ishan Group in a spirit of healthy competition.";
-  const image = facility?.image || "https://law.ishan.ac/all-law/gallery-photos/events/events-1.jpeg";
+  const image = facility?.image || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-6.jpg";
 
   const specs = facility?.highlights?.length > 0 ? facility.highlights : [
     { title: "Outdoor", description: "Cricket Ground, Basketball Court" },
@@ -31,7 +31,12 @@ export default function SportsPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
             <div className="reveal relative">
               <div className="aspect-[4/3] rounded-2xl overflow-hidden border shadow-lg">
-                <img src={image} alt="Sports Meet" className="w-full h-full object-cover" />
+                <img 
+                  src={image} 
+                  alt="Sports Meet" 
+                  className="w-full h-full object-cover" 
+                  onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-6.jpg"; }}
+                />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-navy text-white p-4 rounded-xl shadow-xl font-bold hidden md:block">
                 ANNUAL SPORTS MEET

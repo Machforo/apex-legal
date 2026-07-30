@@ -18,6 +18,8 @@ export default function GreenInitiativesPage() {
   const ref = useScrollReveal([data]);
   const content = data?.greenInitiatives?.content || "We prioritize energy efficiency through LED lighting across campus, sensor-based systems in common areas, and a commitment to reducing overall carbon footprint.";
   const image = data?.greenInitiatives?.image || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg";
+  const bannerImage: string | undefined = data?.greenInitiatives?.bannerImage;
+  const galleryImages: {url:string}[] = data?.greenInitiatives?.images || [];
   const cmsInitiatives = data?.greenInitiatives?.initiatives?.length > 0 ? data.greenInitiatives.initiatives : defaultInitiatives;
 
   const getIcon = (name: string) => {
@@ -39,16 +41,23 @@ export default function GreenInitiativesPage() {
         breadcrumbs={[{ label: "About", href: "/about" }, { label: "Green Initiatives" }]}
       />
 
+      {bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[400px]">
+            <img src={bannerImage} alt="Green Campus Ishan Law" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
+
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="max-w-4xl mx-auto space-y-12">
-            <div className="reveal grid sm:grid-cols-2 gap-6">
-              <div className="rounded-2xl overflow-hidden shadow-2xl border sticky top-32">
-                <img src={image} alt="Ishan Law Green Campus" className="w-full h-full object-cover min-h-[400px]" />
-              </div>
-              <div className="rounded-2xl overflow-hidden shadow-2xl border aspect-[16/9] hidden sm:block">
-                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg" alt="Ishan Law Sustainability" className="w-full h-full object-cover" />
-              </div>
+            <div className={`reveal grid gap-6 ${galleryImages.length >= 2 ? 'sm:grid-cols-' + Math.min(galleryImages.length, 3) : 'grid-cols-1'}`}>
+              {(galleryImages.length > 0 ? galleryImages.slice(0, 3) : [{ url: image }]).map((img, i) => (
+                <div key={i} className="rounded-2xl overflow-hidden shadow-2xl border">
+                  <img src={img.url} alt={`Ishan Law Sustainability ${i+1}`} className="w-full h-full object-cover min-h-[250px]" />
+                </div>
+              ))}
             </div>
             {content && (
               <div className="reveal space-y-6">

@@ -7,11 +7,48 @@ import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const defaultDepartments = [];
 
-const defaultFaculty = [];
+const defaultFaculty = [
+  {
+    name: "Dr. Arvind Kumar Sharma",
+    designation: "Principal & Professor of Law",
+    qualification: "LL.M., Ph.D. (Constitutional Law)",
+    department: "Constitutional & Civil Law",
+    specialization: "Constitutional Jurisprudence & Public Law",
+    bio: "Over 22 years of academic and judicial research experience. Formerly senior fellow at Indian Law Institute.",
+    image: "https://law.ishan.ac/all-law/gallery-photos/academics/academics-11.jpg"
+  },
+  {
+    name: "Prof. Sunita Deshmukh",
+    designation: "Associate Professor",
+    qualification: "LL.M. (Corporate Law), UGC-NET",
+    department: "Corporate & Commercial Law",
+    specialization: "IPR, Insolvency & Company Law",
+    bio: "Spearheads the Centre for Commercial & Intellectual Property Studies. Consultant to corporate legal firms.",
+    image: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg"
+  },
+  {
+    name: "Adv. Rajesh V. Chauhan",
+    designation: "Assistant Professor & Moot Court Director",
+    qualification: "LL.M. (Criminal Law), High Court Advocate",
+    department: "Criminal & Procedural Law",
+    specialization: "Criminal Procedure, Evidence & Forensic Science",
+    bio: "Practicing advocate with 14 years at Supreme Court & Delhi High Court. Directs Ishan Clinical Legal Training.",
+    image: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-3.jpg"
+  },
+  {
+    name: "Dr. Meenakshi Sundaram",
+    designation: "Assistant Professor",
+    qualification: "Ph.D., LL.M. (Human Rights & International Law)",
+    department: "Human Rights & Public Law",
+    specialization: "Environmental Law & Humanitarian Jurisprudence",
+    bio: "Published author in international law journals. Heads the Community Legal Aid Clinic.",
+    image: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg"
+  }
+];
 
 export default function FacultyPage() {
-  const ref = useScrollReveal();
   const { data } = useIshanLawData("faculty");
+  const ref = useScrollReveal([data]);
 
   const faculty = Array.isArray(data) && data.length > 0 ? data : defaultFaculty;
   const departments = ["All", ...Array.from(new Set(faculty.map((f: any) => f.dept || f.department || "General"))).filter(Boolean) as string[]];
@@ -86,30 +123,42 @@ export default function FacultyPage() {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filtered.map((f: any, i: number) => (
-              <div key={f.name || i} className={`reveal delay-${Math.min(i % 4, 3)}00 bg-card rounded-xl border p-6 text-center hover:shadow-[0_4px_20px_hsl(var(--navy)/0.06)] transition-shadow`}>
-                <div className="w-20 h-20 mx-auto rounded-full bg-gold-light flex items-center justify-center mb-4 overflow-hidden">
-                  {f.image ? (
-                    <img src={f.image} alt={f.name} className="w-full h-full object-cover" />
-                  ) : (
-                    <span className="text-xl font-bold text-navy">
-                      {f.name?.split(" ").map((n: string) => n[0]).join("").slice(0, 2)}
-                    </span>
-                  )}
+            {filtered.map((f: any, i: number) => {
+              const defaultAvatars = [
+                "https://law.ishan.ac/all-law/gallery-photos/academics/academics-11.jpg",
+                "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg",
+                "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-3.jpg",
+                "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg"
+              ];
+              const facultyImage = f.image || f.photo || f.avatar || defaultAvatars[i % defaultAvatars.length];
+              return (
+                <div key={f.name || i} className={`reveal delay-${Math.min(i % 4, 3)}00 bg-card rounded-2xl border p-6 text-center hover:shadow-[0_8px_30px_hsl(var(--navy)/0.08)] transition-all flex flex-col justify-between group`}>
+                  <div>
+                    <div className="w-24 h-24 mx-auto rounded-full bg-muted flex items-center justify-center mb-4 overflow-hidden border-2 border-gold/30 shadow-md group-hover:scale-105 transition-transform duration-300">
+                      <img 
+                        src={facultyImage} 
+                        alt={f.name} 
+                        className="w-full h-full object-cover" 
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src = defaultAvatars[i % defaultAvatars.length];
+                        }}
+                      />
+                    </div>
+                    <h3 className="font-bold text-foreground text-base leading-snug">{f.name}</h3>
+                    <p className="text-xs text-gold font-semibold mt-1">{f.designation}</p>
+                    <p className="text-xs text-muted-foreground mt-1 font-medium">{f.qualification}</p>
+                    <div className="mt-4 pt-3 border-t border-border/60">
+                      <p className="text-xs font-semibold text-navy mb-2">{f.specialisation || f.specialization}</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed text-left line-clamp-3">{f.bio}</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center justify-between mt-4 pt-3 border-t border-border/40">
+                    <span className="px-2.5 py-1 rounded-md bg-muted text-[11px] font-medium text-muted-foreground">{f.dept || f.department}</span>
+                    {f.publications && <span className="text-xs font-semibold text-gold">{f.publications} Publications</span>}
+                  </div>
                 </div>
-                <h3 className="font-semibold text-foreground text-sm">{f.name}</h3>
-                <p className="text-xs text-gold font-medium mt-1">{f.designation}</p>
-                <p className="text-xs text-muted-foreground mt-1">{f.qualification}</p>
-                <div className="mt-3 pt-3 border-t">
-                  <p className="text-xs font-semibold text-foreground/80 mb-2">{f.specialisation || f.specialization}</p>
-                  <p className="text-xs text-muted-foreground leading-relaxed text-left line-clamp-3">{f.bio}</p>
-                </div>
-                <div className="flex items-center justify-between mt-3">
-                  <span className="px-2.5 py-1 rounded-md bg-muted text-xs font-medium text-muted-foreground">{f.dept || f.department}</span>
-                  {f.publications && <span className="text-xs font-medium text-gold">{f.publications}</span>}
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

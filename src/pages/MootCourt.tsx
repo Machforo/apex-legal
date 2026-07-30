@@ -47,6 +47,9 @@ export default function MootCourtPage() {
     }
   };
 
+  const bannerImage: string | undefined = data?.bannerImage;
+  const galleryImages: {url:string}[] = data?.images || [];
+
   return (
     <Layout>
       <PageHeader 
@@ -54,6 +57,19 @@ export default function MootCourtPage() {
         subtitle={subtitle} 
         breadcrumbs={[{ label: "Infrastructure" }, { label: "Moot Court Hall" }]} 
       />
+
+      {bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img 
+              src={bannerImage} 
+              alt="Moot Court Hall" 
+              className="w-full h-full object-cover" 
+              onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg"; }}
+            />
+          </div>
+        </div>
+      )}
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
@@ -64,6 +80,7 @@ export default function MootCourtPage() {
                   src={image} 
                   alt={title} 
                   className="w-full h-[450px] object-cover"
+                  onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg"; }}
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 bg-navy text-white p-6 rounded-xl shadow-xl hidden md:block">
@@ -80,6 +97,24 @@ export default function MootCourtPage() {
               />
             </div>
           </div>
+
+          {galleryImages.length > 0 && (
+            <div className="reveal mb-20">
+              <h3 className="text-2xl font-bold text-navy mb-6">Moot Court Gallery</h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {galleryImages.map((img, idx) => (
+                  <div key={idx} className="rounded-2xl overflow-hidden shadow-md h-48">
+                    <img 
+                      src={img.url} 
+                      alt={`Moot Court session ${idx+1}`} 
+                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
+                      onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg"; }}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((f: any, i: number) => {

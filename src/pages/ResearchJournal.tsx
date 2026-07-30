@@ -20,20 +20,31 @@ export default function ResearchJournalPage() {
   const title = data?.title || "Ishan Law Review";
   const subtitle = data?.subtitle || "A peer-reviewed legal journal dedicated to contemporary legal scholarship";
   const content = data?.content || "<p>Ishan Law Review is the flagship peer-reviewed research journal published by the Ishan Law Institute. Dedicated to fostering high-quality legal scholarship, the journal publishes original research papers, case comments, and book reviews on contemporary legal issues, constitutional developments, and international law. Published bi-annually, it serves as a platform for academicians, legal practitioners, and students to contribute to the evolving legal discourse in India and abroad.</p>";
-  const image = data?.image || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg";
+  const bannerImage: string | undefined = data?.bannerImage;
+  const journalCoverImage: string | undefined = data?.journalCoverImage || data?.image || "https://law.ishan.ac/all-law/gallery-photos/academics/academics-11.jpg";
+  const editorialBoardPhotos: {url:string}[] = data?.editorialBoardPhotos || [];
   const stats = data?.stats?.length > 0 ? data.stats : defaultStats;
   const guidelinesLink = data?.guidelinesLink || "#";
 
   return (
     <Layout>
       <PageHeader title={title} subtitle={subtitle} breadcrumbs={[{ label: "Research" }, { label: "Research Journal" }]} />
+
+      {bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={bannerImage} alt="Research Journal" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
+
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
             <div className="reveal space-y-6">
               <div className="text-foreground/70 leading-relaxed format-rich-text" dangerouslySetInnerHTML={{ __html: content }} />
               <div className="rounded-2xl overflow-hidden shadow-2xl border">
-                <img src={image} alt={title} className="w-full h-80 object-cover" />
+                <img src={journalCoverImage} alt={title} className="w-full h-80 object-cover" />
               </div>
             </div>
             <div className="reveal delay-100 space-y-6">
@@ -45,6 +56,18 @@ export default function ResearchJournalPage() {
                   </div>
                 ))}
               </div>
+              {editorialBoardPhotos.length > 0 && (
+                <div>
+                  <h4 className="text-sm font-bold text-navy mb-3">Editorial Board & Launch Highlights</h4>
+                  <div className="grid grid-cols-3 gap-3">
+                    {editorialBoardPhotos.slice(0, 3).map((img, i) => (
+                      <div key={i} className="rounded-xl overflow-hidden shadow h-28">
+                        <img src={img.url} alt={`Editorial Board ${i+1}`} className="w-full h-full object-cover" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
               <a href={guidelinesLink} className="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold bg-navy text-primary-foreground rounded-lg hover:bg-navy/90 transition-colors active:scale-[0.97]">
                 Submission Guidelines <ExternalLink className="w-4 h-4" />
               </a>

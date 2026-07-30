@@ -14,7 +14,12 @@ export default function FeePaymentPage() {
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div className="reveal rounded-2xl overflow-hidden shadow-2xl border">
-              <img src="https://law.ishan.ac/static/gallery/infra/infra-6.jpeg" alt="Online Services" className="w-full h-80 object-cover" />
+              <img 
+                src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg" 
+                alt="Online Services" 
+                className="w-full h-80 object-cover" 
+                onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg"; }}
+              />
             </div>
             <div className="text-center lg:text-left">
               <div className="reveal space-y-4 mb-10">

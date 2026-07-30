@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { lazy, Suspense, useEffect, Component, ReactNode } from "react";
+import { lazy, Suspense, Component, ReactNode } from "react";
 
 class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
   constructor(props: { children: ReactNode }) {
@@ -40,7 +40,7 @@ const About = lazy(() => import("./pages/About"));
 const PrincipalMessage = lazy(() => import("./pages/PrincipalMessage"));
 const MissionVision = lazy(() => import("./pages/MissionVision"));
 const Approvals = lazy(() => import("./pages/Approvals"));
-const WhyChooseUs = lazy(() => import("./pages/WhyIshanLaw")); // Will update component content
+const WhyChooseUs = lazy(() => import("./pages/WhyIshanLaw"));
 const BestPractices = lazy(() => import("./pages/BestPractices"));
 const GreenInitiatives = lazy(() => import("./pages/GreenInitiatives"));
 const MandatoryDisclosure = lazy(() => import("./pages/MandatoryDisclosure"));
@@ -52,7 +52,7 @@ const AdmissionsEnquiry = lazy(() => import("./pages/AdmissionsEnquiry"));
 const Consultation = lazy(() => import("./pages/Consultation"));
 const Scholarships = lazy(() => import("./pages/Scholarships"));
 const FAQs = lazy(() => import("./pages/FAQs"));
-const ProgramsOverview = lazy(() => import("./pages/EducationOverview")); // Renamed in nav
+const ProgramsOverview = lazy(() => import("./pages/EducationOverview"));
 
 const Faculty = lazy(() => import("./pages/Faculty"));
 const VisitingFaculty = lazy(() => import("./pages/VisitingFaculty"));
@@ -110,41 +110,6 @@ function PageLoader() {
   );
 }
 
-// Intercepts clicks to course/admissions pages for the pop-under consultation flow
-import { useNavigate } from "react-router-dom";
-function GlobalClickInterceptor() {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const handleClick = (e: MouseEvent) => {
-      // Find closest anchor tag
-      const target = (e.target as HTMLElement).closest('a');
-      if (!target) return;
-
-      const href = target.getAttribute('href');
-      if (!href) return;
-
-      // Check if it's a course or admissions link
-      if (href.startsWith('/courses/') || href === '/admissions' || href === '/admissions-education') {
-        // Prevent default navigation
-        e.preventDefault();
-
-        // Open the target (Course/Admissions) in a NEW tab
-        window.open(href, '_blank');
-
-        // Redirect the CURRENT tab to the consultation page
-        navigate('/consultation');
-      }
-    };
-
-    // Use capture phase to intercept before normal link behavior
-    document.addEventListener('click', handleClick, true);
-    return () => document.removeEventListener('click', handleClick, true);
-  }, [navigate]);
-
-  return null;
-}
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -152,7 +117,6 @@ const App = () => (
       <Sonner />
       <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <ScrollToTop />
-        <GlobalClickInterceptor />
         <ErrorBoundary>
           <Suspense fallback={<PageLoader />}>
             <Routes>
@@ -242,7 +206,7 @@ const App = () => (
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
               <Route path="/p/:slug" element={<DynamicPageRenderer portal="law" />} />
-            <Route path="*" element={<NotFound />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </ErrorBoundary>

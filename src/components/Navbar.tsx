@@ -130,7 +130,7 @@ const navLinks: NavItem[] = [
   {
     label: "Campus",
     featured: {
-      img: "https://law.ishan.ac/static/gallery/infra/infra-16.jpg",
+      img: "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg",
       title: "World-Class Infrastructure",
       desc: "Purpose-designed campus with specialized legal library and IT facilities.",
       href: "/infrastructure",

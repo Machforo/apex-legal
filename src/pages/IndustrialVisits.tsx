@@ -44,7 +44,7 @@ export default function IndustrialVisitsPage() {
   const subtitle = data?.subtitle || "Bridging the gap between legal theory and courtroom practice through structured exposure.";
   const overviewHeading = data?.overviewHeading || "Law in Motion: Beyond Textbooks";
   const overviewContent = data?.overviewContent || "At Ishan Law, we believe that the legal profession is best mastered through direct observation. Court and Jail visits are an integral part of our clinical legal education model. Students visit trial courts, high courts, and the supreme court to witness the living law in action. These structured visits ensure that our students are familiar with the procedural realities of the Indian judicial system long before they begin their practice.";
-  const image = data?.image || "https://law.ishan.ac/all-law/gallery-photos/outreach/outreach-12.jpeg";
+  const image = data?.image || "https://law.ishan.ac/all-law/gallery-photos/academics/academics-3.jpg";
 
   return (
     <Layout>
@@ -83,12 +83,17 @@ export default function IndustrialVisitsPage() {
                   <Scale className="w-5 h-5 text-gold" />
                   <span className="text-xs font-bold text-foreground uppercase tracking-wider">Justice</span>
                 </div>
-              </div>
+                </div>
             </div>
 
             <div className="reveal-right">
               <div className="rounded-3xl overflow-hidden shadow-2xl border mb-6">
-                <img src={image} alt="Outreach and Court Visit" className="w-full h-80 object-cover" />
+                <img 
+                  src={image} 
+                  alt="Outreach and Court Visit" 
+                  className="w-full h-80 object-cover" 
+                  onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/academics/academics-3.jpg"; }}
+                />
               </div>
               <div className="bg-section-alt rounded-3xl p-8 md:p-10 border shadow-sm">
                 <h3 className="text-2xl font-bold text-foreground mb-6">Why These Visits Matter</h3>

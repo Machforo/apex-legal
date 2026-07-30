@@ -113,7 +113,7 @@ export default function HeroSection() {
       title: 'Moot Court Hall Upgraded with Digital Tech',
       date: 'DEC 15',
       action: 'popup',
-      image: 'https://law.ishan.ac/static/gallery/infra/infra-16.jpg',
+      image: 'https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg',
       details: 'New high-definition recording and video conferencing facilities installed in the Moot Court Hall to support international competitions and self-review.'
     }
   ];

@@ -24,7 +24,7 @@ export default function InfrastructurePage() {
   const subtitle = facility?.subtitle || "Modern facilities designed to create an optimal learning environment";
   const overviewHeading = facility?.overviewHeading || "Modern Learning Environment";
   const content = facility?.overviewContent || `Ishan Law Institute's campus is strategically located in Knowledge Park III, Greater Noida, offering a specialized environment designed for legal scholarship and professional training. The campus is built on a foundation of tradition and modern infrastructure, providing a premium learning experience for aspiring advocates.\n\nOur facilities include a high-tech Moot Court Hall, a comprehensive legal library with digital research terminals, and a dedicated Legal Aid Cell for community service.`;
-  const image = facility?.image || "https://law.ishan.ac/static/gallery/infra/infra-16.jpg";
+  const image = facility?.image || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg";
 
   // Use CMS highlights if available, otherwise fallback
   const highlights = facility?.highlights?.length > 0 ? facility.highlights : [
@@ -54,13 +54,28 @@ export default function InfrastructurePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             <div className="reveal rounded-2xl overflow-hidden border shadow-sm">
-              <img src={image} alt="Campus Building" className="w-full h-64 object-cover" />
+              <img 
+                src={image} 
+                alt="Campus Building" 
+                className="w-full h-64 object-cover" 
+                onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg"; }}
+              />
             </div>
             <div className="reveal delay-100 rounded-2xl overflow-hidden border shadow-sm">
-              <img src="https://law.ishan.ac/static/gallery/infra/infra-2.png" alt="Institutional Facility" className="w-full h-64 object-cover" />
+              <img 
+                src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg" 
+                alt="Institutional Facility" 
+                className="w-full h-64 object-cover" 
+                onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg"; }}
+              />
             </div>
             <div className="reveal delay-200 rounded-2xl overflow-hidden border shadow-sm">
-              <img src="https://law.ishan.ac/static/gallery/infra/infra-6.jpeg" alt="Campus Infrastructure" className="w-full h-64 object-cover" />
+              <img 
+                src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg" 
+                alt="Campus Infrastructure" 
+                className="w-full h-64 object-cover" 
+                onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg"; }}
+              />
             </div>
           </div>
 

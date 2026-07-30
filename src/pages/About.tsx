@@ -8,7 +8,6 @@ import { useIshanLawData } from "@/hooks/useIshanLawData";
 const defaultMilestones = [];
 
 export default function AboutPage() {
-  const ref = useScrollReveal();
   const { data, isLoading } = useIshanLawData("aboutus");
   const fallback = `Established with a vision to revolutionize legal education, Ishan Law Institute stands as a premier center for legal studies in Knowledge Park, Greater Noida. Affiliated with Chaudhary Charan Singh (CCS) University, Meerut, and recognized by the Bar Council of India (BCI), our institution is committed to producing advocates who are not only masters of legal theory but also skilled in the art of practice.
 
@@ -18,6 +17,8 @@ The Ishan Law campus provides a specialized environment for legal scholarship, f
 
   // Schema: aboutus.ourStory = { title, content } | aboutus.keyDifferentiators = [{title, description}]
   const ourStory = data?.ourStory;
+  const bannerImage: string | undefined = data?.bannerImage;
+  const editorialPhotos: {url:string}[] = data?.editorialPhotos || [];
   const milestones = data?.milestones?.length > 0 ? data.milestones : defaultMilestones;
   const keyDiffRaw = data?.keyDifferentiators;
   const keyDifferentiators: string[] = keyDiffRaw?.length > 0
@@ -32,6 +33,7 @@ The Ishan Law campus provides a specialized environment for legal scholarship, f
       "Judicial Services Preparation Cell",
       "Faculty of Practicing Advocates",
     ];
+  const ref = useScrollReveal([data]);
 
   return (
     <Layout>
@@ -40,6 +42,25 @@ The Ishan Law campus provides a specialized environment for legal scholarship, f
         subtitle="Excellence in legal education and practice-oriented learning since 2008."
         breadcrumbs={[{ label: "About Ishan Law" }]}
       />
+
+      {(bannerImage || editorialPhotos.length > 0) && (
+        <div className="container-wide mt-12 space-y-4">
+          {bannerImage && (
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[400px]">
+              <img src={bannerImage} alt="About Ishan Law" className="w-full h-full object-cover" />
+            </div>
+          )}
+          {editorialPhotos.length > 0 && (
+            <div className={`grid gap-4 ${editorialPhotos.length >= 3 ? 'grid-cols-3' : 'grid-cols-2'}`}>
+              {editorialPhotos.slice(0, 3).map((p, i) => (
+                <div key={i} className="rounded-2xl overflow-hidden shadow-md h-44">
+                  <img src={p.url} alt={`Ishan Law campus ${i+1}`} className="w-full h-full object-cover" />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">

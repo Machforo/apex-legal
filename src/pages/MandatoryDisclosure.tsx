@@ -10,6 +10,7 @@ export default function MandatoryDisclosurePage() {
   const ref = useScrollReveal([data]);
 
   const statement = data?.statement || `<p>The information provided below is submitted as required by the Bar Council of India (BCI) and is updated annually to ensure full transparency. Any discrepancies found in the reported data should be immediately brought to the notice of the Registrar at Ishan Law Institute, Knowledge Park, Greater Noida.</p><p>BCI mandates public disclosure for the benefit of current and prospective students, legal practitioners, and regulatory authorities. It serves as a comprehensive record of the institution's legal aid services, moot court facilities, and faculty expertise, ensuring accountability in legal education.</p>`;
+  const bannerImage: string | undefined = data?.bannerImage || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg";
 
   const disclosureItems = data?.disclosureItems?.length > 0 ? data.disclosureItems.map((item: any) => ({
     category: item.category,
@@ -29,6 +30,14 @@ export default function MandatoryDisclosurePage() {
         subtitle="BCI / CCS University format mandatory disclosure document — updated annually"
         breadcrumbs={[{ label: "Mandatory Disclosure" }]}
       />
+
+      {bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[350px]">
+            <img src={bannerImage} alt="Mandatory Disclosure" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
