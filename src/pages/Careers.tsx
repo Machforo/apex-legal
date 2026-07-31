@@ -3,6 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import { useIshanLawData } from "@/hooks/useIshanLawData";
+import PageGallery from "@/components/PageGallery";
 
 export default function CareersPage() {
   const { data } = useIshanLawData("careers");
@@ -68,6 +69,7 @@ export default function CareersPage() {
           </div>
         </div></div>
       </section>
+    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

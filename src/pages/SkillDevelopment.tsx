@@ -5,6 +5,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { FileText, MessageSquare, Monitor, Briefcase } from "lucide-react";
+import PageGallery from "@/components/PageGallery";
 
 export default function SkillDevelopmentPage() {
   const { data } = useIshanLawData("skilldevelopment");
@@ -86,6 +87,7 @@ export default function SkillDevelopmentPage() {
           </div>
         </div>
       </section>
+      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

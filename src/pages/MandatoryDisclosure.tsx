@@ -4,6 +4,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { FileText, Download } from "lucide-react";
 
 import { useIshanLawData } from "@/hooks/useIshanLawData";
+import PageGallery from "@/components/PageGallery";
 
 export default function MandatoryDisclosurePage() {
   const { data } = useIshanLawData("mandatorydisclosure");
@@ -74,6 +75,7 @@ export default function MandatoryDisclosurePage() {
           </div>
         </div>
       </section>
+    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

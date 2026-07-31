@@ -3,6 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Mic2, Calendar } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
+import PageGallery from "@/components/PageGallery";
 
 export default function GuestLecturesPage() {
   const { data: pageData } = useIshanLawData("guestlecturespage");
@@ -85,6 +86,7 @@ export default function GuestLecturesPage() {
           </div>
         </div>
       </section>
+    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

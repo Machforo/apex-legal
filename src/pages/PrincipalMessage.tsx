@@ -3,6 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
+import PageGallery from "@/components/PageGallery";
 
 export default function PrincipalMessagePage() {
   const ref = useScrollReveal();
@@ -73,6 +74,7 @@ I invite you to join our community and embark on a journey that will build a for
         </div>
       </section>
 
+      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

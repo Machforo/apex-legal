@@ -4,6 +4,7 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { MessageSquare, Users, Mic2, Briefcase, Trophy } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
+import PageGallery from "@/components/PageGallery";
 
 export default function DebatesGDPage() {
   const { data } = useIshanLawData("debatesgd");
@@ -93,6 +94,7 @@ export default function DebatesGDPage() {
         </div>
       </section>
 
+      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

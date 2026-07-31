@@ -4,6 +4,7 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { FileText, Calendar, Phone, CheckCircle2, ArrowRight } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
+import PageGallery from "@/components/PageGallery";
 
 const steps = [
   { num: "01", title: "CCS University Registration", desc: "Begin by registering on the official CCS University web-portal. This is the mandatory first step for all students seeking admission to BA LLB and LLB programmes at Ishan Law." },
@@ -122,6 +123,7 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
+      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

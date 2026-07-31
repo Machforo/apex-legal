@@ -3,6 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
 import { toast } from "sonner";
+import PageGallery from "@/components/PageGallery";
 
 export default function FeedbackPage() {
   const ref = useScrollReveal();
@@ -151,6 +152,7 @@ export default function FeedbackPage() {
           </div>
         </div>
       </section>
-    </Layout>
+    <PageGallery />
+      </Layout>
   );
 }

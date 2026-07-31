@@ -5,6 +5,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Link } from "react-router-dom";
 import { Wifi, Monitor, BookOpen, Building2, Cctv, MapPin, ArrowRight, Scale } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
+import PageGallery from "@/components/PageGallery";
 
 const facilities = [
   { icon: Building2, title: "Moot Court Hall", desc: "A realistic High Court environment for regular clinical training, oral advocacy practice, and national competitions.", link: "/moot-court" },
@@ -102,6 +103,7 @@ export default function InfrastructurePage() {
         </div>
       </section>
 
+      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

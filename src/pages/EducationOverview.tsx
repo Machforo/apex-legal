@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { GraduationCap, Scale, ArrowRight, CheckCircle2 } from "lucide-react";
 
 import { useIshanLawData } from "@/hooks/useIshanLawData";
+import PageGallery from "@/components/PageGallery";
 
 export default function EducationOverviewPage() {
   const { data: overviewData } = useIshanLawData("programsoverview");
@@ -93,6 +94,7 @@ export default function EducationOverviewPage() {
         </div>
       </section>
 
+      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

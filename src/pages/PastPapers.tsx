@@ -4,6 +4,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { Download, FileText, Search } from "lucide-react";
 import { useState } from "react";
+import PageGallery from "@/components/PageGallery";
 
 export default function PastPapersPage() {
   const { data } = useIshanLawData("pastpapers");
@@ -132,6 +133,7 @@ export default function PastPapersPage() {
           </div>
         </div>
       </section>
+    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

@@ -2,6 +2,7 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Calendar, MapPin, Tag, Clock, Share2 } from "lucide-react";
+import PageGallery from "@/components/PageGallery";
 
 export default function EventsCalendarPage() {
   const ref = useScrollReveal();
@@ -99,6 +100,7 @@ export default function EventsCalendarPage() {
           </div>
         </div>
       </section>
-    </Layout>
+    <PageGallery />
+      </Layout>
   );
 }

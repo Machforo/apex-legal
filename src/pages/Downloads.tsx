@@ -3,6 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { FileText, Download } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
+import PageGallery from "@/components/PageGallery";
 
 const downloads = [
   { name: "BA LLB (Hons) Syllabus 2024-25", type: "PDF", category: "Syllabus", size: "2.4 MB" },
@@ -70,6 +71,7 @@ export default function DownloadsPage() {
         </div>
       </div>
     </section>
+    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

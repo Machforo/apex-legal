@@ -3,6 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { Award, UserCheck } from "lucide-react";
+import PageGallery from "@/components/PageGallery";
 
 const defaultVisitingFaculty = [
   { 
@@ -142,6 +143,7 @@ export default function VisitingFacultyPage() {
           </div>
         </div>
       </section>
+    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

@@ -4,6 +4,7 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { BookOpen, ExternalLink, Calendar, Star } from "lucide-react";
+import PageGallery from "@/components/PageGallery";
 
 export default function PublicationsPage() {
   const { data } = useIshanLawData("publications");
@@ -81,6 +82,7 @@ export default function PublicationsPage() {
         </div>
       </section>
       
+      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );
