@@ -68,7 +68,7 @@ The Ishan Law campus provides a specialized environment for legal scholarship, f
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="reveal-left relative">
               <div className="rounded-2xl overflow-hidden shadow-[0_8px_40px_hsl(var(--navy)/0.1)]">
-                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg" alt="Students and faculty at Ishan Law Institute campus" className="w-full h-[400px] object-cover" />
+                <img src={ourStory?.image || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg"} alt="Students and faculty at Ishan Law Institute campus" className="w-full h-[400px] object-cover" />
               </div>
             </div>
 
