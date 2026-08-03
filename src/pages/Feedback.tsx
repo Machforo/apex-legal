@@ -13,6 +13,15 @@ export default function FeedbackPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (form.name) {
+      const nameRegex = /^[a-zA-Z\s.'-]+$/;
+      if (!nameRegex.test(form.name.trim())) {
+        toast.error("Name should only contain alphabets and spaces.");
+        return;
+      }
+    }
+
     if (!form.userType || !form.subject || !form.message) {
       toast.error("Please fill in all required fields.");
       return;
@@ -70,7 +79,7 @@ export default function FeedbackPage() {
                       type="text"
                       placeholder="Your Name (optional)"
                       value={form.name}
-                      onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value }))}
+                      onChange={(e) => setForm((prev) => ({ ...prev, name: e.target.value.replace(/[^a-zA-Z\s.'-]/g, '') }))}
                       className="w-full px-4 py-3 text-sm rounded-lg border bg-background focus:outline-none focus:ring-2 focus:ring-[hsl(var(--gold)/0.5)] transition-shadow"
                     />
                     <select
