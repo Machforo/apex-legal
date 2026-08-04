@@ -41,7 +41,7 @@ export default function CTASection() {
 
     setSubmitting(true);
     try {
-      const apiBase = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+      const apiBase = import.meta.env.VITE_API_URL || "https://ishan-backend-g096.onrender.com/api";
       const res = await fetch(`${apiBase}/legal/leads`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
