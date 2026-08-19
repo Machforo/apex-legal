@@ -4,7 +4,8 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { FileText, Calendar, Phone, CheckCircle2, ArrowRight } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import MediaGallery from "@/components/MediaGallery";
+
 
 const steps = [
   { num: "01", title: "CCS University Registration", desc: "Begin by registering on the official CCS University web-portal. This is the mandatory first step for all students seeking admission to BA LLB and LLB programmes at Ishan Law." },
@@ -43,6 +44,14 @@ export default function AdmissionsPage() {
         subtitle="Your pathway to a professional legal career — BA LLB (Hons) & LLB"
         breadcrumbs={[{ label: "Admissions" }]}
       />
+
+      {data?.bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={data.bannerImage} alt="Admissions 2025-26" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
@@ -123,7 +132,15 @@ export default function AdmissionsPage() {
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
+      {data?.orientationPhotos?.length > 0 && (
+        <section className="pb-20 md:pb-28">
+          <div className="container-wide max-w-6xl mx-auto">
+            <h2 className="text-2xl font-bold text-foreground mb-10 text-center">Orientation Highlights</h2>
+            <MediaGallery images={data.orientationPhotos} altPrefix="Orientation Highlight" />
+          </div>
+        </section>
+      )}
+
       <EnquiryCTA />
     </Layout>
   );

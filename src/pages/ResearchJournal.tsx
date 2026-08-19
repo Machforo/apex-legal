@@ -5,7 +5,8 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { ExternalLink } from "lucide-react";
 
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 export default function ResearchJournalPage() {
   const { data } = useIshanLawData("researchjournal");
@@ -43,7 +44,7 @@ export default function ResearchJournalPage() {
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
             <div className="reveal space-y-6">
-              <div className="text-foreground/70 leading-relaxed format-rich-text" dangerouslySetInnerHTML={{ __html: content }} />
+              <div className="text-foreground/70 leading-relaxed format-rich-text" dangerouslySetInnerHTML={{ __html: rt(content) }} />
               <div className="rounded-2xl overflow-hidden shadow-2xl border">
                 <img src={journalCoverImage} alt={title} className="w-full h-80 object-cover" />
               </div>
@@ -61,7 +62,7 @@ export default function ResearchJournalPage() {
                 <div>
                   <h4 className="text-sm font-bold text-navy mb-3">Editorial Board & Launch Highlights</h4>
                   <div className="grid grid-cols-3 gap-3">
-                    {editorialBoardPhotos.slice(0, 3).map((img, i) => (
+                    {editorialBoardPhotos.map((img, i) => (
                       <div key={i} className="rounded-xl overflow-hidden shadow h-28">
                         <img src={img.url} alt={`Editorial Board ${i+1}`} className="w-full h-full object-cover" />
                       </div>
@@ -76,7 +77,6 @@ export default function ResearchJournalPage() {
           </div>
         </div>
       </section>
-      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

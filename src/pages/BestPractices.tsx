@@ -3,7 +3,6 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
 
 export default function BestPracticesPage() {
   const { data } = useIshanLawData("aboutus");
@@ -68,7 +67,6 @@ export default function BestPracticesPage() {
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

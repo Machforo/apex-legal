@@ -1,6 +1,7 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Award, Users, Globe, BookOpen, Building, TrendingUp, Shield, Lightbulb, Gavel, Scale } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
+import { rt } from "@/lib/richText";
 
 const defaultReasons = [
   { title: "Clinical Legal Education", desc: "Learn through hands-on practice via mandatory court visits and legal aid clinics.", icon: Gavel },
@@ -10,8 +11,8 @@ const defaultReasons = [
 ];
 
 export default function WhyIshanLawSection() {
-  const ref = useScrollReveal();
   const { data } = useIshanLawData("homepage");
+  const ref = useScrollReveal([data]);
   const reasons = data?.whyIshan?.length > 0 ? data.whyIshan : defaultReasons;
 
   return (
@@ -26,8 +27,8 @@ export default function WhyIshanLawSection() {
             </h2>
             {data?.whyIshanObj?.description ? (
               <div 
-                className="mt-4 leading-relaxed whitespace-pre-wrap text-foreground/70 prose prose-sm prose-p:mb-2 prose-p:last:mb-0 max-w-none"
-                dangerouslySetInnerHTML={{ __html: data.whyIshanObj.description }}
+                className="mt-4 leading-relaxed text-foreground/70 prose prose-sm prose-p:mb-2 prose-p:last:mb-0 max-w-none rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(data.whyIshanObj.description) }}
               />
             ) : (
               <p className="mt-4 leading-relaxed whitespace-pre-wrap text-foreground/70">
@@ -43,16 +44,20 @@ export default function WhyIshanLawSection() {
           </div>
 
           {/* Right grid */}
-          <div className="grid sm:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-4 content-start h-fit lg:self-center">
             {reasons.map((r: any, i: number) => {
-              const Icon = r.icon && typeof r.icon !== 'string' ? r.icon : Award;
+              const Icon = typeof r.icon === 'string' ? null : (r.icon || Award);
               return (
                 <div
                   key={r.title || i}
-                  className={`reveal delay-${(i % 4) * 100} flex gap-4 p-5 rounded-xl border bg-card hover:shadow-[0_4px_20px_hsl(var(--navy)/0.06)] transition-shadow group`}
+                  className={`reveal delay-${(i % 4) * 100} flex gap-4 p-5 rounded-xl border bg-card hover:shadow-[0_4px_20px_hsl(var(--navy)/0.06)] transition-shadow group h-fit`}
                 >
                   <div className="w-10 h-10 rounded-lg bg-gold-light flex items-center justify-center shrink-0 group-hover:bg-gold/20 transition-colors">
-                    <Icon className="w-5 h-5 text-navy" />
+                    {typeof r.icon === 'string' ? (
+                      <img src={r.icon} alt={r.title} className="w-5 h-5 object-contain" />
+                    ) : (
+                      Icon && <Icon className="w-5 h-5 text-navy" />
+                    )}
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground text-sm">{r.title}</h3>

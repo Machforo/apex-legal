@@ -3,7 +3,8 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 export default function CodeOfConductPage() {
   const { data } = useIshanLawData("codeofconduct");
@@ -26,10 +27,17 @@ export default function CodeOfConductPage() {
   return (
     <Layout>
       <PageHeader title={title} subtitle={subtitle} breadcrumbs={[{ label: "Students" }, { label: "Code of Conduct" }]} />
+      {data?.bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[350px]">
+            <img src={data.bannerImage} alt="Code of Conduct Banner" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-[1fr_350px] gap-12 items-start max-w-6xl mx-auto">
-            <div className="reveal space-y-8 format-rich-text" dangerouslySetInnerHTML={{ __html: content }} />
+            <div className="reveal space-y-8 format-rich-text" dangerouslySetInnerHTML={{ __html: rt(content) }} />
             <div className="reveal hidden lg:block sticky top-32">
               <div className="rounded-2xl overflow-hidden shadow-2xl border mb-6">
                 <img src={image} alt={title} className="w-full h-[500px] object-cover" />
@@ -38,7 +46,6 @@ export default function CodeOfConductPage() {
           </div>
         </div>
       </section>
-    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

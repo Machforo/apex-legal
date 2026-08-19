@@ -4,7 +4,8 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Heart, ShieldCheck, Scale, HandHelping } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 export default function LegalAidCellPage() {
   const { data } = useIshanLawData("legalaidcell");
@@ -77,8 +78,8 @@ export default function LegalAidCellPage() {
                 Empowering the Underprivileged
               </h2>
               <div 
-                className="text-foreground/70 leading-relaxed whitespace-pre-wrap format-rich-text"
-                dangerouslySetInnerHTML={{ __html: content }}
+                className="text-foreground/70 leading-relaxed format-rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(content) }}
               />
             </div>
 
@@ -107,8 +108,8 @@ export default function LegalAidCellPage() {
                   </div>
                   <h3 className="font-bold text-foreground mb-2">{s.title}</h3>
                   <div 
-                    className="text-sm leading-relaxed text-foreground/80 format-rich-text whitespace-pre-wrap"
-                    dangerouslySetInnerHTML={{ __html: s.desc }}
+                    className="text-sm leading-relaxed text-foreground/80 format-rich-text"
+                    dangerouslySetInnerHTML={{ __html: rt(s.desc) }}
                   />
                 </div>
               );
@@ -117,7 +118,6 @@ export default function LegalAidCellPage() {
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

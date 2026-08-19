@@ -4,12 +4,12 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
 import { Calendar, Search, X } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+
 
 export default function NewsEventsPage() {
-  const ref = useScrollReveal();
 
-  const { data,loading, error } = useIshanLawData("news");
+  const { data, isLoading: loading, error } = useIshanLawData("news");
+  const ref = useScrollReveal([data]);
 
   const [activeCategory, setActiveCategory] = useState("All");
   const [newsSearch, setNewsSearch] = useState("");
@@ -186,7 +186,6 @@ export default function NewsEventsPage() {
           )}
         </div>
       </section>
-    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

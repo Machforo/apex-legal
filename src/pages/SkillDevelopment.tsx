@@ -5,7 +5,8 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { FileText, MessageSquare, Monitor, Briefcase } from "lucide-react";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 export default function SkillDevelopmentPage() {
   const { data } = useIshanLawData("skilldevelopment");
@@ -51,13 +52,13 @@ export default function SkillDevelopmentPage() {
         <div className="container-wide">
           <div className="max-w-4xl mx-auto reveal space-y-10">
             <div
-              className="text-foreground/70 leading-relaxed text-lg whitespace-pre-wrap format-rich-text"
-              dangerouslySetInnerHTML={{ __html: content }}
+              className="text-foreground/70 leading-relaxed text-lg format-rich-text"
+              dangerouslySetInnerHTML={{ __html: rt(content) }}
             />
 
             {galleryImages.length > 0 && (
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {galleryImages.slice(0, 3).map((img, idx) => (
+                {galleryImages.map((img, idx) => (
                   <div key={idx} className="rounded-2xl overflow-hidden shadow-md h-44">
                     <img src={img.url} alt={`Skill Workshop ${idx + 1}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
                   </div>
@@ -76,8 +77,8 @@ export default function SkillDevelopmentPage() {
                     <h3 className="font-bold text-foreground mb-2">{s.title}</h3>
                     {s.desc && (
                       <div
-                        className="text-sm leading-relaxed text-foreground/80 format-rich-text whitespace-pre-wrap"
-                        dangerouslySetInnerHTML={{ __html: s.desc }}
+                        className="text-sm leading-relaxed text-foreground/80 format-rich-text"
+                        dangerouslySetInnerHTML={{ __html: rt(s.desc) }}
                       />
                     )}
                   </div>
@@ -87,7 +88,6 @@ export default function SkillDevelopmentPage() {
           </div>
         </div>
       </section>
-      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

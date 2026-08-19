@@ -3,10 +3,11 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+
 
 export default function CareersPage() {
   const { data } = useIshanLawData("careers");
+  const { data: pageData } = useIshanLawData("careerspage");
   const ref = useScrollReveal();
   const fallbackJobs = [
     { title: "Professor / Associate Professor — Law", qualification: "LLM with PhD", experience: "10+ Years", dept: "Law", type: "Full-time" },
@@ -27,16 +28,23 @@ export default function CareersPage() {
 
   return (
     <Layout>
-      <PageHeader title="Careers at Ishan Law" subtitle="Join a community of legal scholars and practitioners dedicated to excellence" breadcrumbs={[{ label: "Contact", href: "/contact" }, { label: "Careers" }]} />
+      <PageHeader title={pageData?.title || "Careers at Ishan Law"} subtitle={pageData?.subtitle || "Join a community of legal scholars and practitioners dedicated to excellence"} breadcrumbs={[{ label: "Contact", href: "/contact" }, { label: "Careers" }]} />
+      {pageData?.bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={pageData.bannerImage} alt="Careers Banner" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
             <div className="reveal space-y-10">
-              <p className="text-foreground/70 leading-relaxed text-lg">
-                Ishan Law invites qualified legal educators, practising advocates, and administrative professionals to join our institution — contributing to producing the next generation of India's legal professionals. We offer a highly professional environment, strong research support, and competitive compensation to foster academic growth and career advancement.
+              <p className="text-foreground/70 leading-relaxed text-lg whitespace-pre-wrap">
+                {pageData?.overview || "Ishan Law invites qualified legal educators, practising advocates, and administrative professionals to join our institution — contributing to producing the next generation of India's legal professionals. We offer a highly professional environment, strong research support, and competitive compensation to foster academic growth and career advancement."}
               </p>
               <div className="rounded-2xl overflow-hidden shadow-2xl border">
-                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg" alt="Ishan Law Campus" className="w-full h-80 object-cover" />
+                <img src={pageData?.image || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg"} alt="Ishan Law Careers" className="w-full h-80 object-cover" />
               </div>
             </div>
             <div className="space-y-4">
@@ -69,7 +77,6 @@ export default function CareersPage() {
           </div>
         </div></div>
       </section>
-    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

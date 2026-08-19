@@ -4,7 +4,8 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Award, ExternalLink } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import MediaGallery from "@/components/MediaGallery";
+
 
 const defaultScholarships = [];
 
@@ -21,6 +22,14 @@ export default function ScholarshipsPage() {
         subtitle="Financial support options for deserving legal aspirants across all programs"
         breadcrumbs={[{ label: "Admissions", href: "/admissions" }, { label: "Scholarships" }]}
       />
+
+      {data?.scholarshipsBanner && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={data.scholarshipsBanner} alt="Scholarships Overview" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
@@ -70,7 +79,15 @@ export default function ScholarshipsPage() {
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
+      {data?.scholarshipsHandoverPhotos?.length > 0 && (
+        <section className="pb-20 md:pb-28">
+          <div className="container-wide max-w-6xl mx-auto">
+            <h2 className="text-2xl font-bold text-foreground mb-10 text-center">Scholarship Distribution Highlights</h2>
+            <MediaGallery images={data.scholarshipsHandoverPhotos} altPrefix="Scholarship Handover" />
+          </div>
+        </section>
+      )}
+
       <EnquiryCTA />
     </Layout>
   );

@@ -1,14 +1,16 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
+import MediaGallery from "@/components/MediaGallery";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 export default function SportsPage() {
-  const ref = useScrollReveal();
   const { data } = useIshanLawData("facilities");
+  const ref = useScrollReveal([data]);
   const facility = Array.isArray(data) ? data.find((d: any) => d.slug === 'sports') : null;
   
   const title = facility?.title || "Sports";
@@ -27,6 +29,15 @@ export default function SportsPage() {
   return (
     <Layout>
       <PageHeader title={title} subtitle={subtitle} breadcrumbs={[{ label: "Campus", href: "/infrastructure" }, { label: "Sports" }]} />
+      
+      {facility?.bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={facility.bannerImage} alt={title} className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
+
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
@@ -46,8 +57,8 @@ export default function SportsPage() {
             <div className="reveal-right space-y-6">
               <h2 className="text-3xl font-bold text-foreground leading-tight">{overviewHeading}</h2>
               <div 
-                className="text-foreground/70 leading-relaxed format-rich-text whitespace-pre-wrap"
-                dangerouslySetInnerHTML={{ __html: content }}
+                className="text-foreground/70 leading-relaxed format-rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(content) }}
               />
               <div className="grid sm:grid-cols-2 gap-4">
                 {specs.map((s: any, i: number) => (
@@ -61,7 +72,13 @@ export default function SportsPage() {
           </div>
         </div>
       </section>
-      <PageGallery images={data?.pageGallery} />
+      {facility?.images?.length > 0 && (
+        <section className="pb-20 md:pb-28">
+          <div className="container-wide max-w-6xl mx-auto">
+            <MediaGallery images={facility.images} altPrefix={facility?.title || "Facility photo"} />
+          </div>
+        </section>
+      )}
       <EnquiryCTA />
     </Layout>
   );

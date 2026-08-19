@@ -55,7 +55,7 @@ export default function HeroSection() {
     highlight: b.subheading || "India's Courtrooms",
     subtitle: b.description || "Excellence in legal education.",
     cta1: { label: b.ctaText || "Our Law Programs", href: b.ctaLink || "/programs-overview" },
-    cta2: { label: "Moot Court Tour", href: "/moot-court" },
+    cta2: { label: b.cta2Text || "Moot Court Tour", href: b.cta2Link || "/moot-court" },
   })) : DEFAULT_SLIDES;
 
   const SESSION_START = (() => {
@@ -175,22 +175,19 @@ export default function HeroSection() {
 
   const go = useCallback((idx: number) => {
     setCurrent((idx + SLIDES.length) % SLIDES.length);
-  }, []);
+  }, [SLIDES.length]);
 
-  const resetTimer = useCallback((idx?: number) => {
+  const resetTimer = useCallback(() => {
     if (timerRef.current) clearInterval(timerRef.current);
-    const start = idx ?? current;
     timerRef.current = setInterval(() => {
       setCurrent((c) => (c + 1) % SLIDES.length);
     }, DELAY);
-    return start;
-  }, [current]);
+  }, [SLIDES.length]);
 
   useEffect(() => {
     resetTimer();
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [resetTimer]);
 
   const slide = SLIDES[current] || SLIDES[0];
 
@@ -374,7 +371,7 @@ export default function HeroSection() {
                         </h3>
                         <p className="text-xs uppercase tracking-widest text-muted-foreground font-bold mt-1">What's going on at Ishan</p>
                       </div>
-                      <Link to="/news" className="text-xs font-bold text-gold hover:text-navy transition-colors flex items-center gap-1">
+                      <Link to="/news-events" className="text-xs font-bold text-gold hover:text-navy transition-colors flex items-center gap-1">
                         View All <ArrowRight size={12} />
                       </Link>
                     </div>
@@ -406,7 +403,7 @@ export default function HeroSection() {
                         <Sparkles size={14} className="text-gold" />
                         <span>30 Years of Academic Excellence</span>
                       </div>
-                      <Link to="/campus-experience" className="text-xs font-bold text-navy hover:text-gold transition-colors">Campus Tour</Link>
+                      <Link to="/infrastructure" className="text-xs font-bold text-navy hover:text-gold transition-colors">Campus Tour</Link>
                     </div>
                   </div>
                 )}

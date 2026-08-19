@@ -1,6 +1,7 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { TrendingUp, Building2, Users2, Star } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
+import { rt } from "@/lib/richText";
 
 const defaultRecruiters = [];
 
@@ -17,8 +18,8 @@ export default function PlacementsSection() {
       <div className="container-wide">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div 
-            className="reveal text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3 prose prose-sm prose-p:m-0 max-w-none"
-            dangerouslySetInnerHTML={{ __html: placementsCfg.subheading || "" }}
+            className="reveal text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3 prose prose-sm prose-p:m-0 max-w-none rich-text"
+            dangerouslySetInnerHTML={{ __html: rt(placementsCfg.subheading || "") }}
           />
           <h2 className="reveal delay-100 font-bold text-foreground leading-tight">
              {placementsCfg.heading}

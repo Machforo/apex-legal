@@ -3,7 +3,8 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { FileText, ExternalLink } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 const defaultAccreditations = [
   {
@@ -35,10 +36,7 @@ export default function ApprovalsPage() {
         <div className="container-wide">
           <div className="max-w-4xl mx-auto mb-16 space-y-6 text-center">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Regulatory Compliance</p>
-            <h2 className="font-bold text-foreground">A Fully Accredited Institution</h2>
-            <p className="text-foreground/70 leading-relaxed">
-              Legal education in India is strictly regulated to ensure that practicing advocates meet the highest standards of professional ethics and competence. Ishan Law Institute holds all mandatory approvals from the Bar Council of India (BCI) and is affiliated with Chaudhary Charan Singh University, Meerut. These certifications ensure that our degrees are fully recognized for enrollment as an Advocate with any State Bar Council and for appearing in judicial services examinations.
-            </p>
+            <h2 className="font-bold text-foreground">{data?.approvalsHeading || "A Fully Accredited Institution"}</h2><div className="text-foreground/70 leading-relaxed text-sm format-rich-text text-left max-w-3xl mx-auto" dangerouslySetInnerHTML={{ __html: rt(data?.approvalsDescription || "Legal education in India is strictly regulated to ensure that practicing advocates meet the highest standards of professional ethics and competence. Ishan Law Institute holds all mandatory approvals from the Bar Council of India (BCI) and is affiliated with Chaudhary Charan Singh University, Meerut. These certifications ensure that our degrees are fully recognized for enrollment as an Advocate with any State Bar Council and for appearing in judicial services examinations.") }} />
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -54,7 +52,7 @@ export default function ApprovalsPage() {
                 <h3 className="font-semibold text-foreground text-sm">{acc.title || acc.name}</h3>
                 <div 
                   className="text-xs mt-2 format-rich-text text-foreground/80 leading-relaxed"
-                  dangerouslySetInnerHTML={{ __html: acc.description || acc.desc || "" }}
+                  dangerouslySetInnerHTML={{ __html: rt(acc.description || acc.desc || "") }}
                 />
               </div>
             ))}
@@ -71,7 +69,6 @@ export default function ApprovalsPage() {
           </div>
         </div>
       </section>
-    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

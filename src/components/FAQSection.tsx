@@ -3,6 +3,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { ChevronDown, ChevronUp, MessageSquare } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
+import { rt } from "@/lib/richText";
 
 const defaultFaqs = [
   {
@@ -82,9 +83,7 @@ export default function FAQSection() {
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
                       <div className="p-6 pt-0 leading-relaxed bg-card">
-                        <div className="pl-14 border-l-2 border-gold/20 ml-5 py-2">
-                          {faq.answer}
-                        </div>
+                        <div className="pl-14 border-l-2 border-gold/20 ml-5 py-2 rich-text" dangerouslySetInnerHTML={{ __html: rt(faq.answer) }} />
                       </div>
                     </motion.div>
                   )}

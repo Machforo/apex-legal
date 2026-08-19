@@ -3,7 +3,8 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 export default function AntiRaggingPage() {
   const { data } = useIshanLawData("mandatorydisclosure");
@@ -22,7 +23,18 @@ export default function AntiRaggingPage() {
   ];
   return (
     <Layout>
-      <PageHeader title="Anti-Ragging Zone" subtitle="Zero tolerance policy — BCI & UGC mandate for student safety" breadcrumbs={[{ label: "Governance" }, { label: "Anti-Ragging" }]} />
+      <PageHeader 
+        title={ar?.title || "Anti-Ragging Zone"} 
+        subtitle={ar?.subtitle || "Zero tolerance policy — BCI & UGC mandate for student safety"} 
+        breadcrumbs={[{ label: "Governance" }, { label: "Anti-Ragging" }]} 
+      />
+      {ar?.bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={ar.bannerImage} alt="Anti-Ragging Banner" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
@@ -33,8 +45,8 @@ export default function AntiRaggingPage() {
                 <p className="text-xs text-muted-foreground mt-1">Toll-free | National Helpline available round the clock</p>
               </div>
               <div 
-                className="text-foreground/70 leading-relaxed text-sm format-rich-text whitespace-pre-wrap"
-                dangerouslySetInnerHTML={{ __html: content }}
+                className="text-foreground/70 leading-relaxed text-sm format-rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(content) }}
               />
               <div className="rounded-2xl overflow-hidden shadow-2xl border mt-8">
                 <img src={image} alt="Ishan Law Campus" className="w-full h-80 object-cover" />
@@ -43,8 +55,8 @@ export default function AntiRaggingPage() {
             <div className="reveal delay-100 space-y-6">
               <h2 className="text-lg font-bold text-foreground">Anti-Ragging Committee</h2>
               <div 
-                className="text-foreground/70 leading-relaxed text-sm format-rich-text whitespace-pre-wrap"
-                dangerouslySetInnerHTML={{ __html: committeeText }}
+                className="text-foreground/70 leading-relaxed text-sm format-rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(committeeText) }}
               />
               <h2 className="text-lg font-bold text-foreground">How to Report</h2>
               <ol className="space-y-2 text-sm list-decimal pl-5">
@@ -52,13 +64,11 @@ export default function AntiRaggingPage() {
                   <li key={i}>{m.method}</li>
                 ))}
               </ol>
-              <h2 className="text-lg font-bold text-foreground">The Legal Fraternity Pledge</h2>
-              <p className="text-foreground/70 leading-relaxed text-sm">Every student at Ishan Law is required to sign an undertaking at the time of admission. This pledge confirms the student's commitment to maintaining the dignity of the profession and ensuring a safe, respectful environment for all peers.</p>
+              <h2 className="text-lg font-bold text-foreground">{ar?.pledgeTitle || "The Legal Fraternity Pledge"}</h2><div className="text-foreground/70 leading-relaxed text-sm format-rich-text" dangerouslySetInnerHTML={{ __html: rt(ar?.pledgeText || "Every student at Ishan Law is required to sign an undertaking at the time of admission. This pledge confirms the student's commitment to maintaining the dignity of the profession and ensuring a safe, respectful environment for all peers.") }} />
             </div>
           </div>
         </div>
       </section>
-    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

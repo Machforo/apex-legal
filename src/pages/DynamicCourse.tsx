@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { Clock, GraduationCap, IndianRupee, Users, Award, Sparkles, Image as ImageIcon } from "lucide-react";
 import NotFound from "./NotFound";
+import { rt } from "@/lib/richText";
 
 export default function DynamicCourse() {
   const { courseId } = useParams();
@@ -178,7 +179,7 @@ export default function DynamicCourse() {
               <span className="text-xs text-muted-foreground">{studentActivityImages.length} Highlights</span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {studentActivityImages.slice(0, 3).map((img, i) => (
+              {studentActivityImages.map((img, i) => (
                 <div key={i} className="group relative rounded-2xl overflow-hidden shadow-md h-52 bg-card border">
                   <img src={img.url} alt={img.caption || `Student activity ${i+1}`} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   {img.caption && (
@@ -200,19 +201,19 @@ export default function DynamicCourse() {
           <div className="lg:col-span-2 space-y-12">
             <div>
               <h2 className="text-2xl font-bold text-navy mb-5 text-gold-underline">Program Overview</h2>
-              <div className="text-base text-foreground/80 leading-relaxed whitespace-pre-wrap format-rich-text" dangerouslySetInnerHTML={{ __html: course.overview || "Program overview details will be updated shortly." }} />
+              <div className="text-base text-foreground/80 leading-relaxed format-rich-text" dangerouslySetInnerHTML={{ __html: rt(course.overview || "Program overview details will be updated shortly.") }} />
             </div>
 
             <div>
               <h2 className="text-2xl font-bold text-navy mb-5 text-gold-underline">Curriculum Structure</h2>
               <div className="bg-card border rounded-2xl p-6 shadow-sm">
-                <div className="text-base text-foreground/80 leading-relaxed whitespace-pre-wrap format-rich-text" dangerouslySetInnerHTML={{ __html: course.curriculumStructure || "Curriculum structure will be updated shortly." }} />
+                <div className="text-base text-foreground/80 leading-relaxed format-rich-text" dangerouslySetInnerHTML={{ __html: rt(course.curriculumStructure || "Curriculum structure will be updated shortly.") }} />
               </div>
             </div>
 
             <div>
               <h2 className="text-2xl font-bold text-navy mb-5 text-gold-underline">Career Scope & Opportunities</h2>
-              <div className="text-base text-foreground/80 leading-relaxed whitespace-pre-wrap format-rich-text" dangerouslySetInnerHTML={{ __html: course.careerScope || "Career scope will be updated shortly." }} />
+              <div className="text-base text-foreground/80 leading-relaxed format-rich-text" dangerouslySetInnerHTML={{ __html: rt(course.careerScope || "Career scope will be updated shortly.") }} />
             </div>
 
             {/* Faculty & Teaching Photo */}

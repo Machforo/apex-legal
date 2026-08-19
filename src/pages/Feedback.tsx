@@ -2,11 +2,13 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
+import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { toast } from "sonner";
-import PageGallery from "@/components/PageGallery";
+
 
 export default function FeedbackPage() {
   const ref = useScrollReveal();
+  const { data } = useIshanLawData("feedbackpage");
   const [form, setForm] = useState({ name: "", userType: "", programme: "", subject: "", message: "", rating: 5 });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -50,16 +52,23 @@ export default function FeedbackPage() {
 
   return (
     <Layout>
-      <PageHeader title="Feedback" subtitle="Help us improve — share your experience as a student, parent, or visitor" breadcrumbs={[{ label: "Contact", href: "/contact" }, { label: "Feedback" }]} />
+      <PageHeader title={data?.title || "Feedback"} subtitle={data?.subtitle || "Help us improve — share your experience as a student, parent, or visitor"} breadcrumbs={[{ label: "Contact", href: "/contact" }, { label: "Feedback" }]} />
+      {data?.bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={data.bannerImage} alt="Feedback Banner" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="reveal space-y-8">
-              <p className="text-foreground/70 leading-relaxed text-lg">
-                Ishan Law values feedback from students, parents, and visitors — assessment of academic quality, faculty, facilities, and administrative support helps us improve. All responses are carefully reviewed by the Quality Assurance Cell and reach the Principal's office directly. Your inputs remain private and confidential.
+              <p className="text-foreground/70 leading-relaxed text-lg whitespace-pre-wrap">
+                {data?.overview || "Ishan Law values feedback from students, parents, and visitors — assessment of academic quality, faculty, facilities, and administrative support helps us improve. All responses are carefully reviewed by the Quality Assurance Cell and reach the Principal's office directly. Your inputs remain private and confidential."}
               </p>
               <div className="rounded-2xl overflow-hidden shadow-2xl border">
-                <img src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg" alt="Ishan Law Campus" className="w-full h-80 object-cover" />
+                <img src={data?.image || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg"} alt="Ishan Law Feedback" className="w-full h-80 object-cover" />
               </div>
             </div>
             <div className="reveal delay-100 bg-card rounded-2xl p-8 shadow-sm border">
@@ -161,7 +170,6 @@ export default function FeedbackPage() {
           </div>
         </div>
       </section>
-    <PageGallery />
-      </Layout>
+    </Layout>
   );
 }

@@ -1,10 +1,12 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
+import MediaGallery from "@/components/MediaGallery";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Leaf, Sun, Recycle, Droplets, TreePine } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 const defaultInitiatives = [
   { icon: "Sun", title: "Energy Conservation", desc: "We prioritize energy efficiency through LED lighting across campus, sensor-based systems in common areas, and a commitment to reducing overall carbon footprint. Solar installations contribute significantly to our renewable energy goals.", stat: "20% Renewable energy" },
@@ -53,18 +55,17 @@ export default function GreenInitiativesPage() {
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="max-w-4xl mx-auto space-y-12">
-            <div className={`reveal grid gap-6 ${galleryImages.length >= 2 ? 'sm:grid-cols-' + Math.min(galleryImages.length, 3) : 'grid-cols-1'}`}>
-              {(galleryImages.length > 0 ? galleryImages.slice(0, 3) : [{ url: image }]).map((img, i) => (
-                <div key={i} className="rounded-2xl overflow-hidden shadow-2xl border">
-                  <img src={img.url} alt={`Ishan Law Sustainability ${i+1}`} className="w-full h-full object-cover min-h-[250px]" />
-                </div>
-              ))}
-            </div>
+            <MediaGallery
+              className="reveal"
+              images={galleryImages}
+              fallback={image ? [{ url: image }] : []}
+              altPrefix="Ishan Law sustainability"
+            />
             {content && (
               <div className="reveal space-y-6">
                 <div 
-                  className="text-lg leading-relaxed whitespace-pre-wrap format-rich-text"
-                  dangerouslySetInnerHTML={{ __html: content }}
+                  className="text-lg leading-relaxed format-rich-text"
+                  dangerouslySetInnerHTML={{ __html: rt(content) }}
                 />
               </div>
             )}
@@ -91,7 +92,6 @@ export default function GreenInitiativesPage() {
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

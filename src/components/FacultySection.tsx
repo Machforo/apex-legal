@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, GraduationCap, Award, BookOpen, X, Mail, Linkedin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
+import { rt } from "@/lib/richText";
 
 const eminentFaculty = [
   {
@@ -59,8 +60,8 @@ export default function FacultySection() {
             </h2>
             {config.description && (
               <div 
-                className="reveal delay-200 mt-5 leading-relaxed whitespace-pre-wrap prose prose-sm prose-p:mb-2 prose-p:last:mb-0 max-w-none text-foreground/80"
-                dangerouslySetInnerHTML={{ __html: config.description }}
+                className="reveal delay-200 mt-5 leading-relaxed prose prose-sm prose-p:mb-2 prose-p:last:mb-0 max-w-none text-foreground/80 rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(config.description) }}
               />
             )}
           </div>

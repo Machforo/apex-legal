@@ -4,7 +4,8 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { TrendingUp, Building2, Users2, Star, CheckCircle2 } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import MediaGallery from "@/components/MediaGallery";
+
 
 const defaultStats = [];
 
@@ -13,8 +14,8 @@ const defaultRecruiters = [];
 const defaultTestimonials = [];
 
 export default function PlacementsPage() {
-  const ref = useScrollReveal();
   const { data } = useIshanLawData("placements");
+  const ref = useScrollReveal([data]);
 
   // Schema field names: placementNumbers, recruitingPartners, successStories, placementProcess
   const stats = data?.placementNumbers?.length > 0 ? data.placementNumbers : defaultStats;
@@ -31,6 +32,14 @@ export default function PlacementsPage() {
   return (
     <Layout>
       <PageHeader title={data?.title || "Career Outcomes"} subtitle={data?.subtitle || "Consistent record of placements in top-tier law firms, corporate legal cells, and judicial services"} breadcrumbs={[{ label: "Career Outcomes" }]} />
+
+      {data?.bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={data.bannerImage} alt="Placements Overview" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
@@ -107,7 +116,21 @@ export default function PlacementsPage() {
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
+      {data?.statsInfographic && (
+        <section className="pb-20 md:pb-28 text-center container-wide max-w-4xl mx-auto">
+           <img src={data.statsInfographic} alt="Placement Stats" className="w-full h-auto rounded-2xl shadow-md border" />
+        </section>
+      )}
+
+      {data?.placementCeremonyImages?.length > 0 && (
+        <section className="pb-20 md:pb-28">
+          <div className="container-wide max-w-6xl mx-auto">
+            <h2 className="text-2xl font-bold text-foreground mb-10 text-center">Placement Ceremony</h2>
+            <MediaGallery images={data.placementCeremonyImages} altPrefix="Placement Ceremony" />
+          </div>
+        </section>
+      )}
+
       <EnquiryCTA />
     </Layout>
   );

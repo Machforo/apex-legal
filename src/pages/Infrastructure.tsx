@@ -1,11 +1,13 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
+import MediaGallery from "@/components/MediaGallery";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Link } from "react-router-dom";
 import { Wifi, Monitor, BookOpen, Building2, Cctv, MapPin, ArrowRight, Scale } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 const facilities = [
   { icon: Building2, title: "Moot Court Hall", desc: "A realistic High Court environment for regular clinical training, oral advocacy practice, and national competitions.", link: "/moot-court" },
@@ -17,8 +19,8 @@ const facilities = [
 ];
 
 export default function InfrastructurePage() {
-  const ref = useScrollReveal();
   const { data } = useIshanLawData("facilities");
+  const ref = useScrollReveal([data]);
   const facility = Array.isArray(data) ? data.find((d: any) => d.slug === 'infrastructure') : null;
   
   const title = facility?.title || "Campus Infrastructure";
@@ -43,13 +45,21 @@ export default function InfrastructurePage() {
         breadcrumbs={[{ label: "Campus", href: "/infrastructure" }, { label: "Infrastructure" }]}
       />
 
+      {facility?.bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={facility.bannerImage} alt={title} className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
+
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="reveal max-w-3xl mb-14">
             <h2 className="text-2xl font-bold mb-4">{overviewHeading}</h2>
             <div 
-              className="text-foreground/70 leading-relaxed format-rich-text whitespace-pre-wrap"
-              dangerouslySetInnerHTML={{ __html: content }}
+              className="text-foreground/70 leading-relaxed format-rich-text"
+              dangerouslySetInnerHTML={{ __html: rt(content) }}
             />
           </div>
 
@@ -62,9 +72,10 @@ export default function InfrastructurePage() {
                 onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg"; }}
               />
             </div>
+            
             <div className="reveal delay-100 rounded-2xl overflow-hidden border shadow-sm">
               <img 
-                src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg" 
+                src={facility?.editorialPhotos?.[0]?.url || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg"} 
                 alt="Institutional Facility" 
                 className="w-full h-64 object-cover" 
                 onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg"; }}
@@ -72,7 +83,7 @@ export default function InfrastructurePage() {
             </div>
             <div className="reveal delay-200 rounded-2xl overflow-hidden border shadow-sm">
               <img 
-                src="https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg" 
+                src={facility?.editorialPhotos?.[1]?.url || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg"} 
                 alt="Campus Infrastructure" 
                 className="w-full h-64 object-cover" 
                 onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg"; }}
@@ -103,7 +114,13 @@ export default function InfrastructurePage() {
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
+      {facility?.images?.length > 0 && (
+        <section className="pb-20 md:pb-28">
+          <div className="container-wide max-w-6xl mx-auto">
+            <MediaGallery images={facility.images} altPrefix={facility?.title || "Facility photo"} />
+          </div>
+        </section>
+      )}
       <EnquiryCTA />
     </Layout>
   );

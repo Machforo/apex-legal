@@ -4,11 +4,12 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Target, Eye, Compass } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 export default function MissionVisionPage() {
-  const ref = useScrollReveal();
   const { data } = useIshanLawData("aboutus");
+  const ref = useScrollReveal([data]);
   
   const mv = data?.missionVision;
   
@@ -21,12 +22,7 @@ export default function MissionVisionPage() {
     <li>To prepare students for diverse legal careers in litigation, judiciary, corporate sectors, and public service through expert mentorship.</li>
   </ul>`;
 
-  const coreValues = mv?.coreValues || `<ul>
-    <li><b>Excellence</b>: In every aspect of legal education.</li>
-    <li><b>Integrity</b>: Upholding the highest ethical standards.</li>
-    <li><b>Justice</b>: Serving the community with fairness.</li>
-    <li><b>Service</b>: Commitment to public good.</li>
-  </ul>`;
+  let coreValues = mv?.coreValues; if (coreValues && !coreValues.includes("<ul")) { const lines = coreValues.split("\n").filter((line: string) => line.trim().length > 0); if (lines.length > 0) { coreValues = "<ul class=\"list-disc pl-5 space-y-2\">" + lines.map((line: string) => "<li>" + line.trim() + "</li>").join("") + "</ul>"; } } if (!coreValues) { coreValues = `<ul><li><b>Excellence</b>: In every aspect of legal education.</li><li><b>Integrity</b>: Upholding the highest ethical standards.</li><li><b>Justice</b>: Serving the community with fairness.</li><li><b>Service</b>: Commitment to public good.</li></ul>`; }
 
   const image1 = mv?.image1 || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg";
   const image2 = mv?.image2 || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg";
@@ -58,8 +54,8 @@ export default function MissionVisionPage() {
               <div>
                 <h2 className="font-bold text-foreground mb-4">Our Vision</h2>
                 <div 
-                  className="text-lg leading-relaxed whitespace-pre-wrap format-rich-text"
-                  dangerouslySetInnerHTML={{ __html: vision }}
+                  className="text-lg leading-relaxed format-rich-text"
+                  dangerouslySetInnerHTML={{ __html: rt(vision) }}
                 />
               </div>
             </div>
@@ -73,7 +69,7 @@ export default function MissionVisionPage() {
                 <h2 className="font-bold text-foreground mb-4">Our Mission</h2>
                 <div 
                   className="text-foreground/70 leading-relaxed format-rich-text mission-list"
-                  dangerouslySetInnerHTML={{ __html: mission }}
+                  dangerouslySetInnerHTML={{ __html: rt(mission) }}
                 />
               </div>
             </div>
@@ -87,7 +83,7 @@ export default function MissionVisionPage() {
                 <h2 className="font-bold text-foreground mb-4">Core Values</h2>
                 <div 
                   className="text-foreground/70 leading-relaxed format-rich-text core-values-list"
-                  dangerouslySetInnerHTML={{ __html: coreValues }}
+                  dangerouslySetInnerHTML={{ __html: rt(coreValues) }}
                 />
               </div>
             </div>
@@ -95,7 +91,6 @@ export default function MissionVisionPage() {
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

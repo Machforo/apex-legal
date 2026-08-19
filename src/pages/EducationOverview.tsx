@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { GraduationCap, Scale, ArrowRight, CheckCircle2 } from "lucide-react";
 
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 export default function EducationOverviewPage() {
   const { data: overviewData } = useIshanLawData("programsoverview");
@@ -49,7 +50,7 @@ export default function EducationOverviewPage() {
 
             {editorialPhotos.length > 0 && (
               <div className="reveal mb-12 grid grid-cols-3 gap-4">
-                {editorialPhotos.slice(0, 3).map((p, i) => (
+                {editorialPhotos.map((p, i) => (
                   <div key={i} className="rounded-2xl overflow-hidden shadow h-44">
                     <img src={p.url} alt={`Academic highlight ${i+1}`} className="w-full h-full object-cover" />
                   </div>
@@ -79,8 +80,8 @@ export default function EducationOverviewPage() {
                   <h3 className="text-xl font-bold text-foreground mb-2">{prog.name}</h3>
                   <p className="text-sm text-muted-foreground mb-1">{prog.duration} Program</p>
                   <div 
-                    className="text-sm mb-4 line-clamp-2 format-rich-text-preview" 
-                    dangerouslySetInnerHTML={{ __html: prog.overview }} 
+                    className="text-sm mb-4 line-clamp-2 format-rich-text-preview rich-text" 
+                    dangerouslySetInnerHTML={{ __html: rt(prog.overview) }} 
                   />
                   <span className="inline-flex items-center gap-1 text-sm font-semibold text-navy group-hover:text-gold transition-colors">
                     View Details <ArrowRight className="w-4 h-4" />
@@ -94,7 +95,6 @@ export default function EducationOverviewPage() {
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

@@ -3,6 +3,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Calendar, ArrowRight, X, MapPin, Tag, Share2 } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { motion, AnimatePresence } from "framer-motion";
+import { rt } from "@/lib/richText";
 
 const defaultNews = [
   {
@@ -50,7 +51,7 @@ export default function NewsSection() {
               {config.title}
             </h2>
           </div>
-          <a href="/news" className="reveal delay-200 inline-flex items-center gap-2 text-sm font-semibold text-navy hover:text-gold transition-colors group">
+          <a href="/news-events" className="reveal delay-200 inline-flex items-center gap-2 text-sm font-semibold text-navy hover:text-gold transition-colors group">
             View All News
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
           </a>
@@ -159,8 +160,8 @@ export default function NewsSection() {
                     <div className="prose prose-sm prose-navy max-w-none">
                       {selectedNews.description ? (
                         <div 
-                          className="text-foreground/70 leading-relaxed text-base md:text-lg prose prose-sm prose-p:mb-3 prose-p:last:mb-0 max-w-none"
-                          dangerouslySetInnerHTML={{ __html: selectedNews.description }}
+                          className="text-foreground/70 leading-relaxed text-base md:text-lg prose prose-sm prose-p:mb-3 prose-p:last:mb-0 max-w-none rich-text"
+                          dangerouslySetInnerHTML={{ __html: rt(selectedNews.description) }}
                         />
                       ) : (
                         <p className="text-foreground/70 leading-relaxed text-base md:text-lg">

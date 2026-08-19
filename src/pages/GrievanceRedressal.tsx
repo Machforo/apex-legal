@@ -3,7 +3,8 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 export default function GrievanceRedressalPage() {
   const { data } = useIshanLawData("mandatorydisclosure");
@@ -20,14 +21,25 @@ export default function GrievanceRedressalPage() {
   ];
   return (
     <Layout>
-      <PageHeader title="Grievance Redressal" subtitle="Structured process for addressing student and stakeholder concerns" breadcrumbs={[{ label: "Governance" }, { label: "Grievance Redressal" }]} />
+      <PageHeader 
+        title={gr?.title || "Grievance Redressal"} 
+        subtitle={gr?.subtitle || "Structured process for addressing student and stakeholder concerns"} 
+        breadcrumbs={[{ label: "Governance" }, { label: "Grievance Redressal" }]} 
+      />
+      {gr?.bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={gr.bannerImage} alt="Grievance Banner" className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
             <div className="reveal space-y-6">
               <div 
-                className="text-foreground/70 leading-relaxed text-lg format-rich-text whitespace-pre-wrap"
-                dangerouslySetInnerHTML={{ __html: content }}
+                className="text-foreground/70 leading-relaxed text-lg format-rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(content) }}
               />
               <div className="rounded-2xl overflow-hidden shadow-2xl border">
                 <img src={image} alt="Ishan Law Administration" className="w-full h-80 object-cover" />
@@ -40,7 +52,7 @@ export default function GrievanceRedressalPage() {
               <h2 className="text-lg font-bold text-foreground">Redressal Process</h2>
               <ol className="space-y-3 text-sm">
                 {process.map((p: any, i: number) => (
-                  <li key={i} className="flex gap-3"><span className="w-6 h-6 rounded-full bg-navy flex items-center justify-center shrink-0 text-xs font-bold text-primary-foreground">{i + 1}</span> <div><p className="font-semibold">{p.step}</p><div className="text-foreground/70 format-rich-text whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: p.description || "" }} /></div></li>
+                  <li key={i} className="flex gap-3"><span className="w-6 h-6 rounded-full bg-navy flex items-center justify-center shrink-0 text-xs font-bold text-primary-foreground">{i + 1}</span> <div><p className="font-semibold">{p.step}</p><div className="text-foreground/70 format-rich-text" dangerouslySetInnerHTML={{ __html: rt(p.description || "") }} /></div></li>
                 ))}
               </ol>
               <div className="p-5 rounded-xl border bg-section-alt">
@@ -52,7 +64,6 @@ export default function GrievanceRedressalPage() {
           </div>
         </div>
       </section>
-    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

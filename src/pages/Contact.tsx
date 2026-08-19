@@ -8,7 +8,7 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from "sonner";
-import PageGallery from "@/components/PageGallery";
+
 
 
 const contactSchema = z.object({
@@ -46,12 +46,16 @@ export default function ContactPage() {
 
   return (
     <Layout>
-      <PageHeader title="Contact Us" subtitle="Reach out for admissions enquiries, campus visits, and general information" breadcrumbs={[{ label: "Contact" }]} />
+      <PageHeader 
+        title={data?.title || "Contact Us"} 
+        subtitle={data?.subtitle || "Reach out for admissions enquiries, campus visits, and general information"} 
+        breadcrumbs={[{ label: "Contact" }]} 
+      />
 
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <p className="reveal leading-relaxed max-w-3xl mb-12 text-lg">
-            Ishan Law's team is available to assist prospective students, parents, enrolled students, and visitors. Admissions queries are given priority, with responses guaranteed within 24 working hours.
+          <p className="reveal leading-relaxed max-w-3xl mb-12 text-lg whitespace-pre-wrap">
+            {data?.overview || "Ishan Law's team is available to assist prospective students, parents, enrolled students, and visitors. Admissions queries are given priority, with responses guaranteed within 24 working hours."}
           </p>
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
             <div className="reveal-left space-y-8">
@@ -126,7 +130,6 @@ export default function ContactPage() {
 
         </div>
       </section>
-    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

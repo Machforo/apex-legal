@@ -4,7 +4,8 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 const defaultFaqCategories = [
   {
@@ -51,7 +52,7 @@ export default function FAQsPage() {
                         <AccordionContent className="text-sm leading-relaxed pb-4">
                           <div 
                             className="format-rich-text"
-                            dangerouslySetInnerHTML={{ __html: faq.a }}
+                            dangerouslySetInnerHTML={{ __html: rt(faq.a) }}
                           />
                         </AccordionContent>
                       </AccordionItem>
@@ -74,7 +75,6 @@ export default function FAQsPage() {
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

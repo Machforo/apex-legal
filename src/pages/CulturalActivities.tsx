@@ -1,9 +1,11 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
+import MediaGallery from "@/components/MediaGallery";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 export default function CulturalActivitiesPage() {
   const { data } = useIshanLawData("culturalactivities");
@@ -53,8 +55,8 @@ export default function CulturalActivitiesPage() {
             <div className="reveal-right space-y-6">
               <h2 className="text-3xl font-bold text-foreground leading-tight">Celebrating Creative Excellence</h2>
               <div 
-                className="text-foreground/70 leading-relaxed whitespace-pre-wrap format-rich-text"
-                dangerouslySetInnerHTML={{ __html: content }}
+                className="text-foreground/70 leading-relaxed format-rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(content) }}
               />
             
             <h2 className="text-xl font-bold text-foreground">Cultural Highlights</h2>
@@ -63,27 +65,18 @@ export default function CulturalActivitiesPage() {
                 <div key={s.title || i} className="px-4 py-3 rounded-lg border bg-card text-sm text-foreground/80 flex flex-col justify-center">
                    <span className="font-semibold text-foreground mb-1">{s.title}</span>
                    <span 
-                     className="text-xs text-muted-foreground leading-relaxed format-rich-text whitespace-pre-wrap"
-                     dangerouslySetInnerHTML={{ __html: s.desc }}
+                     className="text-xs text-muted-foreground leading-relaxed format-rich-text"
+                     dangerouslySetInnerHTML={{ __html: rt(s.desc) }}
                    />
                 </div>
               ))}
             </div>
             </div>
             
-            {galleryImages.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
-                {galleryImages.slice(0, 3).map((img, idx) => (
-                  <div key={idx} className="rounded-xl overflow-hidden border shadow h-40">
-                    <img src={img.url} alt={`Cultural Event ${idx+1}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-                  </div>
-                ))}
-              </div>
-            )}
+            <MediaGallery className="mt-8" images={galleryImages} altPrefix="Cultural event" />
           </div>
         </div>
       </section>
-      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 const defaultPrograms = [
   { name: "Cyber Law & Digital Security", duration: "3 Months", fee: "₹5,000", eligibility: "Any student / graduate", desc: "Covers IT Act 2000, cyber crimes, digital evidence, data protection, and social media regulations." },
@@ -38,8 +39,8 @@ export default function CertificateProgramsPage() {
             <img src={overviewData?.image || "https://law.ishan.ac/all-law/gallery-photos/academics/academics-11.jpg"} alt="Certificate Programs" className="w-full h-80 object-cover" />
           </div>
           <div 
-            className="reveal leading-relaxed max-w-3xl mb-12 format-rich-text whitespace-pre-wrap"
-            dangerouslySetInnerHTML={{ __html: overviewData?.content || "Ishan Law offers structured certificate programs alongside regular degree courses. These specialized short courses help students develop practical skills that legal employers actively seek — from cyber law expertise to mediation skills and advanced legal drafting. All certificate programs include hands-on sessions, assessments, and a certificate of completion." }}
+            className="reveal leading-relaxed max-w-3xl mb-12 format-rich-text"
+            dangerouslySetInnerHTML={{ __html: rt(overviewData?.content || "Ishan Law offers structured certificate programs alongside regular degree courses. These specialized short courses help students develop practical skills that legal employers actively seek — from cyber law expertise to mediation skills and advanced legal drafting. All certificate programs include hands-on sessions, assessments, and a certificate of completion.") }}
           />
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -51,8 +52,8 @@ export default function CertificateProgramsPage() {
                   <span className="px-2.5 py-1 rounded-md bg-muted font-medium">{p.fee}</span>
                 </div>
                 <div 
-                  className="text-sm leading-relaxed mb-4 format-rich-text whitespace-pre-wrap"
-                  dangerouslySetInnerHTML={{ __html: p.desc }}
+                  className="text-sm leading-relaxed mb-4 format-rich-text"
+                  dangerouslySetInnerHTML={{ __html: rt(p.desc) }}
                 />
                 <p className="text-xs text-muted-foreground"><strong>Eligibility:</strong> {p.eligibility}</p>
               </div>
@@ -61,7 +62,6 @@ export default function CertificateProgramsPage() {
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

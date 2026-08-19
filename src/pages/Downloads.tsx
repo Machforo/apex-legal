@@ -3,7 +3,8 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { FileText, Download } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 const downloads = [
   { name: "BA LLB (Hons) Syllabus 2024-25", type: "PDF", category: "Syllabus", size: "2.4 MB" },
@@ -45,8 +46,8 @@ export default function DownloadsPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
             <div className="reveal space-y-8">
               <div 
-                className="text-foreground/70 leading-relaxed format-rich-text whitespace-pre-wrap"
-                dangerouslySetInnerHTML={{ __html: overview }}
+                className="text-foreground/70 leading-relaxed format-rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(overview) }}
               />
               <div className="rounded-2xl overflow-hidden shadow-2xl border">
                 <img src={image} alt={title} className="w-full h-80 object-cover" />
@@ -71,7 +72,6 @@ export default function DownloadsPage() {
         </div>
       </div>
     </section>
-    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

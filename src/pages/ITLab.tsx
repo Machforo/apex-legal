@@ -1,16 +1,18 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
+import MediaGallery from "@/components/MediaGallery";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Monitor, Wifi, Clock, Shield } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 
 
 export default function ITLabPage() {
-  const ref = useScrollReveal();
   const { data } = useIshanLawData("facilities");
+  const ref = useScrollReveal([data]);
   const facility = Array.isArray(data) ? data.find((d: any) => d.slug === 'it-lab') : null;
   
   const title = facility?.title || "Digital Research Lab";
@@ -33,6 +35,14 @@ export default function ITLabPage() {
         breadcrumbs={[{ label: "Campus", href: "/infrastructure" }, { label: "Research Lab" }]}
       />
 
+      {facility?.bannerImage && (
+        <div className="container-wide mt-12">
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+            <img src={facility.bannerImage} alt={title} className="w-full h-full object-cover" />
+          </div>
+        </div>
+      )}
+
       <section className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="max-w-4xl mx-auto">
@@ -42,8 +52,8 @@ export default function ITLabPage() {
             <div className="reveal space-y-5 mb-12">
               <h2 className="text-2xl font-bold">{overviewHeading}</h2>
               <div 
-                className="text-foreground/70 leading-relaxed format-rich-text whitespace-pre-wrap"
-                dangerouslySetInnerHTML={{ __html: content }}
+                className="text-foreground/70 leading-relaxed format-rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(content) }}
               />
             </div>
 
@@ -70,7 +80,13 @@ export default function ITLabPage() {
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
+      {facility?.images?.length > 0 && (
+        <section className="pb-20 md:pb-28">
+          <div className="container-wide max-w-6xl mx-auto">
+            <MediaGallery images={facility.images} altPrefix={facility?.title || "Facility photo"} />
+          </div>
+        </section>
+      )}
       <EnquiryCTA />
     </Layout>
   );

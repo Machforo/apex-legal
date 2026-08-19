@@ -4,7 +4,8 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Award, Users, Globe, BookOpen, Building, TrendingUp, Shield, Lightbulb, GraduationCap, Heart, CheckCircle } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 const defaultReasons = [
   { title: "Clinical Approach", description: "Learn by doing with our advanced Moot Court setups.", icon: "Gavel" },
@@ -52,8 +53,8 @@ export default function WhyIshanLawPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto mb-12">
             <div className="reveal space-y-8">
               <div 
-                className="text-foreground/70 leading-relaxed text-lg format-rich-text whitespace-pre-wrap"
-                dangerouslySetInnerHTML={{ __html: whyContent }}
+                className="text-foreground/70 leading-relaxed text-lg format-rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(whyContent) }}
               />
               <div className="rounded-2xl overflow-hidden shadow-2xl border">
                 <img src={image} alt="Ishan Law Excellence" className="w-full h-80 object-cover" />
@@ -95,7 +96,6 @@ export default function WhyIshanLawPage() {
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA title="Convinced? Take the Next Step" subtitle="Schedule a campus visit or speak with our admissions counsellor today." />
     </Layout>
   );

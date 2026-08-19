@@ -2,7 +2,8 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 export default function StudentPortalPage() {
   const { data } = useIshanLawData("studentportal");
@@ -16,8 +17,8 @@ export default function StudentPortalPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div className="reveal space-y-8">
               <div
-                className="text-foreground/70 leading-relaxed format-rich-text whitespace-pre-wrap"
-                dangerouslySetInnerHTML={{ __html: data?.instructions || "Current Ishan Law students can access their academic profiles, attendance records, and library resources through the unified student portal. University examination results are available via the CCS University portal." }}
+                className="text-foreground/70 leading-relaxed format-rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(data?.instructions || "Current Ishan Law students can access their academic profiles, attendance records, and library resources through the unified student portal. University examination results are available via the CCS University portal.") }}
               />
               <div className="rounded-2xl overflow-hidden shadow-2xl border">
                 <img src={data?.image || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-5.jpg"} alt={data?.title || "Ishan Law Student Resources"} className="w-full h-80 object-cover" />
@@ -53,7 +54,6 @@ export default function StudentPortalPage() {
           </div>
         </div>
       </section>
-    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

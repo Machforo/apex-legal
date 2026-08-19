@@ -4,7 +4,8 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { FileText, Download } from "lucide-react";
 
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 export default function MandatoryDisclosurePage() {
   const { data } = useIshanLawData("mandatorydisclosure");
@@ -13,10 +14,7 @@ export default function MandatoryDisclosurePage() {
   const statement = data?.statement || `<p>The information provided below is submitted as required by the Bar Council of India (BCI) and is updated annually to ensure full transparency. Any discrepancies found in the reported data should be immediately brought to the notice of the Registrar at Ishan Law Institute, Knowledge Park, Greater Noida.</p><p>BCI mandates public disclosure for the benefit of current and prospective students, legal practitioners, and regulatory authorities. It serves as a comprehensive record of the institution's legal aid services, moot court facilities, and faculty expertise, ensuring accountability in legal education.</p>`;
   const bannerImage: string | undefined = data?.bannerImage || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg";
 
-  const disclosureItems = data?.disclosureItems?.length > 0 ? data.disclosureItems.map((item: any) => ({
-    category: item.category,
-    itemsHTML: item.items || ""
-  })) : [
+  const disclosureItems = data?.disclosureItems?.length > 0 ? data.disclosureItems.map((item: any) => { let html = item.items || ""; if (html && !html.includes("<li")) { const itemsList = html.split("\n").filter((line: string) => line.trim().length > 0); if (itemsList.length > 0) { html = "<ul class=\"list-disc pl-5 space-y-2\">" + itemsList.map((line: string) => "<li>" + line.trim() + "</li>").join("") + "</ul>"; } } return { category: item.category, itemsHTML: html } }) : [
     { category: "Institution Details", itemsHTML: "<ul><li>Name: Ishan Law Institute</li><li>Address: Knowledge Park-III, Greater Noida</li><li>Year of Establishment: 2008</li><li>Status: Private Self-Financing</li><li>Type: Co-educational Professional Institution</li></ul>" },
     { category: "Academic Information", itemsHTML: "<ul><li>Programs Offered: BA LLB (Hons), LLB</li><li>BCI Approval Status — Current</li><li>Annual Intake per Program</li><li>Faculty-Student Ratio</li><li>Student Success Rate (Last 5 Years)</li></ul>" },
     { category: "Regulatory Information", itemsHTML: "<ul><li>BCI Approval Letters</li><li>CCS University Affiliation Documents</li><li>Anti-Ragging Committee Constitution</li><li>Grievance Redressal Mechanism</li></ul>" },
@@ -27,8 +25,8 @@ export default function MandatoryDisclosurePage() {
   return (
     <Layout>
       <PageHeader
-        title="Mandatory Disclosure"
-        subtitle="BCI / CCS University format mandatory disclosure document — updated annually"
+        title={data?.title || "Mandatory Disclosure"}
+        subtitle={data?.subtitle || "BCI / CCS University format mandatory disclosure document — updated annually"}
         breadcrumbs={[{ label: "Mandatory Disclosure" }]}
       />
 
@@ -48,8 +46,8 @@ export default function MandatoryDisclosurePage() {
               <div>
                 <p className="font-semibold text-foreground mb-1">BCI Compliance Statement</p>
                 <div 
-                  className="text-sm leading-relaxed whitespace-pre-wrap format-rich-text"
-                  dangerouslySetInnerHTML={{ __html: statement }}
+                  className="text-sm leading-relaxed format-rich-text"
+                  dangerouslySetInnerHTML={{ __html: rt(statement) }}
                 />
               </div>
             </div>
@@ -60,7 +58,7 @@ export default function MandatoryDisclosurePage() {
                   <h3 className="font-bold text-foreground mb-4">{section.category}</h3>
                   <div 
                     className="space-y-2 text-sm text-foreground/80 format-rich-text custom-bullet-list"
-                    dangerouslySetInnerHTML={{ __html: section.itemsHTML }}
+                    dangerouslySetInnerHTML={{ __html: rt(section.itemsHTML) }}
                   />
                 </div>
               ))}
@@ -75,7 +73,6 @@ export default function MandatoryDisclosurePage() {
           </div>
         </div>
       </section>
-    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

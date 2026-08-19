@@ -54,7 +54,6 @@ function AnimatedCounter({ rawValue }: { rawValue: string }) {
 }
 
 export default function StatsBar() {
-  const ref = useScrollReveal();
   const { data, isLoading } = useIshanLawData("homepage");
   
   // Use a ref to keep the stats stable once they are loaded or if using defaults
@@ -73,6 +72,8 @@ export default function StatsBar() {
     { name: "UGC", logo: "https://law.ishan.ac/static/about/approvals/UGC_India_Logo.png" },
   ];
   const brands = data?.brands?.length > 0 ? data.brands : defaultBrands;
+
+  const ref = useScrollReveal([statsList, brands]);
 
   return (
     <section className="bg-navy relative z-10 overflow-hidden" ref={ref}>

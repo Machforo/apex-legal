@@ -3,7 +3,8 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Landmark, Shield, Users, Scale, FileText } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 const defaultVisits = [
   {
@@ -64,8 +65,8 @@ export default function IndustrialVisitsPage() {
                 {overviewHeading}
               </h2>
               <div 
-                className="text-foreground/70 leading-relaxed format-rich-text whitespace-pre-wrap"
-                dangerouslySetInnerHTML={{ __html: overviewContent }}
+                className="text-foreground/70 leading-relaxed format-rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(overviewContent) }}
               />
               <div className="grid grid-cols-2 gap-4">
                 <div className="p-4 rounded-xl border bg-card flex items-center gap-3">
@@ -139,8 +140,8 @@ export default function IndustrialVisitsPage() {
                 </div>
                 <div className="space-y-3">
                   <div
-                    className="text-sm text-foreground/80 leading-relaxed italic format-rich-text whitespace-pre-wrap"
-                    dangerouslySetInnerHTML={{ __html: v.outcome || v.takeaways || v.description }}
+                    className="text-sm text-foreground/80 leading-relaxed italic format-rich-text"
+                    dangerouslySetInnerHTML={{ __html: rt(v.outcome || v.takeaways || v.description) }}
                   />
                   {v.program && (
                     <div className="flex items-center gap-2 pt-2 border-t border-border/50 text-xs font-bold text-foreground/50 uppercase">
@@ -153,7 +154,6 @@ export default function IndustrialVisitsPage() {
           </div>
         </div>
       </section>
-    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

@@ -3,7 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Mic2, Calendar } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
 
 export default function GuestLecturesPage() {
   const { data: pageData } = useIshanLawData("guestlecturespage");
@@ -43,8 +43,8 @@ export default function GuestLecturesPage() {
             <div className="reveal-right space-y-5">
               <h2 className="text-3xl font-bold text-navy text-gold-underline">Engaging with Legal Pioneers</h2>
               <div
-                className="text-foreground/70 leading-relaxed format-rich-text whitespace-pre-wrap text-lg"
-                dangerouslySetInnerHTML={{ __html: overview }}
+                className="text-foreground/70 leading-relaxed format-rich-text text-lg"
+                dangerouslySetInnerHTML={{ __html: rt(overview) }}
               />
             </div>
           </div>
@@ -69,8 +69,8 @@ export default function GuestLecturesPage() {
                 </div>
                 <h5 className="text-sm font-bold text-navy leading-tight mb-3">{e.title || e.topic}</h5>
                 <div
-                  className="text-xs leading-relaxed text-foreground/70 format-rich-text whitespace-pre-wrap flex-1"
-                  dangerouslySetInnerHTML={{ __html: e.description || e.takeaways || e.topics }}
+                  className="text-xs leading-relaxed text-foreground/70 format-rich-text flex-1"
+                  dangerouslySetInnerHTML={{ __html: rt(e.description || e.takeaways || e.topics) }}
                 />
                 {e.date && (
                   <div className="flex items-center gap-2 mt-4 pt-3 border-t text-xs font-bold text-gold uppercase tracking-widest">
@@ -86,7 +86,6 @@ export default function GuestLecturesPage() {
           </div>
         </div>
       </section>
-    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

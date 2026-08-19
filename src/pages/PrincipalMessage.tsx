@@ -3,11 +3,12 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 export default function PrincipalMessagePage() {
-  const ref = useScrollReveal();
   const { data } = useIshanLawData("aboutus");
+  const ref = useScrollReveal([data]);
   
   const pm = data?.principalMessage;
 
@@ -56,8 +57,8 @@ I invite you to join our community and embark on a journey that will build a for
 
               <div className="reveal-right space-y-8">
                 <div 
-                  className="text-foreground/70 leading-relaxed whitespace-pre-wrap format-rich-text"
-                  dangerouslySetInnerHTML={{ __html: msg.message }}
+                  className="text-foreground/70 leading-relaxed format-rich-text"
+                  dangerouslySetInnerHTML={{ __html: rt(msg.message) }}
                 />
 
                 <div className="pt-4 border-t">
@@ -74,7 +75,6 @@ I invite you to join our community and embark on a journey that will build a for
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

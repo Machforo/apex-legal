@@ -4,7 +4,8 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Scale, Users, Gavel, GraduationCap } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 export default function MootCourtPage() {
   const { data } = useIshanLawData("mootcourt");
@@ -93,8 +94,8 @@ export default function MootCourtPage() {
             <div className="reveal order-2 lg:order-1 space-y-6">
               <h2 className="text-3xl font-bold text-navy mb-4 text-gold-underline">Real Courtroom Experience</h2>
               <div 
-                className="text-foreground/80 leading-relaxed whitespace-pre-wrap format-rich-text text-lg"
-                dangerouslySetInnerHTML={{ __html: content }}
+                className="text-foreground/80 leading-relaxed format-rich-text text-lg"
+                dangerouslySetInnerHTML={{ __html: rt(content) }}
               />
             </div>
           </div>
@@ -127,8 +128,8 @@ export default function MootCourtPage() {
                   </div>
                   <h3 className="font-bold text-foreground mb-2">{f.title}</h3>
                   <div 
-                    className="text-sm leading-relaxed text-foreground/80 format-rich-text whitespace-pre-wrap"
-                    dangerouslySetInnerHTML={{ __html: f.desc }}
+                    className="text-sm leading-relaxed text-foreground/80 format-rich-text"
+                    dangerouslySetInnerHTML={{ __html: rt(f.desc) }}
                   />
                 </div>
               );
@@ -137,7 +138,6 @@ export default function MootCourtPage() {
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

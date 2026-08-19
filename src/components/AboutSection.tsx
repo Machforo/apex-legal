@@ -2,6 +2,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { CheckCircle2 } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import libraryImg from "@/assets/students-library.jpg";
+import { rt } from "@/lib/richText";
 
 const defaultHighlights = [];
 
@@ -45,8 +46,8 @@ export default function AboutSection() {
               {about.title}
             </h2>
             <div 
-              className="text-foreground/70 leading-relaxed whitespace-pre-wrap prose prose-sm prose-p:mb-2 prose-p:last:mb-0 max-w-none"
-              dangerouslySetInnerHTML={{ __html: about.description }}
+              className="text-foreground/70 leading-relaxed prose prose-sm prose-p:mb-2 prose-p:last:mb-0 max-w-none rich-text"
+              dangerouslySetInnerHTML={{ __html: rt(about.description) }}
             />
             <div className="space-y-3 pt-2">
               {defaultHighlights.map((item) => (

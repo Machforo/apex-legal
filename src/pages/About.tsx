@@ -4,7 +4,7 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { CheckCircle2 } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+
 
 const defaultMilestones = [];
 
@@ -53,7 +53,7 @@ The Ishan Law campus provides a specialized environment for legal scholarship, f
           )}
           {editorialPhotos.length > 0 && (
             <div className={`grid gap-4 ${editorialPhotos.length >= 3 ? 'grid-cols-3' : 'grid-cols-2'}`}>
-              {editorialPhotos.slice(0, 3).map((p, i) => (
+              {editorialPhotos.map((p, i) => (
                 <div key={i} className="rounded-2xl overflow-hidden shadow-md h-44">
                   <img src={p.url} alt={`Ishan Law campus ${i+1}`} className="w-full h-full object-cover" />
                 </div>
@@ -125,7 +125,6 @@ The Ishan Law campus provides a specialized environment for legal scholarship, f
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

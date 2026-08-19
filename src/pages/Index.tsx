@@ -11,7 +11,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import FacultySection from "@/components/FacultySection";
 import CTASection from "@/components/CTASection";
-import PageGallery from "@/components/PageGallery";
+
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 
 const Index = () => {
@@ -29,7 +29,6 @@ const Index = () => {
       <div id="news"><NewsSection /></div>
       <TestimonialsSection />
       <FAQSection />
-      <PageGallery images={data?.pageGallery} title="Homepage Gallery" />
       <CTASection />
     </Layout>
   );

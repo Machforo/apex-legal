@@ -4,7 +4,7 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { MessageSquare, Users, Mic2, Briefcase, Trophy } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
 
 export default function DebatesGDPage() {
   const { data } = useIshanLawData("debatesgd");
@@ -67,8 +67,8 @@ export default function DebatesGDPage() {
                 {title}
               </h2>
               <div
-                className="text-foreground/70 leading-relaxed format-rich-text whitespace-pre-wrap text-lg"
-                dangerouslySetInnerHTML={{ __html: content }}
+                className="text-foreground/70 leading-relaxed format-rich-text text-lg"
+                dangerouslySetInnerHTML={{ __html: rt(content) }}
               />
             </div>
           </div>
@@ -84,8 +84,8 @@ export default function DebatesGDPage() {
                   </div>
                   <h3 className="font-bold text-foreground mb-2">{a.title}</h3>
                   <div
-                    className="text-sm text-muted-foreground format-rich-text whitespace-pre-wrap"
-                    dangerouslySetInnerHTML={{ __html: a.desc || a.description }}
+                    className="text-sm text-muted-foreground format-rich-text"
+                    dangerouslySetInnerHTML={{ __html: rt(a.desc || a.description) }}
                   />
                 </div>
               );
@@ -94,7 +94,6 @@ export default function DebatesGDPage() {
         </div>
       </section>
 
-      <PageGallery images={data?.pageGallery} />
       <EnquiryCTA />
     </Layout>
   );

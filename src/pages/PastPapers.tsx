@@ -4,7 +4,8 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { Download, FileText, Search } from "lucide-react";
 import { useState } from "react";
-import PageGallery from "@/components/PageGallery";
+import { rt } from "@/lib/richText";
+
 
 export default function PastPapersPage() {
   const { data } = useIshanLawData("pastpapers");
@@ -55,8 +56,8 @@ export default function PastPapersPage() {
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5 reveal space-y-8">
               <div 
-                className="text-foreground/70 leading-relaxed format-rich-text whitespace-pre-wrap"
-                dangerouslySetInnerHTML={{ __html: overview }}
+                className="text-foreground/70 leading-relaxed format-rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(overview) }}
               />
               <div className="relative">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
@@ -133,7 +134,6 @@ export default function PastPapersPage() {
           </div>
         </div>
       </section>
-    <PageGallery images={data?.pageGallery} />
     </Layout>
   );
 }

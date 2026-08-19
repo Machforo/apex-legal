@@ -4,6 +4,7 @@ import { Phone, MapPin, Clock } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
+import { rt } from "@/lib/richText";
 
 export default function CTASection() {
   const ref = useScrollReveal();
@@ -77,8 +78,8 @@ export default function CTASection() {
               {cta.title}
             </h2>
             <div 
-              className="text-primary-foreground/60 leading-relaxed whitespace-pre-wrap prose prose-sm prose-p:mb-2 prose-p:last:mb-0 prose-invert max-w-none"
-              dangerouslySetInnerHTML={{ __html: cta.content }}
+              className="text-primary-foreground/60 leading-relaxed prose prose-sm prose-p:mb-2 prose-p:last:mb-0 prose-invert max-w-none rich-text"
+              dangerouslySetInnerHTML={{ __html: rt(cta.content) }}
             />
 
             <div className="space-y-4 pt-4">
