@@ -4,9 +4,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
 import { Search, X } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-
-
-const defaultDepartments = [];
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 const defaultFaculty = [
   {
@@ -65,15 +63,17 @@ export default function FacultyPage() {
     return matchesDept && matchesSearch;
   });
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title="Faculty Directory"
         subtitle="Distinguished legal scholars and practicing advocates shaping future judicial leaders"
         breadcrumbs={[{ label: "Faculty" }]}
       />
-
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    faculty_grid: (
+      <section key="faculty_grid" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="max-w-5xl mx-auto mb-16 grid lg:grid-cols-2 gap-12 items-center">
             <div className="reveal space-y-6">
@@ -163,6 +163,18 @@ export default function FacultyPage() {
           </div>
         </div>
       </section>
+    )
+  };
+
+  const defaultOrder = ["header", "faculty_grid"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="faculty"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

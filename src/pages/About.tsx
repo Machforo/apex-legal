@@ -4,7 +4,7 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { CheckCircle2 } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 const defaultMilestones = [];
 
@@ -36,34 +36,35 @@ The Ishan Law campus provides a specialized environment for legal scholarship, f
     ];
   const ref = useScrollReveal([data]);
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title={ourStory?.title || "About Ishan Law"}
         subtitle="Excellence in legal education and practice-oriented learning since 2008."
         breadcrumbs={[{ label: "About Ishan Law" }]}
       />
-
-      {(bannerImage || editorialPhotos.length > 0) && (
-        <div className="container-wide mt-12 space-y-4">
-          {bannerImage && (
-            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[400px]">
-              <img src={bannerImage} alt="About Ishan Law" className="w-full h-full object-cover" />
-            </div>
-          )}
-          {editorialPhotos.length > 0 && (
-            <div className={`grid gap-4 ${editorialPhotos.length >= 3 ? 'grid-cols-3' : 'grid-cols-2'}`}>
-              {editorialPhotos.map((p, i) => (
-                <div key={i} className="rounded-2xl overflow-hidden shadow-md h-44">
-                  <img src={p.url} alt={`Ishan Law campus ${i+1}`} className="w-full h-full object-cover" />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
-
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    banner: (bannerImage || editorialPhotos.length > 0) ? (
+      <div key="banner" className="container-wide mt-12 space-y-4">
+        {bannerImage && (
+          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[400px]">
+            <img src={bannerImage} alt="About Ishan Law" className="w-full h-full object-cover" />
+          </div>
+        )}
+        {editorialPhotos.length > 0 && (
+          <div className={`grid gap-4 ${editorialPhotos.length >= 3 ? 'grid-cols-3' : 'grid-cols-2'}`}>
+            {editorialPhotos.map((p, i) => (
+              <div key={i} className="rounded-2xl overflow-hidden shadow-md h-44">
+                <img src={p.url} alt={`Ishan Law campus ${i+1}`} className="w-full h-full object-cover" />
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    ) : null,
+    story: (
+      <section key="story" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="reveal-left relative">
@@ -84,9 +85,9 @@ The Ishan Law campus provides a specialized environment for legal scholarship, f
           </div>
         </div>
       </section>
-
-      {/* Milestones */}
-      <section className="py-16 md:py-24 bg-section-alt">
+    ),
+    milestones: milestones && milestones.length > 0 ? (
+      <section key="milestones" className="py-16 md:py-24 bg-section-alt">
         <div className="container-wide">
           <div className="text-center mb-14">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">Our Journey</p>
@@ -107,9 +108,9 @@ The Ishan Law campus provides a specialized environment for legal scholarship, f
           </div>
         </div>
       </section>
-
-      {/* Highlights */}
-      <section className="py-16 md:py-24">
+    ) : null,
+    differentiators: (
+      <section key="differentiators" className="py-16 md:py-24">
         <div className="container-wide">
           <div className="max-w-3xl mx-auto">
             <h2 className="font-bold text-foreground mb-8">Key Differentiators</h2>
@@ -124,8 +125,19 @@ The Ishan Law campus provides a specialized environment for legal scholarship, f
           </div>
         </div>
       </section>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
 
-      <EnquiryCTA />
+  const defaultOrder = ["header", "banner", "story", "milestones", "differentiators", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="about_us"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

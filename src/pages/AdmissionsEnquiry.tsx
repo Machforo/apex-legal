@@ -4,6 +4,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { CheckCircle2, MessageSquare, MapPin, Laptop } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function AdmissionsEnquiryPage() {
   const ref = useScrollReveal();
@@ -53,15 +54,17 @@ export default function AdmissionsEnquiryPage() {
     }
   };
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title="Admissions Enquiry"
         subtitle="Start your journey with personal guidance and expert counselling."
         breadcrumbs={[{ label: "Admissions", href: "/admissions" }, { label: "Enquiry" }]}
       />
-
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    enquiry_section: (
+      <section key="enquiry_section" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
             <div className="reveal-left space-y-8">
@@ -160,6 +163,18 @@ export default function AdmissionsEnquiryPage() {
           </div>
         </div>
       </section>
+    )
+  };
+
+  const defaultOrder = ["header", "enquiry_section"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="admissions_enquiry"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

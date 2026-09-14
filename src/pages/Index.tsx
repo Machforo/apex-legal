@@ -11,25 +11,46 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import FAQSection from "@/components/FAQSection";
 import FacultySection from "@/components/FacultySection";
 import CTASection from "@/components/CTASection";
-
-import { useIshanLawData } from "@/hooks/useIshanLawData";
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 const Index = () => {
-  const { data } = useIshanLawData("homepage");
+  const defaultSections: Record<string, React.ReactNode> = {
+    hero: <HeroSection key="hero" />,
+    stats: <StatsBar key="stats" />,
+    about: <div id="about" key="about"><AboutSection /></div>,
+    programs: <div id="programs" key="programs"><ProgramsSection /></div>,
+    why_ishan_law: <div id="why-ishan-law" key="why_ishan_law"><WhyIshanLawSection /></div>,
+    placements: <div id="placements" key="placements"><PlacementsSection /></div>,
+    faculty: <FacultySection key="faculty" />,
+    campus: <div id="campus" key="campus"><CampusExperience /></div>,
+    news: <div id="news" key="news"><NewsSection /></div>,
+    testimonials: <TestimonialsSection key="testimonials" />,
+    faqs: <FAQSection key="faqs" />,
+    cta: <CTASection key="cta" />
+  };
+
+  const defaultOrder = [
+    'hero',
+    'stats',
+    'about',
+    'programs',
+    'why_ishan_law',
+    'placements',
+    'faculty',
+    'campus',
+    'news',
+    'testimonials',
+    'faqs',
+    'cta'
+  ];
+
   return (
     <Layout>
-      <HeroSection />
-      <StatsBar />
-      <div id="about"><AboutSection /></div>
-      <div id="programs"><ProgramsSection /></div>
-      <div id="why-ishan-law"><WhyIshanLawSection /></div>
-      <div id="placements"><PlacementsSection /></div>
-      <FacultySection />
-      <div id="campus"><CampusExperience /></div>
-      <div id="news"><NewsSection /></div>
-      <TestimonialsSection />
-      <FAQSection />
-      <CTASection />
+      <DynamicPageSections
+        pageId="homepage"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 };

@@ -5,8 +5,9 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { Briefcase, CheckCircle2 } from "lucide-react";
 import { rt } from "@/lib/richText";
-
 import MediaGallery from "@/components/MediaGallery";
+import DynamicPageSections from "@/components/DynamicPageSections";
+
 export default function InternshipExternshipPage() {
   const { data } = useIshanLawData("internshipexternship");
   const ref = useScrollReveal([data]);
@@ -24,50 +25,80 @@ export default function InternshipExternshipPage() {
     { title: "NGO & Legal Aid", desc: "Work with our Legal Aid Cell and partnered NGOs for public interest matters." }
   ];
 
-  return (
-    <Layout>
-      <PageHeader title={title} subtitle={subtitle} breadcrumbs={[{ label: "Our Courses" }, { label: "Internship & Externship" }]} /> {bannerImage && (<div className="container-wide mt-12"><div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[400px]"><img src={bannerImage} alt={title} className="w-full h-full object-cover" /></div></div>)}
-
-      <section className="py-20 md:py-28" ref={ref}>
-        <div className="container-wide">
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center mb-16">
-            <div className="reveal space-y-6">
-              <h2 className="text-3xl font-bold text-navy mb-4 text-gold-underline">Practical Legal Training</h2>
-              <div 
-                className="text-foreground/80 leading-relaxed format-rich-text text-lg"
-                dangerouslySetInnerHTML={{ __html: rt(overview) }}
-              />
-            </div>
-            <div className="reveal rounded-2xl overflow-hidden border shadow-lg">
-              <img src={image} alt={title} className="w-full h-96 object-cover" />
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <PageHeader 
+        key="header"
+        title={title} 
+        subtitle={subtitle} 
+        breadcrumbs={[{ label: "Our Courses" }, { label: "Internship & Externship" }]} 
+      />
+    ),
+    overview: (
+      <div key="overview">
+        {bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[400px]">
+              <img src={bannerImage} alt={title} className="w-full h-full object-cover" />
             </div>
           </div>
+        )}
 
-          <div className="max-w-5xl mx-auto">
-            <MediaGallery className="reveal mb-16" images={galleryImages} fallback={[]} altPrefix="Internship Gallery" /><h3 className="reveal text-2xl font-bold text-center mb-10">Key Opportunities</h3>
-            <div className="grid sm:grid-cols-2 gap-6">
-              {opportunities.map((opp: any, i: number) => (
-                <div key={opp.title || i} className={`reveal delay-${Math.min(i, 5)}00 bg-card border rounded-xl p-6 hover:shadow-[0_4px_20px_hsl(var(--navy)/0.06)] transition-shadow`}>
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-gold-light flex items-center justify-center shrink-0">
-                      <Briefcase className="w-6 h-6 text-navy" />
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-lg text-foreground mb-2">{opp.title}</h4>
-                      <div 
-                        className="text-sm text-muted-foreground leading-relaxed format-rich-text"
-                        dangerouslySetInnerHTML={{ __html: rt(opp.desc) }}
-                      />
+        <section className="py-20 md:py-28" ref={ref}>
+          <div className="container-wide">
+            <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center mb-16">
+              <div className="reveal space-y-6">
+                <h2 className="text-3xl font-bold text-navy mb-4 text-gold-underline">Practical Legal Training</h2>
+                <div 
+                  className="text-foreground/80 leading-relaxed format-rich-text text-lg"
+                  dangerouslySetInnerHTML={{ __html: rt(overview) }}
+                />
+              </div>
+              <div className="reveal rounded-2xl overflow-hidden border shadow-lg">
+                <img src={image} alt={title} className="w-full h-96 object-cover" />
+              </div>
+            </div>
+
+            <div className="max-w-5xl mx-auto">
+              {galleryImages.length > 0 && (
+                <MediaGallery className="reveal mb-16" images={galleryImages} fallback={[]} altPrefix="Internship Gallery" />
+              )}
+              <h3 className="reveal text-2xl font-bold text-center mb-10">Key Opportunities</h3>
+              <div className="grid sm:grid-cols-2 gap-6">
+                {opportunities.map((opp: any, i: number) => (
+                  <div key={opp.title || i} className={`reveal delay-${Math.min(i, 5)}00 bg-card border rounded-xl p-6 hover:shadow-[0_4px_20px_hsl(var(--navy)/0.06)] transition-shadow`}>
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-gold-light flex items-center justify-center shrink-0">
+                        <Briefcase className="w-6 h-6 text-navy" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-lg text-foreground mb-2">{opp.title}</h4>
+                        <div 
+                          className="text-sm text-muted-foreground leading-relaxed format-rich-text"
+                          dangerouslySetInnerHTML={{ __html: rt(opp.desc) }}
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
 
-      <EnquiryCTA />
+  const defaultOrder = ["header", "overview", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="internship_externship"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

@@ -1,10 +1,9 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function GrievanceRedressalPage() {
   const { data } = useIshanLawData("mandatorydisclosure");
@@ -19,21 +18,26 @@ export default function GrievanceRedressalPage() {
     { step: "Step 3: Hearing & Resolution", description: "A formal hearing is scheduled if necessary, and a resolution is provided within 7-14 working days." },
     { step: "Step 4: Appeal", description: "If unsatisfied with the resolution, the complainant may appeal to the Appellate Authority (Principal)." }
   ];
-  return (
-    <Layout>
-      <PageHeader 
-        title={gr?.title || "Grievance Redressal"} 
-        subtitle={gr?.subtitle || "Structured process for addressing student and stakeholder concerns"} 
-        breadcrumbs={[{ label: "Governance" }, { label: "Grievance Redressal" }]} 
-      />
-      {gr?.bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
-            <img src={gr.bannerImage} alt="Grievance Banner" className="w-full h-full object-cover" />
+
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <div key="header">
+        <PageHeader 
+          title={gr?.title || "Grievance Redressal"} 
+          subtitle={gr?.subtitle || "Structured process for addressing student and stakeholder concerns"} 
+          breadcrumbs={[{ label: "Governance" }, { label: "Grievance Redressal" }]} 
+        />
+        {gr?.bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+              <img src={gr.bannerImage} alt="Grievance Banner" className="w-full h-full object-cover" />
+            </div>
           </div>
-        </div>
-      )}
-      <section className="py-20 md:py-28" ref={ref}>
+        )}
+      </div>
+    ),
+    grievance_content: (
+      <section key="grievance_content" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
             <div className="reveal space-y-6">
@@ -46,7 +50,7 @@ export default function GrievanceRedressalPage() {
               </div>
             </div>
             <div className="reveal delay-100 space-y-6">
-              <a href={portalLink} target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-4 rounded-xl bg-gold text-white font-bold hover:bg-navy transition-colors">
+              <a href={portalLink} target="_blank" rel="noopener noreferrer" className="inline-block px-8 py-4 rounded-xl bg-gold text-white font-bold hover:bg-navy transition-colors shadow-md">
                 Access Grievance Portal
               </a>
               <h2 className="text-lg font-bold text-foreground">Redressal Process</h2>
@@ -55,15 +59,42 @@ export default function GrievanceRedressalPage() {
                   <li key={i} className="flex gap-3"><span className="w-6 h-6 rounded-full bg-navy flex items-center justify-center shrink-0 text-xs font-bold text-primary-foreground">{i + 1}</span> <div><p className="font-semibold">{p.step}</p><div className="text-foreground/70 format-rich-text" dangerouslySetInnerHTML={{ __html: rt(p.description || "") }} /></div></li>
                 ))}
               </ol>
-              <div className="p-5 rounded-xl border bg-section-alt">
-                <h3 className="font-semibold text-foreground mb-2">Internal Complaints Committee</h3>
-                <p className="text-sm">Email: <a href="mailto:registrar@ishan.ac" className="text-navy font-semibold">registrar@ishan.ac</a></p>
-                <p className="text-sm">Phone: <a href="tel:+918448797700" className="text-navy font-semibold">8448797700</a></p>
-              </div>
             </div>
           </div>
         </div>
       </section>
+    ),
+    contact_form: (
+      <div key="contact_form" className="container-wide pb-20">
+        <div className="max-w-5xl mx-auto p-8 rounded-2xl border bg-section-alt shadow-sm">
+          <h3 className="text-xl font-bold text-foreground mb-3">Internal Complaints Committee Contacts</h3>
+          <p className="text-sm text-foreground/70 mb-4">
+            For confidential complaints, student disputes, or procedural appeals, please reach the coordinator directly.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div className="p-4 rounded-xl bg-card border">
+              <p className="text-xs text-muted-foreground uppercase font-bold">Email Support</p>
+              <a href="mailto:registrar@ishan.ac" className="text-navy font-semibold hover:underline">registrar@ishan.ac</a>
+            </div>
+            <div className="p-4 rounded-xl bg-card border">
+              <p className="text-xs text-muted-foreground uppercase font-bold">Direct Telephone</p>
+              <a href="tel:+918448797700" className="text-navy font-semibold hover:underline">+91 8448797700</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  };
+
+  const defaultOrder = ["header", "grievance_content", "contact_form"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="grievance_redressal"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

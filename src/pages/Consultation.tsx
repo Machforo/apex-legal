@@ -2,8 +2,8 @@ import { useState } from "react";
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { User, Phone, BookOpen, Send, Calendar, Clock, CheckCircle } from "lucide-react";
-
 import { toast } from "sonner";
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function Consultation() {
   const [formData, setFormData] = useState({
@@ -34,16 +34,17 @@ export default function Consultation() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader 
+        key="header"
         title="Book a Consultation with Ishan" 
         subtitle="Speak directly with our expert counsellors to find the perfect programme that aligns with your career goals."
       />
-      
-      <div className="container-wide py-16 md:py-24">
+    ),
+    booking_form: (
+      <div key="booking_form" className="container-wide py-16 md:py-24">
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-20 items-start">
-          
           {/* Left Column: Info */}
           <div className="lg:col-span-2 space-y-8">
             <div>
@@ -197,9 +198,20 @@ export default function Consultation() {
               )}
             </div>
           </div>
-          
         </div>
       </div>
+    )
+  };
+
+  const defaultOrder = ["header", "booking_form"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="consultation"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

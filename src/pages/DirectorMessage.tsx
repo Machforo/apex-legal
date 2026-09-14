@@ -3,12 +3,12 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function DirectorMessagePage() {
   const ref = useScrollReveal();
   const { data } = useIshanLawData("aboutus");
-  const defaultImage = "/assets/director.jpg"; // Placeholder path for now
+  const defaultImage = "/assets/director.jpg";
   const msg = data?.directorMessage || {
       name: "Dr. D.K. Garg",
       designation: "Founder Chairman, Ishan Group",
@@ -20,15 +20,17 @@ I warmly invite you to join the Ishan Law community and experience an education 
       image: defaultImage
   };
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title="Director's Message"
         subtitle="A vision for academic excellence and student success"
         breadcrumbs={[{ label: "About", href: "/about" }, { label: "Director's Message" }]}
       />
-
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    profile: (
+      <section key="profile" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-[280px_1fr] gap-10 md:gap-14">
@@ -68,8 +70,19 @@ I warmly invite you to join the Ishan Law community and experience an education 
           </div>
         </div>
       </section>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
 
-      <EnquiryCTA />
+  const defaultOrder = ["header", "profile", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="director_message"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

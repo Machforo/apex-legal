@@ -2,16 +2,23 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function FeePaymentPage() {
   const { data } = useIshanLawData("feepayment");
   const ref = useScrollReveal([data]);
 
-  return (
-    <Layout>
-      <PageHeader title={data?.title || "Fee Payment"} subtitle="Pay your fees online securely through our portal" breadcrumbs={[{ label: "Students" }, { label: "Fee Payment" }]} />
-      <section className="py-20 md:py-28" ref={ref}>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <PageHeader
+        key="header"
+        title={data?.title || "Fee Payment"}
+        subtitle="Pay your fees online securely through our portal"
+        breadcrumbs={[{ label: "Students" }, { label: "Fee Payment" }]}
+      />
+    ),
+    payment_portal: (
+      <section key="payment_portal" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div className="reveal rounded-2xl overflow-hidden shadow-2xl border">
@@ -34,6 +41,18 @@ export default function FeePaymentPage() {
           </div>
         </div>
       </section>
+    )
+  };
+
+  const defaultOrder = ["header", "payment_portal"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="fee_payment"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

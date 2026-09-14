@@ -6,14 +6,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { CheckCircle2 } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
-
-const amenities = [
-  "Separate boys and girls blocks", "Furnished rooms (2/3 sharing)", "Attached washrooms",
-  "Vegetarian mess facility", "CCTV surveillance 24/7", "Wi-Fi connectivity",
-  "Common room with TV", "RO water purifier", "Laundry facility",
-  "First aid and medical support", "Warden supervision round the clock", "200m from main campus",
-];
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function HostelPage() {
   const ref = useScrollReveal();
@@ -39,64 +32,85 @@ export default function HostelPage() {
     "First aid and medical support", "Warden supervision round the clock", "200m from main campus",
   ];
 
-  return (
-    <Layout>
-      <PageHeader title={title} subtitle={subtitle} breadcrumbs={[{ label: "Campus", href: "/infrastructure" }, { label: "Hostel" }]} />
-      {facility?.bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
-            <img src={facility.bannerImage} alt={title} className="w-full h-full object-cover" />
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <PageHeader 
+        key="header"
+        title={title} 
+        subtitle={subtitle} 
+        breadcrumbs={[{ label: "Campus", href: "/infrastructure" }, { label: "Hostel" }]} 
+      />
+    ),
+    overview: (
+      <div key="overview">
+        {facility?.bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+              <img src={facility.bannerImage} alt={title} className="w-full h-full object-cover" />
+            </div>
           </div>
-        </div>
-      )}
-      <section className="py-20 md:py-28" ref={ref}>
-        <div className="container-wide">
-          <div className="max-w-4xl mx-auto">
-            {facility?.image && (
-              <div className="reveal rounded-2xl overflow-hidden shadow-[0_8px_40px_hsl(var(--navy)/0.1)] mb-10 border">
-                <img src={facility.image} alt={title} className="w-full h-[400px] object-cover" />
+        )}
+        <section className="py-20 md:py-28" ref={ref}>
+          <div className="container-wide">
+            <div className="max-w-4xl mx-auto">
+              {facility?.image && (
+                <div className="reveal rounded-2xl overflow-hidden shadow-[0_8px_40px_hsl(var(--navy)/0.1)] mb-10 border">
+                  <img src={facility.image} alt={title} className="w-full h-[400px] object-cover" />
+                </div>
+              )}
+              <div className="reveal space-y-5 mb-12">
+                <h2 className="text-2xl font-bold">{overviewHeading}</h2>
+                <div 
+                  className="text-foreground/70 leading-relaxed format-rich-text"
+                  dangerouslySetInnerHTML={{ __html: rt(content) }}
+                />
               </div>
-            )}
-            <div className="reveal space-y-5 mb-12">
-              <h2 className="text-2xl font-bold">{overviewHeading}</h2>
-              <div 
-                className="text-foreground/70 leading-relaxed format-rich-text"
-                dangerouslySetInnerHTML={{ __html: rt(content) }}
-              />
-            </div>
 
-            <div className="reveal delay-100 grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-12">
-              {amenities.map((a) => (
-                <div key={a} className="flex items-center gap-2.5 px-4 py-3 rounded-lg border bg-card text-sm text-foreground/80">
-                  <CheckCircle2 className="w-4 h-4 text-gold shrink-0" /> {a}
-                </div>
-              ))}
-            </div>
+              <div className="reveal delay-100 grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-12">
+                {amenities.map((a) => (
+                  <div key={a} className="flex items-center gap-2.5 px-4 py-3 rounded-lg border bg-card text-sm text-foreground/80">
+                    <CheckCircle2 className="w-4 h-4 text-gold shrink-0" /> {a}
+                  </div>
+                ))}
+              </div>
 
-            <div className="reveal delay-200 grid sm:grid-cols-2 gap-4 mb-12">
-              {specs.map((s: any, i: number) => (
-                <div key={s.title || i} className="p-5 rounded-xl border bg-section-alt text-center">
-                  <p className="text-xs text-muted-foreground mb-1">{s.title}</p>
-                  <p className="text-sm font-semibold text-foreground">{s.description}</p>
-                </div>
-              ))}
-            </div>
+              <div className="reveal delay-200 grid sm:grid-cols-2 gap-4 mb-12">
+                {specs.map((s: any, i: number) => (
+                  <div key={s.title || i} className="p-5 rounded-xl border bg-section-alt text-center">
+                    <p className="text-xs text-muted-foreground mb-1">{s.title}</p>
+                    <p className="text-sm font-semibold text-foreground">{s.description}</p>
+                  </div>
+                ))}
+              </div>
 
-            <div className="reveal delay-300 rounded-xl border bg-card p-6">
-              <h3 className="font-semibold text-foreground mb-3">Warden Contact</h3>
-              <p className="text-sm">For hostel enquiries and applications, contact the admissions office at <a href="tel:+918448797700" className="text-navy font-semibold">8448797700</a> or visit the campus.</p>
+              <div className="reveal delay-300 rounded-xl border bg-card p-6">
+                <h3 className="font-semibold text-foreground mb-3">Warden Contact</h3>
+                <p className="text-sm">For hostel enquiries and applications, contact the admissions office at <a href="tel:+918448797700" className="text-navy font-semibold">8448797700</a> or visit the campus.</p>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
-      {facility?.images?.length > 0 && (
-        <section className="pb-20 md:pb-28">
-          <div className="container-wide max-w-6xl mx-auto">
-            <MediaGallery images={facility.images} altPrefix={facility?.title || "Facility photo"} />
           </div>
         </section>
-      )}
-      <EnquiryCTA />
+      </div>
+    ),
+    gallery: facility?.images?.length > 0 ? (
+      <section key="gallery" className="pb-20 md:pb-28">
+        <div className="container-wide max-w-6xl mx-auto">
+          <MediaGallery images={facility.images} altPrefix={facility?.title || "Facility photo"} />
+        </div>
+      </section>
+    ) : null,
+    cta: <EnquiryCTA key="cta" />
+  };
+
+  const defaultOrder = ["header", "overview", "gallery", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="hostel"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

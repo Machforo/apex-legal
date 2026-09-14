@@ -4,7 +4,7 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function PrincipalMessagePage() {
   const { data } = useIshanLawData("aboutus");
@@ -25,15 +25,17 @@ I invite you to join our community and embark on a journey that will build a for
       image: pm?.image || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg"
   };
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title="Principal's Message"
         subtitle="Producing ethical and practice-ready legal professionals"
         breadcrumbs={[{ label: "About", href: "/about" }, { label: "Principal's Message" }]}
       />
-
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    profile: (
+      <section key="profile" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="max-w-4xl mx-auto">
             <div className="grid md:grid-cols-[280px_1fr] gap-10 md:gap-14">
@@ -74,8 +76,19 @@ I invite you to join our community and embark on a journey that will build a for
           </div>
         </div>
       </section>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
 
-      <EnquiryCTA />
+  const defaultOrder = ["header", "profile", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="principal_message"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

@@ -4,6 +4,7 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { BookOpen, ExternalLink, Calendar, Star } from "lucide-react";
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function PublicationsPage() {
   const { data } = useIshanLawData("publications");
@@ -16,15 +17,17 @@ export default function PublicationsPage() {
 
   const publications = Array.isArray(data) && data.length > 0 ? data : fallbackPublications;
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader 
+        key="header"
         title="Faculty Publications" 
         subtitle="Exploring the frontiers of legal knowledge through impactful research and publications." 
         breadcrumbs={[{ label: "Career & Research" }, { label: "Publications" }]} 
       />
-      
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    publications_list: (
+      <section key="publications_list" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="max-w-4xl mx-auto space-y-6">
             <h2 className="text-3xl font-bold text-foreground text-center mb-10">Recent Academic Publications</h2>
@@ -80,8 +83,21 @@ export default function PublicationsPage() {
           </div>
         </div>
       </section>
-      
-      <EnquiryCTA />
+    ),
+    cta: (
+      <EnquiryCTA key="cta" />
+    )
+  };
+
+  const defaultOrder = ["header", "publications_list", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="publications"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

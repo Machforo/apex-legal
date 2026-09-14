@@ -3,12 +3,9 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import MediaGallery from "@/components/MediaGallery";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Monitor, Wifi, Clock, Shield } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
-
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function ITLabPage() {
   const { data } = useIshanLawData("facilities");
@@ -27,67 +24,82 @@ export default function ITLabPage() {
     { title: "Internet", description: "High-speed Wi-Fi" }
   ];
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title={title}
         subtitle={subtitle}
         breadcrumbs={[{ label: "Campus", href: "/infrastructure" }, { label: "Research Lab" }]}
       />
-
-      {facility?.bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
-            <img src={facility.bannerImage} alt={title} className="w-full h-full object-cover" />
-          </div>
-        </div>
-      )}
-
-      <section className="py-20 md:py-28" ref={ref}>
-        <div className="container-wide">
-          <div className="max-w-4xl mx-auto">
-            <div className="reveal rounded-2xl overflow-hidden border mb-12 shadow-sm">
-              <img src={image} alt={title} className="w-full h-80 object-cover" />
-            </div>
-            <div className="reveal space-y-5 mb-12">
-              <h2 className="text-2xl font-bold">{overviewHeading}</h2>
-              <div 
-                className="text-foreground/70 leading-relaxed format-rich-text"
-                dangerouslySetInnerHTML={{ __html: rt(content) }}
-              />
-            </div>
-
-            <div className="reveal delay-100 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-              {specs.map((s: any, i: number) => (
-                <div key={s.title || i} className="p-4 rounded-xl border bg-card">
-                  <p className="text-xs text-muted-foreground mb-1">{s.title}</p>
-                  <p className="text-sm font-semibold text-foreground">{s.description}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="reveal delay-200 rounded-xl border bg-section-alt p-6">
-              <h3 className="font-semibold text-foreground mb-3">Lab Rules</h3>
-              <ul className="space-y-2 text-sm">
-                <li>• Students must carry their ID card to access the lab</li>
-                <li>• No food or beverages inside the lab area</li>
-                <li>• Personal USB drives require prior scanning approval</li>
-                <li>• Report any hardware/software issues to the lab attendant immediately</li>
-                <li>• Save work regularly — the institute is not responsible for data loss</li>
-              </ul>
+    ),
+    overview: (
+      <div key="overview">
+        {facility?.bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+              <img src={facility.bannerImage} alt={title} className="w-full h-full object-cover" />
             </div>
           </div>
-        </div>
-      </section>
+        )}
 
-      {facility?.images?.length > 0 && (
-        <section className="pb-20 md:pb-28">
-          <div className="container-wide max-w-6xl mx-auto">
-            <MediaGallery images={facility.images} altPrefix={facility?.title || "Facility photo"} />
+        <section className="py-20 md:py-28" ref={ref}>
+          <div className="container-wide">
+            <div className="max-w-4xl mx-auto">
+              <div className="reveal rounded-2xl overflow-hidden border mb-12 shadow-sm">
+                <img src={image} alt={title} className="w-full h-80 object-cover" />
+              </div>
+              <div className="reveal space-y-5 mb-12">
+                <h2 className="text-2xl font-bold">{overviewHeading}</h2>
+                <div 
+                  className="text-foreground/70 leading-relaxed format-rich-text"
+                  dangerouslySetInnerHTML={{ __html: rt(content) }}
+                />
+              </div>
+
+              <div className="reveal delay-100 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
+                {specs.map((s: any, i: number) => (
+                  <div key={s.title || i} className="p-4 rounded-xl border bg-card">
+                    <p className="text-xs text-muted-foreground mb-1">{s.title}</p>
+                    <p className="text-sm font-semibold text-foreground">{s.description}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="reveal delay-200 rounded-xl border bg-section-alt p-6">
+                <h3 className="font-semibold text-foreground mb-3">Lab Rules</h3>
+                <ul className="space-y-2 text-sm">
+                  <li>• Students must carry their ID card to access the lab</li>
+                  <li>• No food or beverages inside the lab area</li>
+                  <li>• Personal USB drives require prior scanning approval</li>
+                  <li>• Report any hardware/software issues to the lab attendant immediately</li>
+                  <li>• Save work regularly — the institute is not responsible for data loss</li>
+                </ul>
+              </div>
+            </div>
           </div>
         </section>
-      )}
-      <EnquiryCTA />
+      </div>
+    ),
+    gallery: facility?.images?.length > 0 ? (
+      <section key="gallery" className="pb-20 md:pb-28">
+        <div className="container-wide max-w-6xl mx-auto">
+          <MediaGallery images={facility.images} altPrefix={facility?.title || "Facility photo"} />
+        </div>
+      </section>
+    ) : null,
+    cta: <EnquiryCTA key="cta" />
+  };
+
+  const defaultOrder = ["header", "overview", "gallery", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="it_lab"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

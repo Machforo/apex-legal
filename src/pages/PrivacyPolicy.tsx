@@ -1,13 +1,17 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function PrivacyPolicyPage() {
   const ref = useScrollReveal();
-  return (
-    <Layout>
-      <PageHeader title="Privacy Policy" breadcrumbs={[{ label: "Privacy Policy" }]} />
-      <section className="py-20 md:py-28" ref={ref}>
+
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <PageHeader key="header" title="Privacy Policy" breadcrumbs={[{ label: "Privacy Policy" }]} />
+    ),
+    policy_content: (
+      <section key="policy_content" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
             <div className="reveal space-y-8">
@@ -34,6 +38,18 @@ export default function PrivacyPolicyPage() {
           </div>
         </div>
       </section>
+    )
+  };
+
+  const defaultOrder = ["header", "policy_content"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="privacy_policy"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

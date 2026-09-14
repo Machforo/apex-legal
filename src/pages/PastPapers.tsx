@@ -5,7 +5,8 @@ import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { Download, FileText, Search } from "lucide-react";
 import { useState } from "react";
 import { rt } from "@/lib/richText";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
+import EnquiryCTA from "@/components/EnquiryCTA";
 
 export default function PastPapersPage() {
   const { data } = useIshanLawData("pastpapers");
@@ -48,10 +49,17 @@ export default function PastPapersPage() {
     p.year.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  return (
-    <Layout>
-      <PageHeader title={title} subtitle={subtitle} breadcrumbs={[{ label: "Students" }, { label: "Past Papers" }]} />
-      <section className="py-20 md:py-28" ref={ref}>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <PageHeader
+        key="header"
+        title={title}
+        subtitle={subtitle}
+        breadcrumbs={[{ label: "Students" }, { label: "Past Papers" }]}
+      />
+    ),
+    paper_catalog: (
+      <section key="paper_catalog" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-12 gap-12 items-start">
             <div className="lg:col-span-5 reveal space-y-8">
@@ -134,6 +142,19 @@ export default function PastPapersPage() {
           </div>
         </div>
       </section>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
+
+  const defaultOrder = ["header", "paper_catalog", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="past_papers"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

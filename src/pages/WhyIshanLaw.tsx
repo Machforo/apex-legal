@@ -5,7 +5,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Award, Users, Globe, BookOpen, Building, TrendingUp, Shield, Lightbulb, GraduationCap, Heart, CheckCircle } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 const defaultReasons = [
   { title: "Clinical Approach", description: "Learn by doing with our advanced Moot Court setups.", icon: "Gavel" },
@@ -40,15 +40,17 @@ export default function WhyIshanLawPage() {
     }
   };
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title="Why Ishan Law?"
         subtitle="8 reasons why students choose Ishan Law Institute for a career in advocacy and judiciary"
         breadcrumbs={[{ label: "Why Ishan Law?" }]}
       />
-
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    overview: (
+      <section key="overview" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-6xl mx-auto mb-12">
             <div className="reveal space-y-8">
@@ -95,8 +97,25 @@ export default function WhyIshanLawPage() {
           </div>
         </div>
       </section>
+    ),
+    cta: (
+      <EnquiryCTA 
+        key="cta"
+        title="Convinced? Take the Next Step" 
+        subtitle="Schedule a campus visit or speak with our admissions counsellor today." 
+      />
+    )
+  };
 
-      <EnquiryCTA title="Convinced? Take the Next Step" subtitle="Schedule a campus visit or speak with our admissions counsellor today." />
+  const defaultOrder = ["header", "overview", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="why_choose_us"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

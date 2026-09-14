@@ -3,10 +3,10 @@ import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { ExternalLink } from "lucide-react";
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
 
 export default function ResearchJournalPage() {
   const { data } = useIshanLawData("researchjournal");
@@ -28,19 +28,21 @@ export default function ResearchJournalPage() {
   const stats = data?.stats?.length > 0 ? data.stats : defaultStats;
   const guidelinesLink = data?.guidelinesLink || "#";
 
-  return (
-    <Layout>
-      <PageHeader title={title} subtitle={subtitle} breadcrumbs={[{ label: "Research" }, { label: "Research Journal" }]} />
-
-      {bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
-            <img src={bannerImage} alt="Research Journal" className="w-full h-full object-cover" />
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <div key="header">
+        <PageHeader title={title} subtitle={subtitle} breadcrumbs={[{ label: "Research" }, { label: "Research Journal" }]} />
+        {bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+              <img src={bannerImage} alt="Research Journal" className="w-full h-full object-cover" />
+            </div>
           </div>
-        </div>
-      )}
-
-      <section className="py-20 md:py-28" ref={ref}>
+        )}
+      </div>
+    ),
+    journal_details: (
+      <section key="journal_details" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
             <div className="reveal space-y-6">
@@ -77,7 +79,21 @@ export default function ResearchJournalPage() {
           </div>
         </div>
       </section>
-      <EnquiryCTA />
+    ),
+    cta: (
+      <EnquiryCTA key="cta" />
+    )
+  };
+
+  const defaultOrder = ["header", "journal_details", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="research_journal"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

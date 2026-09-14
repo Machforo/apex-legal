@@ -4,10 +4,9 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 const defaultPrograms = [
   { name: "Cyber Law & Digital Security", duration: "3 Months", fee: "₹5,000", eligibility: "Any student / graduate", desc: "Covers IT Act 2000, cyber crimes, digital evidence, data protection, and social media regulations." },
@@ -25,15 +24,17 @@ export default function CertificateProgramsPage() {
   
   const programs = Array.isArray(programsData) && programsData.length > 0 ? programsData : defaultPrograms;
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title={overviewData?.title || "Certificate Programs"}
         subtitle={overviewData?.subtitle || "Specialized legal add-on courses that complement your degree and boost professional readiness"}
         breadcrumbs={[{ label: "Learning", href: "/news-events" }, { label: "Certificate Programs" }]}
       />
-
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    certificate_list: (
+      <section key="certificate_list" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="reveal rounded-2xl overflow-hidden border mb-12 shadow-sm max-w-4xl mx-auto">
             <img src={overviewData?.image || "https://law.ishan.ac/all-law/gallery-photos/academics/academics-11.jpg"} alt="Certificate Programs" className="w-full h-80 object-cover" />
@@ -61,8 +62,19 @@ export default function CertificateProgramsPage() {
           </div>
         </div>
       </section>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
 
-      <EnquiryCTA />
+  const defaultOrder = ["header", "certificate_list", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="certificate_programs"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

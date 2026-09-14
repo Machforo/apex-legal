@@ -5,19 +5,16 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { TrendingUp, Building2, Users2, Star, CheckCircle2 } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import MediaGallery from "@/components/MediaGallery";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 const defaultStats = [];
-
 const defaultRecruiters = [];
-
 const defaultTestimonials = [];
 
 export default function PlacementsPage() {
   const { data } = useIshanLawData("placements");
   const ref = useScrollReveal([data]);
 
-  // Schema field names: placementNumbers, recruitingPartners, successStories, placementProcess
   const stats = data?.placementNumbers?.length > 0 ? data.placementNumbers : defaultStats;
   const recruiters = data?.recruitingPartners?.length > 0 ? data.recruitingPartners : defaultRecruiters;
   const testimonials = data?.successStories?.length > 0 ? data.successStories : defaultTestimonials;
@@ -29,109 +26,119 @@ export default function PlacementsPage() {
     { step: "5", title: "Onboarding", desc: "Offer letter issuance and onboarding support" },
   ];
 
-  return (
-    <Layout>
-      <PageHeader title={data?.title || "Career Outcomes"} subtitle={data?.subtitle || "Consistent record of placements in top-tier law firms, corporate legal cells, and judicial services"} breadcrumbs={[{ label: "Career Outcomes" }]} />
-
-      {data?.bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
-            <img src={data.bannerImage} alt="Placements Overview" className="w-full h-full object-cover" />
-          </div>
-        </div>
-      )}
-
-      <section className="py-20 md:py-28" ref={ref}>
-        <div className="container-wide">
-          {/* Stats */}
-          <div className="reveal grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-            {stats.map((s: any, i: number) => {
-              const Icon = s.icon && typeof s.icon !== 'string' ? s.icon : TrendingUp;
-              return (
-                <div key={s.label || i} className="text-center p-6 rounded-xl bg-section-alt border">
-                  <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-gold-light flex items-center justify-center"><Icon className="w-6 h-6 text-navy" /></div>
-                  <p className="font-bold text-navy text-2xl mb-1">{s.number || s.value}</p>
-                  <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider">{s.label}</p>
-                </div>
-              );
-            })}
-          </div>
-
-          {/* Process */}
-          <div className="reveal delay-100 max-w-3xl mx-auto mb-16">
-            <h2 className="text-2xl font-bold text-foreground mb-6">Placement Process</h2>
-            <div className="space-y-4">
-              {placementProcess.map((step: any, i: number) => (
-                <div key={i} className="flex gap-4 items-start p-5 rounded-lg border bg-card">
-                  <div className="w-10 h-10 rounded-full bg-navy flex items-center justify-center shrink-0"><span className="text-sm font-bold text-primary-foreground">{step.step || i+1}</span></div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">{step.title}</h3>
-                    <p className="text-sm text-muted-foreground">{step.desc}</p>
-                  </div>
-                </div>
-              ))}
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <PageHeader 
+        key="header"
+        title={data?.title || "Career Outcomes"} 
+        subtitle={data?.subtitle || "Consistent record of placements in top-tier law firms, corporate legal cells, and judicial services"} 
+        breadcrumbs={[{ label: "Career Outcomes" }]} 
+      />
+    ),
+    overview: (
+      <div key="overview">
+        {data?.bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+              <img src={data.bannerImage} alt="Placements Overview" className="w-full h-full object-cover" />
             </div>
           </div>
+        )}
 
-          {/* Recruiters */}
-          <div className="reveal delay-200 mb-16">
-            <h2 className="text-2xl font-bold text-foreground mb-10 text-center">Our Recruiting Partners</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-              {recruiters.map((r: any, i: number) => (
-                <div key={r.name || i} className="flex items-center justify-center p-8 rounded-xl border bg-card hover:shadow-md transition-shadow h-32">
-                  {r.logo ? (
-                    <img src={r.logo} alt={r.name} className="h-16 md:h-20 w-auto object-contain" />
-                  ) : (
-                    <span className="text-sm font-semibold text-foreground/70">{r.name || r}</span>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Testimonials */}
-          <div className="reveal delay-300">
-            <h2 className="text-2xl font-bold text-foreground mb-6 text-center">Student Success Stories</h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              {testimonials.map((t: any, i: number) => (
-                <div key={t.name || i} className="p-6 rounded-xl border bg-card flex flex-col justify-between h-full">
-                  <div>
-                    <Star className="w-5 h-5 text-gold mb-4" />
-                    {(t.quote || t.message) && <p className="text-sm leading-relaxed italic mb-6 text-foreground/80">"{t.quote || t.message}"</p>}
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-navy flex items-center justify-center overflow-hidden shrink-0">
-                      {t.image ? <img src={t.image} alt={t.name} className="w-full h-full object-cover" /> : <span className="text-sm font-bold text-primary-foreground">{t.name?.[0]}</span>}
+        <section className="py-20 md:py-28" ref={ref}>
+          <div className="container-wide">
+            {/* Stats */}
+            {stats.length > 0 && (
+              <div className="reveal grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+                {stats.map((s: any, i: number) => {
+                  const Icon = s.icon && typeof s.icon !== 'string' ? s.icon : TrendingUp;
+                  return (
+                    <div key={s.label || i} className="text-center p-6 rounded-xl bg-section-alt border">
+                      <div className="w-12 h-12 mx-auto mb-3 rounded-xl bg-gold-light flex items-center justify-center"><Icon className="w-6 h-6 text-navy" /></div>
+                      <p className="font-bold text-navy text-2xl mb-1">{s.number || s.value}</p>
+                      <p className="text-xs text-muted-foreground font-medium uppercase tracking-wider">{s.label}</p>
                     </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* Process */}
+            <div className="reveal delay-100 max-w-3xl mx-auto mb-16">
+              <h2 className="text-2xl font-bold text-foreground mb-6">Placement Process</h2>
+              <div className="space-y-4">
+                {placementProcess.map((step: any, i: number) => (
+                  <div key={i} className="flex gap-4 items-start p-5 rounded-lg border bg-card">
+                    <div className="w-10 h-10 rounded-full bg-navy flex items-center justify-center shrink-0"><span className="text-sm font-bold text-primary-foreground">{step.step || i+1}</span></div>
                     <div>
-                      <p className="text-sm font-semibold text-foreground">{t.name}</p>
-                      <p className="text-xs text-muted-foreground">{t.role}{t.role && t.company ? " at " : ""}{t.company}</p>
-                      <p className="text-xs text-navy font-medium">{t.batch}</p>
+                      <h3 className="font-semibold text-foreground mb-1">{step.title}</h3>
+                      <p className="text-sm text-muted-foreground">{step.desc}</p>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+
+            {/* Recruiters */}
+            {recruiters.length > 0 && (
+              <div className="reveal delay-200 mb-16">
+                <h2 className="text-2xl font-bold text-foreground mb-10 text-center">Our Recruiting Partners</h2>
+                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
+                  {recruiters.map((r: any, i: number) => (
+                    <div key={r.name || i} className="flex items-center justify-center p-8 rounded-xl border bg-card hover:shadow-md transition-shadow h-32">
+                      {r.logo ? (
+                        <img src={r.logo} alt={r.name} className="h-16 md:h-20 w-auto object-contain" />
+                      ) : (
+                        <span className="text-sm font-semibold text-foreground/70">{r.name || r}</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Testimonials */}
+            {testimonials.length > 0 && (
+              <div className="reveal delay-300">
+                <h2 className="text-2xl font-bold text-foreground mb-6 text-center">Student Success Stories</h2>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {testimonials.map((t: any, i: number) => (
+                    <div key={t.name || i} className="p-6 rounded-xl border bg-card flex flex-col justify-between h-full">
+                      <div>
+                        <Star className="w-5 h-5 text-gold mb-4" />
+                        {(t.quote || t.message) && <p className="text-sm leading-relaxed italic mb-6 text-foreground/80">"{t.quote || t.message}"</p>}
+                        {t.name && <p className="font-semibold text-foreground text-sm">{t.name}</p>}
+                        {t.package && <p className="text-xs text-gold font-bold">{t.package}</p>}
+                        {t.role && <p className="text-xs text-muted-foreground">{t.role}</p>}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
+        </section>
+      </div>
+    ),
+    gallery: data?.gallery?.length > 0 ? (
+      <section key="gallery" className="pb-20 md:pb-28">
+        <div className="container-wide max-w-6xl mx-auto">
+          <MediaGallery images={data.gallery} altPrefix="Placements photo" />
         </div>
       </section>
+    ) : null,
+    cta: <EnquiryCTA key="cta" />
+  };
 
-      {data?.statsInfographic && (
-        <section className="pb-20 md:pb-28 text-center container-wide max-w-4xl mx-auto">
-           <img src={data.statsInfographic} alt="Placement Stats" className="w-full h-auto rounded-2xl shadow-md border" />
-        </section>
-      )}
+  const defaultOrder = ["header", "overview", "gallery", "cta"];
 
-      {data?.placementCeremonyImages?.length > 0 && (
-        <section className="pb-20 md:pb-28">
-          <div className="container-wide max-w-6xl mx-auto">
-            <h2 className="text-2xl font-bold text-foreground mb-10 text-center">Placement Ceremony</h2>
-            <MediaGallery images={data.placementCeremonyImages} altPrefix="Placement Ceremony" />
-          </div>
-        </section>
-      )}
-
-      <EnquiryCTA />
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="placements"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

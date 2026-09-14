@@ -1,51 +1,55 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Calendar, MapPin, Tag, Clock, Share2 } from "lucide-react";
+import { Calendar, MapPin, Share2 } from "lucide-react";
+import EnquiryCTA from "@/components/EnquiryCTA";
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function EventsCalendarPage() {
   const ref = useScrollReveal();
 
   const events = [
     {
-      name: "National Seminar on Digital Business",
+      name: "National Seminar on Digital Business & Cyber Law",
       date: "May 15, 2024",
       venue: "Main Auditorium",
       category: "Academic",
-      description: "A comprehensive seminar on how digital transformation is reshaping traditional business models.",
+      description: "A comprehensive seminar on how digital transformation and cyber jurisprudence are reshaping commercial legal practices.",
     },
     {
-      name: "Kshitiz 2024: Annual Cultural Fest",
+      name: "Lex Novitas 2024: Annual National Moot Court Competition",
       date: "June 05-07, 2024",
-      venue: "Campus Grounds",
-      category: "Cultural",
-      description: "Our flagship cultural festival featuring music, dance, and arts from across the region.",
+      venue: "High Court Simulation Hall",
+      category: "Moot Court",
+      description: "Flagship 3-day moot court tournament with teams competing from 40+ premier Indian law universities.",
     },
     {
-      name: "Mega Placement Drive",
+      name: "Mega Legal Placement & Internship Drive",
       date: "May 20, 2024",
-      venue: "Placement Cell",
+      venue: "Placement Cell & Moot Hall",
       category: "Placement",
-      description: "Annual recruitment event with 30+ corporate partners participating.",
+      description: "Annual recruitment and apprenticeship drive with leading law firms, corporate houses, and senior advocates.",
     },
     {
-      name: "Workshop on Python for Data Science",
+      name: "Workshop on Constitutional & Criminal Trial Advocacy",
       date: "May 10, 2024",
-      venue: "IT Lab 1",
+      venue: "Seminar Hall 1",
       category: "Workshop",
-      description: "Hands-on skill development workshop for BCA and interested BBA students.",
+      description: "Hands-on litigation skill development workshop conducted by designated senior advocates of Allahabad High Court.",
     },
   ];
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title="Events Calendar"
         subtitle="Stay updated with academic, cultural, and professional events at Ishan Law Institute."
         breadcrumbs={[{ label: "Events Calendar" }]}
       />
-
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    calendar_schedule: (
+      <section key="calendar_schedule" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="max-w-4xl mx-auto space-y-12">
             <div className="reveal-up space-y-6 text-center">
@@ -54,7 +58,7 @@ export default function EventsCalendarPage() {
                 Plan Your Campus Experience
               </h2>
               <p className="text-foreground/70 leading-relaxed max-w-2xl mx-auto">
-                Ishan Law Institute maintains a packed events calendar including national seminars, guest lectures, cultural festivals, sports meets, and placement drives. This helps students plan their participation and never miss an opportunity for growth.
+                Ishan Law Institute maintains a packed events calendar including national seminars, guest lectures, moot court tournaments, sports meets, and placement drives. This helps students plan their participation and never miss an opportunity for growth.
               </p>
               <div className="flex justify-center gap-4 pt-2">
                 <button className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gold/20 text-xs font-bold text-navy hover:bg-gold hover:text-white transition-all shadow-sm">
@@ -99,6 +103,21 @@ export default function EventsCalendarPage() {
           </div>
         </div>
       </section>
+    ),
+    cta: (
+      <EnquiryCTA key="cta" />
+    )
+  };
+
+  const defaultOrder = ["header", "calendar_schedule", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="events_calendar"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

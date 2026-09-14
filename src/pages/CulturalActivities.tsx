@@ -5,7 +5,7 @@ import MediaGallery from "@/components/MediaGallery";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function CulturalActivitiesPage() {
   const { data } = useIshanLawData("culturalactivities");
@@ -29,55 +29,77 @@ export default function CulturalActivitiesPage() {
     { url: "https://law.ishan.ac/all-law/gallery-photos/cultural-activities/cultural-11.jpg" }
   ];
 
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <PageHeader 
+        key="header"
+        title={title} 
+        subtitle={subtitle} 
+        breadcrumbs={[{ label: "Learning" }, { label: "Cultural Activities" }]} 
+      />
+    ),
+    overview: (
+      <div key="overview">
+        {bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+              <img src={bannerImage} alt="Cultural Activities" className="w-full h-full object-cover" />
+            </div>
+          </div>
+        )}
+
+        <section className="py-20 md:py-28" ref={ref}>
+          <div className="container-wide">
+            <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+              <div className="reveal relative">
+                <div className="aspect-[4/3] rounded-2xl overflow-hidden border shadow-lg">
+                  <img src={image} alt={title} className="w-full h-full object-cover" />
+                </div>
+                <div className="absolute -bottom-6 -right-6 bg-gold text-navy p-4 rounded-xl shadow-xl font-bold hidden md:block">
+                  KSHITIZ FEST
+                </div>
+              </div>
+              <div className="reveal-right space-y-6">
+                <h2 className="text-3xl font-bold text-foreground leading-tight">Celebrating Creative Excellence</h2>
+                <div 
+                  className="text-foreground/70 leading-relaxed format-rich-text"
+                  dangerouslySetInnerHTML={{ __html: rt(content) }}
+                />
+              
+                <h2 className="text-xl font-bold text-foreground">Cultural Highlights</h2>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {items.map((s: any, i: number) => (
+                    <div key={s.title || i} className="px-4 py-3 rounded-lg border bg-card text-sm text-foreground/80 flex flex-col justify-center">
+                       <span className="font-semibold text-foreground mb-1">{s.title}</span>
+                       <span 
+                         className="text-xs text-muted-foreground leading-relaxed format-rich-text"
+                         dangerouslySetInnerHTML={{ __html: rt(s.desc) }}
+                       />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {galleryImages.length > 0 && (
+              <MediaGallery className="mt-8" images={galleryImages} altPrefix="Cultural event" />
+            )}
+          </div>
+        </section>
+      </div>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
+
+  const defaultOrder = ["header", "overview", "cta"];
+
   return (
     <Layout>
-      <PageHeader title={title} subtitle={subtitle} breadcrumbs={[{ label: "Learning" }, { label: "Cultural Activities" }]} />
-
-      {bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
-            <img src={bannerImage} alt="Cultural Activities" className="w-full h-full object-cover" />
-          </div>
-        </div>
-      )}
-
-      <section className="py-20 md:py-28" ref={ref}>
-        <div className="container-wide">
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-            <div className="reveal relative">
-              <div className="aspect-[4/3] rounded-2xl overflow-hidden border shadow-lg">
-                <img src={image} alt={title} className="w-full h-full object-cover" />
-              </div>
-              <div className="absolute -bottom-6 -right-6 bg-gold text-navy p-4 rounded-xl shadow-xl font-bold hidden md:block">
-                KSHITIZ FEST
-              </div>
-            </div>
-            <div className="reveal-right space-y-6">
-              <h2 className="text-3xl font-bold text-foreground leading-tight">Celebrating Creative Excellence</h2>
-              <div 
-                className="text-foreground/70 leading-relaxed format-rich-text"
-                dangerouslySetInnerHTML={{ __html: rt(content) }}
-              />
-            
-            <h2 className="text-xl font-bold text-foreground">Cultural Highlights</h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {items.map((s: any, i: number) => (
-                <div key={s.title || i} className="px-4 py-3 rounded-lg border bg-card text-sm text-foreground/80 flex flex-col justify-center">
-                   <span className="font-semibold text-foreground mb-1">{s.title}</span>
-                   <span 
-                     className="text-xs text-muted-foreground leading-relaxed format-rich-text"
-                     dangerouslySetInnerHTML={{ __html: rt(s.desc) }}
-                   />
-                </div>
-              ))}
-            </div>
-            </div>
-            
-            <MediaGallery className="mt-8" images={galleryImages} altPrefix="Cultural event" />
-          </div>
-        </div>
-      </section>
-      <EnquiryCTA />
+      <DynamicPageSections
+        pageId="cultural_activities"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

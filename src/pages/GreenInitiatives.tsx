@@ -6,6 +6,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Leaf, Sun, Recycle, Droplets, TreePine } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 
 const defaultInitiatives = [
@@ -36,63 +37,78 @@ export default function GreenInitiativesPage() {
     }
   };
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title="Green Initiatives"
         subtitle="Our commitment to sustainability through solar energy, waste management, and eco-conscious campus practices"
         breadcrumbs={[{ label: "About", href: "/about" }, { label: "Green Initiatives" }]}
       />
-
-      {bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[400px]">
-            <img src={bannerImage} alt="Green Campus Ishan Law" className="w-full h-full object-cover" />
+    ),
+    initiatives_list: (
+      <div key="initiatives_list">
+        {bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[400px]">
+              <img src={bannerImage} alt="Green Campus Ishan Law" className="w-full h-full object-cover" />
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <section className="py-20 md:py-28" ref={ref}>
-        <div className="container-wide">
-          <div className="max-w-4xl mx-auto space-y-12">
-            <MediaGallery
-              className="reveal"
-              images={galleryImages}
-              fallback={image ? [{ url: image }] : []}
-              altPrefix="Ishan Law sustainability"
-            />
-            {content && (
-              <div className="reveal space-y-6">
-                <div 
-                  className="text-lg leading-relaxed format-rich-text"
-                  dangerouslySetInnerHTML={{ __html: rt(content) }}
-                />
-              </div>
-            )}
-            {cmsInitiatives.map((item: any, i: number) => {
-              const Icon = getIcon(item.icon);
-              return (
-                <div key={item.title} className={`reveal delay-${Math.min(i, 4)}00 grid md:grid-cols-[1fr_auto] gap-6 items-center p-6 rounded-xl border bg-card`}>
-                  <div className="flex gap-5">
-                    <div className="w-12 h-12 rounded-xl bg-[hsl(var(--success)/0.1)] flex items-center justify-center shrink-0">
-                      <Icon className="w-6 h-6" style={{ color: "hsl(var(--success))" }} />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
-                      <p className="text-sm leading-relaxed">{item.desc}</p>
-                    </div>
-                  </div>
-                  <div className="px-4 py-2 rounded-lg bg-[hsl(var(--success)/0.08)] text-sm font-semibold whitespace-nowrap" style={{ color: "hsl(var(--success))" }}>
-                    {item.stat}
-                  </div>
+        <section className="py-20 md:py-28" ref={ref}>
+          <div className="container-wide">
+            <div className="max-w-4xl mx-auto space-y-12">
+              <MediaGallery
+                className="reveal"
+                images={galleryImages}
+                fallback={image ? [{ url: image }] : []}
+                altPrefix="Ishan Law sustainability"
+              />
+              {content && (
+                <div className="reveal space-y-6">
+                  <div 
+                    className="text-lg leading-relaxed format-rich-text"
+                    dangerouslySetInnerHTML={{ __html: rt(content) }}
+                  />
                 </div>
-              );
-            })}
+              )}
+              {cmsInitiatives.map((item: any, i: number) => {
+                const Icon = getIcon(item.icon);
+                return (
+                  <div key={item.title} className={`reveal delay-${Math.min(i, 4)}00 grid md:grid-cols-[1fr_auto] gap-6 items-center p-6 rounded-xl border bg-card`}>
+                    <div className="flex gap-5">
+                      <div className="w-12 h-12 rounded-xl bg-[hsl(var(--success)/0.1)] flex items-center justify-center shrink-0">
+                        <Icon className="w-6 h-6" style={{ color: "hsl(var(--success))" }} />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-foreground mb-1">{item.title}</h3>
+                        <p className="text-sm leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                    <div className="px-4 py-2 rounded-lg bg-[hsl(var(--success)/0.08)] text-sm font-semibold whitespace-nowrap" style={{ color: "hsl(var(--success))" }}>
+                      {item.stat}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
 
-      <EnquiryCTA />
+  const defaultOrder = ["header", "initiatives_list", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="green_initiatives"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

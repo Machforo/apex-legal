@@ -3,7 +3,8 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
+import EnquiryCTA from "@/components/EnquiryCTA";
 
 const defaultAlbums = [];
 
@@ -30,10 +31,17 @@ export default function PhotoGalleryPage() {
 
   const showPlaceholder = !usingCMS && filtered.length === 0 && filter !== "All";
 
-  return (
-    <Layout>
-      <PageHeader title="Photo Gallery" subtitle="A visual record of moot court competitions, seminars, and campus life" breadcrumbs={[{ label: "Gallery" }, { label: "Photos" }]} />
-      <section className="py-20 md:py-28" ref={ref}>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <PageHeader
+        key="header"
+        title="Photo Gallery"
+        subtitle="A visual record of moot court competitions, seminars, and campus life"
+        breadcrumbs={[{ label: "Gallery" }, { label: "Photos" }]}
+      />
+    ),
+    photo_grid: (
+      <section key="photo_grid" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <p className="reveal leading-relaxed max-w-4xl mx-auto text-center mb-16 text-lg">
             Ishan Law's gallery is a visual record — moot court competitions, court visits, seminars, cultural activities, campus life; browse through albums below.
@@ -99,6 +107,19 @@ export default function PhotoGalleryPage() {
 
         </div>
       </section>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
+
+  const defaultOrder = ["header", "photo_grid", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="photo_gallery"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

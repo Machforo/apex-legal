@@ -4,10 +4,9 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Link } from "react-router-dom";
 import { GraduationCap, Scale, ArrowRight, CheckCircle2 } from "lucide-react";
-
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function EducationOverviewPage() {
   const { data: overviewData } = useIshanLawData("programsoverview");
@@ -25,52 +24,63 @@ export default function EducationOverviewPage() {
   ];
   const programs = Array.isArray(programsData) && programsData.length > 0 ? programsData : [];
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title="Legal Programs"
         subtitle="BCI-approved BA LLB and LLB programs preparing future advocates and judicial officers"
         breadcrumbs={[{ label: "Programs Overview" }]}
       />
-
-      {bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
-            <img src={bannerImage} alt="Programs Overview" className="w-full h-full object-cover" />
+    ),
+    overview: (
+      <div key="overview">
+        {bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+              <img src={bannerImage} alt="Programs Overview" className="w-full h-full object-cover" />
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <section className="py-20 md:py-28" ref={ref}>
+        <section className="pt-20 md:pt-28 pb-10" ref={ref}>
+          <div className="container-wide">
+            <div className="max-w-4xl mx-auto">
+              <div className="reveal rounded-2xl overflow-hidden border mb-12 shadow-md">
+                <img src={image} alt="Academics at Ishan Law" className="w-full h-96 object-cover" />
+              </div>
+
+              {editorialPhotos.length > 0 && (
+                <div className="reveal mb-12 grid grid-cols-3 gap-4">
+                  {editorialPhotos.map((p, i) => (
+                    <div key={i} className="rounded-2xl overflow-hidden shadow h-44">
+                      <img src={p.url} alt={`Academic highlight ${i+1}`} className="w-full h-full object-cover" />
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div className="reveal space-y-5">
+                <p className="text-foreground/70 leading-relaxed">
+                  {content}
+                </p>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {keyPoints.map((item: any, i: number) => (
+                    <div key={item.point || i} className="flex items-center gap-2.5 text-sm text-foreground/80">
+                      <CheckCircle2 className="w-4 h-4 text-gold shrink-0" />
+                      {item.point}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    ),
+    programs_list: (
+      <section key="programs_list" className="pb-20 md:pb-28">
         <div className="container-wide">
           <div className="max-w-4xl mx-auto">
-            <div className="reveal rounded-2xl overflow-hidden border mb-12 shadow-md">
-              <img src={image} alt="Academics at Ishan Law" className="w-full h-96 object-cover" />
-            </div>
-
-            {editorialPhotos.length > 0 && (
-              <div className="reveal mb-12 grid grid-cols-3 gap-4">
-                {editorialPhotos.map((p, i) => (
-                  <div key={i} className="rounded-2xl overflow-hidden shadow h-44">
-                    <img src={p.url} alt={`Academic highlight ${i+1}`} className="w-full h-full object-cover" />
-                  </div>
-                ))}
-              </div>
-            )}
-            <div className="reveal space-y-5 mb-16">
-              <p className="text-foreground/70 leading-relaxed">
-                {content}
-              </p>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {keyPoints.map((item: any, i: number) => (
-                  <div key={item.point || i} className="flex items-center gap-2.5 text-sm text-foreground/80">
-                    <CheckCircle2 className="w-4 h-4 text-gold shrink-0" />
-                    {item.point}
-                  </div>
-                ))}
-              </div>
-            </div>
-
             <div className="grid sm:grid-cols-2 gap-6">
               {programs.length > 0 ? programs.map((prog: any, idx: number) => (
                 <Link key={prog._id || prog.slug} to={`/courses/${prog.slug}`} className={`reveal delay-${idx * 100} group block p-8 rounded-xl border bg-card hover:shadow-[0_8px_30px_hsl(var(--navy)/0.1)] transition-shadow`}>
@@ -94,8 +104,19 @@ export default function EducationOverviewPage() {
           </div>
         </div>
       </section>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
 
-      <EnquiryCTA />
+  const defaultOrder = ["header", "overview", "programs_list", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="education_overview"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

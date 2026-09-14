@@ -4,7 +4,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { toast } from "sonner";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function FeedbackPage() {
   const ref = useScrollReveal();
@@ -50,17 +50,21 @@ export default function FeedbackPage() {
     }
   };
 
-  return (
-    <Layout>
-      <PageHeader title={data?.title || "Feedback"} subtitle={data?.subtitle || "Help us improve — share your experience as a student, parent, or visitor"} breadcrumbs={[{ label: "Contact", href: "/contact" }, { label: "Feedback" }]} />
-      {data?.bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
-            <img src={data.bannerImage} alt="Feedback Banner" className="w-full h-full object-cover" />
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <div key="header">
+        <PageHeader title={data?.title || "Feedback"} subtitle={data?.subtitle || "Help us improve — share your experience as a student, parent, or visitor"} breadcrumbs={[{ label: "Contact", href: "/contact" }, { label: "Feedback" }]} />
+        {data?.bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+              <img src={data.bannerImage} alt="Feedback Banner" className="w-full h-full object-cover" />
+            </div>
           </div>
-        </div>
-      )}
-      <section className="py-20 md:py-28" ref={ref}>
+        )}
+      </div>
+    ),
+    feedback_form: (
+      <section key="feedback_form" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="reveal space-y-8">
@@ -170,6 +174,18 @@ export default function FeedbackPage() {
           </div>
         </div>
       </section>
+    )
+  };
+
+  const defaultOrder = ["header", "feedback_form"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="feedback"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

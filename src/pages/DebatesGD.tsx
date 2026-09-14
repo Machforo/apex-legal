@@ -5,6 +5,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { MessageSquare, Users, Mic2, Briefcase, Trophy } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function DebatesGDPage() {
   const { data } = useIshanLawData("debatesgd");
@@ -35,45 +36,51 @@ export default function DebatesGDPage() {
   };
 
   const bannerImage: string | undefined = data?.bannerImage;
-  const galleryImages: { url: string }[] = data?.images || [];
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title={title}
         subtitle={subtitle}
         breadcrumbs={[{ label: "Learning" }, { label: "Debates & GD" }]}
       />
-
-      {bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
-            <img src={bannerImage} alt="Debates and GD" className="w-full h-full object-cover" />
+    ),
+    overview: (
+      <div key="overview">
+        {bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+              <img src={bannerImage} alt="Debates and GD" className="w-full h-full object-cover" />
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <section className="py-20 md:py-28" ref={ref}>
-        <div className="container-wide">
-          {/* Overview */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-16">
-            <div className="reveal-left">
-              <div className="rounded-2xl overflow-hidden border shadow-lg">
-                <img src={image} alt={title} className="w-full h-[400px] object-cover" />
+        <section className="pt-20 md:pt-28 pb-10" ref={ref}>
+          <div className="container-wide">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              <div className="reveal-left">
+                <div className="rounded-2xl overflow-hidden border shadow-lg">
+                  <img src={image} alt={title} className="w-full h-[400px] object-cover" />
+                </div>
+              </div>
+              <div className="reveal-right space-y-6">
+                <h2 className="text-3xl font-bold text-navy text-gold-underline">
+                  {title}
+                </h2>
+                <div
+                  className="text-foreground/70 leading-relaxed format-rich-text text-lg"
+                  dangerouslySetInnerHTML={{ __html: rt(content) }}
+                />
               </div>
             </div>
-            <div className="reveal-right space-y-6">
-              <h2 className="text-3xl font-bold text-navy text-gold-underline">
-                {title}
-              </h2>
-              <div
-                className="text-foreground/70 leading-relaxed format-rich-text text-lg"
-                dangerouslySetInnerHTML={{ __html: rt(content) }}
-              />
-            </div>
           </div>
-
-          {/* Activity Cards */}
+        </section>
+      </div>
+    ),
+    activities_grid: (
+      <section key="activities_grid" className="pb-20 md:pb-28">
+        <div className="container-wide">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {activities.map((a: any, i: number) => {
               const IconComp = getIcon(a.icon || "Mic");
@@ -93,8 +100,19 @@ export default function DebatesGDPage() {
           </div>
         </div>
       </section>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
 
-      <EnquiryCTA />
+  const defaultOrder = ["header", "overview", "activities_grid", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="debates_gd"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

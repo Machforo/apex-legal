@@ -1,10 +1,10 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
+import EnquiryCTA from "@/components/EnquiryCTA";
 
 export default function CodeOfConductPage() {
   const { data } = useIshanLawData("codeofconduct");
@@ -24,28 +24,50 @@ export default function CodeOfConductPage() {
   const content = data?.content || fallbackContent.map(s => `<h2>${s.title}</h2><p>${s.content}</p>`).join("");
   const image = data?.image || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg";
 
-  return (
-    <Layout>
-      <PageHeader title={title} subtitle={subtitle} breadcrumbs={[{ label: "Students" }, { label: "Code of Conduct" }]} />
-      {data?.bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[350px]">
-            <img src={data.bannerImage} alt="Code of Conduct Banner" className="w-full h-full object-cover" />
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <PageHeader
+        key="header"
+        title={title}
+        subtitle={subtitle}
+        breadcrumbs={[{ label: "Students" }, { label: "Code of Conduct" }]}
+      />
+    ),
+    content: (
+      <div key="content">
+        {data?.bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[350px]">
+              <img src={data.bannerImage} alt="Code of Conduct Banner" className="w-full h-full object-cover" />
+            </div>
           </div>
-        </div>
-      )}
-      <section className="py-20 md:py-28" ref={ref}>
-        <div className="container-wide">
-          <div className="grid lg:grid-cols-[1fr_350px] gap-12 items-start max-w-6xl mx-auto">
-            <div className="reveal space-y-8 format-rich-text" dangerouslySetInnerHTML={{ __html: rt(content) }} />
-            <div className="reveal hidden lg:block sticky top-32">
-              <div className="rounded-2xl overflow-hidden shadow-2xl border mb-6">
-                <img src={image} alt={title} className="w-full h-[500px] object-cover" />
+        )}
+        <section className="py-20 md:py-28" ref={ref}>
+          <div className="container-wide">
+            <div className="grid lg:grid-cols-[1fr_350px] gap-12 items-start max-w-6xl mx-auto">
+              <div className="reveal space-y-8 format-rich-text" dangerouslySetInnerHTML={{ __html: rt(content) }} />
+              <div className="reveal hidden lg:block sticky top-32">
+                <div className="rounded-2xl overflow-hidden shadow-2xl border mb-6">
+                  <img src={image} alt={title} className="w-full h-[500px] object-cover" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
+
+  const defaultOrder = ["header", "content", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="code_of_conduct"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

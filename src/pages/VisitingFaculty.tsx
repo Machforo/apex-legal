@@ -3,6 +3,8 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { Award, UserCheck } from "lucide-react";
+import DynamicPageSections from "@/components/DynamicPageSections";
+import EnquiryCTA from "@/components/EnquiryCTA";
 
 
 const defaultVisitingFaculty = [
@@ -85,15 +87,17 @@ export default function VisitingFacultyPage() {
 
   const visitingFaculty = Array.isArray(data) && data.length > 0 ? data : defaultVisitingFaculty;
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title="Visiting Faculty"
         subtitle="Distinguished advocates, legal scholars, and retired judges who bring courtroom insights to the classroom"
         breadcrumbs={[{ label: "Faculty", href: "/faculty" }, { label: "Visiting Faculty" }]}
       />
-
-      <section className="py-20 md:py-28 bg-background" ref={ref}>
+    ),
+    visiting_grid: (
+      <section key="visiting_grid" className="py-20 md:py-28 bg-background" ref={ref}>
         <div className="container-wide">
           <div className="max-w-4xl mx-auto text-center mb-16 space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold/10 text-gold text-xs font-bold uppercase tracking-wider border border-gold/20">
@@ -143,7 +147,19 @@ export default function VisitingFacultyPage() {
           </div>
         </div>
       </section>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
+
+  const defaultOrder = ["header", "visiting_grid", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="visiting_faculty"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }
-

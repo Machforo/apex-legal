@@ -4,10 +4,10 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useState } from "react";
 import { Calendar, Search, X } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
+import EnquiryCTA from "@/components/EnquiryCTA";
 
 export default function NewsEventsPage() {
-
   const { data, isLoading: loading, error } = useIshanLawData("news");
   const ref = useScrollReveal([data]);
 
@@ -53,18 +53,17 @@ export default function NewsEventsPage() {
     return matchesCategory && matchesSearch;
   });
 
-  console.log("News Data:", data);
-  console.log("Filtered Events:", filteredEvents);
-
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title="News & Events"
         subtitle="Stay updated with the latest happenings at Ishan Law — moot courts, legal aid camps, seminars, and more"
         breadcrumbs={[{ label: "News & Events" }]}
       />
-
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    news_list: (
+      <section key="news_list" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           {/* Search Box */}
           <div className="reveal max-w-2xl mx-auto mb-10 relative group">
@@ -186,6 +185,19 @@ export default function NewsEventsPage() {
           )}
         </div>
       </section>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
+
+  const defaultOrder = ["header", "news_list", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="news_events"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

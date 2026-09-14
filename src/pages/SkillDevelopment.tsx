@@ -2,11 +2,10 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { FileText, MessageSquare, Monitor, Briefcase } from "lucide-react";
 import { rt } from "@/lib/richText";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function SkillDevelopmentPage() {
   const { data } = useIshanLawData("skilldevelopment");
@@ -36,36 +35,51 @@ export default function SkillDevelopmentPage() {
   const bannerImage: string | undefined = data?.bannerImage;
   const galleryImages: { url: string }[] = data?.images || [];
 
-  return (
-    <Layout>
-      <PageHeader title={title} subtitle={subtitle} breadcrumbs={[{ label: "Learning" }, { label: "Skill Development" }]} />
-
-      {bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
-            <img src={bannerImage} alt="Skill Development" className="w-full h-full object-cover" />
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <PageHeader
+        key="header"
+        title={title}
+        subtitle={subtitle}
+        breadcrumbs={[{ label: "Learning" }, { label: "Skill Development" }]}
+      />
+    ),
+    overview: (
+      <div key="overview">
+        {bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+              <img src={bannerImage} alt="Skill Development" className="w-full h-full object-cover" />
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <section className="py-20 md:py-28" ref={ref}>
+        <section className="pt-20 md:pt-28 pb-10" ref={ref}>
+          <div className="container-wide">
+            <div className="max-w-4xl mx-auto reveal space-y-10">
+              <div
+                className="text-foreground/70 leading-relaxed text-lg format-rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(content) }}
+              />
+
+              {galleryImages.length > 0 && (
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {galleryImages.map((img, idx) => (
+                    <div key={idx} className="rounded-2xl overflow-hidden shadow-md h-44">
+                      <img src={img.url} alt={`Skill Workshop ${idx + 1}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      </div>
+    ),
+    programs_grid: (
+      <section key="programs_grid" className="pb-20 md:pb-28">
         <div className="container-wide">
-          <div className="max-w-4xl mx-auto reveal space-y-10">
-            <div
-              className="text-foreground/70 leading-relaxed text-lg format-rich-text"
-              dangerouslySetInnerHTML={{ __html: rt(content) }}
-            />
-
-            {galleryImages.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {galleryImages.map((img, idx) => (
-                  <div key={idx} className="rounded-2xl overflow-hidden shadow-md h-44">
-                    <img src={img.url} alt={`Skill Workshop ${idx + 1}`} className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
-                  </div>
-                ))}
-              </div>
-            )}
-
+          <div className="max-w-4xl mx-auto">
             <div className="grid sm:grid-cols-2 gap-6">
               {items.map((s: any, i: number) => {
                 const IconComp = typeof s.icon === 'string' ? getIcon(s.icon) : getIcon("FileText");
@@ -88,7 +102,19 @@ export default function SkillDevelopmentPage() {
           </div>
         </div>
       </section>
-      <EnquiryCTA />
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
+
+  const defaultOrder = ["header", "overview", "programs_grid", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="skill_development"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

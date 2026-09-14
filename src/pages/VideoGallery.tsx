@@ -2,7 +2,8 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
+import EnquiryCTA from "@/components/EnquiryCTA";
 
 const defaultVideos = [];
 
@@ -22,10 +23,17 @@ export default function VideoGalleryPage() {
     ytId: getYTId(v.url)
   })) : defaultVideos;
 
-  return (
-    <Layout>
-      <PageHeader title="Video Gallery" subtitle="Visual insights into academic and extracurricular life at Ishan Law" breadcrumbs={[{ label: "Gallery" }, { label: "Videos" }]} />
-      <section className="py-20 md:py-28" ref={ref}>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <PageHeader
+        key="header"
+        title="Video Gallery"
+        subtitle="Visual insights into academic and extracurricular life at Ishan Law"
+        breadcrumbs={[{ label: "Gallery" }, { label: "Videos" }]}
+      />
+    ),
+    video_grid: (
+      <section key="video_grid" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <p className="reveal leading-relaxed max-w-4xl mx-auto text-center mb-16 text-lg">
             Watch Ishan Law in action — moot court performances, court visit documentaries, faculty talks, student testimonials; subscribe to the YouTube channel to stay updated.
@@ -63,6 +71,19 @@ export default function VideoGalleryPage() {
           <p className="text-center text-sm text-muted-foreground mt-8">Video placeholders shown — embed YouTube videos via CMS.</p>
         </div>
       </section>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
+
+  const defaultOrder = ["header", "video_grid", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="video_gallery"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

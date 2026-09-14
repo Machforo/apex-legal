@@ -4,7 +4,8 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Landmark, Shield, Users, Scale, FileText } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
+import EnquiryCTA from "@/components/EnquiryCTA";
 
 const defaultVisits = [
   {
@@ -48,15 +49,17 @@ export default function IndustrialVisitsPage() {
   const overviewContent = data?.overviewContent || "At Ishan Law, we believe that the legal profession is best mastered through direct observation. Court and Jail visits are an integral part of our clinical legal education model. Students visit trial courts, high courts, and the supreme court to witness the living law in action. These structured visits ensure that our students are familiar with the procedural realities of the Indian judicial system long before they begin their practice.";
   const image = data?.image || "https://law.ishan.ac/all-law/gallery-photos/academics/academics-3.jpg";
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title={title}
         subtitle={subtitle}
         breadcrumbs={[{ label: "Court & Jail Visits" }]}
       />
-
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    overview: (
+      <section key="overview" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="reveal-left space-y-6">
@@ -85,7 +88,7 @@ export default function IndustrialVisitsPage() {
                   <Scale className="w-5 h-5 text-gold" />
                   <span className="text-xs font-bold text-foreground uppercase tracking-wider">Justice</span>
                 </div>
-                </div>
+              </div>
             </div>
 
             <div className="reveal-right">
@@ -124,8 +127,9 @@ export default function IndustrialVisitsPage() {
           </div>
         </div>
       </section>
-
-      <section className="py-16 md:py-24 bg-card">
+    ),
+    visits_grid: (
+      <section key="visits_grid" className="py-16 md:py-24 bg-card">
         <div className="container-wide">
           <h2 className="text-3xl font-bold text-foreground mb-12 text-center">Recent Institutional Visits</h2>
           <div className="grid md:grid-cols-2 gap-6">
@@ -154,6 +158,19 @@ export default function IndustrialVisitsPage() {
           </div>
         </div>
       </section>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
+
+  const defaultOrder = ["header", "overview", "visits_grid", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="court_jail_visits"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

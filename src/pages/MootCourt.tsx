@@ -5,7 +5,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Scale, Users, Gavel, GraduationCap } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function MootCourtPage() {
   const { data } = useIshanLawData("mootcourt");
@@ -52,30 +52,31 @@ export default function MootCourtPage() {
   const bannerImage: string | undefined = data?.bannerImage;
   const galleryImages: {url:string}[] = data?.images || [];
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader 
+        key="header"
         title={title} 
         subtitle={subtitle} 
         breadcrumbs={[{ label: "Infrastructure" }, { label: "Moot Court Hall" }]} 
       />
-
-      {bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
-            <img 
-              src={bannerImage} 
-              alt="Moot Court Hall" 
-              className="w-full h-full object-cover" 
-              onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg"; }}
-            />
-          </div>
+    ),
+    banner_image: bannerImage ? (
+      <div key="banner_image" className="container-wide mt-12">
+        <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+          <img 
+            src={bannerImage} 
+            alt="Moot Court Hall" 
+            className="w-full h-full object-cover" 
+            onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg"; }}
+          />
         </div>
-      )}
-
-      <section className="py-20 md:py-28" ref={ref}>
+      </div>
+    ) : null,
+    overview: (
+      <section key="overview" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-12">
             <div className="reveal-left relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl border">
                 <img 
@@ -99,46 +100,59 @@ export default function MootCourtPage() {
               />
             </div>
           </div>
-
-          {galleryImages.length > 0 && (
-            <div className="reveal mb-20">
-              <h3 className="text-2xl font-bold text-navy mb-6">Moot Court Gallery</h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {galleryImages.map((img, idx) => (
-                  <div key={idx} className="rounded-2xl overflow-hidden shadow-md h-48">
-                    <img 
-                      src={img.url} 
-                      alt={`Moot Court session ${idx+1}`} 
-                      className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
-                      onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg"; }}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {features.map((f: any, i: number) => {
-              const IconComp = typeof f.icon === 'string' ? getIcon(f.icon) : f.icon;
-              return (
-                <div key={f.title || i} className="reveal p-6 rounded-xl border bg-card hover:shadow-lg transition-shadow group">
-                  <div className="w-12 h-12 rounded-lg bg-gold-light flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
-                    <IconComp className="w-6 h-6 text-navy" />
-                  </div>
-                  <h3 className="font-bold text-foreground mb-2">{f.title}</h3>
-                  <div 
-                    className="text-sm leading-relaxed text-foreground/80 format-rich-text"
-                    dangerouslySetInnerHTML={{ __html: rt(f.desc) }}
-                  />
-                </div>
-              );
-            })}
-          </div>
         </div>
       </section>
+    ),
+    gallery: galleryImages.length > 0 ? (
+      <div key="gallery" className="container-wide reveal mb-20">
+        <h3 className="text-2xl font-bold text-navy mb-6">Moot Court Gallery</h3>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          {galleryImages.map((img, idx) => (
+            <div key={idx} className="rounded-2xl overflow-hidden shadow-md h-48">
+              <img 
+                src={img.url} 
+                alt={`Moot Court session ${idx+1}`} 
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
+                onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg"; }}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    ) : null,
+    features: (
+      <div key="features" className="container-wide mb-20">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((f: any, i: number) => {
+            const IconComp = typeof f.icon === 'string' ? getIcon(f.icon) : f.icon;
+            return (
+              <div key={f.title || i} className="reveal p-6 rounded-xl border bg-card hover:shadow-lg transition-shadow group">
+                <div className="w-12 h-12 rounded-lg bg-gold-light flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
+                  <IconComp className="w-6 h-6 text-navy" />
+                </div>
+                <h3 className="font-bold text-foreground mb-2">{f.title}</h3>
+                <div 
+                  className="text-sm leading-relaxed text-foreground/80 format-rich-text"
+                  dangerouslySetInnerHTML={{ __html: rt(f.desc) }}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
 
-      <EnquiryCTA />
+  const defaultOrder = ["header", "banner_image", "overview", "gallery", "features", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="moot_court"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

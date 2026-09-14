@@ -4,6 +4,7 @@ import EnquiryCTA from "@/components/EnquiryCTA";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { GraduationCap, Quote } from "lucide-react";
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function AlumniNetworkPage() {
   const { data } = useIshanLawData("alumninetwork");
@@ -16,17 +17,18 @@ export default function AlumniNetworkPage() {
 
   const alumni = Array.isArray(data) && data.length > 0 ? data : fallbackAlumni;
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader 
+        key="header"
         title="Alumni Network" 
         subtitle="A global community of legal professionals, judges, and corporate leaders." 
         breadcrumbs={[{ label: "Career & Research" }, { label: "Alumni Network" }]} 
       />
-      
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    alumni_directory: (
+      <section key="alumni_directory" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          
           <div className="text-center max-w-3xl mx-auto mb-16 reveal">
             <h2 className="text-3xl font-bold text-foreground mb-4">Our Pride, Our Ambassadors</h2>
             <p className="text-foreground/70 leading-relaxed">
@@ -75,11 +77,21 @@ export default function AlumniNetworkPage() {
               <p className="text-muted-foreground text-lg">Alumni profiles are being updated.</p>
             </div>
           )}
-
         </div>
       </section>
-      
-      <EnquiryCTA />
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
+
+  const defaultOrder = ["header", "alumni_directory", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="alumni_network"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

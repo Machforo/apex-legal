@@ -5,6 +5,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 
 const defaultFaqCategories = [
@@ -28,15 +29,17 @@ export default function FAQsPage() {
     ? [{ category: "Frequently Asked Questions", faqs: data.map((f: any) => ({ q: f.question, a: f.answer })) }]
     : defaultFaqCategories;
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title="Frequently Asked Questions"
         subtitle="Find answers to common queries about admissions, fees, campus life, and career outcomes"
         breadcrumbs={[{ label: "Admissions", href: "/admissions" }, { label: "FAQs" }]}
       />
-
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    faqs_content: (
+      <section key="faqs_content" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-[1fr_350px] gap-12 items-start max-w-6xl mx-auto">
             <div className="space-y-10">
@@ -74,8 +77,19 @@ export default function FAQsPage() {
           </div>
         </div>
       </section>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
 
-      <EnquiryCTA />
+  const defaultOrder = ["header", "faqs_content", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="faqs"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

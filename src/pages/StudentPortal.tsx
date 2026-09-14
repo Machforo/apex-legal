@@ -3,16 +3,23 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function StudentPortalPage() {
   const { data } = useIshanLawData("studentportal");
   const ref = useScrollReveal([data]);
 
-  return (
-    <Layout>
-      <PageHeader title={data?.title || "Student Portal"} subtitle="Access timetables, attendance, and university results" breadcrumbs={[{ label: "Students" }, { label: "Student Portal" }]} />
-      <section className="py-20 md:py-28" ref={ref}>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <PageHeader
+        key="header"
+        title={data?.title || "Student Portal"}
+        subtitle="Access timetables, attendance, and university results"
+        breadcrumbs={[{ label: "Students" }, { label: "Student Portal" }]}
+      />
+    ),
+    portal_links: (
+      <section key="portal_links" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-center max-w-5xl mx-auto">
             <div className="reveal space-y-8">
@@ -54,6 +61,18 @@ export default function StudentPortalPage() {
           </div>
         </div>
       </section>
+    )
+  };
+
+  const defaultOrder = ["header", "portal_links"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="student_portal"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

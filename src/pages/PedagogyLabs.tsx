@@ -2,8 +2,9 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { CheckCircle2, Gavel, Video, Monitor, BookOpen, Scale } from "lucide-react";
+import DynamicPageSections from "@/components/DynamicPageSections";
 
-export default function MootCourtPage() {
+export default function PedagogyLabsPage() {
   const ref = useScrollReveal();
 
   const facilities = [
@@ -29,15 +30,17 @@ export default function MootCourtPage() {
     },
   ];
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title="Moot Court & Clinical Training"
         subtitle="Bridging the gap between legal theory and courtroom practice through intensive clinical training."
         breadcrumbs={[{ label: "Learning", href: "/news-events" }, { label: "Moot Court" }]}
       />
-
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    overview: (
+      <section key="overview" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="reveal-left space-y-6">
@@ -76,8 +79,9 @@ export default function MootCourtPage() {
           </div>
         </div>
       </section>
-
-      <section className="py-16 md:py-24 bg-section-alt">
+    ),
+    clinical_training: (
+      <section key="clinical_training" className="py-16 md:py-24 bg-section-alt">
         <div className="container-wide text-center">
           <div className="max-w-3xl mx-auto space-y-6">
             <Scale className="w-12 h-12 text-gold mx-auto" />
@@ -88,6 +92,18 @@ export default function MootCourtPage() {
           </div>
         </div>
       </section>
+    )
+  };
+
+  const defaultOrder = ["header", "overview", "clinical_training"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="pedagogy_labs"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

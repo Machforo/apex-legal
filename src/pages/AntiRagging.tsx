@@ -1,10 +1,9 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function AntiRaggingPage() {
   const { data } = useIshanLawData("mandatorydisclosure");
@@ -21,29 +20,38 @@ export default function AntiRaggingPage() {
     { method: "Visit the Principal's office during working hours" },
     { method: "Report online at www.antiragging.in" }
   ];
-  return (
-    <Layout>
-      <PageHeader 
-        title={ar?.title || "Anti-Ragging Zone"} 
-        subtitle={ar?.subtitle || "Zero tolerance policy — BCI & UGC mandate for student safety"} 
-        breadcrumbs={[{ label: "Governance" }, { label: "Anti-Ragging" }]} 
-      />
-      {ar?.bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
-            <img src={ar.bannerImage} alt="Anti-Ragging Banner" className="w-full h-full object-cover" />
+
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <div key="header">
+        <PageHeader 
+          title={ar?.title || "Anti-Ragging Zone"} 
+          subtitle={ar?.subtitle || "Zero tolerance policy — BCI & UGC mandate for student safety"} 
+          breadcrumbs={[{ label: "Governance" }, { label: "Anti-Ragging" }]} 
+        />
+        {ar?.bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+              <img src={ar.bannerImage} alt="Anti-Ragging Banner" className="w-full h-full object-cover" />
+            </div>
           </div>
+        )}
+      </div>
+    ),
+    helpline: (
+      <div key="helpline" className="container-wide pt-12">
+        <div className="max-w-5xl mx-auto p-6 rounded-xl bg-destructive/5 border border-destructive/20">
+          <p className="text-sm font-semibold text-destructive mb-2">24x7 Anti-Ragging Helpline</p>
+          <p className="text-2xl font-bold text-foreground">{helpline}</p>
+          <p className="text-xs text-muted-foreground mt-1">Toll-free | National Helpline available round the clock</p>
         </div>
-      )}
-      <section className="py-20 md:py-28" ref={ref}>
+      </div>
+    ),
+    policy_content: (
+      <section key="policy_content" className="py-12 md:py-20" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
             <div className="reveal space-y-6">
-              <div className="p-6 rounded-xl bg-destructive/5 border border-destructive/20">
-                <p className="text-sm font-semibold text-destructive mb-2">24x7 Anti-Ragging Helpline</p>
-                <p className="text-2xl font-bold text-foreground">{helpline}</p>
-                <p className="text-xs text-muted-foreground mt-1">Toll-free | National Helpline available round the clock</p>
-              </div>
               <div 
                 className="text-foreground/70 leading-relaxed text-sm format-rich-text"
                 dangerouslySetInnerHTML={{ __html: rt(content) }}
@@ -64,11 +72,37 @@ export default function AntiRaggingPage() {
                   <li key={i}>{m.method}</li>
                 ))}
               </ol>
-              <h2 className="text-lg font-bold text-foreground">{ar?.pledgeTitle || "The Legal Fraternity Pledge"}</h2><div className="text-foreground/70 leading-relaxed text-sm format-rich-text" dangerouslySetInnerHTML={{ __html: rt(ar?.pledgeText || "Every student at Ishan Law is required to sign an undertaking at the time of admission. This pledge confirms the student's commitment to maintaining the dignity of the profession and ensuring a safe, respectful environment for all peers.") }} />
+              <h2 className="text-lg font-bold text-foreground">{ar?.pledgeTitle || "The Legal Fraternity Pledge"}</h2>
+              <div className="text-foreground/70 leading-relaxed text-sm format-rich-text" dangerouslySetInnerHTML={{ __html: rt(ar?.pledgeText || "Every student at Ishan Law is required to sign an undertaking at the time of admission. This pledge confirms the student's commitment to maintaining the dignity of the profession and ensuring a safe, respectful environment for all peers.") }} />
             </div>
           </div>
         </div>
       </section>
+    ),
+    cta: (
+      <div key="cta" className="container-wide pb-20">
+        <div className="max-w-5xl mx-auto p-8 bg-navy text-white rounded-2xl shadow-xl text-center space-y-4">
+          <h3 className="text-xl font-bold">Report an Incident Confidentially</h3>
+          <p className="text-white/80 text-sm max-w-xl mx-auto">
+            If you witness or experience any form of ragging, report immediately. Ishan Law guarantees full confidentiality and immediate action.
+          </p>
+          <a href="mailto:registrar@ishan.ac" className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gold text-navy font-bold text-sm hover:bg-gold/90 transition-all">
+            Email Registrar Immediately
+          </a>
+        </div>
+      </div>
+    )
+  };
+
+  const defaultOrder = ["header", "helpline", "policy_content", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="anti_ragging"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

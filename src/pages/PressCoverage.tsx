@@ -2,7 +2,8 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
+import EnquiryCTA from "@/components/EnquiryCTA";
 
 export default function PressCoveragePage() {
   const { data } = useIshanLawData("press");
@@ -22,10 +23,17 @@ export default function PressCoveragePage() {
     { publication: "Bar & Bench", date: "12 Nov 2025", headline: "Ishan Law Institute announces expansion of free legal aid clinics", tag: "Online" },
   ];
 
-  return (
-    <Layout>
-      <PageHeader title="Press Coverage" subtitle="Media archives detailing institutional milestones and academic achievements" breadcrumbs={[{ label: "Gallery" }, { label: "Press Coverage" }]} />
-      <section className="py-20 md:py-28" ref={ref}>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <PageHeader
+        key="header"
+        title="Press Coverage"
+        subtitle="Media archives detailing institutional milestones and academic achievements"
+        breadcrumbs={[{ label: "Gallery" }, { label: "Press Coverage" }]}
+      />
+    ),
+    press_clippings: (
+      <section key="press_clippings" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <p className="reveal leading-relaxed max-w-4xl mx-auto text-center mb-16 text-lg">
             Ishan Law's moot court achievements, legal aid work, and academic activities have been featured in regional and national media; this page archives press coverage for students, parents, and the legal community.
@@ -60,6 +68,19 @@ export default function PressCoveragePage() {
           </div>
         </div>
       </section>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
+
+  const defaultOrder = ["header", "press_clippings", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="press_coverage"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

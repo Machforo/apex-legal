@@ -3,6 +3,7 @@ import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Lightbulb, Rocket, Users, Briefcase, Trophy, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function ECellPage() {
   const ref = useScrollReveal();
@@ -30,15 +31,17 @@ export default function ECellPage() {
     },
   ];
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title="Entrepreneurship Cell & Internships"
         subtitle="Nurturing the next generation of business leaders and creators."
         breadcrumbs={[{ label: "E-Cell & Internships" }]}
       />
-
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    overview: (
+      <section key="overview" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div className="reveal-left space-y-6">
@@ -83,8 +86,9 @@ export default function ECellPage() {
           </div>
         </div>
       </section>
-
-      <section className="py-16 md:py-24 bg-section-alt">
+    ),
+    spotlight: (
+      <section key="spotlight" className="py-16 md:py-24 bg-section-alt">
         <div className="container-wide text-center">
           <div className="max-w-2xl mx-auto space-y-4">
             <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold">Alumni Spotlight</p>
@@ -95,6 +99,18 @@ export default function ECellPage() {
           </div>
         </div>
       </section>
+    )
+  };
+
+  const defaultOrder = ["header", "overview", "spotlight"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="e_cell"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

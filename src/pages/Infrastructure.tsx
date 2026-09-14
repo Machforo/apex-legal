@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { Wifi, Monitor, BookOpen, Building2, Cctv, MapPin, ArrowRight, Scale } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 const facilities = [
   { icon: Building2, title: "Moot Court Hall", desc: "A realistic High Court environment for regular clinical training, oral advocacy practice, and national competitions.", link: "/moot-court" },
@@ -29,99 +29,106 @@ export default function InfrastructurePage() {
   const content = facility?.overviewContent || `Ishan Law Institute's campus is strategically located in Knowledge Park III, Greater Noida, offering a specialized environment designed for legal scholarship and professional training. The campus is built on a foundation of tradition and modern infrastructure, providing a premium learning experience for aspiring advocates.\n\nOur facilities include a high-tech Moot Court Hall, a comprehensive legal library with digital research terminals, and a dedicated Legal Aid Cell for community service.`;
   const image = facility?.image || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg";
 
-  // Use CMS highlights if available, otherwise fallback
-  const highlights = facility?.highlights?.length > 0 ? facility.highlights : [
-    { title: "Smart Classrooms", description: "Fully air-conditioned lecture halls equipped with modern AV projection systems." },
-    { title: "Moot Court Hall", description: "A realistic courtroom replica for practical clinical training." },
-    { title: "Wi-Fi Campus", description: "24/7 seamless high-speed internet connectivity across all blocks." },
-    { title: "Green Campus", description: "Eco-friendly sustainable campus with lush green surroundings." }
-  ];
-
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title={title}
         subtitle={subtitle}
         breadcrumbs={[{ label: "Campus", href: "/infrastructure" }, { label: "Infrastructure" }]}
       />
-
-      {facility?.bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
-            <img src={facility.bannerImage} alt={title} className="w-full h-full object-cover" />
-          </div>
-        </div>
-      )}
-
-      <section className="py-20 md:py-28" ref={ref}>
-        <div className="container-wide">
-          <div className="reveal max-w-3xl mb-14">
-            <h2 className="text-2xl font-bold mb-4">{overviewHeading}</h2>
-            <div 
-              className="text-foreground/70 leading-relaxed format-rich-text"
-              dangerouslySetInnerHTML={{ __html: rt(content) }}
-            />
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
-            <div className="reveal rounded-2xl overflow-hidden border shadow-sm">
-              <img 
-                src={image} 
-                alt="Campus Building" 
-                className="w-full h-64 object-cover" 
-                onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg"; }}
-              />
-            </div>
-            
-            <div className="reveal delay-100 rounded-2xl overflow-hidden border shadow-sm">
-              <img 
-                src={facility?.editorialPhotos?.[0]?.url || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg"} 
-                alt="Institutional Facility" 
-                className="w-full h-64 object-cover" 
-                onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg"; }}
-              />
-            </div>
-            <div className="reveal delay-200 rounded-2xl overflow-hidden border shadow-sm">
-              <img 
-                src={facility?.editorialPhotos?.[1]?.url || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg"} 
-                alt="Campus Infrastructure" 
-                className="w-full h-64 object-cover" 
-                onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg"; }}
-              />
+    ),
+    overview: (
+      <div key="overview">
+        {facility?.bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+              <img src={facility.bannerImage} alt={title} className="w-full h-full object-cover" />
             </div>
           </div>
+        )}
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {facilities.map((f, i) => {
-              const Icon = f.icon;
-              const cardContent = (
-                <div className={`reveal delay-${Math.min(i, 5)}00 bg-card rounded-xl border p-6 h-full hover:shadow-[0_8px_30px_hsl(var(--navy)/0.08)] transition-shadow ${f.link ? 'group cursor-pointer' : ''}`}>
-                  <div className="w-12 h-12 rounded-xl bg-gold-light flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
-                    <Icon className="w-6 h-6 text-navy" />
+        <section className="py-20 md:py-28" ref={ref}>
+          <div className="container-wide">
+            <div className="reveal max-w-3xl mb-14">
+              <h2 className="text-2xl font-bold mb-4">{overviewHeading}</h2>
+              <div 
+                className="text-foreground/70 leading-relaxed format-rich-text"
+                dangerouslySetInnerHTML={{ __html: rt(content) }}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+              <div className="reveal rounded-2xl overflow-hidden border shadow-sm">
+                <img 
+                  src={image} 
+                  alt="Campus Building" 
+                  className="w-full h-64 object-cover" 
+                  onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-1.jpg"; }}
+                />
+              </div>
+              
+              <div className="reveal delay-100 rounded-2xl overflow-hidden border shadow-sm">
+                <img 
+                  src={facility?.editorialPhotos?.[0]?.url || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg"} 
+                  alt="Institutional Facility" 
+                  className="w-full h-64 object-cover" 
+                  onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-2.jpg"; }}
+                />
+              </div>
+              <div className="reveal delay-200 rounded-2xl overflow-hidden border shadow-sm">
+                <img 
+                  src={facility?.editorialPhotos?.[1]?.url || "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg"} 
+                  alt="Campus Infrastructure" 
+                  className="w-full h-64 object-cover" 
+                  onError={(e) => { (e.target as HTMLImageElement).src = "https://law.ishan.ac/all-law/gallery-photos/key-highlights/key-highlights-7.jpg"; }}
+                />
+              </div>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {facilities.map((f, i) => {
+                const Icon = f.icon;
+                const cardContent = (
+                  <div className={`reveal delay-${Math.min(i, 5)}00 bg-card rounded-xl border p-6 h-full hover:shadow-[0_8px_30px_hsl(var(--navy)/0.08)] transition-shadow ${f.link ? 'group cursor-pointer' : ''}`}>
+                    <div className="w-12 h-12 rounded-xl bg-gold-light flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
+                      <Icon className="w-6 h-6 text-navy" />
+                    </div>
+                    <h3 className="font-bold text-foreground mb-2">{f.title}</h3>
+                    <p className="text-sm leading-relaxed">{f.desc}</p>
+                    {f.link && (
+                      <span className="inline-flex items-center gap-1 mt-4 text-sm font-semibold text-navy group-hover:text-gold transition-colors">
+                        View Details <ArrowRight className="w-4 h-4" />
+                      </span>
+                    )}
                   </div>
-                  <h3 className="font-bold text-foreground mb-2">{f.title}</h3>
-                  <p className="text-sm leading-relaxed">{f.desc}</p>
-                  {f.link && (
-                    <span className="inline-flex items-center gap-1 mt-4 text-sm font-semibold text-navy group-hover:text-gold transition-colors">
-                      View Details <ArrowRight className="w-4 h-4" />
-                    </span>
-                  )}
-                </div>
-              );
-              return f.link ? <Link key={f.title} to={f.link}>{cardContent}</Link> : <div key={f.title}>{cardContent}</div>;
-            })}
-          </div>
-        </div>
-      </section>
-
-      {facility?.images?.length > 0 && (
-        <section className="pb-20 md:pb-28">
-          <div className="container-wide max-w-6xl mx-auto">
-            <MediaGallery images={facility.images} altPrefix={facility?.title || "Facility photo"} />
+                );
+                return f.link ? <Link key={f.title} to={f.link}>{cardContent}</Link> : <div key={f.title}>{cardContent}</div>;
+              })}
+            </div>
           </div>
         </section>
-      )}
-      <EnquiryCTA />
+      </div>
+    ),
+    gallery: facility?.images?.length > 0 ? (
+      <section key="gallery" className="pb-20 md:pb-28">
+        <div className="container-wide max-w-6xl mx-auto">
+          <MediaGallery images={facility.images} altPrefix={facility?.title || "Facility photo"} />
+        </div>
+      </section>
+    ) : null,
+    cta: <EnquiryCTA key="cta" />
+  };
+
+  const defaultOrder = ["header", "overview", "gallery", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="infrastructure"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

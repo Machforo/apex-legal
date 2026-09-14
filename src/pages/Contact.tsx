@@ -8,14 +8,14 @@ import { z } from 'zod';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from "sonner";
-
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 const contactSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters').max(50, 'Name is too long').regex(/^[a-zA-Z\s]*$/, 'Name can only contain letters and spaces'),
   phone: z.string().regex(/^[0-9]{10}$/, 'Phone number must be exactly 10 digits'),
   email: z.string().email('Invalid email address').or(z.literal(''))
 });
+
 export default function ContactPage() {
   const ref = useScrollReveal();
   const { data } = useIshanLawData("contact");
@@ -25,9 +25,8 @@ export default function ContactPage() {
     email: data?.email || "admissions@ishan.ac",
     mapEmbed: data?.mapEmbed || "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.2!2d77.49!3d28.47!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sIshan+Institute+of+Law!5e0!3m2!1sen!2sin!4v1"
   };
-  const collegeContacts = data?.collegeContacts || [];
 
-    const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<z.infer<typeof contactSchema>>({ resolver: zodResolver(contactSchema), defaultValues: { name: '', phone: '', email: '' } });
+  const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<z.infer<typeof contactSchema>>({ resolver: zodResolver(contactSchema), defaultValues: { name: '', phone: '', email: '' } });
   const [submitted, setSubmitted] = useState(false);
 
   const onSubmit = async (data: z.infer<typeof contactSchema>) => {
@@ -44,15 +43,17 @@ export default function ContactPage() {
     } catch (err) { toast.error("Unable to send message."); }
   };
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader 
+        key="header"
         title={data?.title || "Contact Us"} 
         subtitle={data?.subtitle || "Reach out for admissions enquiries, campus visits, and general information"} 
         breadcrumbs={[{ label: "Contact" }]} 
       />
-
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    overview: (
+      <section key="overview" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <p className="reveal leading-relaxed max-w-3xl mb-12 text-lg whitespace-pre-wrap">
             {data?.overview || "Ishan Law's team is available to assist prospective students, parents, enrolled students, and visitors. Admissions queries are given priority, with responses guaranteed within 24 working hours."}
@@ -126,10 +127,20 @@ export default function ContactPage() {
               </div>
             </div>
           </div>
-
-
         </div>
       </section>
+    )
+  };
+
+  const defaultOrder = ["header", "overview"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="contact"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

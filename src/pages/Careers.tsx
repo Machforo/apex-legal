@@ -1,9 +1,8 @@
 import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-
 import { useIshanLawData } from "@/hooks/useIshanLawData";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function CareersPage() {
   const { data } = useIshanLawData("careers");
@@ -26,17 +25,21 @@ export default function CareersPage() {
       }))
     : fallbackJobs;
 
-  return (
-    <Layout>
-      <PageHeader title={pageData?.title || "Careers at Ishan Law"} subtitle={pageData?.subtitle || "Join a community of legal scholars and practitioners dedicated to excellence"} breadcrumbs={[{ label: "Contact", href: "/contact" }, { label: "Careers" }]} />
-      {pageData?.bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
-            <img src={pageData.bannerImage} alt="Careers Banner" className="w-full h-full object-cover" />
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
+      <div key="header">
+        <PageHeader title={pageData?.title || "Careers at Ishan Law"} subtitle={pageData?.subtitle || "Join a community of legal scholars and practitioners dedicated to excellence"} breadcrumbs={[{ label: "Contact", href: "/contact" }, { label: "Careers" }]} />
+        {pageData?.bannerImage && (
+          <div className="container-wide mt-12">
+            <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+              <img src={pageData.bannerImage} alt="Careers Banner" className="w-full h-full object-cover" />
+            </div>
           </div>
-        </div>
-      )}
-      <section className="py-20 md:py-28" ref={ref}>
+        )}
+      </div>
+    ),
+    careers_list: (
+      <section key="careers_list" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
           <div className="grid lg:grid-cols-2 gap-12 items-start max-w-5xl mx-auto">
             <div className="reveal space-y-10">
@@ -49,34 +52,51 @@ export default function CareersPage() {
             </div>
             <div className="space-y-4">
               <h2 className="text-xl font-bold text-foreground mb-4">Current Openings</h2>
-            {jobs.map((j, i) => (
-              <div key={j.title} className={`reveal delay-${Math.min(i, 3)}00 p-6 rounded-xl border bg-card hover:shadow-[0_4px_20px_hsl(var(--navy)/0.06)] transition-shadow`}>
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-foreground text-lg">{j.title}</h3>
-                    <div className="flex flex-wrap items-center gap-3 mt-2 text-sm text-muted-foreground">
-                       <span><strong>Qual:</strong> {j.qualification}</span>
-                       <span className="w-1 h-1 rounded-full bg-border" />
-                       <span><strong>Exp:</strong> {j.experience}</span>
+              {jobs.map((j, i) => (
+                <div key={j.title} className={`reveal delay-${Math.min(i, 3)}00 p-6 rounded-xl border bg-card hover:shadow-[0_4px_20px_hsl(var(--navy)/0.06)] transition-shadow`}>
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-foreground text-lg">{j.title}</h3>
+                      <div className="flex flex-wrap items-center gap-3 mt-2 text-sm text-muted-foreground">
+                         <span><strong>Qual:</strong> {j.qualification}</span>
+                         <span className="w-1 h-1 rounded-full bg-border" />
+                         <span><strong>Exp:</strong> {j.experience}</span>
+                      </div>
+                      <div className="flex gap-2 mt-3">
+                        <span className="px-2.5 py-1 rounded-md bg-muted text-xs font-medium text-muted-foreground">{j.dept}</span>
+                        <span className="px-2.5 py-1 rounded-md bg-gold-light text-xs font-medium text-navy">{j.type}</span>
+                      </div>
                     </div>
-                    <div className="flex gap-2 mt-3">
-                      <span className="px-2.5 py-1 rounded-md bg-muted text-xs font-medium text-muted-foreground">{j.dept}</span>
-                      <span className="px-2.5 py-1 rounded-md bg-gold-light text-xs font-medium text-navy">{j.type}</span>
-                    </div>
+                    <a href="mailto:careers@ishan.ac" className="shrink-0 text-center sm:w-auto w-full px-6 py-2.5 text-sm font-semibold bg-navy text-primary-foreground rounded-lg hover:bg-navy/90 transition-colors active:scale-[0.97]">Apply Now</a>
                   </div>
-                  <a href="mailto:careers@ishan.ac" className="shrink-0 text-center sm:w-auto w-full px-6 py-2.5 text-sm font-semibold bg-navy text-primary-foreground rounded-lg hover:bg-navy/90 transition-colors active:scale-[0.97]">Apply Now</a>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-          <div className="mt-12 p-8 bg-muted rounded-xl border reveal text-center">
-             <h3 className="text-lg font-bold text-foreground mb-2">How to Apply</h3>
-             <p className="text-sm leading-relaxed max-w-xl mx-auto">
-               Please send your updated CV, along with a cover letter detailing your relevant experience and academic interests, to <a href="mailto:careers@ishan.ac" className="text-navy font-bold hover:underline">careers@ishan.ac</a>. Shortlisted candidates will be contacted by the HR department within 14 working days for the interview process.
-             </p>
-          </div>
-        </div></div>
+        </div>
       </section>
+    ),
+    cta: (
+      <div key="cta" className="container-wide pb-20">
+        <div className="max-w-5xl mx-auto p-8 bg-muted rounded-xl border reveal text-center">
+           <h3 className="text-lg font-bold text-foreground mb-2">How to Apply</h3>
+           <p className="text-sm leading-relaxed max-w-xl mx-auto">
+             Please send your updated CV, along with a cover letter detailing your relevant experience and academic interests, to <a href="mailto:careers@ishan.ac" className="text-navy font-bold hover:underline">careers@ishan.ac</a>. Shortlisted candidates will be contacted by the HR department within 14 working days for the interview process.
+           </p>
+        </div>
+      </div>
+    )
+  };
+
+  const defaultOrder = ["header", "careers_list", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="careers"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

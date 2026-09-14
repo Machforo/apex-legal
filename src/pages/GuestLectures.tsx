@@ -4,6 +4,8 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Mic2, Calendar } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
+import DynamicPageSections from "@/components/DynamicPageSections";
+import EnquiryCTA from "@/components/EnquiryCTA";
 
 export default function GuestLecturesPage() {
   const { data: pageData } = useIshanLawData("guestlecturespage");
@@ -23,17 +25,18 @@ export default function GuestLecturesPage() {
 
   const lectures = Array.isArray(lecturesData) && lecturesData.length > 0 ? lecturesData : defaultLectures;
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader
+        key="header"
         title={title}
         subtitle={subtitle}
         breadcrumbs={[{ label: "Events" }, { label: "Guest Lectures" }]}
       />
-
-      <section className="py-20 md:py-28" ref={ref}>
+    ),
+    overview: (
+      <section key="overview" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          {/* Overview */}
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20">
             <div className="reveal-left">
               <div className="rounded-2xl overflow-hidden border shadow-lg">
@@ -48,8 +51,12 @@ export default function GuestLecturesPage() {
               />
             </div>
           </div>
-
-          {/* Lecture Cards */}
+        </div>
+      </section>
+    ),
+    lectures_grid: (
+      <section key="lectures_grid" className="pb-20 md:pb-28">
+        <div className="container-wide">
           <h3 className="text-2xl font-bold text-center mb-10">Recent Lectures & Seminars</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {lectures.map((e: any, i: number) => (
@@ -86,6 +93,19 @@ export default function GuestLecturesPage() {
           </div>
         </div>
       </section>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
+
+  const defaultOrder = ["header", "overview", "lectures_grid", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="guest_lectures"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }

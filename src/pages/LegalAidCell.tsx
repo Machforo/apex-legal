@@ -5,7 +5,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Heart, ShieldCheck, Scale, HandHelping } from "lucide-react";
 import { useIshanLawData } from "@/hooks/useIshanLawData";
 import { rt } from "@/lib/richText";
-
+import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function LegalAidCellPage() {
   const { data } = useIshanLawData("legalaidcell");
@@ -44,34 +44,34 @@ export default function LegalAidCellPage() {
       case "ShieldCheck": return ShieldCheck;
       case "Scale": return Scale;
       case "Heart": return Heart;
-      case "Users": return HandHelping; // Fallbacks
+      case "Users": return HandHelping;
       case "Shield": return ShieldCheck;
       default: return Heart;
     }
   };
 
   const bannerImage: string | undefined = data?.bannerImage;
-  const galleryImages: {url:string}[] = data?.images || [];
 
-  return (
-    <Layout>
+  const defaultSections: Record<string, React.ReactNode> = {
+    header: (
       <PageHeader 
+        key="header"
         title={title} 
         subtitle={subtitle} 
         breadcrumbs={[{ label: "Governance" }, { label: "Legal Aid Cell" }]} 
       />
-
-      {bannerImage && (
-        <div className="container-wide mt-12">
-          <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
-            <img src={bannerImage} alt="Legal Aid Cell" className="w-full h-full object-cover" />
-          </div>
+    ),
+    banner_image: bannerImage ? (
+      <div key="banner_image" className="container-wide mt-12">
+        <div className="rounded-[2.5rem] overflow-hidden shadow-xl max-h-[380px]">
+          <img src={bannerImage} alt="Legal Aid Cell" className="w-full h-full object-cover" />
         </div>
-      )}
-
-      <section className="py-20 md:py-28" ref={ref}>
+      </div>
+    ) : null,
+    overview: (
+      <section key="overview" className="py-20 md:py-28" ref={ref}>
         <div className="container-wide">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-12">
             <div className="reveal-left order-2 lg:order-1">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">Community Outreach</p>
               <h2 className="font-bold text-foreground leading-tight mb-6">
@@ -97,28 +97,42 @@ export default function LegalAidCellPage() {
               </div>
             </div>
           </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {services.map((s: any, i: number) => {
-              const IconComp = typeof s.icon === 'string' ? getIcon(s.icon) : s.icon;
-              return (
-                <div key={s.title || i} className="reveal p-6 rounded-xl border bg-card hover:shadow-lg transition-shadow group">
-                  <div className="w-12 h-12 rounded-lg bg-gold-light flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
-                    <IconComp className="w-6 h-6 text-navy" />
-                  </div>
-                  <h3 className="font-bold text-foreground mb-2">{s.title}</h3>
-                  <div 
-                    className="text-sm leading-relaxed text-foreground/80 format-rich-text"
-                    dangerouslySetInnerHTML={{ __html: rt(s.desc) }}
-                  />
-                </div>
-              );
-            })}
-          </div>
         </div>
       </section>
+    ),
+    initiatives: (
+      <div key="initiatives" className="container-wide mb-20">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.map((s: any, i: number) => {
+            const IconComp = typeof s.icon === 'string' ? getIcon(s.icon) : s.icon;
+            return (
+              <div key={s.title || i} className="reveal p-6 rounded-xl border bg-card hover:shadow-lg transition-shadow group">
+                <div className="w-12 h-12 rounded-lg bg-gold-light flex items-center justify-center mb-4 group-hover:bg-gold/20 transition-colors">
+                  <IconComp className="w-6 h-6 text-navy" />
+                </div>
+                <h3 className="font-bold text-foreground mb-2">{s.title}</h3>
+                <div 
+                  className="text-sm leading-relaxed text-foreground/80 format-rich-text"
+                  dangerouslySetInnerHTML={{ __html: rt(s.desc) }}
+                />
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    ),
+    cta: <EnquiryCTA key="cta" />
+  };
 
-      <EnquiryCTA />
+  const defaultOrder = ["header", "banner_image", "overview", "initiatives", "cta"];
+
+  return (
+    <Layout>
+      <DynamicPageSections
+        pageId="legal_aid_cell"
+        defaultSections={defaultSections}
+        defaultOrder={defaultOrder}
+      />
     </Layout>
   );
 }
