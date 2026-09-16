@@ -205,7 +205,7 @@ const App = () => (
               <Route path="/grievance-redressal" element={<GrievanceRedressal />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
 
-              <Route path="/p/:slug" element={<DynamicPageRenderer portal="law" />} />
+              <Route path="/p/:slug" element={<DynamicPageRenderer portal="legal" />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
