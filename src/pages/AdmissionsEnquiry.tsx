@@ -2,15 +2,26 @@ import Layout from "@/components/Layout";
 import PageHeader from "@/components/PageHeader";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { CheckCircle2, MessageSquare, MapPin, Laptop } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 import DynamicPageSections from "@/components/DynamicPageSections";
 
 export default function AdmissionsEnquiryPage() {
   const ref = useScrollReveal();
+  const [searchParams] = useSearchParams();
   const [form, setForm] = useState({ name: "", phone: "", email: "", program: "", message: "" });
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+
+  useEffect(() => {
+    const rawParam = searchParams.get("program") || searchParams.get("course");
+    if (!rawParam) return;
+    const lower = rawParam.toLowerCase();
+    if (lower.includes("ba")) setForm(p => ({ ...p, program: "BA LLB" }));
+    else if (lower.includes("llb")) setForm(p => ({ ...p, program: "LLB" }));
+    else setForm(p => ({ ...p, program: rawParam }));
+  }, [searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
